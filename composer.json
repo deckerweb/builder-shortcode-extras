@@ -1,0 +1,22 @@
+{
+  "name": "deckerweb/builder-shortcode-extras",
+  "description": "WordPress plugin - short description: A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.",
+  "keywords": ["shortcodes", "builder", "elementor"],
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/deckerweb/builder-shortcode-extras",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "David Decker",
+      "homepage": "https://toolbarextras.com/",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/deckerweb/builder-shortcode-extras/issues",
+    "source": "https://github.com/deckerweb/builder-shortcode-extras"
+  },
+  "require": {
+    "php": ">=5.6.20"
+  }
+}

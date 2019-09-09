@@ -1,0 +1,17 @@
+== Credits ==
+
+
+= Class "DDWlib Plugin Installer Recommendations" (PLIR) =
+
+@author David Decker - DECKERWEB
+@license GPL-2.0-or-later
+@link https://github.com/deckerweb/ddwlib-plugin-installer-recommendations
+
+
+
+= Class "Astra Notices" =
+
+@author Brainstorm Force
+@license GPL-2.0-or-later
+@link https://www.brainstormforce.com/
+@link https://github.com/brainstormforce/astra

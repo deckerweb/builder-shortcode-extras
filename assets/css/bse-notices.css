@@ -1,0 +1,64 @@
+/**
+ * // assets/css/bse-notices
+ * @package Builder Shortcode Extras - Assets
+ * @since 1.0.0
+ */
+
+.astra-review-notice-container {
+	align-items: center;
+	display: flex;
+	padding-top: 10px;
+}
+
+.astra-review-notice-container .dashicons {
+	font-size: 1.4em;
+	padding-left: 10px;
+}
+
+.astra-review-notice-container a {
+	padding-left: 5px;
+	text-decoration: none;
+}
+
+.astra-review-notice-container .dashicons:first-child {
+	padding-left: 0;
+}
+
+.notice-image img {
+	border-radius: 2px;
+	max-width: 105px;
+	opacity: .88;
+}
+
+.notice-image img:hover {
+	opacity: 1;
+}
+
+.notice-content .notice-heading {
+	padding-bottom: 5px;
+}
+
+.notice-content {
+	margin-left: 15px;
+}
+
+.notice-container {
+	align-items: center;
+	display: flex;
+	justify-content: left;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.astra-review-notice.button-primary .dashicons {
+	margin-top: 4px;
+}
+
+.astra-review-notice-container .dashicons-calendar:before,
+.astra-review-notice-container .dashicons-smiley:before {
+	color: #c56cd7;
+}
+
+.notice-content .bse-notice-colored {
+	color: #9554c9;
+}

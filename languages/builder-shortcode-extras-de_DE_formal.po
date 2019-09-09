@@ -1,0 +1,391 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Builder Shortcode Extras\n"
+"POT-Creation-Date: 2019-09-09 21:30+0200\n"
+"PO-Revision-Date: 2019-09-09 21:30+0200\n"
+"Last-Translator: David Decker DECKERWEB.de -- https://deckerweb.de/\n"
+"Language-Team: David Decker DECKERWEB.de -- https://deckerweb.de/\n"
+"Language: de_DE@formal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: builder-shortcode-extras.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: includes/admin/admin-extras.php:70
+msgctxt "Plugins page listing"
+msgid "Support"
+msgstr "Support"
+
+#: includes/admin/admin-extras.php:77
+msgctxt "Plugins page listing"
+msgid "Facebook Group"
+msgstr "Facebook Gruppe"
+
+#: includes/admin/admin-extras.php:84
+msgctxt "Plugins page listing"
+msgid "Translations"
+msgstr "Übersetzungen"
+
+#: includes/admin/admin-extras.php:91
+msgctxt "Plugins page listing"
+msgid "Code Snippets"
+msgstr "Code-Snippets"
+
+#: includes/admin/admin-extras.php:98
+msgctxt "Plugins page listing"
+msgid "Donate"
+msgstr "Spenden"
+
+#: includes/admin/admin-extras.php:105
+msgctxt "Plugins page listing"
+msgid "Join our Newsletter"
+msgstr "Newsletter jetzt!"
+
+#: includes/admin/admin-extras.php:180
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: includes/admin/admin-extras.php:181
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#. Plugin Name of the plugin/theme
+#: includes/admin/admin-extras.php:185
+#: includes/admin/views/notice-plugin-review.php:130 uninstall.php:42
+#: uninstall.php:52
+msgid "Builder Shortcode Extras"
+msgstr "Builder Shortcode Extras"
+
+#: includes/admin/admin-extras.php:185
+msgid "Plugin"
+msgstr "Plugin"
+
+#: includes/admin/admin-extras.php:188
+msgid "Plugin version"
+msgstr "Plugin-Version"
+
+#: includes/admin/admin-extras.php:192
+msgid "Elementor free"
+msgstr "Elementor Free Version"
+
+#: includes/admin/admin-extras.php:196
+msgid "Elementor Pro"
+msgstr "Elementor Pro"
+
+#: includes/admin/admin-extras.php:348
+msgctxt "Plugin installer: Tab name in installer toolbar"
+msgid "Newest"
+msgstr "Neueste"
+
+#: includes/admin/admin-extras.php:354
+msgctxt "Plugin card: plugin version"
+msgid "Version:"
+msgstr "Version:"
+
+#: includes/admin/admin-extras.php:360
+msgctxt "Plugin installer: Tab name in installer toolbar"
+msgid "deckerweb Plugins"
+msgstr "deckerweb Plugins"
+
+#: includes/admin/admin-extras.php:366
+msgctxt "Plugin installer: Page title"
+msgid "deckerweb Plugins"
+msgstr "deckerweb Plugins"
+
+#: includes/admin/admin-extras.php:371
+msgid ""
+"Great helper tools for Site Builders to save time and get more productive"
+msgstr ""
+"Großartige Helferlein-Plugins für Site-Builder, um wertvolle Zeit zu sparen "
+"und noch produktiver zu werden"
+
+#: includes/admin/admin-extras.php:374
+#, php-format
+msgid "You can use any of our free plugins or premium plugins from %s"
+msgstr ""
+"Sie können jedes unserer kostenlosen Plugins oder Premium-Plugins von %s "
+"verwenden"
+
+#: includes/admin/admin-extras.php:378
+msgid "Join our Newsletter"
+msgstr "Newsletter jetzt!"
+
+#: includes/admin/admin-extras.php:380
+msgid "Facebook User Group"
+msgstr "Facebook Nutzer-Gruppe"
+
+#. translators: %s - 5 stars icons
+#: includes/admin/views/notice-plugin-review.php:95
+#, php-format
+msgid "%s 5-star rating"
+msgstr "%s 5-Sterne-Bewertung"
+
+#. translators: %s - name of the plugin, "Builder Shortcode Extras"
+#: includes/admin/views/notice-plugin-review.php:129
+#, php-format
+msgid ""
+"Hello! Seems like you are using the Shortcodes from %s for quite a while — "
+"Thanks so much!"
+msgstr ""
+"Hallo! Es Scheint so, als ob Sie die Shortcodes von %s schon eine ganze "
+"Weile verwenden - vielen Dank!"
+
+#. translators: %s - icons and string, "5-star reating"
+#: includes/admin/views/notice-plugin-review.php:134
+#, php-format
+msgid ""
+"Could you please do me a BIG favor and give it a %s on WordPress.org? This "
+"would boost my motivation and help other users make a comfortable decision "
+"while saving time for various tasks of a site builder."
+msgstr ""
+"Könnten Sie mir bitte einen GROSSEN Gefallen tun und dem Plugin eine %s auf "
+"WordPress.org geben? Dies würde meine Motivation steigern und anderen "
+"Nutzern helfen, eine komfortable Entscheidung zu treffen und gleichzeitig "
+"Zeit für verschiedene Aufgaben eines Site-Builders zu sparen."
+
+#: includes/admin/views/notice-plugin-review.php:138
+msgid "Ok, you deserve it"
+msgstr "Ok, Sie haben es verdient"
+
+#: includes/admin/views/notice-plugin-review.php:140
+msgid "Maybe later"
+msgstr "Vielleicht später"
+
+#: includes/admin/views/notice-plugin-review.php:141
+msgid "I already did"
+msgstr "Habe ich schon erledigt"
+
+#: includes/functions-global.php:30
+msgid "No Integration registered"
+msgstr "Keine Integration registriert"
+
+#. Author of the plugin/theme
+#: includes/functions-global.php:88
+msgid "David Decker - DECKERWEB"
+msgstr "David Decker - DECKERWEB"
+
+#: includes/functions-global.php:216
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: includes/functions-global.php:262
+msgctxt "time difference"
+msgid "seconds"
+msgstr "Sekunden"
+
+#. translators: %s: Number of year(s).
+#: includes/functions-global.php:268
+#, php-format
+msgctxt "Time difference"
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s Jahr"
+msgstr[1] "%s Jahre"
+
+#. translators: %s: Number of month(s).
+#: includes/functions-global.php:270
+#, php-format
+msgctxt "Time difference"
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] "%s Monat"
+msgstr[1] "%s Monate"
+
+#. translators: %s: Number of week(s).
+#: includes/functions-global.php:272
+#, php-format
+msgctxt "Time difference"
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] "%s Woche"
+msgstr[1] "%s Wochen"
+
+#. translators: %s: Number of day(s).
+#: includes/functions-global.php:274
+#, php-format
+msgctxt "Time difference"
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s Tag"
+msgstr[1] "%s Tage"
+
+#. translators: %s: Number of hour(s).
+#: includes/functions-global.php:276
+#, php-format
+msgctxt "Time difference"
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] "%s Stunde"
+msgstr[1] "%s Stunden"
+
+#. translators: %s: Number of minute(s).
+#: includes/functions-global.php:278
+#, php-format
+msgctxt "Time difference"
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s Minute"
+msgstr[1] "%s Minuten"
+
+#. translators: %s: Number of second(s).
+#: includes/functions-global.php:280
+#, php-format
+msgctxt "Time difference"
+msgid "%s second"
+msgid_plural "%s seconds"
+msgstr[0] "%s Sekunde"
+msgstr[1] "%s Sekunden"
+
+#: includes/functions-global.php:328
+msgctxt "Separator in time difference"
+msgid "and"
+msgstr "und"
+
+#: includes/integrations/astra.php:27
+msgid "Astra Custom Layouts"
+msgstr "Astra Eigene Layouts"
+
+#: includes/integrations/block-editor.php:27
+msgid "WordPress Reusable Blocks"
+msgstr "WordPress Wiederverwendbare Blöcke"
+
+#: includes/integrations/block-editor.php:62
+msgctxt "Admin page title"
+msgid "Reusable Blocks"
+msgstr "Wiederverwendbare Blöcke"
+
+#: includes/integrations/block-editor.php:63
+msgctxt "Admin menu label"
+msgid "Blocks"
+msgstr "Blöcke"
+
+#: includes/integrations/block-editor.php:74
+msgctxt "Admin page title"
+msgid "Add New Reusable Block"
+msgstr "Neuen wiederverwendbaren Block erstellen"
+
+#: includes/integrations/block-editor.php:75
+msgctxt "Admin menu label"
+msgid "Add New"
+msgstr "Erstellen"
+
+#: includes/shortcodes/content.php:223
+msgctxt "Label for Comment Form"
+msgid "Leave a Reply"
+msgstr "Hinterlassen Sie eine Antwort"
+
+#. translators: %s - name of the author of the comment being replied to
+#: includes/shortcodes/content.php:225
+#, php-format
+msgctxt "Label for Comment Form"
+msgid "Leave a Reply to %s"
+msgstr "Hinterlassen Sie eine Antwort an %s"
+
+#: includes/shortcodes/content.php:226
+msgctxt "Label for Comment Form"
+msgid "Cancel reply"
+msgstr "Antwort abbrechen"
+
+#: includes/shortcodes/content.php:227
+msgctxt "Label for Comment Form"
+msgid "Post Comment"
+msgstr "Kommentar absenden"
+
+#: includes/shortcodes/info.php:284
+msgid "Log in"
+msgstr "Anmelden"
+
+#: includes/shortcodes/info.php:285
+msgid "Log out"
+msgstr "Abmelden"
+
+#: includes/shortcodes/info.php:419
+#, php-format
+msgctxt "Translators: shortcode, first published content time string"
+msgid "%s"
+msgstr "%s"
+
+#: includes/shortcodes/info.php:429
+#, php-format
+msgctxt "Translators: shortcode, last updated time string"
+msgid "%s"
+msgstr "%s"
+
+#: includes/shortcodes/post.php:117 includes/shortcodes/post.php:255
+msgid "ago"
+msgstr "vor"
+
+#: includes/shortcodes/post.php:668
+msgid "Tagged With:"
+msgstr "Stichwörter:"
+
+#: includes/shortcodes/post.php:738 includes/shortcodes/post.php:798
+msgid "Filed Under:"
+msgstr "Abgelegt unter:"
+
+#: includes/shortcodes/post.php:892
+msgid "(Edit)"
+msgstr "(Bearbeiten)"
+
+#: includes/shortcodes/user.php:53 includes/shortcodes/user.php:69
+msgid "User"
+msgstr "Anwender"
+
+#: includes/shortcodes/user.php:54
+msgid "The password field is not allowed"
+msgstr "Das Passwortfeld ist nicht erlaubt"
+
+#: includes/shortcodes/user.php:70
+msgid "The user ID is incorrect"
+msgstr "Die Benutzer-ID ist falsch"
+
+#: includes/shortcodes/version.php:85
+msgid "(Not defined)"
+msgstr "(Nicht definiert)"
+
+#: uninstall.php:41
+msgid "You must be logged in to run this script."
+msgstr "Sie müssen angemeldet sein, um dieses Skript ausführen zu können."
+
+#: uninstall.php:51
+msgid "You do not have permission to run this script."
+msgstr "Sie haben keine Berechtigung, um dieses Skript ausführen zu können."
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/deckerweb/builder-shortcode-extras"
+msgstr "https://github.com/deckerweb/builder-shortcode-extras"
+
+#. Description of the plugin/theme
+msgid ""
+"A collection of totally useful extra Shortcodes to make the life of Site "
+"Builders more easy."
+msgstr ""
+"Eine Sammlung von sehr nützlichen zusätzlichen Shortcodes, um das Leben von "
+"Site Buildern zu erleichtern."
+
+#. Author URI of the plugin/theme
+msgid "https://deckerweb-plugins.com/"
+msgstr "https://deckerweb-plugins.com/"
+
+#~ msgid "Builder Template Categories"
+#~ msgstr "Builder Template-Kategorien"
+
+#~ msgctxt "For Builder Template Categories Plugin"
+#~ msgid "Template Categories"
+#~ msgstr "Template-Kategorien"
+
+#~ msgid ""
+#~ "Enjoyed %1$s? Please leave us a %2$s. We really appreciate your support!"
+#~ msgstr ""
+#~ "Gefällt Ihnen %1$s? Dann geben Sie uns bitte eine %2$s. Wir schätzen Ihre "
+#~ "Unterstützung!"
