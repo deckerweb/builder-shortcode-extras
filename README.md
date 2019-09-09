@@ -11,6 +11,8 @@
 
 A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.
 
+[<img src="https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png" data-canonical-src="https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png" width="772" height="250" />](https://wordpress.org/plugins/builder-shortcode-extras/)
+
 
 ## Description 
 
@@ -94,7 +96,6 @@ Try [**Toolbar Extras**](https://toolbarextras.com/) my other plugin for Site Bu
 * 🇺🇸 English (United States) - `en_US` = default, always included
 * 🇩🇪 [German (informal, default)](https://translate.wordpress.org/locale/de/default/wp-plugins/builder-shortcode-extras) - `de_DE` - always included
 * 🇩🇪 [German (formal)](https://translate.wordpress.org/locale/de/formal/wp-plugins/builder-shortcode-extras) - `de_DE_formal` - always included
-* 🇫🇷 [French](https://translate.wordpress.org/locale/fr/default/wp-plugins/builder-shortcode-extras) - `fr_FR` - [by the community, thanks to Bruno Tritsch](https://wp-traduction.com/)
 * `.pot` file (`builder-shortcode-extras.pot`) for translators is always included in the plugin's 'languages' folder :)
 
 
