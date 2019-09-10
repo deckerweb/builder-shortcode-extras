@@ -11,7 +11,7 @@
  * Plugin Name:       Builder Shortcode Extras
  * Plugin URI:        https://github.com/deckerweb/builder-shortcode-extras
  * Description:       A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.
- * Version:           0.9.0
+ * Version:           1.0.0
  * Author:            David Decker - DECKERWEB
  * Author URI:        https://deckerweb-plugins.com/
  * License:           GPL-2.0-or-later
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 /** Plugin version */
-define( 'BSE_PLUGIN_VERSION', '0.9.0' );
+define( 'BSE_PLUGIN_VERSION', '1.0.0' );
 
 /** Plugin directory */
 define( 'BSE_PLUGIN_DIR', trailingslashit( dirname( __FILE__ ) ) );

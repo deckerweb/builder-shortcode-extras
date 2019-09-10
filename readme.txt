@@ -5,7 +5,7 @@ Tags: shortcode, elementor, genesis, page builder, gutenberg, blocks, widgets, s
 Requires at least: 4.7
 Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 0.9.0
+Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://opensource.org/licenses/GPL-2.0
 
