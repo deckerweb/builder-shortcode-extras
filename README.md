@@ -45,7 +45,7 @@ I was there, I know exactly how it feels at 02.00 a.m. in the middle of night. S
 ### 🚀 Typical Use Cases of this Plugin 
 1️⃣ **First example:** You want a footer copyright with the current year as dynamic - so you set it once and forget. Our Shortcode `[bse-copyright]` does exactly that.  
 2️⃣ **Second example:** You want to put a "Last updated" date under each single post or page - use our Shortcode `[bse-post-modified-date]`, set your custom date format, set a custom label and place it into a (footer) widget. Done.  
-3️⃣ **Third example:** You are using Elementor free, *not* Pro, and want to display one of your templates via a Shortcode? Now you can! (with our Shortcode `[bse-elementor-template]`)
+3️⃣ **Third example:** You are using Elementor free, *not* Pro, and want to display one of your templates via a Shortcode? Now you can! (with our Shortcode `[bse-elementor-template]`)  
 4️⃣ **Fourth example:** You want to display a Reusable Block via a Shortcode? Now you can! (with our Shortcode `[bse-wpblock]`)
 
 
