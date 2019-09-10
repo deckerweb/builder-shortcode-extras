@@ -29,21 +29,18 @@ function ddw_bse_run_integrations() {
 
 	foreach ( $integrations as $integration ) {
 		
-		if ( 'default-none' === $integration ) {
-			continue;
-		}
+		if ( 'default-none' !== $integration ) {
 
-		$pt_string = sanitize_key( str_replace( '-', '_' , $integration[ 'post_type' ] ) );
+			add_action( "manage_{$integration[ 'post_type' ]}_posts_columns", 'ddw_bse_admin_columns_headers_integrations_post_type' );
 
-		add_action( "manage_{$integration[ 'post_type' ]}_posts_columns", 'ddw_bse_admin_columns_headers_integrations_post_type' );
+			add_action( "manage_{$integration[ 'post_type' ]}_posts_custom_column", 'ddw_bse_admin_columns_content_integrations_post_type', 10, 2 );
 
-		add_action( "manage_{$integration[ 'post_type' ]}_posts_custom_column", "ddw_bse_admin_columns_content_integrations_post_type", 10, 2 );
+			/** Add the actual Shortcode for this integration */
+			if ( function_exists( 'ddw_bse_shortcode_item_content' ) ) {
+				add_shortcode( "bse-{$integration[ 'shortcode_tag' ]}", 'ddw_bse_shortcode_item_content' );
+			}
 
-
-		/** Add the actual Shortcode for this integration */
-		if ( function_exists( 'ddw_bse_shortcode_item_content' ) ) {
-			add_shortcode( "bse-{$integration[ 'shortcode_tag' ]}", 'ddw_bse_shortcode_item_content' );
-		}
+		}  // end if
 
 	}  // end foreach
 
@@ -87,15 +84,20 @@ function ddw_bse_admin_columns_content_integrations_post_type( $column_name, $po
 	$integrations = ddw_bse_get_integrations();
 
 	foreach ( $integrations as $integration ) {
-			
-		if ( 'shortcode' === $column_name && 'no-shortcode-tag' !== $integration[ 'shortcode_tag' ] ) {
 
-			// %s = shortcode, %d = post_id
-			$shortcode = esc_attr( sprintf(
-				'[%s id="%d"]',
-				'bse-' . $integration[ 'shortcode_tag' ],
-				$post_id
-			) );
+		if ( 'shortcode' === $column_name
+			&& $integration[ 'post_type' ] === get_post_type( $post_id )
+			&& 'no-shortcode-tag' !== $integration[ 'shortcode_tag' ]
+		) {
+
+			/** %s = shortcode tag, %d = post_id */
+			$shortcode = esc_attr(
+				sprintf(
+					'[%s id="%d"]',
+					'bse-' . $integration[ 'shortcode_tag' ],
+					$post_id
+				)
+			);
 
 			printf(
 				'<input class="bse-%s-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />',

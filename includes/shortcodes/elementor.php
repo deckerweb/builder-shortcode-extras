@@ -55,13 +55,17 @@ if ( ! ddw_bse_is_elementor_pro_active() ) :
 
 		if ( 'shortcode' === $column_name ) {
 
-			// %s = shortcode, %d = post_id
-			$shortcode = esc_attr( sprintf(
-				'[%s id="%d"]', 'bse-elementor-template', $post_id
-			) );
+			/** %s = shortcode tag, %d = post_id */
+			$shortcode = esc_attr(
+				sprintf(
+					'[%s id="%d"]',
+					'bse-elementor-template',
+					$post_id
+				)
+			);
 
 			printf(
-				'<input class="bse-elementor-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />',
+				'<input class="bse-elementor-shortcode-input widefat" type="text" readonly onfocus="this.select()" value="%s" />',
 				$shortcode
 			);
 

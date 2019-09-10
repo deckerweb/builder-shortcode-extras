@@ -15,7 +15,7 @@ A collection of totally useful extra Shortcodes to make the life of Site Builder
 
 A totally useful collection of helper Shortcodes to make your life as a Site Builder and non-coder way easier and save you time: Shortcodes for Last Updated Date/ Time, Post Counter, Versions, Post Info, Copyright and Footer Info, Users, Reusable Blocks (Gutenberg), Elementor Templates, Genesis Footer and even more.
 
-These are Shortcodes you don't get anywhere else. These are smart and really helpful. Those small parts and strings that make your life easier. Use them anywhere in WordPress: in Gutenberg Block Editor, in Classic Editor, Widgets, Post Types, Page Builders (Widgets, Elements...) and layout/ hook post types from various (Premium) Themes.
+These are Shortcodes you don't get anywhere else. These are smart and really helpful - perfect for Non-Coder Designers, for Non Techies, for Site Builders. Those small parts and strings that make your life easier, now available as Shortcodes. Use them anywhere in WordPress: in Gutenberg Block Editor, in Classic Editor, Widgets, Post Types, Page Builders (Widgets, Elements...) and layout/ hook post types from various (Premium) Themes.
 
 **This is my personaly story, why this plugin here was born:** When building a site and for example you need the date when a post type item was last updated? You just need this value as a simple string to put in a page builder widget or somewhere else, right? So where do you find the code snippet for it? Or a plugin? And you need it now, easy and fast?  
 I was there, I know exactly how it feels at 02.00 a.m. in the middle of night. So this Shortcode collection was born. Totally simple. No styles, no scripts. But included CSS classes so I can style it my own - or apply my own classes or those from my theme. And I can change the HTML wrapper tag. Problem solved. It only took 2 minutes: 1 minute of installing and activing this plugin, plus 1 minute of inserting the actual Shortcode. Problem solved. Now I can go to sleep. With peace of mind. And the presentation the next morning for my client will be a success. Oh yeah, I love it! ;-)
@@ -139,15 +139,15 @@ The plugin itself loads NO styles or scripts for the Shortcodes! It only adds ve
 
 
 = What Does the Gutenberg Block Editor Shortcode do? =
-It can display any Reusable Block from WordPress Core Reusable Blocks (post type: `wp_block`) via a Shortcode. Just copy the Shortcode for a certain Reusable Block from the post type list table - look for the "Blocks" left-hand admin menu. This will make Blocks way more useful and you can use them everyhwere - without coding!
+It can display any Reusable Block from WordPress Core Reusable Blocks (post type: `wp_block`) via a Shortcode. Just copy the Shortcode for a certain Reusable Block from the post type list table - look for the "Blocks" left-hand admin menu. This will make the Reusable Blocks way more useful and you can use them everyhwere - without coding!
 
 
 = What Does the Astra Layout Shortcode do? =
-It can display any Astra Custom Layout via a Shortcode. Just copy the Shortcode for a certain Astra Custom Layout from the post type list table - look for the "Custom Layouts" under the left-hand "Appearance" admin menu. This will make those Custom Layouts even more useful and you can use them everyhwere - without coding! This Shortcode feature comes in handy especially for "Hook" type Shortcodes: you don't need to specify a Hook if used via Shortcode. This makes the Astra Custom Layouts more independent from Hooks.
+It can display any Astra Custom Layout via a Shortcode. Just copy the Shortcode for a certain Astra Custom Layout from the post type list table - look for the "Custom Layouts" under the left-hand "Appearance" admin menu. This will make those Custom Layouts even more useful and you can use them everyhwere - without coding! This Shortcode feature comes in handy especially for "Hook" type Shortcodes: you don't need to specify a Hook if used via Shortcode. This makes the Astra Custom Layouts more independent from Hooks and gives you even more possibilities.
 
 
 = What Does the Elementor Template Shortcode do? =
-It displays the a template from Elementor "Saved Templates" (former "My Templates") library via a Shortcode. It is the same thing Elementor Pro does - but our plugin brings this feature to Elementor free version. This will make Elementor free version way more useful as brings so many new possibilities to work with Templates!
+It displays the a template from Elementor "Saved Templates" (former "My Templates") library via a Shortcode. It is the same thing Elementor Pro does - but our plugin brings this feature to Elementor free version. This will make Elementor free version way more useful as this brings so many new possibilities to work with Templates!
 
 
 = What are the Genesis Shortcodes doing? =
@@ -157,7 +157,7 @@ It displays the a template from Elementor "Saved Templates" (former "My Template
 
 
 = Can I use these Shortcodes in my Page Builder? =
-Yes, of course! Everywhere you can insert a Shortcode in your Page Builder, our plugin's Shortcodes will also work.
+Yes, of course! Everywhere a Shortcode is working in your Page Builder, our plugin's Shortcodes will also work. For more info on that you might also have a look in the documentation of your favorite Page Builder or similar plugin about Shortcode support for that tool.
 
 
 = Does this Plugin work with Gutenberg / WordPress 5.0+ / Block Editor? =
@@ -180,6 +180,8 @@ Yes, it works fine in Multisite, you could even activate it Network-wide. You ca
 
 = Will other third-party Plugins be supported? =
 Only if it makes sense, like the current Elementor Template Shortcode for example. Remember: we don't want to load any scripts or styles. So, if a potential Shortcode fits our philosophy and could be totally useful, then the chance of adding it to this plugin gets very high! ;-)
+
+If you have any suggestion for such a Shortcode, please feel free to [**open a new GitHub Issue**](https://github.com/deckerweb/builder-shortcode-extras/issues) in our development repository and tell us all about it. Thanks in advance!
 
 
 = More info on Translations? =
@@ -236,7 +238,7 @@ Credit where credit is due. The following code, classes and libraries were used 
 
 
 == Additional Info ==
-**Idea Behind / Philosophy:** Just a little lightweight plugin for all the Non-Coder site builders out there using plugins or themes with template libraries and wanting to categorize these templates. Just making their daily work and life just a little easier.
+**Idea Behind / Philosophy:** Just a smart and lightweight plugin for all the Non-Coder Site Builders out there needing various info values and elements to place via a plain simple Shortcode. Just making their daily work and life just a little easier.
 
 
 == Last but not least ==

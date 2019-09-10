@@ -61,6 +61,9 @@ function ddw_bse_get_integrations() {
  *
  * @since 1.0.0
  *
+ * @uses ddw_bse_get_db_version()
+ * @uses genesis_get_theme_version()
+ *
  * @return array $bse_info Array of info values.
  */
 function ddw_bse_info_values() {
@@ -102,6 +105,7 @@ function ddw_bse_info_values() {
 		'url_github_issues'   => 'https://github.com/deckerweb/builder-shortcode-extras/issues',
 		'url_github_follow'   => 'https://github.com/deckerweb',
 
+		/** For our Shortcodes specifically */
 		'php_current'         => phpversion(),
 		'php_minimum'         => '5.6.20',
 		'php_recommended'     => '7.2',
@@ -432,18 +436,18 @@ function ddw_bse_attr( $context, $attributes = [], $args = [] ) {
  * Helper function: This will check the modified_date of all posts and give you
  *   the most/ least recent date.
  *
- * @since  1.0.0
+ * @since 1.0.0
  *
  * @global mixed $wpdb
  *
- * @param  string $val string Defaults to MIN, only accepts MAX as alternative.
+ * @param string $val string Defaults to MIN, only accepts MAX as alternative.
  * @return string UNIX Date Time Stamp, e.g. 2014-12-05 01:34:25.
  */
 function ddw_bse_site_updated( $value = 'MIN' ) {
 
 	global $wpdb;
 	
-	/** Sanitize $val */
+	/** Sanitize $value */
 	$value = ( 'MIN' === $value ) ? $value : 'MAX';
 
 	/** Return date time stamp */
@@ -453,15 +457,19 @@ function ddw_bse_site_updated( $value = 'MIN' ) {
 
 
 /**
- * ???
+ * Get the current database version - this works for MySQL and MariaDB.
  *
  * @since 1.0.0
+ *
+ * @global object $GLOBALS[ 'wpdb' ]
+ *
+ * @return string Current database version.
  */
 function ddw_bse_get_db_version() {
 
-	global $wpdb;
+	//global $wpdb;
 
-	return $wpdb->get_var( "SELECT VERSION();" );
+	return $GLOBALS[ 'wpdb' ]->get_var( "SELECT VERSION();" );
 
 }  // end function
 
@@ -505,8 +513,8 @@ function ddw_bse_sanitize_html_classes( $classes, $return_format = 'input' ) {
  *
  * @since 1.0.0
  *
- * @param string  $slug   The slug of the page to which we're going to link.
- * @return string          The permalink of the page
+ * @param string $slug The post ID of the post type item to which we're going to link.
+ * @return string      The post ID of the post type item.
  */
 function ddw_bse_get_post_id_by_slug( $slug = '', $post_type = '' ) {
 

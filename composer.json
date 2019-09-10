@@ -1,7 +1,7 @@
 {
   "name": "deckerweb/builder-shortcode-extras",
   "description": "WordPress plugin - short description: A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.",
-  "keywords": ["shortcodes", "builder", "elementor"],
+  "keywords": ["shortcodes", "builder", "elementor", "block editor", "gutenberg", "astra", "genesis", "genesiswp"],
   "type": "wordpress-plugin",
   "homepage": "https://github.com/deckerweb/builder-shortcode-extras",
   "license": "GPL-2.0-or-later",

@@ -140,7 +140,7 @@ function ddw_bse_setup_plugin() {
 
 		} elseif ( apply_filters( 'bse/filter/shortcodes_in_admin', FALSE ) ) {
 
-			if ( 'content' === $shortcode_group ) {
+			if ( 'content' === $shortcode_group || 'integrations' === $shortcode_group ) {
 				continue;
 			}
 

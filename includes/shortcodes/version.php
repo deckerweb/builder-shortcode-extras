@@ -16,8 +16,9 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 
 	add_shortcode( 'bse-version', 'ddw_bse_shortcode_version' );
 	/**
-	 * Shortcode to output the current required version of Toolbar Extras (TBEX)
-	 *   plugin for its official Add-Ons.
+	 * Shortcode to output a version number for various types and occeasions,
+	 *   like WordPress, PHP, MySQL/ MariaDB, Database, Server, Elementor,
+	 *   Genesis Framework, Astra Theme amongst others.
 	 *
 	 * @since 1.0.0
 	 *

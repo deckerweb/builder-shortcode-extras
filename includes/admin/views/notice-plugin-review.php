@@ -78,8 +78,8 @@ function ddw_bse_register_notice_plugin_review() {
 	 *   - the notice first appears
 	 *   - showing up again - when as "maybe later" dismissed
 	 */
-	//$repeat_after = ( 2 * WEEK_IN_SECONDS ) + ( mt_rand(1, 10) * DAY_IN_SECONDS );
-	$repeat_after = ( 5 * MINUTE_IN_SECONDS ) + ( mt_rand(1, 10) * MINUTE_IN_SECONDS );  // dev testing
+	$repeat_after = ( 2 * WEEK_IN_SECONDS ) + ( mt_rand(1, 10) * DAY_IN_SECONDS );
+	//$repeat_after = ( 5 * MINUTE_IN_SECONDS ) + ( mt_rand(1, 10) * MINUTE_IN_SECONDS );  // dev testing
 
 	if ( FALSE === get_option( 'bse-plugin-old-setup' ) ) {
 
