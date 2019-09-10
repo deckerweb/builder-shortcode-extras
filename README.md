@@ -229,9 +229,44 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 
 ## Screenshots 
 
-### 1. ???
-[missing image]
+### 1. Use the Shortcodes in Gutenberg Block Editor: Shortcode Block, Paragraph Block, List Block, Heading Block etc.
+![Use the Shortcodes in Gutenberg Block Editor: Shortcode Block, Paragraph Block, List Block, Heading Block etc.](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-1.png)
 
+
+### 2. The Shortcodes from Block Editor rendered on the Frontend
+![The Shortcodes from Block Editor rendered on the Frontend](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-2.png)
+
+
+### 3. Shortcode for each Reusable Block to insert & display anywhere (especially outside of the Block Editor...)
+![Shortcode for each Reusable Block to insert & display anywhere (especially outside of the Block Editor...)](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-3.png)
+
+
+### 4. Use the Shortcodes in Classic Editor as well: Visual Mode or Text Mode (HTML) - doesn't matter, will work
+![Use the Shortcodes in Classic Editor as well: Visual Mode or Text Mode (HTML) - doesn't matter, will work](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-4.png)
+
+
+### 5. Insert a Shortcode into Text Widget or Custom HTML Widget
+![Insert a Shortcode into Text Widget or Custom HTML Widget](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-5.png)
+
+
+### 6. For Elementor Free Version: Shortcode for each Saved Template!
+![For Elementor Free Version: Shortcode for each Saved Template!](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-6.png)
+
+
+### 7. Insert a Shortcode into Elementor Page Builder: Shortcode Widget
+![Insert a Shortcode into Elementor Page Builder: Shortcode Widget](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-7.png)
+
+
+### 8. Insert a Shortcode into Elementor Text Editor Widget
+![Insert a Shortcode into Elementor Text Editor Widget](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-8.png)
+
+
+### 9. Insert a Shortcode into Elementor Heading widget (will be rendered fully on the frontend, of course!)
+![Insert a Shortcode into Elementor Heading widget (will be rendered fully on the frontend, of course!)](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-9.png)
+
+
+### 10. For Astra Pro: Shortcode for each Astra Custom Layout - great for reusage
+![For Astra Pro: Shortcode for each Astra Custom Layout - great for reusage](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-10.png)
 
 
 

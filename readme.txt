@@ -198,19 +198,25 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 
 == Screenshots ==
 
-1. Insert a Shortcode into Gutenberg Block Editor: Shortcode Block
+1. Use the Shortcodes in Gutenberg Block Editor: Shortcode Block, Paragraph Block, List Block, Heading Block etc.
 
-2. Insert a Shortcode into text content in Gutenberg Block Editor: within the Paragraph Block
+2. The Shortcodes from Block Editor rendered on the Frontend
 
-3. Insert a Shortcode into Classic Editor: Visual Mode
+3. Shortcode for each Reusable Block to insert & display anywhere (especially outside of the Block Editor...)
 
-4. Insert a Shortcode into Text Widget
+4. Use the Shortcodes in Classic Editor as well: Visual Mode or Text Mode (HTML) - doesn't matter, will work
 
-5. Insert a Shortcode into Elementor Page Builder: Shortcode Widget
+5. Insert a Shortcode into Text Widget or Custom HTML Widget
 
-6. Insert a Shortcode into Elementor Text Editor Widget
+6. For Elementor Free Version: Shortcode for each Saved Template!
 
-7. Shortcode field column for Elementor Saved Templates, for Elementor free version
+7. Insert a Shortcode into Elementor Page Builder: Shortcode Widget
+
+8. Insert a Shortcode into Elementor Text Editor Widget
+
+9. Insert a Shortcode into Elementor Heading widget (will be rendered fully on the frontend, of course!)
+
+10. For Astra Pro: Shortcode for each Astra Custom Layout - great for reusage
 
 
 == Changelog ==
