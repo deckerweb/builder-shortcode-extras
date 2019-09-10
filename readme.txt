@@ -221,11 +221,20 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 
 == Changelog ==
 
+= 🎉 1.0.0 - 2019-09-10 =
+* *Plugin launch. Everything's new!*
+* New: 25 general Shortcodes
+* New: 5 Shortcodes for Integrations
+
+
 = ⚡ 0.9.0 - 2019-09-09 =
 * New: Beta release of the plugin on [its public GitHub repository](https://github.com/deckerweb/builder-shortcode-extras)
 
 
 == Upgrade Notice =
+
+= 1.0.0 =
+Plugin launch. Everything's new!
 
 = 0.9.0 =
 Beta plugin release on GitHub.com

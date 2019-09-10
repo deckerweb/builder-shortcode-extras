@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Builder Shortcode Extras\n"
-"POT-Creation-Date: 2019-09-09 17:02+0200\n"
-"PO-Revision-Date: 2019-09-09 17:04+0200\n"
+"POT-Creation-Date: 2019-09-10 15:22+0200\n"
+"PO-Revision-Date: 2019-09-10 15:22+0200\n"
 "Last-Translator: David Decker DECKERWEB.de -- https://deckerweb.de/\n"
 "Language-Team: David Decker DECKERWEB.de -- https://deckerweb.de/\n"
 "Language: de_DE\n"
@@ -170,21 +170,21 @@ msgid "No Integration registered"
 msgstr "Keine Integration registriert"
 
 #. Author of the plugin/theme
-#: includes/functions-global.php:88
+#: includes/functions-global.php:91
 msgid "David Decker - DECKERWEB"
 msgstr "David Decker - DECKERWEB"
 
-#: includes/functions-global.php:216
+#: includes/functions-global.php:220
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/functions-global.php:262
+#: includes/functions-global.php:266
 msgctxt "time difference"
 msgid "seconds"
 msgstr "Sekunden"
 
 #. translators: %s: Number of year(s).
-#: includes/functions-global.php:268
+#: includes/functions-global.php:272
 #, php-format
 msgctxt "Time difference"
 msgid "%s year"
@@ -193,7 +193,7 @@ msgstr[0] "%s Jahr"
 msgstr[1] "%s Jahre"
 
 #. translators: %s: Number of month(s).
-#: includes/functions-global.php:270
+#: includes/functions-global.php:274
 #, php-format
 msgctxt "Time difference"
 msgid "%s month"
@@ -202,7 +202,7 @@ msgstr[0] "%s Monat"
 msgstr[1] "%s Monate"
 
 #. translators: %s: Number of week(s).
-#: includes/functions-global.php:272
+#: includes/functions-global.php:276
 #, php-format
 msgctxt "Time difference"
 msgid "%s week"
@@ -211,7 +211,7 @@ msgstr[0] "%s Woche"
 msgstr[1] "%s Wochen"
 
 #. translators: %s: Number of day(s).
-#: includes/functions-global.php:274
+#: includes/functions-global.php:278
 #, php-format
 msgctxt "Time difference"
 msgid "%s day"
@@ -220,7 +220,7 @@ msgstr[0] "%s Tag"
 msgstr[1] "%s Tage"
 
 #. translators: %s: Number of hour(s).
-#: includes/functions-global.php:276
+#: includes/functions-global.php:280
 #, php-format
 msgctxt "Time difference"
 msgid "%s hour"
@@ -229,7 +229,7 @@ msgstr[0] "%s Stunde"
 msgstr[1] "%s Stunden"
 
 #. translators: %s: Number of minute(s).
-#: includes/functions-global.php:278
+#: includes/functions-global.php:282
 #, php-format
 msgctxt "Time difference"
 msgid "%s minute"
@@ -238,7 +238,7 @@ msgstr[0] "%s Minute"
 msgstr[1] "%s Minuten"
 
 #. translators: %s: Number of second(s).
-#: includes/functions-global.php:280
+#: includes/functions-global.php:284
 #, php-format
 msgctxt "Time difference"
 msgid "%s second"
@@ -246,7 +246,7 @@ msgid_plural "%s seconds"
 msgstr[0] "%s Sekunde"
 msgstr[1] "%s Sekunden"
 
-#: includes/functions-global.php:328
+#: includes/functions-global.php:332
 msgctxt "Separator in time difference"
 msgid "and"
 msgstr "und"
@@ -279,24 +279,24 @@ msgctxt "Admin menu label"
 msgid "Add New"
 msgstr "Erstellen"
 
-#: includes/shortcodes/content.php:222
+#: includes/shortcodes/content.php:223
 msgctxt "Label for Comment Form"
 msgid "Leave a Reply"
 msgstr "Hinterlasse eine Antwort"
 
 #. translators: %s - name of the author of the comment being replied to
-#: includes/shortcodes/content.php:224
+#: includes/shortcodes/content.php:225
 #, php-format
 msgctxt "Label for Comment Form"
 msgid "Leave a Reply to %s"
 msgstr "Hinterlasse eine Antwort an %s"
 
-#: includes/shortcodes/content.php:225
+#: includes/shortcodes/content.php:226
 msgctxt "Label for Comment Form"
 msgid "Cancel reply"
 msgstr "Antwort abbrechen"
 
-#: includes/shortcodes/content.php:226
+#: includes/shortcodes/content.php:227
 msgctxt "Label for Comment Form"
 msgid "Post Comment"
 msgstr "Kommentar absenden"
@@ -349,7 +349,7 @@ msgstr "Das Passwortfeld ist nicht erlaubt"
 msgid "The user ID is incorrect"
 msgstr "Die Benutzer-ID ist falsch"
 
-#: includes/shortcodes/version.php:85
+#: includes/shortcodes/version.php:86
 msgid "(Not defined)"
 msgstr "(Nicht definiert)"
 
