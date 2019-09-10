@@ -77,11 +77,12 @@ I was there, I know exactly how it feels at 02.00 a.m. in the middle of night. S
 
 
 ### 🍰 Available Integrations - Shortcodes: 
-* *Optional, for Gutenberg Block Editor, Reusable Blocks:* **`[bse-wpblock]`** -- attributes: id
-* *Optional, for Elementor free version:* **`[bse-elementor-template]`** -- attributes: id, css
-* *Optional, for Astra Custom Layouts (via Astra Pro):* **`[bse-astra-layout]`** -- attributes: id
-* *Optional, for Genesis Framework v3.1.0 or higher:* **`[bse-genesis-footer]`** -- attributes: wrapper, class
-* *Optional, for Genesis Framework:* **`[bse-genesis-breadcrumbs]`** -- attributes: wrapper, class
+* *Gutenberg Block Editor, Reusable Blocks:* **`[bse-wpblock]`** -- attributes: id
+* *Elementor free version:* **`[bse-elementor-template]`** -- attributes: id, css
+* *Astra Custom Layouts (via Astra Pro):* **`[bse-astra-layout]`** -- attributes: id
+* *Genesis Framework v3.1.0 or higher:* **`[bse-genesis-footer]`** -- attributes: wrapper, class
+* *Genesis Framework:* **`[bse-genesis-breadcrumbs]`** -- attributes: wrapper, class
+* **Note:** All these integrations are optional, only if the supported plugin or theme is installed and currently active. For the Block Editor there is smart logic in place recognizing popular "disable" plugins like "Classic Editor", "Disable Gutenberg" amongst others.
 
 
 ### 👍 Recommended Time Saver 
