@@ -1,17 +1,8 @@
 # Builder Shortcode Extras – WordPress Shortcodes Collection to Save You Time 
-**Contributors:** daveshine, deckerweb, wpautobahn, toolbarextras  
-**Donate link:** https://www.paypal.me/deckerweb  
-**Tags:** shortcode, elementor, genesis, page builder, gutenberg, blocks, widgets, shortcodes, oceanwp, astra, generatepress, deckerweb  
-**Requires at least:** 4.7  
-**Tested up to:** 5.2  
-**Requires PHP:** 5.6  
-**Stable tag:** 1.0.0  
-**License:** GPL-2.0-or-later  
-**License URI:** https://opensource.org/licenses/GPL-2.0  
 
 A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.
 
-[<img src="https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png" data-canonical-src="https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png" width="772" height="250" />](https://wordpress.org/plugins/builder-shortcode-extras/)
+![Builder Shortcode Extras plugin banner](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png)
 
 
 ## Description 
@@ -85,48 +76,7 @@ I was there, I know exactly how it feels at 02.00 a.m. in the middle of night. S
 * **Note:** All these integrations are optional, only if the supported plugin or theme is installed and currently active. For the Block Editor there is smart logic in place recognizing popular "disable" plugins like "Classic Editor", "Disable Gutenberg" amongst others.
 
 
-### 👍 Recommended Time Saver 
-Try [**Toolbar Extras**](https://toolbarextras.com/) my other plugin for Site Builders and admins: Building sites with Elementor? [**Your work will get easier & faster with Toolbar Extras.**](https://wordpress.org/plugins/toolbar-extras/) With extended plugin & theme support baked right in. Of course, "Builder Shortcode Extras" is integrated as well :)
-
-* [Plugin Page here on WordPress.org](https://wordpress.org/plugins/toolbar-extras/)
-* [Plugin's own website toolbarextras.com](https://toolbarextras.com/)
-* In your WordPress admin dashboard search for `toolbar extras` in the plugin installer ;-)
-
-
-### 🌎 Translations 
-* 🇺🇸 English (United States) - `en_US` = default, always included
-* 🇩🇪 [German (informal, default)](https://translate.wordpress.org/locale/de/default/wp-plugins/builder-shortcode-extras) - `de_DE` - always included
-* 🇩🇪 [German (formal)](https://translate.wordpress.org/locale/de/formal/wp-plugins/builder-shortcode-extras) - `de_DE_formal` - always included
-* `.pot` file (`builder-shortcode-extras.pot`) for translators is always included in the plugin's 'languages' folder :)
-
-
-### 👍 Be a Contributor 
-If you want to translate, [go to the Translation Portal at translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/builder-shortcode-extras).
-
-You can also contribute code-wise via our [Builder Shortcode Extras GitHub Repository](https://github.com/deckerweb/builder-shortcode-extras) - and see where you can help.
-
-
-### 📝 Documentation and Support 
-* If you have any more questions, visit our support on the [Plugin's Forum](https://wordpress.org/support/plugin/builder-shortcode-extras).
-
-
-### ⚡ Liked Builder Shortcode Extras? 
-* **Rate us 5 ⭐ stars** on [WordPress.org](https://wordpress.org/support/plugin/builder-shortcode-extras/reviews/?filter=5/#new-post) :)
-* Join our [**Facebook User Community Support Group** 💬](https://www.facebook.com/groups/deckerweb.wordpress.plugins/)
-* Like 👍 our [**Facebook Info Page for Deckerweb Plugins**](https://www.facebook.com/deckerweb.wordpress.plugins/)
-* [**Subscribe to my Newsletter for insider info on this plugin** 💯](https://eepurl.com/gbAUUn), plus tutorials and more stuff on deckerweb WordPress plugins - join a thriving community of site builders!
-* [**Become a Patron** 💜](https://www.patreon.com/deckerweb) and support ongoing development, maintenance and support of this plugin
-
-
-### ☕ This Plugin ... 
-* ... scratches my own itch!
-* ... is *Quality Made in Germany*
-* ... was created with love (plus some coffee) :-) - [if you like it consider donating](https://www.paypal.me/deckerweb)
-
-
-
 ## Installation 
-
 
 ### Minimum Requirements 
 
@@ -134,13 +84,11 @@ You can also contribute code-wise via our [Builder Shortcode Extras GitHub Repos
 * PHP version 5.6.20 or higher
 * MySQL version 5.0 or higher
 
-
 ### We Recommend Your Host Supports at least: 
 
 * PHP version 7.2 or higher
 * MySQL version 5.6 or higher / OR MariaDB 10.1 or higher
 * HTTPS support
-
 
 ### Installation 
 
@@ -272,6 +220,9 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 
 ## Changelog 
 
+### v1.1.0 – 2025...
+_Currently being worked on, stay tuned ..._
+
 
 ### 🎉 1.0.0 - 2019-09-10 
 * *Plugin launch. Everything's new!*
@@ -283,53 +234,10 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 * New: Beta release of the plugin on [its public GitHub repository](https://github.com/deckerweb/builder-shortcode-extras)
 
 
-
-## Upgrade Notice 
-
-
-### 1.0.0 
-Plugin launch. Everything's new!
-
-
-### 0.9.0 
-Beta plugin release on GitHub.com
-
-
 ## ☺️ Donate 
 Enjoy using *Builder Shortcode Extras*? **[Please consider making a donation](https://www.paypal.me/deckerweb)** - every donation helps to support the project's continued development, maintenance and support.
 **Thank you very much in advance for your support!**
 
+---
 
-## 👏 Credits 
-Credit where credit is due. The following code, classes and libraries were used for this plugin, all licensed under the GPL. Note: Credit is also referenced in the code doc block inline where used.
-
-* Class "DDWlib Plugin Installer Recommendations" (PLIR) by David Decker - DECKERWEB (GPLv2 or later)
-* Class "Astra Notices" by Brainstorm Force (GPLv2 or later)
-* Some Shortcode functions are based on the Post & Footer Shortcodes by the Genesis Framework from StudioPress (GPLv2 or later)
-
-
-## Additional Info 
-**Idea Behind / Philosophy:** Just a smart and lightweight plugin for all the Non-Coder Site Builders out there needing various info values and elements to place via a plain simple Shortcode. Just making their daily work and life just a little easier.
-
-
-## Last but not least 
-**Special Thanks go out to my family for allowing me to do such spare time projects (aka free plugins) and supporting me in every possible way!**
-
-
-## 🔆 My Other Plugins 
-* [**Toolbar Extras for Elementor - WordPress Admin Bar Enhanced**](https://wordpress.org/plugins/toolbar-extras/)
-* [**Toolbar Extras for Give Donations (GiveWP) - Add-On plugin**](https://wordpress.org/plugins/toolbar-extras-givewp/)
-* [**Toolbar Extras for MainWP Dashboard - Add-On plugin**](https://wordpress.org/plugins/toolbar-extras-mainwp/)
-* [**Toolbar Extras for Oxygen Builder - Add-On plugin**](https://wordpress.org/plugins/toolbar-extras-oxygen/)
-* [**Polylang Connect for Elementor – Language Switcher & Template Tweaks**](https://wordpress.org/plugins/connect-polylang-elementor/)
-* [**Builder Template Categories - for WordPress Page Builders**](https://wordpress.org/plugins/builder-template-categories/)
-* [**Simple Download Manager for WP Document Revisions**](https://wordpress.org/plugins/wpdr-simple-downloads/)
-* [Genesis What's New Info](https://wordpress.org/plugins/genesis-whats-new-info/)
-* [Genesis Layout Extras](https://wordpress.org/plugins/genesis-layout-extras/)
-* [Genesis Widgetized Not Found & 404](https://wordpress.org/plugins/genesis-widgetized-notfound/)
-* [Genesis Extra Settings Transporter](https://wordpress.org/plugins/genesis-extra-settings-transporter/)
-* [Genesis Widgetized Footer](https://wordpress.org/plugins/genesis-widgetized-footer/)
-* [Genesis Widgetized Archive](https://wordpress.org/plugins/genesis-widgetized-archive/)
-* [Multisite Toolbar Additions](https://wordpress.org/plugins/multisite-toolbar-additions/)
-* [Cleaner Plugin Installer](https://wordpress.org/plugins/cleaner-plugin-installer/)
-* [*My plugins newsletter*](https://eepurl.com/gbAUUn)
+Copyright © 2019–2025 David Decker – DECKERWEB.de
