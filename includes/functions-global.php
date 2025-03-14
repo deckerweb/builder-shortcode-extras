@@ -80,12 +80,6 @@ function ddw_bse_info_values() {
 
 	$bse_info = [
 
-		'url_translate'       => 'https://translate.wordpress.org/projects/wp-plugins/builder-shortcode-extras',
-		'url_wporg_faq'       => 'https://wordpress.org/plugins/builder-shortcode-extras/#faq',
-		'url_wporg_forum'     => 'https://wordpress.org/support/plugin/builder-shortcode-extras',
-		'url_wporg_review'    => 'https://wordpress.org/support/plugin/builder-shortcode-extras/reviews/?filter=5/#new-post',
-		'url_wporg_profile'   => 'https://profiles.wordpress.org/daveshine/',
-		'url_fb_group'        => 'https://www.facebook.com/groups/deckerweb.wordpress.plugins/',
 		'url_snippets'        => 'https://github.com/deckerweb/builder-shortcode-extras/wiki/Code-Snippets',
 
 		'author'              => __( 'David Decker - DECKERWEB', 'builder-shortcode-extras' ),
@@ -107,12 +101,12 @@ function ddw_bse_info_values() {
 
 		/** For our Shortcodes specifically */
 		'php_current'         => phpversion(),
-		'php_minimum'         => '5.6.20',
-		'php_recommended'     => '7.2',
+		'php_minimum'         => '7.4',
+		'php_recommended'     => '8.2',
 		'wp_current'          => $GLOBALS[ 'wp_version' ],
-		'wp_minimum'          => '4.7',
-		'wp_recommended'      => '5.2',
-		'db_current'          => esc_attr( ddw_bse_get_db_version() ),
+		'wp_minimum'          => '6.7',
+		'wp_recommended'      => '6.7.2',
+		//'db_current'          => esc_attr( ddw_bse_get_db_version() ),
 		'server_software'     => esc_attr( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ) ),
 		'mysql_minimum'       => '5.0',
 		'mysql_recommended'   => '5.6',

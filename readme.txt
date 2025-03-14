@@ -1,4 +1,4 @@
-=== Builder Shortcode Extras - Useful Collection for WordPress to Save You Time ===
+=== Builder Shortcode Extras – WordPress Shortcodes Collection to Save You Time ===
 Contributors: daveshine, deckerweb, wpautobahn, toolbarextras
 Donate link: https://www.paypal.me/deckerweb
 Tags: shortcode, elementor, genesis, page builder, gutenberg, blocks, widgets, shortcodes, oceanwp, astra, generatepress, deckerweb

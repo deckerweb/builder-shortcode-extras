@@ -90,38 +90,6 @@ function ddw_bse_is_astra_custom_layouts_active() {
 
 
 /**
- * Check for various conditions (admin screens etc.) if the display of Admin
- *   Notice for plugin review is allowed/ wanted.
- *
- * @since 1.0.0
- *
- * @param object $current_screen This global (via get_current_screen()) holds
- *                               the current screen object.
- * @return bool If current screen matches the conditions return TRUE, FALSE
- *              otherwise.
- */
-function ddw_bse_is_notice_review_allowed( $current_screen ) {
-
-	$needle_mainwp = 'mainwp';
-
-	/** For specific cases & admin screens don't show the notice */
-	if ( ( 'edit' == $current_screen->base || 'post' == $current_screen->base || 'post-new' == $current_screen->base )
-		|| is_network_admin()
-		|| ( strpos( $needle_mainwp, $current_screen->base ) !== FALSE )
-	) {
-		return FALSE;
-	}
-
-	/** By default let return TRUE (notice will appear) */
-	return TRUE;
-
-}  // end function
-
-
-
-
-
-/**
  * 5) Block Editor (Gutenberg) integrations - WP Core, plugins etc.:
  * @since 1.0.0
  * -----------------------------------------------------------------------------

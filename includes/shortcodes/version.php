@@ -56,7 +56,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 		$sys_types = [
 			'php_current', 'php_minimum', 'php_recommended',
 			'wp_current', 'wp_minimum', 'wp_recommended',
-			'db_current',
+			//'db_current',
 			'server_software',
 			'mysql_minimum', 'mysql_recommended',
 			'mariadb_minimum', 'mariadb_recommended',
@@ -84,6 +84,14 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 			$constant = strtoupper( sanitize_key( $atts[ 'constant' ] ) );
 			$constant = constant( $constant );
 			$version  = $constant ? $constant : __( '(Not defined)', 'builder-shortcode-extras' );
+
+		} elseif ( 'db_current' === $type ) {
+
+			if ( method_exists( $wpdb, 'db_version' ) ) {
+		        $version = preg_replace( '/[^0-9.].*/', '', $wpdb->db_version() );
+		    } else {
+		        $version = 'N/A';
+		    }
 
 		} elseif ( in_array( $type, $sys_types ) ) {
 

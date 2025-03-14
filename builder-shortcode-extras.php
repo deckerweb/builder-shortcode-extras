@@ -1,29 +1,21 @@
 <?php # -*- coding: utf-8 -*-
 /**
- * Main plugin file.
- * @package           Builder Shortcode Extras
- * @author            David Decker
- * @copyright         Copyright (c) 2019, David Decker - DECKERWEB
- * @license           GPL-2.0-or-later
- * @link              https://deckerweb.de/twitter
- *
- * @wordpress-plugin
  * Plugin Name:       Builder Shortcode Extras
  * Plugin URI:        https://github.com/deckerweb/builder-shortcode-extras
  * Description:       A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            David Decker - DECKERWEB
- * Author URI:        https://deckerweb-plugins.com/
+ * Author URI:        https://deckerweb.de/
  * License:           GPL-2.0-or-later
  * License URI:       https://opensource.org/licenses/GPL-2.0
  * Text Domain:       builder-shortcode-extras
  * Domain Path:       /languages/
- * Requires WP:       4.7
- * Requires PHP:      5.6
+ * Requires WP:       6.7
+ * Requires PHP:      7.4
  * GitHub Plugin URI: https://github.com/deckerweb/builder-shortcode-extras
  * GitHub Branch:     master
  *
- * Copyright (c) 2019 David Decker - DECKERWEB
+ * Copyright (c) 2019-2025 David Decker - DECKERWEB
  */
 
 /**
@@ -40,60 +32,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 /** Plugin version */
-define( 'BSE_PLUGIN_VERSION', '1.0.0' );
+define( 'BSE_PLUGIN_VERSION', '1.1.0' );
 
 /** Plugin directory */
 define( 'BSE_PLUGIN_DIR', trailingslashit( dirname( __FILE__ ) ) );
 
 /** Plugin base directory */
 define( 'BSE_PLUGIN_BASEDIR', trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) );
-
-
-add_action( 'init', 'ddw_bse_load_translations', 1 );
-/**
- * Load the text domain for translation of the plugin.
- *
- * @since 1.0.0
- *
- * @uses get_user_locale()
- * @uses get_locale()
- * @uses load_textdomain() To load translations first from WP_LANG_DIR sub folder.
- * @uses load_plugin_textdomain() To additionally load default translations from plugin folder (default).
- */
-function ddw_bse_load_translations() {
-
-	/** Set unique textdomain string */
-	$bse_textdomain = 'builder-shortcode-extras';
-
-	/** The 'plugin_locale' filter is also used by default in load_plugin_textdomain() */
-	$locale = esc_attr(
-		apply_filters(
-			'plugin_locale',
-			get_user_locale(),	//is_admin() ? get_user_locale() : get_locale(),
-			$bse_textdomain
-		)
-	);
-
-	/**
-	 * WordPress languages directory
-	 *   Will default to: wp-content/languages/builder-shortcode-extras/builder-shortcode-extras-{locale}.mo
-	 */
-	$bse_wp_lang_dir = trailingslashit( WP_LANG_DIR ) . trailingslashit( $bse_textdomain ) . $bse_textdomain . '-' . $locale . '.mo';
-
-	/** Translations: First, look in WordPress' "languages" folder = custom & update-safe! */
-	load_textdomain(
-		$bse_textdomain,
-		$bse_wp_lang_dir
-	);
-
-	/** Translations: Secondly, look in 'wp-content/languages/plugins/' for the proper .mo file (= default) */
-	load_plugin_textdomain(
-		$bse_textdomain,
-		FALSE,
-		BSE_PLUGIN_BASEDIR . 'languages'
-	);
-
-}  // end function
 
 
 /** Include global functions */
