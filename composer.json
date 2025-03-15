@@ -17,6 +17,6 @@
     "source": "https://github.com/deckerweb/builder-shortcode-extras"
   },
   "require": {
-    "php": ">=5.6.20"
+    "php": ">=7.4"
   }
 }

@@ -4,6 +4,39 @@ A collection of totally useful extra Shortcodes to make the life of Site Builder
 
 ![Builder Shortcode Extras plugin banner](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png)
 
+---
+
+[Support Project](#support-the-project) | [Installation](#installation) | [Description](#description) | [Frequently Asked Questions](#frequently-asked-questions) | [Screenshots](#screenshots) | [Changelog](#changelog) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+
+---
+
+## Support the Project
+
+If you find this project helpful, consider showing your support by buying me a coffee! Your contribution helps me keep developing and improving this plugin.
+
+Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through the following options:
+
+- [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81BNTZE)
+- [Buy me a coffee](https://buymeacoffee.com/daveshine)
+
+---
+
+## Installation 
+
+**Quick Install**
+1. **Download ZIP:** [**builder-shortcode-extras.zip**](https://github.com/deckerweb/builder-shortcode-extras/releases/latest/download/builder-shortcode-extras.zip)
+2. Upload via WordPress Plugins > Add New > Upload Plugin
+3. There are no settings whatsover. Just start using the Shortcodes everywhere.
+4. Now enjoy displaying special stuff without coding and saving some time ;-)
+
+
+### Requirements 
+
+* WordPress version 6.7 or higher
+* PHP version 7.4 or higher
+* MySQL version 5.6 or higher
+
+---
 
 ## Description 
 
@@ -75,29 +108,7 @@ I was there, I know exactly how it feels at 02.00 a.m. in the middle of night. S
 * *Genesis Framework:* **`[bse-genesis-breadcrumbs]`** -- attributes: wrapper, class
 * **Note:** All these integrations are optional, only if the supported plugin or theme is installed and currently active. For the Block Editor there is smart logic in place recognizing popular "disable" plugins like "Classic Editor", "Disable Gutenberg" amongst others.
 
-
-## Installation 
-
-### Minimum Requirements 
-
-* WordPress version 4.7 or higher
-* PHP version 5.6.20 or higher
-* MySQL version 5.0 or higher
-
-### We Recommend Your Host Supports at least: 
-
-* PHP version 7.2 or higher
-* MySQL version 5.6 or higher / OR MariaDB 10.1 or higher
-* HTTPS support
-
-### Installation 
-
-1. Install using the WordPress built-in Plugin installer (via **Plugins > Add New** - search for `builder shortcode extras`), or extract the ZIP file and drop the contents in the `wp-content/plugins/` directory of your WordPress installation.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. There are no settings whatsover. Just start using the Shortcodes everywhere.
-4. Now enjoy displaying special stuff without coding and saving some time ;-)
-
-
+---
 
 ## Frequently Asked Questions 
 
@@ -161,19 +172,7 @@ Only if it makes sense, like the current Elementor Template Shortcode for exampl
 
 If you have any suggestion for such a Shortcode, please feel free to [**open a new GitHub Issue**](https://github.com/deckerweb/builder-shortcode-extras/issues) in our development repository and tell us all about it. Thanks in advance!
 
-
-
-### More info on Translations? 
-
-* English - default, always included
-* German (de_DE): Deutsch - immer dabei! :-)
-* For custom and update-safe language files please upload them to `/wp-content/languages/builder-shortcode-extras/` (just create this folder) - This enables you to use fully custom translations that won't be overridden on plugin updates. Also, complete custom English wording is possible with that as well, just use a language file like `builder-shortcode-extras-en_US.mo/.po` to achieve that (for creating one see the following tools).
-
-**Easy WordPress.org plugin translation platform with GlotPress platform:** [**Translate "Builder Shortcode Extras"...**](https://translate.wordpress.org/projects/wp-plugins/builder-shortcode-extras)
-
-*Note:* All my plugins are internationalized/ translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating and validating I recommend the awesome ["Poedit Editor"](https://www.poedit.net/), which works fine on Windows, macOS and Linux.
-
-
+---
 
 ## Screenshots 
 
@@ -216,12 +215,16 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 ### 10. For Astra Pro: Shortcode for each Astra Custom Layout - great for reusage
 ![For Astra Pro: Shortcode for each Astra Custom Layout - great for reusage](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/wordpress-org/screenshot-10.png)
 
-
+---
 
 ## Changelog 
 
-### v1.1.0 – 2025...
-_Currently being worked on, stay tuned ..._
+### 🎉 v1.1.0 – March 2025
+* Bring back the plugin to a workable state
+* Removed all wordpress.org stuff
+* Removed the _DDWlib Plugin Installer Recommendations_ library got removed, it is no longer wanted/supported anyways
+* Removed own translations loader; WordPress now does it all itself; the packaged translations remain :)
+* **Note:** No longer in the .org plugin repo available – thanks to Matt... (I've taken it out myself as I have no longer interest in WordPress.org repo strategy) – just install it yourself via ZIP file, see above under "Installation"
 
 
 ### 🎉 1.0.0 - 2019-09-10 
@@ -237,6 +240,18 @@ _Currently being worked on, stay tuned ..._
 ## ☺️ Donate 
 Enjoy using *Builder Shortcode Extras*? **[Please consider making a donation](https://www.paypal.me/deckerweb)** - every donation helps to support the project's continued development, maintenance and support.
 **Thank you very much in advance for your support!**
+
+---
+
+## Plugin Scope / Disclaimer
+
+This plugin comes as is.
+
+_Disclaimer 1:_ So far I will support the plugin for breaking errors to keep it working. Otherwise support will be very limited. Also, it will NEVER be released to WordPress.org Plugin Repository for a lot of reasons (ah, thanks, Matt!).
+
+_Disclaimer 2:_ All of the above might change. I do all this stuff only in my spare time.
+
+_Most of all:_ Have fun building great sites!!! ;-)
 
 ---
 
