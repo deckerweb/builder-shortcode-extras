@@ -94,7 +94,6 @@ function ddw_bse_info_values() {
 		'url_newsletter'      => $url_nl,
 		'url_plugin'          => 'https://github.com/deckerweb/builder-shortcode-extras',
 		'url_plugin_docs'     => 'https://github.com/deckerweb/builder-shortcode-extras/wiki',
-		'url_plugin_faq'      => 'https://wordpress.org/plugins/builder-shortcode-extras/#faq',
 		'url_github'          => 'https://github.com/deckerweb/builder-shortcode-extras',
 		'url_github_issues'   => 'https://github.com/deckerweb/builder-shortcode-extras/issues',
 		'url_github_follow'   => 'https://github.com/deckerweb',
