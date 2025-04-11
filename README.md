@@ -2,11 +2,11 @@
 
 A collection of totally useful extra Shortcodes to make the life of Site Builders more easy.
 
-![Builder Shortcode Extras plugin banner](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/master/assets-repos/github-com/bse-banner.png)
+![Builder Shortcode Extras plugin banner](https://raw.githubusercontent.com/deckerweb/builder-shortcode-extras/refs/heads/master/assets/banner-1544x500.png)
 
 ---
 
-[Support Project](#support-the-project) | [Installation](#installation) | [Description](#description) | [Frequently Asked Questions](#frequently-asked-questions) | [Screenshots](#screenshots) | [Changelog](#changelog) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
+[Support Project](#support-the-project) | [Installation](#installation) | [Updates](#updates) | [Description](#description) | [FAQ](#frequently-asked-questions) | [Screenshots](#screenshots) | [Changelog](#changelog) | [Plugin Scope / Disclaimer](#plugin-scope--disclaimer)
 
 ---
 
@@ -18,6 +18,8 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 
 - [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81BNTZE)
 - [Buy me a coffee](https://buymeacoffee.com/daveshine)
+- [PayPal donation](https://paypal.me/deckerweb)
+- [Join my **newsletter** for DECKERWEB WordPress Plugins](https://eepurl.com/gbAUUn)
 
 ---
 
@@ -35,6 +37,16 @@ Enjoying the plugin? Feel free to treat me to a cup of coffee ☕🙂 through th
 * WordPress version 6.7 or higher
 * PHP version 7.4 or higher
 * MySQL version 5.6 or higher
+
+---
+
+## Updates 
+
+1) Alternative 1: Just download a new [ZIP file](https://github.com/deckerweb/builder-shortcode-extras/releases/latest/download/builder-shortcode-extras.zip) (see above), upload and override existing version. Done.
+
+2) Alternative 2: Use the (free) [**_Git Updater_ plugin**](https://git-updater.com/) and get updates automatically.
+
+3) Alternative 3: Upcoming! – In future I will built-in our own deckerweb updater. This is currently being worked on for my plugins. Stay tuned!
 
 ---
 
@@ -219,7 +231,12 @@ If you have any suggestion for such a Shortcode, please feel free to [**open a n
 
 ## Changelog 
 
-### 🎉 v1.1.0 – March 2025
+### 🎉 v1.2.0 – 2025-04-??
+* Improved: Better compatibility for [_Git Updater_](https://git-updater.com/) integration
+* Change: Re-added translations loader as translations display is otherwise not optimal for non-.org hosted plugins
+* Update: `.pot` file, plus packaged German translations, now including new `l10n.php` files!
+
+### 🎉 v1.1.0 – 2025-3-15
 * Bring back the plugin to a workable state
 * Removed all wordpress.org stuff
 * Removed the _DDWlib Plugin Installer Recommendations_ library got removed, it is no longer wanted/supported anyways
@@ -255,4 +272,6 @@ _Most of all:_ Have fun building great sites!!! ;-)
 
 ---
 
-Copyright © 2019–2025 David Decker – DECKERWEB.de
+Icon used in promo graphics: [© Tabler Icons by Paweł Kuna](https://tabler.io/icons)
+
+Readme & Plugin Copyright: © 2019–2025, David Decker – DECKERWEB.de
