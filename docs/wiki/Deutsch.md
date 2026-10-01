@@ -180,4 +180,4 @@ add_filter( 'bse/filter/shortcodes_in_admin', '__return_true' );
 
 Bestehende Filter unter `bse/filter/shortcode_defaults/*` und `bse/filter/shortcode/*` bleiben erhalten. Filterausgaben gelten als vertrauenswürdiger Entwicklercode und können HTML zurückgeben. Die Registrierungsdateien liegen weiterhin nach Themen getrennt unter `includes/shortcodes/`.
 
-[Changelog](CHANGELOG-de) · [Testanleitung](https://github.com/deckerweb/builder-shortcode-extras/blob/master/docs/TESTING-de.md)
+[Changelog](https://github.com/deckerweb/builder-shortcode-extras/wiki/CHANGELOG%E2%80%90de) · [Testanleitung](https://github.com/deckerweb/builder-shortcode-extras/blob/master/docs/TESTING-de.md)
