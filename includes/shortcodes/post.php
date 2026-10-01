@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_count' ) ) :
 
-	add_shortcode( 'bse-post-count', 'ddw_bse_shortcode_post_count' );
+	ddw_bse_register_shortcode( 'bse-post-count', 'ddw_bse_shortcode_post_count' );
 	/**
 	 * Shortcode to output the current number of all items of a given post type
 	 *   for a given post status.
@@ -50,16 +50,16 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_count' ) ) :
 
 		$post_count = wp_count_posts( $post_type );
 
-		$post_count_result = $post_count->$post_status;
+		$post_count_result = $post_count->$post_status ?? 0;
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-count%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			absint( $post_count_result ),
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -76,7 +76,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_date' ) ) :
 
-	add_shortcode( 'bse-post-date', 'ddw_bse_shortcode_post_date' );
+	ddw_bse_register_shortcode( 'bse-post-date', 'ddw_bse_shortcode_post_date' );
 	/**
 	 * Shortcode to output the date of post publication (or for any post type).
 	 *
@@ -113,29 +113,29 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_date' ) ) :
 
 		if ( 'relative' === $atts[ 'format' ] ) {
 
-			$display  = ddw_bse_human_time_diff( get_the_time( 'U', $post_id ), current_time( 'timestamp' ), $atts[ 'relative_depth' ] );
+			$display  = ddw_bse_human_time_diff( get_post_timestamp( $post_id ), time(), $atts[ 'relative_depth' ] );
 			$display .= ' ' . __( 'ago', 'builder-shortcode-extras' );
 
 		} else {
 
-			$display = get_the_time( $atts[ 'format' ] );
+			$display = get_the_time( $atts[ 'format' ], $post_id );
 
 		}  // end if
 
 		$date_string = sprintf(
 			'<time %s>%s</time>',
 			ddw_bse_attr( 'entry-time' ),
-			$atts[ 'label' ] . $display
+			esc_html( $atts[ 'label' ] . $display )
 		);
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-time%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$date_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -152,7 +152,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_time' ) ) :
 
-	add_shortcode( 'bse-post-time', 'ddw_bse_shortcode_post_time' );
+	ddw_bse_register_shortcode( 'bse-post-time', 'ddw_bse_shortcode_post_time' );
 	/**
 	 * Shortcode to output the time of post publication (or for any post type).
 	 *
@@ -187,17 +187,17 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_time' ) ) :
 		$time_string = sprintf(
 			'<time %s>%s</time>',
 			ddw_bse_attr( 'entry-time' ),
-			$atts[ 'label' ] . get_the_time( $atts[ 'format' ], $post_id )
+			esc_html( $atts[ 'label' ] . get_the_time( $atts[ 'format' ], $post_id ) )
 		);
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-time%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$time_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -214,7 +214,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_modified_date' ) ) :
 
-	add_shortcode( 'bse-post-modified-date', 'ddw_bse_shortcode_post_modified_date' );
+	ddw_bse_register_shortcode( 'bse-post-modified-date', 'ddw_bse_shortcode_post_modified_date' );
 	/**
 	 * Shortcode to output the post last modified date (or for any post type).
 	 *
@@ -251,7 +251,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_date' ) ) :
 
 		if ( 'relative' === $atts[ 'format' ] ) {
 
-			$display  = ddw_bse_human_time_diff( get_the_modified_time( 'U', $post_id ), current_time( 'timestamp' ), $atts[ 'relative_depth' ] );
+			$display  = ddw_bse_human_time_diff( get_post_timestamp( $post_id, 'modified' ), time(), $atts[ 'relative_depth' ] );
 			$display .= ' ' . __( 'ago', 'builder-shortcode-extras' );
 
 		} else {
@@ -263,17 +263,17 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_date' ) ) :
 		$date_string = sprintf(
 			'<time %s>%s</time>',
 			ddw_bse_attr( 'entry-modified-time' ),
-			$atts[ 'label' ] . $display
+			esc_html( $atts[ 'label' ] . $display )
 		);
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-modified-date%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$date_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -290,7 +290,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_item_last_updated' ) ) :
 
-	add_shortcode( 'bse-item-last-updated', 'ddw_bse_shortcode_item_last_updated' );
+	ddw_bse_register_shortcode( 'bse-item-last-updated', 'ddw_bse_shortcode_item_last_updated' );
 	/**
 	 * Shortcode to output the date when a post type item was last updated.
 	 *
@@ -312,7 +312,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_modified_time' ) ) :
 
-	add_shortcode( 'bse-post-modified-time', 'ddw_bse_shortcode_post_modified_time' );
+	ddw_bse_register_shortcode( 'bse-post-modified-time', 'ddw_bse_shortcode_post_modified_time' );
 	/**
 	 * Shortcode to output the post last modified time (or for any post type).
 	 *
@@ -347,17 +347,17 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_time' ) ) :
 		$time_string = sprintf(
 			'<time %s>%s</time>',
 			ddw_bse_attr( 'entry-modified-time' ),
-			$atts[ 'label' ] . get_the_modified_time( $atts[ 'format' ], $post_id )
+			esc_html( $atts[ 'label' ] . get_the_modified_time( $atts[ 'format' ], $post_id ) )
 		);
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-modified-time%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$time_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -374,7 +374,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_author' ) ) :
 
-	add_shortcode( 'bse-post-author', 'ddw_bse_shortcode_post_author' );
+	ddw_bse_register_shortcode( 'bse-post-author', 'ddw_bse_shortcode_post_author' );
 	/**
 	 * Shortcode to output the author of the post/ post type item (unlinked
 	 *   display name).
@@ -427,11 +427,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="entry-author bse-post-author%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$author_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -448,7 +448,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_author_link' ) ) :
 
-	add_shortcode( 'bse-post-author-link', 'ddw_bse_shortcode_post_author_link' );
+	ddw_bse_register_shortcode( 'bse-post-author-link', 'ddw_bse_shortcode_post_author_link' );
 	/**
 	 * Shortcode to output the author of the post/ post type item (link to
 	 *   author URL).
@@ -526,11 +526,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author_link' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="entry-author bse-post-author-link%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			( ! empty( $atts[ 'class' ] ) ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			( ! empty( $atts[ 'class' ] ) ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$author_link,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -547,7 +547,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_author_posts_link' ) ) :
 
-	add_shortcode( 'bse-post-author-posts-link', 'ddw_bse_shortcode_post_author_posts_link' );
+	ddw_bse_register_shortcode( 'bse-post-author-posts-link', 'ddw_bse_shortcode_post_author_posts_link' );
 	/**
 	 * Shortcode to output the author of the post/ post type item (link to
 	 *   author archive).
@@ -618,11 +618,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author_posts_link' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="entry-author bse-post-author-posts-link%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$author_link,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -639,7 +639,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_tags' ) ) :
 
-	add_shortcode( 'bse-post-tags', 'ddw_bse_shortcode_post_tags' );
+	ddw_bse_register_shortcode( 'bse-post-tags', 'ddw_bse_shortcode_post_tags' );
 	/**
 	 * Shortcode to output the tag links list (Post Tags).
 	 *
@@ -690,8 +690,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_tags' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="entry-tags bse-post-tags%2$s">%3$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
 			$tags
 		);
 
@@ -709,7 +709,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_categories' ) ) :
 
-	add_shortcode( 'bse-post-categories', 'ddw_bse_shortcode_post_categories' );
+	ddw_bse_register_shortcode( 'bse-post-categories', 'ddw_bse_shortcode_post_categories' );
 	/**
 	 * Shortcode to output the category links list (Post Categories).
 	 *
@@ -754,11 +754,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_categories' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="entry-categories bse-post-categories%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$cats,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -775,7 +775,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_terms' ) ) :
 
-	add_shortcode( 'bse-post-terms', 'ddw_bse_shortcode_post_terms' );
+	ddw_bse_register_shortcode( 'bse-post-terms', 'ddw_bse_shortcode_post_terms' );
 	/**
 	 * Shortcode to output the linked post taxonomy terms list (for any (custom)
 	 *   taxonomy).
@@ -844,8 +844,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_terms' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="entry-terms bse-post-terms%2$s">%3$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
 			$terms
 		);
 
@@ -864,7 +864,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_edit' ) ) :
 
-	add_shortcode( 'bse-post-edit', 'ddw_bse_shortcode_post_edit' );
+	ddw_bse_register_shortcode( 'bse-post-edit', 'ddw_bse_shortcode_post_edit' );
 	/**
 	 * Shortcode to output the edit post link for logged in users.
 	 *
@@ -905,8 +905,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_edit' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-edit%2$s">%3$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
 			$edit
 		);
 
@@ -926,7 +926,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 
-	add_shortcode( 'bse-post-link', 'ddw_bse_shortcode_post_link' );
+	ddw_bse_register_shortcode( 'bse-post-link', 'ddw_bse_shortcode_post_link' );
 	/**
 	 * Shortcode to output the current number of all items of a given post type
 	 *   for a given post status.
@@ -978,34 +978,40 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 		$permalink  = null;
 		$title      = null;
 
-		if ( '' !== $post_id ) {
+		if ( $post_id > 0 ) {
 
 			$permalink = get_permalink( $post_id );
 			$title     = get_the_title( $post_id );
 
-		} elseif ( '' === $post_id && '' !== $atts[ 'slug' ] ) {
+		} elseif ( 0 === $post_id && '' !== $atts[ 'slug' ] ) {
 
-			$permalink = get_permalink( ddw_bse_get_post_id_by_slug( $atts[ 'slug' ], $atts[ 'post_type' ] ) );
-			$title     = get_the_title( ddw_bse_get_post_id_by_slug( $atts[ 'slug' ], $atts[ 'post_type' ] ) );
+			$resolved_id = ddw_bse_get_post_id_by_slug( $atts[ 'slug' ], $atts[ 'post_type' ] );
+			if ( ! $resolved_id ) { return ''; }
+			$permalink = get_permalink( $resolved_id );
+			$title = get_the_title( $resolved_id );
 
 		}  // end if
+
+		if ( ! $permalink ) {
+			return '';
+		}
 
 		$post_link = sprintf(
 			'<a href="%1$s" %2$s %3$s>%4$s</a>',
 			esc_url( $permalink ),
 			( ! empty( $atts[ 'target' ] ) ) ? $target : '',
 			( ! empty( $atts[ 'target' ] ) && ! empty( $atts[ 'rel' ] ) ) ? $rel : '',
-			( empty( $atts[ 'text' ] ) ) ? $title : $atts[ 'text' ]
+			esc_html( ( empty( $atts[ 'text' ] ) ) ? (string) $title : $atts[ 'text' ] )
 		);
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-link%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$post_link,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */

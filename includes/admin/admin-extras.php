@@ -12,27 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-/**
- * Remove unethical Jetpack search results Ads as no one needs these anyway.
- *   Additionally remove other promotions and Ads from Jetpack.
- *
- * @link https://wptavern.com/jetpack-7-1-adds-feature-suggestions-to-plugin-search-results#comment-284531
- *
- * @since 1.0.0
- */
-add_filter( 'jetpack_show_promotions', '__return_false', 20 );
-add_filter( 'can_display_jetpack_manage_notice', '__return_false', 20 );
-add_filter( 'jetpack_just_in_time_msgs', '__return_false', 20 );
-
-
-/**
- * Remove unethical WooCommerce Ads injections.
- *
- * @since 1.6.0
- */
-add_filter( 'woocommerce_allow_marketplace_suggestions', '__return_false' );
-
-
 add_filter( 'plugin_row_meta', 'ddw_bse_plugin_links', 10, 2 );
 /**
  * Add various support links to Plugins page.
@@ -178,34 +157,3 @@ function ddw_bse_site_health_add_debug_info( $debug_info ) {
 	return $debug_info;
 
 }  // end function
-
-
-if ( ! function_exists( 'ddw_wp_site_health_remove_percentage' ) ) :
-
-	add_action( 'admin_head', 'ddw_wp_site_health_remove_percentage', 100 );
-	/**
-	 * Remove the "Percentage Progress" display in Site Health feature as this will
-	 *   get users obsessed with fullfilling a 100% where there are non-problems!
-	 *
-	 * @link https://make.wordpress.org/core/2019/04/25/site-health-check-in-5-2/
-	 *
-	 * @since 1.0.0
-	 */
-	function ddw_wp_site_health_remove_percentage() {
-
-		/** Bail early if not on WP 5.2+ */
-		if ( version_compare( $GLOBALS[ 'wp_version' ], '5.2-beta', '<' ) ) {
-			return;
-		}
-
-		?>
-			<style type="text/css">
-				.site-health-progress {
-					display: none;
-				}
-			</style>
-		<?php
-
-	}  // end function
-
-endif;

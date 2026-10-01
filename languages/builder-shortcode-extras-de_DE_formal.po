@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Builder Shortcode Extras\n"
 "POT-Creation-Date: 2025-03-15 09:53+0100\n"
-"PO-Revision-Date: 2025-03-15 09:54+0100\n"
+"PO-Revision-Date: 2026-10-01 18:00+0200\n"
 "Last-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
 "Language-Team: David Decker DECKERWEB.de\n"
 "Language: de_DE@formal\n"
@@ -366,3 +366,531 @@ msgstr "https://deckerweb.de/"
 #~ msgstr ""
 #~ "Gefällt Ihnen %1$s? Dann geben Sie uns bitte eine %2$s. Wir schätzen Ihre "
 #~ "Unterstützung!"
+
+#: includes/class-bse-shortcode-catalog.php:15
+msgid "A copyright notice with the current year."
+msgstr "Ein Copyright-Hinweis mit dem aktuellen Jahr."
+
+#: includes/class-bse-shortcode-catalog.php:19
+msgid "A link matching the visitor’s login state."
+msgstr "Ein Link passend zum Anmeldestatus des Besuchers."
+
+#: includes/class-bse-shortcode-catalog.php:18
+msgid "A link to your homepage."
+msgstr "Ein Link zu Ihrer Startseite."
+
+#: includes/class-bse-shortcode-catalog.php:35
+msgid "A selected user field with an optional fallback."
+msgstr "Ein gewähltes Benutzerfeld mit optionalem Ersatztext."
+
+#: includes/class-bse-shortcode-catalog.php:25
+msgid "An alias for bse-post-modified-date."
+msgstr "Ein Alias für bse-post-modified-date."
+
+#: includes/class-bse-shortcode-catalog.php:33
+msgid "An edit link for visitors with editing permission."
+msgstr "Ein Bearbeitungslink für Besucher mit Bearbeitungsrechten."
+
+#: includes/class-bse-shortcode-catalog.php:44
+msgid "Astra layout"
+msgstr "Astra-Layout"
+
+#: includes/admin/class-bse-tools.php:34
+msgid "Attribute values cannot contain quotation marks, square brackets or line breaks."
+msgstr "Attributwerte dürfen keine Anführungszeichen, eckigen Klammern oder Zeilenumbrüche enthalten."
+
+#: includes/class-bse-shortcode-catalog.php:29
+msgid "Author archive link"
+msgstr "Autorenarchiv-Link"
+
+#: includes/class-bse-shortcode-catalog.php:28
+msgid "Author website link"
+msgstr "Autorenwebsite-Link"
+
+#: includes/admin/class-bse-tools.php:79
+msgid "Available attributes"
+msgstr "Verfügbare Attribute"
+
+#: includes/admin/class-bse-tools.php:49
+msgid "Build your shortcode"
+msgstr "Ihren Shortcode erstellen"
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "CSS classes (optional)"
+msgstr "CSS-Klassen (optional)"
+
+#: includes/admin/class-bse-tools.php:93
+msgid "Changelog"
+msgstr "Änderungsprotokoll"
+
+#: includes/class-bse-changelog.php:78
+msgid "Close"
+msgstr "Schließen"
+
+#: includes/class-bse-shortcode-catalog.php:11
+msgid "Comment form"
+msgstr "Kommentarformular"
+
+#: includes/admin/class-bse-tools.php:78
+msgid "Configure in generator"
+msgstr "Im Generator konfigurieren"
+
+#: includes/class-bse-shortcode-catalog.php:10
+msgid "Content ID"
+msgstr "Inhalts-ID"
+
+#: includes/admin/class-bse-tools.php:30
+msgid "Copied. Paste this shortcode into a shortcode-enabled field."
+msgstr "Kopiert. Fügen Sie den Shortcode in ein Feld mit Shortcode-Unterstützung ein."
+
+#: includes/admin/class-bse-tools.php:77
+msgid "Copy"
+msgstr "Kopieren Sien"
+
+#: includes/admin/class-bse-tools.php:77
+msgid "Copy shortcode"
+msgstr "Shortcode kopieren Sien"
+
+#: includes/admin/class-bse-tools.php:31
+msgid "Copy the selected shortcode manually."
+msgstr "Kopieren Sie den markierten Shortcode manuell."
+
+#: includes/class-bse-shortcode-catalog.php:15
+msgid "Copyright"
+msgstr "Copyright"
+
+#: includes/class-bse-shortcode-catalog.php:21
+msgid "Count content by post type and status."
+msgstr "Inhalte nach Inhaltstyp und Status zählen."
+
+#: includes/class-bse-shortcode-catalog.php:36
+msgid "Current user ID"
+msgstr "Aktuelle Benutzer-ID"
+
+#: includes/class-bse-shortcode-catalog.php:37
+msgid "Current user email"
+msgstr "Aktuelle Benutzer-E-Mail"
+
+#: includes/class-bse-shortcode-catalog.php:40
+msgid "Current user first name"
+msgstr "Aktueller Benutzer-Vorname"
+
+#: includes/class-bse-shortcode-catalog.php:41
+msgid "Current user last name"
+msgstr "Aktueller Benutzer-Nachname"
+
+#: includes/class-bse-shortcode-catalog.php:38
+msgid "Current user login"
+msgstr "Aktueller Benutzer-Anmeldename"
+
+#: includes/class-bse-shortcode-catalog.php:39
+msgid "Current user name"
+msgstr "Aktueller Benutzername"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "Date format"
+msgstr "Datumsformat"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "December 31, 2026"
+msgstr "31. Dezember 2026"
+
+#: includes/admin/class-bse-tools.php:93
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: includes/class-bse-shortcode-catalog.php:33
+msgid "Edit post link"
+msgstr "Beitrag-bearbeiten-Link"
+
+#: includes/class-bse-shortcode-catalog.php:12
+msgid "Elementor template"
+msgstr "Elementor-Vorlage"
+
+#: includes/class-bse-shortcode-catalog.php:43
+msgid "Embed a WordPress synced pattern by ID."
+msgstr "Eine synchronisierte WordPress-Vorlage per ID einbetten."
+
+#: includes/class-bse-shortcode-catalog.php:12
+msgid "Embed a saved Elementor template; offered with Elementor Free."
+msgstr "Eine gespeicherte Elementor-Vorlage einbetten; verfügbar mit Elementor Free."
+
+#: includes/class-bse-shortcode-catalog.php:44
+msgid "Embed an Astra Pro custom layout by ID."
+msgstr "Ein Astra-Pro-Layout per ID einbetten."
+
+#: includes/class-bse-shortcode-catalog.php:10
+msgid "Embed content"
+msgstr "Inhalt einbetten"
+
+#: includes/admin/class-bse-tools.php:32
+msgid "Enter a valid content ID greater than zero."
+msgstr "Geben Sie eine gültige Inhalts-ID größer als null ein."
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "Essentials"
+msgstr "Die wichtigsten Helfer"
+
+#: includes/admin/class-bse-tools.php:46
+msgid "Find a helper, copy its shortcode and paste it into a Shortcode block or a shortcode-enabled builder field. No settings to save."
+msgstr "Wählen Sie einen Helfer, kopieren Sie den Shortcode und fügen Sie ihn in einen Shortcode-Block oder ein geeignetes Builder-Feld ein. Es gibt keine Einstellungen zu speichern."
+
+#: includes/admin/class-bse-tools.php:65
+msgid "Find a shortcode"
+msgstr "Einen Shortcode finden"
+
+#: includes/class-bse-shortcode-catalog.php:15
+msgid "First year"
+msgstr "Erstes Jahr"
+
+#: includes/admin/class-bse-tools.php:61
+msgid "For dates, leave the post ID empty to use the current post. Insert generated shortcodes on your website to see their output."
+msgstr "Lassen Sie bei Datumsangaben die Beitrags-ID leer, um den aktuellen Beitrag zu verwenden. Fügen Sie den Shortcode auf Ihrer Website ein, um die Ausgabe zu sehen."
+
+#: includes/class-bse-shortcode-catalog.php:14
+msgid "Genesis breadcrumbs"
+msgstr "Genesis-Breadcrumbs"
+
+#: includes/class-bse-shortcode-catalog.php:13
+msgid "Genesis footer"
+msgstr "Genesis-Footer"
+
+#: includes/class-bse-shortcode-catalog.php:18
+msgid "Homepage link"
+msgstr "Startseiten-Link"
+
+#: includes/class-bse-shortcode-catalog.php:10
+msgid "Include Elementor CSS"
+msgstr "Elementor-CSS einbinden"
+
+#: includes/class-bse-shortcode-catalog.php:44
+msgid "Integrations"
+msgstr "Integrationen"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "Label"
+msgstr "Beschriftung"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "Last updated"
+msgstr "Zuletzt aktualisiert"
+
+#: includes/class-bse-shortcode-catalog.php:25
+msgid "Last updated (alias)"
+msgstr "Zuletzt aktualisiert (Alias)"
+
+#: includes/class-bse-shortcode-catalog.php:26
+msgid "Last updated time"
+msgstr "Letzte Aktualisierungszeit"
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "Link text (optional)"
+msgstr "Linktext (optional)"
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "Link to an item by ID or slug, or to the privacy policy."
+msgstr "Ein Link zu einem Inhalt per ID oder Slug oder zur Datenschutzerklärung."
+
+#: includes/class-bse-shortcode-catalog.php:19
+msgid "Login / logout link"
+msgstr "Anmelde- / Abmelde-Link"
+
+#: includes/class-bse-shortcode-catalog.php:42
+msgid "More helpers"
+msgstr "Weitere Helfer"
+
+#: includes/class-bse-shortcode-catalog.php:9
+msgid "Navigation menu"
+msgstr "Navigationsmenü"
+
+#: includes/class-bse-shortcode-catalog.php:10
+msgid "No"
+msgstr "Nein"
+
+#: includes/admin/class-bse-tools.php:68
+msgid "No matching shortcode. Try another search term."
+msgstr "Kein passender Shortcode. Versuchen Sie einen anderen Suchbegriff."
+
+#: includes/class-bse-shortcode-catalog.php:9
+msgid "Output an existing WordPress navigation menu."
+msgstr "Ein vorhandenes WordPress-Navigationsmenü ausgeben."
+
+#: includes/class-bse-shortcode-catalog.php:11
+msgid "Output the WordPress comment form."
+msgstr "Das WordPress-Kommentarformular ausgeben."
+
+#: includes/admin/class-bse-tools.php:93
+msgid "Plugin information"
+msgstr "Plugin-Informationen"
+
+#: includes/admin/class-bse-tools.php:93
+msgid "Plugin website"
+msgstr "Plugin-Website"
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "Post / page link"
+msgstr "Beitrags- / Seiten-Link"
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "Post ID"
+msgstr "Beitrags-ID"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "Post ID (optional)"
+msgstr "Beitrags-ID (optional)"
+
+#: includes/class-bse-shortcode-catalog.php:27
+msgid "Post author"
+msgstr "Beitragsautor"
+
+#: includes/class-bse-shortcode-catalog.php:31
+msgid "Post categories"
+msgstr "Beitragskategorien"
+
+#: includes/class-bse-shortcode-catalog.php:21
+msgid "Post count"
+msgstr "Beitragsanzahl"
+
+#: includes/class-bse-shortcode-catalog.php:30
+msgid "Post tags"
+msgstr "Beitrags-Schlagwörter"
+
+#: includes/class-bse-shortcode-catalog.php:22
+msgid "Publication date"
+msgstr "Veröffentlichungsdatum"
+
+#: includes/class-bse-shortcode-catalog.php:23
+msgid "Publication time"
+msgstr "Veröffentlichungszeit"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "Relative date"
+msgstr "Relatives Datum"
+
+#: includes/class-bse-shortcode-catalog.php:10
+msgid "Reuse a published item by ID; native blocks and supported builders are rendered."
+msgstr "Einen veröffentlichten Inhalt per ID wiederverwenden; native Blöcke und unterstützte Builder werden gerendert."
+
+#: includes/admin/class-bse-tools.php:66
+msgid "Search by task, name or attribute"
+msgstr "Nach Aufgabe, Name oder Attribut suchen"
+
+#: includes/admin/class-bse-tools.php:17
+msgid "Shortcodes"
+msgstr "Shortcodes"
+
+#: includes/class-bse-shortcode-catalog.php:17
+msgid "Site tagline"
+msgstr "Website-Untertitel"
+
+#: includes/class-bse-shortcode-catalog.php:16
+msgid "Site title"
+msgstr "Website-Titel"
+
+#: includes/class-bse-github-updates.php:32
+msgid "Small dynamic helpers for your WordPress website. Find, configure and copy useful shortcodes."
+msgstr "Kleine dynamische Helfer für Ihre WordPress-Website. Nützliche Shortcodes finden, konfigurieren und kopieren Sien."
+
+#: includes/admin/class-bse-tools.php:93
+msgid "Small dynamic helpers. Ready when you need them."
+msgstr "Kleine dynamische Helfer. Schnell eingesetzt."
+
+#: includes/class-bse-shortcode-catalog.php:43
+msgid "Synced pattern"
+msgstr "Synchronisierte Vorlage"
+
+#: includes/class-bse-shortcode-catalog.php:32
+msgid "Taxonomy terms"
+msgstr "Taxonomie-Begriffe"
+
+#: includes/class-bse-shortcode-catalog.php:42
+msgid "Technical version information for documentation and support."
+msgstr "Technische Versionsinformationen für Dokumentation und Support."
+
+#: includes/class-bse-shortcode-catalog.php:32
+msgid "Terms from a selected taxonomy."
+msgstr "Begriffe aus einer gewählten Taxonomie."
+
+#: includes/class-bse-shortcode-catalog.php:15
+msgid "Text after"
+msgstr "Text danach"
+
+#: includes/class-bse-shortcode-catalog.php:15
+msgid "Text before"
+msgstr "Text davor"
+
+#: includes/class-bse-github-updates.php:100
+msgid "The GitHub package could not be prepared. The installed version has been kept."
+msgstr "Das GitHub-Paket konnte nicht vorbereitet werden. Die installierte Version wurde beibehalten."
+
+#: includes/class-bse-github-updates.php:99
+msgid "The GitHub package does not contain the Builder Shortcode Extras plugin file."
+msgstr "Das GitHub-Paket enthält die Plugin-Datei von Builder Shortcode Extras nicht."
+
+#: includes/class-bse-shortcode-catalog.php:36
+msgid "The ID of the signed-in user."
+msgstr "Die ID des angemeldeten Benutzers."
+
+#: includes/class-bse-shortcode-catalog.php:27
+msgid "The author’s display name."
+msgstr "Der Anzeigename des Autors."
+
+#: includes/class-bse-shortcode-catalog.php:29
+msgid "The author’s name linked to their archive."
+msgstr "Der Autorenname mit Link zu seinem Archiv."
+
+#: includes/class-bse-shortcode-catalog.php:28
+msgid "The author’s name linked to their website."
+msgstr "Der Autorenname mit Link zu seiner Website."
+
+#: includes/class-bse-shortcode-catalog.php:14
+msgid "The breadcrumb trail provided by Genesis."
+msgstr "Die von Genesis bereitgestellte Breadcrumb-Navigation."
+
+#: includes/class-bse-shortcode-catalog.php:31
+msgid "The categories assigned to the current post."
+msgstr "Die Kategorien des aktuellen Beitrags."
+
+#: includes/class-bse-shortcode-catalog.php:39
+msgid "The display name of the signed-in user."
+msgstr "Der Anzeigename des angemeldeten Benutzers."
+
+#: includes/class-bse-shortcode-catalog.php:20
+msgid "The earliest or latest modification of published content."
+msgstr "Die früheste oder neueste Änderung veröffentlichter Inhalte."
+
+#: includes/class-bse-shortcode-catalog.php:37
+msgid "The email address of the signed-in user."
+msgstr "Die E-Mail-Adresse des angemeldeten Benutzers."
+
+#: includes/class-bse-shortcode-catalog.php:40
+msgid "The first name of the signed-in user."
+msgstr "Der Vorname des angemeldeten Benutzers."
+
+#: includes/class-bse-shortcode-catalog.php:13
+msgid "The footer text configured in Genesis."
+msgstr "Der in Genesis eingestellte Footer-Text."
+
+#: includes/admin/class-bse-tools.php:62
+msgid "The generator needs JavaScript. You can still select and copy examples from the help below."
+msgstr "Der Generator benötigt JavaScript. Die Beispiele in der Hilfe können Sie weiterhin markieren und kopieren Sien."
+
+#: includes/class-bse-shortcode-catalog.php:41
+msgid "The last name of the signed-in user."
+msgstr "Der Nachname des angemeldeten Benutzers."
+
+#: includes/class-bse-shortcode-catalog.php:38
+msgid "The login name of the signed-in user."
+msgstr "Der Anmeldename des angemeldeten Benutzers."
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "The modification date of the current or selected post."
+msgstr "Das Änderungsdatum des aktuellen oder gewählten Beitrags."
+
+#: includes/class-bse-shortcode-catalog.php:26
+msgid "The modification time of the current or selected post."
+msgstr "Die Änderungszeit des aktuellen oder gewählten Beitrags."
+
+#: includes/class-bse-shortcode-catalog.php:16
+msgid "The name of your website."
+msgstr "Der Name Ihrer Website."
+
+#: includes/class-bse-github-updates.php:122
+msgid "The package identity or version does not match a newer Builder Shortcode Extras release."
+msgstr "Die Paketidentität oder Version entspricht keiner neueren Version von Builder Shortcode Extras."
+
+#: includes/class-bse-github-updates.php:127
+msgid "The package version differs from the offered update. Please check for updates again."
+msgstr "Die Paketversion weicht vom angebotenen Update ab. Bitte prüfen Sie erneut auf Updates."
+
+#: includes/class-bse-shortcode-catalog.php:22
+msgid "The publication date of the current or selected post."
+msgstr "Das Veröffentlichungsdatum des aktuellen oder gewählten Beitrags."
+
+#: includes/class-bse-shortcode-catalog.php:23
+msgid "The publication time of the current or selected post."
+msgstr "Die Veröffentlichungszeit des aktuellen oder gewählten Beitrags."
+
+#: includes/class-bse-shortcode-catalog.php:17
+msgid "The tagline of your website."
+msgstr "Der Untertitel Ihrer Website."
+
+#: includes/class-bse-shortcode-catalog.php:30
+msgid "The tags assigned to the current post."
+msgstr "Die Schlagwörter des aktuellen Beitrags."
+
+#: includes/class-bse-github-updates.php:98
+msgid "The update filesystem is unavailable. Please try again."
+msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuchen Sie es erneut."
+
+#: includes/class-bse-github-updates.php:115
+msgid "The update package could not be checked."
+msgstr "Das Update-Paket konnte nicht geprüft werden."
+
+#: includes/class-bse-github-updates.php:131
+msgid "The update package has missing or invalid WordPress/PHP requirements."
+msgstr "Die WordPress/PHP-Anforderungen im Update-Paket fehlen oder sind ungültig."
+
+#: includes/class-bse-github-updates.php:135
+msgid "This release requires a newer WordPress or PHP version. The installed version has been kept."
+msgstr "Diese Version benötigt eine neuere WordPress- oder PHP-Version. Die installierte Version wurde beibehalten."
+
+#: includes/admin/class-bse-tools.php:67
+msgid "Try: copyright, date, author…"
+msgstr "Zum Beispiel: Copyright, Datum, Autor …"
+
+#: includes/admin/class-bse-tools.php:33
+msgid "Use a whole number greater than zero."
+msgstr "Verwenden Sie eine ganze Zahl größer als null."
+
+#: includes/class-bse-shortcode-catalog.php:35
+msgid "User information"
+msgstr "Benutzerinformationen"
+
+#: includes/admin/class-bse-tools.php:93
+msgid "Version"
+msgstr "Version"
+
+#: includes/class-bse-shortcode-catalog.php:42
+msgid "Version information"
+msgstr "Versionsinformationen"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "Website default"
+msgstr "Website-Standard"
+
+#: includes/class-bse-shortcode-catalog.php:20
+msgid "Website updated"
+msgstr "Website aktualisiert"
+
+#: includes/admin/class-bse-tools.php:50
+msgid "What would you like to add?"
+msgstr "Was möchten Sie hinzufügen Sien?"
+
+#: includes/integrations/block-editor.php:27
+msgid "WordPress Synced Patterns"
+msgstr "Synchronisierte WordPress-Vorlagen"
+
+#: includes/class-bse-shortcode-catalog.php:34
+msgid "Wrapper"
+msgstr "HTML-Element"
+
+#: includes/class-bse-shortcode-catalog.php:10
+msgid "Yes"
+msgstr "Ja"
+
+#: includes/admin/class-bse-tools.php:57
+msgid "Your shortcode"
+msgstr "Ihr Shortcode"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "2026-12-31"
+msgstr "2026-12-31"
+
+#: includes/class-bse-shortcode-catalog.php:24
+msgid "31.12.2026"
+msgstr "31.12.2026"
+
+#: includes/shortcodes/user.php:54
+msgid "This user field is not allowed"
+msgstr "Dieses Benutzerfeld ist nicht erlaubt"

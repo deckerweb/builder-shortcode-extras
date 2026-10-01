@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'ddw_bse_shortcode_copyright' ) ) :
 
-	add_shortcode( 'bse-copyright', 'ddw_bse_shortcode_copyright' );
+	ddw_bse_register_shortcode( 'bse-copyright', 'ddw_bse_shortcode_copyright' );
 	/**
 	 * Shortcode to output a typical copyright intro string.
 	 *
@@ -49,18 +49,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_copyright' ) ) :
 
 		$date_first = '';
 
-		if ( '' !== $atts[ 'first' ] && date( 'Y' ) !== $atts[ 'first' ] ) {
-			$date_first = $atts[ 'first' ] . '&#x02013;';
+		if ( '' !== $atts[ 'first' ] && wp_date( 'Y' ) !== $atts[ 'first' ] ) {
+			$date_first = esc_html( $atts[ 'first' ] ) . '&#x02013;';
 		}
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-copyright%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
-			$atts[ 'copyright' ] . '&nbsp;' . $date_first . date( 'Y' ),
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
+			esc_html( $atts[ 'copyright' ] ) . '&nbsp;' . $date_first . wp_date( 'Y' ),
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -77,7 +77,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_site_title' ) ) :
 
-	add_shortcode( 'bse-site-title', 'ddw_bse_shortcode_site_title' );
+	ddw_bse_register_shortcode( 'bse-site-title', 'ddw_bse_shortcode_site_title' );
 	/**
 	 * Shortcode to output the site title.
 	 *
@@ -112,11 +112,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_site_title' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-site-title%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			get_bloginfo( 'name' ),
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -133,7 +133,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_site_slogan' ) ) :
 
-	add_shortcode( 'bse-site-slogan', 'ddw_bse_shortcode_site_slogan' );
+	ddw_bse_register_shortcode( 'bse-site-slogan', 'ddw_bse_shortcode_site_slogan' );
 	/**
 	 * Shortcode to output the site slogan (aka Description/ Tag line).
 	 *
@@ -168,11 +168,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_site_slogan' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-site-slogan%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			get_bloginfo( 'description' ),
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -189,7 +189,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_home_link' ) ) :
 
-	add_shortcode( 'bse-home-link', 'ddw_bse_shortcode_home_link' );
+	ddw_bse_register_shortcode( 'bse-home-link', 'ddw_bse_shortcode_home_link' );
 	/**
 	 * Shortcode to output a link to the home URL.
 	 *
@@ -240,11 +240,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_home_link' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-home-link%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$home_link,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -261,7 +261,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_loginout' ) ) :
 
-	add_shortcode( 'bse-loginout', 'ddw_bse_shortcode_loginout' );
+	ddw_bse_register_shortcode( 'bse-loginout', 'ddw_bse_shortcode_loginout' );
 	/**
 	 * Shortcode to output an admin login/ logout link.
 	 *
@@ -327,11 +327,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_loginout' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-loginout%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			apply_filters( 'loginout', $link ),	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core WP hook.
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -348,7 +348,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_site_updated' ) ) :
 
-	add_shortcode( 'bse-site-updated', 'ddw_bse_shortcode_site_updated' );
+	ddw_bse_register_shortcode( 'bse-site-updated', 'ddw_bse_shortcode_site_updated' );
 	/**
 	 * Returns the date value when the content on the site was first published
 	 *   or last updated.
@@ -390,66 +390,25 @@ if ( ! function_exists( 'ddw_bse_shortcode_site_updated' ) ) :
 		$type = sanitize_key( $atts[ 'type' ] );
 		$type = ( 'first' === $type ) ? $type : 'last';
 
-		/** For "first": Get date & time format */
-		$site_first_updated_date = date_i18n(
-			$atts[ 'date_format' ],
-			strtotime( ddw_bse_site_updated() )                                                                                                                                                            
-		);
-
-		$site_first_updated_time = date_i18n(
-			$atts[ 'time_format' ],
-			strtotime( ddw_bse_site_updated() )
-		);
-
-		/** For "last": Get date & time format */
-		$site_last_updated_date = date_i18n(
-			$atts[ 'date_format' ],
-			strtotime( ddw_bse_site_updated( 'MAX' ) )
-		);
-
-		$site_last_updated_time = date_i18n(
-			$atts[ 'time_format' ],
-			strtotime( ddw_bse_site_updated( 'MAX' ) )
-		);
-
-		/** For "first": Date & time display logic */
-		$show_updated_date = $site_first_updated_date ? ' <span class="date published">' . $site_first_updated_date . '</span>' : '';
-
-		$show_updated_time = $site_first_updated_time ? ' ' . sprintf(
-			_x( '%s', 'Translators: shortcode, first published content time string', 'builder-shortcode-extras' ),
-			'<span class="time published">' . $site_first_updated_time . '</span>'
-		) : '';
-
-		/** For "last": Date & time display logic */
-		if ( 'last' === $type ) {
-
-			$show_updated_date = $site_last_updated_date ? ' <span class="date published">' . $site_last_updated_date . '</span>' : '';
-
-			$show_updated_time = $site_last_updated_time ? ' ' . sprintf(
-				_x( '%s', 'Translators: shortcode, last updated time string', 'builder-shortcode-extras' ),
-				'<span class="time published">' . $site_last_updated_time . '</span>'
-			) : '';
-
-		}  // end if
-
-		$date_time_string = sprintf(
-			'%1$s %2$s %3$s %4$s',
-			$atts[ 'label_date' ],
-			$show_updated_date,
-			$atts[ 'label_time' ],
-			$show_updated_time
-		);
+		$modified = ddw_bse_site_updated( 'first' === $type ? 'MIN' : 'MAX' );
+		if ( ! $modified ) {
+			return '';
+		}
+		$timestamp = ( new DateTimeImmutable( $modified, wp_timezone() ) )->getTimestamp();
+		$show_updated_date = ' <span class="date published">' . esc_html( wp_date( $atts['date_format'], $timestamp ) ) . '</span>';
+		$show_updated_time = ' <span class="time published">' . esc_html( wp_date( $atts['time_format'], $timestamp ) ) . '</span>';
+		$date_time_string = esc_html( $atts['label_date'] ) . $show_updated_date . ' ' . esc_html( $atts['label_time'] ) . $show_updated_time;
 
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-site-%2$s-updated%3$s"%4$s>%5$s%6$s%7$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
 			$type,
-			( ! empty( $atts[ 'class' ] ) ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'tooltip' ] ) ) ? ' title="' . esc_html( $atts[ 'tooltip' ] ) . '"' : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			( ! empty( $atts[ 'class' ] ) ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'tooltip' ] ) ) ? ' title="' . esc_attr( $atts[ 'tooltip' ] ) . '"' : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$date_time_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */

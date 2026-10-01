@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'ddw_bse_shortcode_nav_menu' ) ) :
 
-	add_shortcode( 'bse-nav-menu', 'ddw_bse_shortcode_nav_menu' );
+	ddw_bse_register_shortcode( 'bse-nav-menu', 'ddw_bse_shortcode_nav_menu' );
 	/**
 	 * Shortcode to output a full nav menu (registered as regular WP Nav Menu)
 	 *   by a given menu name/ id/ slug/ object.
@@ -85,11 +85,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_nav_menu' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-nav-menu%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$nav_menu,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -106,7 +106,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_item_content' ) ) :
 
-	add_shortcode( 'bse-item-content', 'ddw_bse_shortcode_item_content' );
+	ddw_bse_register_shortcode( 'bse-item-content', 'ddw_bse_shortcode_item_content' );
 	/**
 	 * Shortcode to output the content of a singular post type item by given ID.
 	 *
@@ -131,59 +131,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_item_content' ) ) :
 		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-item-content' );
 
-		/** Start output buffering (we have no chance...) */
-		ob_start();
-		
-		if ( $atts[ 'id' ] ) {
-
-			/** Check if the post type item was created with Elementor */
-			$elementor = get_post_meta( $atts[ 'id' ], '_elementor_edit_mode', TRUE );
-
-			$include_css = false;
-
-			if ( isset( $atts[ 'css' ] ) && 'false' !== $atts[ 'css' ] ) {
-				$include_css = (bool) $atts[ 'css' ];
-			}
-
-		    /** Case: Elementor */
-		    if ( ddw_bse_is_elementor_active() && $elementor ) {
-
-		        echo Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $atts[ 'id' ], $include_css );
-
-		    }
-
-		    /** Case: Beaver Builder */
-		    elseif ( class_exists( 'FLBuilder' ) && ! empty( $atts[ 'id' ] ) ) {
-
-		        echo do_shortcode( '[fl_builder_insert_layout id="' . $atts[ 'id' ] . '"]' );
-
-		    }
-
-		    /** Else: Embed the regular post item content */
-		    else {
-
-		    	/** Get item content */
-		    	$content = $atts[ 'id' ];
-
-				if ( ! empty( $content ) ) {
-
-					$template = get_post( $content );
-
-					if ( $template && ! is_wp_error( $template ) ) {
-						$content = $template->post_content;
-					}
-
-				}
-
-		        /** Display item content */
-		        echo do_shortcode( $content );
-
-		    }  // end if
-
-		}  // end if
-		
-		/** Return the output - from the WordPress output buffer */
-		return ob_get_clean();
+		return ddw_bse_render_item_content( absint( $atts['id'] ), ddw_bse_boolean( $atts['css'] ) );
 
 	}  // end function
 
@@ -192,7 +140,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_comment_form' ) ) :
 
-	add_shortcode( 'bse-comment-form', 'ddw_bse_shortcode_comment_form' );
+	ddw_bse_register_shortcode( 'bse-comment-form', 'ddw_bse_shortcode_comment_form' );
 	/**
 	 * Shortcode to output a comment form for a specific Post ID (or the current
 	 *   post).
@@ -250,11 +198,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_comment_form' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-comment-form%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
 			$comment_form,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */

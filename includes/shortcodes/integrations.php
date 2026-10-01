@@ -27,17 +27,17 @@ function ddw_bse_run_integrations() {
 
 	$integrations = ddw_bse_get_integrations();
 
-	foreach ( $integrations as $integration ) {
+	foreach ( $integrations as $key => $integration ) {
 		
-		if ( 'default-none' !== $integration ) {
+		if ( 'default-none' !== $key ) {
 
-			add_action( "manage_{$integration[ 'post_type' ]}_posts_columns", 'ddw_bse_admin_columns_headers_integrations_post_type' );
+			add_filter( "manage_{$integration[ 'post_type' ]}_posts_columns", 'ddw_bse_admin_columns_headers_integrations_post_type' );
 
 			add_action( "manage_{$integration[ 'post_type' ]}_posts_custom_column", 'ddw_bse_admin_columns_content_integrations_post_type', 10, 2 );
 
 			/** Add the actual Shortcode for this integration */
 			if ( function_exists( 'ddw_bse_shortcode_item_content' ) ) {
-				add_shortcode( "bse-{$integration[ 'shortcode_tag' ]}", 'ddw_bse_shortcode_item_content' );
+				ddw_bse_register_shortcode( "bse-{$integration[ 'shortcode_tag' ]}", 'ddw_bse_shortcode_item_content' );
 			}
 
 		}  // end if
@@ -83,7 +83,7 @@ function ddw_bse_admin_columns_content_integrations_post_type( $column_name, $po
 
 	$integrations = ddw_bse_get_integrations();
 
-	foreach ( $integrations as $integration ) {
+	foreach ( $integrations as $key => $integration ) {
 
 		if ( 'shortcode' === $column_name
 			&& $integration[ 'post_type' ] === get_post_type( $post_id )
@@ -101,7 +101,7 @@ function ddw_bse_admin_columns_content_integrations_post_type( $column_name, $po
 
 			printf(
 				'<input class="bse-%s-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />',
-				$integration[ 'shortcode_tag' ],
+				esc_attr( $integration[ 'shortcode_tag' ] ),
 				$shortcode
 			);
 

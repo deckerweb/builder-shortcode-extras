@@ -40,18 +40,24 @@ function ddw_bse_get_integrations() {
 		array()
 	);
 
-	/** Escape the values of the array */
-	foreach ( $integrations as $integration => $integration_data ) {
-
-		$integration                         = sanitize_key( $integration );
-		$integration_data[ 'label' ]         = esc_attr( $integration_data[ 'label' ] );
-		$integration_data[ 'post_type' ]     = sanitize_key( $integration_data[ 'post_type' ] );
-		$integration_data[ 'shortcode_tag' ] = sanitize_key( $integration_data[ 'shortcode_tag' ] );
-
-	}  // end foreach
-
-	/** Return registered integrations */
-	return (array) $integrations;
+	$clean = array();
+	foreach ( $integrations as $key => $data ) {
+		if ( 'default-none' === $key || ! is_array( $data ) ) {
+			continue;
+		}
+		if ( ! isset( $data['label'], $data['post_type'], $data['shortcode_tag'] )
+			|| ! is_string( $data['label'] ) || ! is_string( $data['post_type'] ) || ! is_string( $data['shortcode_tag'] ) ) {
+			continue;
+		}
+		$key = sanitize_key( (string) $key );
+		$data['label'] = sanitize_text_field( $data['label'] );
+		$data['post_type'] = sanitize_key( $data['post_type'] );
+		$data['shortcode_tag'] = sanitize_key( $data['shortcode_tag'] );
+		if ( $key && $data['post_type'] && $data['shortcode_tag'] ) {
+			$clean[$key] = $data;
+		}
+	}
+	return $clean;
 
 }  // end function
 
@@ -100,13 +106,13 @@ function ddw_bse_info_values() {
 
 		/** For our Shortcodes specifically */
 		'php_current'         => phpversion(),
-		'php_minimum'         => '7.4',
+		'php_minimum'         => '8.0',
 		'php_recommended'     => '8.2',
 		'wp_current'          => $GLOBALS[ 'wp_version' ],
 		'wp_minimum'          => '6.7',
 		'wp_recommended'      => '6.7.2',
 		//'db_current'          => esc_attr( ddw_bse_get_db_version() ),
-		'server_software'     => esc_attr( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ) ),
+		'server_software'     => esc_attr( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ?? '' ) ),
 		'mysql_minimum'       => '5.0',
 		'mysql_recommended'   => '5.6',
 		'mariadb_minimum'     => '10.0',
@@ -140,10 +146,10 @@ function ddw_bse_get_info_url( $url_key = '', $raw = FALSE ) {
 
 	$bse_info = (array) ddw_bse_info_values();
 
-	$output = esc_url( $bse_info[ sanitize_key( $url_key ) ] );
+	$output = esc_url( $bse_info[ sanitize_key( $url_key ) ] ?? '' );
 
 	if ( TRUE === $raw ) {
-		$output = esc_url_raw( $bse_info[ esc_attr( $url_key ) ] );
+		$output = esc_url_raw( $bse_info[ sanitize_key( $url_key ) ] ?? '' );
 	}
 
 	return $output;
@@ -167,7 +173,7 @@ function ddw_bse_get_info_link( $url_key = '', $text = '', $class = '' ) {
 
 	$link = sprintf(
 		'<a class="%1$s" href="%2$s" target="_blank" rel="nofollow noopener noreferrer" title="%3$s">%3$s</a>',
-		strtolower( esc_attr( $class ) ),	//sanitize_html_class( $class ),
+		esc_attr( ddw_bse_sanitize_html_classes( $class, 'string' ) ),	//sanitize_html_class( $class ),
 		ddw_bse_get_info_url( $url_key ),
 		esc_html( $text )
 	);
@@ -194,9 +200,9 @@ function ddw_bse_coding_years( $first_year = '' ) {
 	$first_year = ( empty( $first_year ) ) ? absint( $bse_info[ 'first_code' ] ) : absint( $first_year );
 
 	/** Set year of first released code */
-	$code_first_year = ( date( 'Y' ) == $first_year || 0 === $first_year ) ? '' : $first_year . '&#x02013;';
+	$code_first_year = ( wp_date( 'Y' ) == $first_year || 0 === $first_year ) ? '' : $first_year . '&#x02013;';
 
-	return $code_first_year . date( 'Y' );
+	return $code_first_year . wp_date( 'Y' );
 
 }  // end function
 
@@ -278,7 +284,7 @@ function ddw_bse_human_time_diff( $older_date, $newer_date = false, $relative_de
 	];
 
 	// Build output with as many units as specified in $relative_depth.
-	$relative_depth = (int) $relative_depth ?: 2;
+	$relative_depth = max( 1, min( 7, (int) $relative_depth ?: 2 ) );
 
 	$i = 0;
 

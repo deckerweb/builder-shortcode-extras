@@ -51,15 +51,6 @@ if ( ddw_bse_is_astra_active() && ddw_bse_is_astra_custom_layouts_active() ) {
  * Block Editor (Gutenberg) - WP Core
  * @since 1.0.0
  */
-if ( ddw_bse_is_block_editor_active() && ddw_bse_is_block_editor_wanted() ) {
+if ( post_type_exists( 'wp_block' ) ) {
 	require_once BSE_PLUGIN_DIR . 'includes/integrations/block-editor.php';
-}
-
-
-/**
- * Astra Custom Layouts specific Shortcode (for Astra Pro only)
- * @since 1.0.0
- */
-if ( ddw_bse_is_astra_active() && ddw_bse_is_astra_custom_layouts_active() ) {
-	require_once BSE_PLUGIN_DIR . 'includes/integrations/astra.php';
 }
