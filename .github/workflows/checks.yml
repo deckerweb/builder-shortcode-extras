@@ -1,0 +1,27 @@
+name: Plugin checks
+on:
+  push:
+  pull_request:
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.0', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: Check PHP syntax
+        run: find . -name '*.php' -print0 | xargs -0 -n1 php -l
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check generator JavaScript
+        run: node --check assets/admin/tools.js
+      - name: Check release documentation
+        run: python3 tools/check_release.py
+      - name: Build installable ZIP
+        run: python3 tools/package.py --output builder-shortcode-extras.zip
