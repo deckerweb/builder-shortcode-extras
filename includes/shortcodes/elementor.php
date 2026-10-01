@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 if ( ! ddw_bse_is_elementor_pro_active() ) :
 
-	add_action( 'manage_' . Source_Local::CPT . '_posts_columns', 'ddw_bse_admin_columns_headers_elementor_templates' );
+	add_filter( 'manage_' . Source_Local::CPT . '_posts_columns', 'ddw_bse_admin_columns_headers_elementor_templates' );
 	/**
 	 * Add post type list table column for "Saved Templates" post type.
 	 *
@@ -78,7 +78,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_elementor_template' ) ) :
 
-	add_shortcode( 'bse-elementor-template', 'ddw_bse_shortcode_elementor_template' );
+	ddw_bse_register_shortcode( 'bse-elementor-template', 'ddw_bse_shortcode_elementor_template' );
 	/**
 	 * Shortcode to output an Elementor Saved Template by given ID.
 	 *
@@ -107,13 +107,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_elementor_template' ) ) :
 			return '';
 		}
 
-		$include_css = false;
-
-		if ( isset( $atts[ 'css' ] ) && 'false' !== $atts[ 'css' ] ) {
-			$include_css = (bool) $atts[ 'css' ];
-		}
-
-		$output = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $atts[ 'id' ], $include_css );
+		$output = ddw_bse_render_item_content( absint( $atts['id'] ), ddw_bse_boolean( $atts['css'] ), 'elementor' );
 
 		/** Return the output - filterable */
 		return apply_filters(

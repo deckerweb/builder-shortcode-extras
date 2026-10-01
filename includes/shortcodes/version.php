@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 
-	add_shortcode( 'bse-version', 'ddw_bse_shortcode_version' );
+	ddw_bse_register_shortcode( 'bse-version', 'ddw_bse_shortcode_version' );
 	/**
 	 * Shortcode to output a version number for various types and occeasions,
 	 *   like WordPress, PHP, MySQL/ MariaDB, Database, Server, Elementor,
@@ -47,6 +47,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-version' );
 
+		global $wpdb;
+
 		$type      = sanitize_key( $atts[ 'type' ] );
 		$plugin    = sanitize_key( $atts[ 'plugin' ] );
 		$version   = '';
@@ -72,7 +74,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 		} elseif ( 'required' === $type ) {
 
 			$plugin  = strtoupper( $plugin );
-			$defined = constant( $plugin . '_REQUIRED_BASE_PLUGIN_VERSION' );
+			$defined = ( defined( $plugin . '_REQUIRED_BASE_PLUGIN_VERSION' ) ? constant( $plugin . '_REQUIRED_BASE_PLUGIN_VERSION' ) : '' );
 			$version = $defined ? $defined : $bse;
 
 		} elseif ( 'custom' === $type ) {
@@ -82,7 +84,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 		} elseif ( 'constant' === $type ) {
 
 			$constant = strtoupper( sanitize_key( $atts[ 'constant' ] ) );
-			$constant = constant( $constant );
+			$constant = defined( $constant ) ? constant( $constant ) : '';
 			$version  = $constant ? $constant : __( '(Not defined)', 'builder-shortcode-extras' );
 
 		} elseif ( 'db_current' === $type ) {
@@ -99,15 +101,15 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 			$version  = $bse_info[ $type ];
 
 		}  // end if
-		
+
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-version%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
-			( ! is_null( $version ) ) ? $version : '',
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
+			esc_html( is_scalar( $version ) ? (string) $version : '' ),
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */

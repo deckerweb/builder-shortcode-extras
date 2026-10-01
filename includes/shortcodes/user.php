@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 
-	add_shortcode( 'bse-user', 'ddw_bse_shortcode_user' );
+	ddw_bse_register_shortcode( 'bse-user', 'ddw_bse_shortcode_user' );
 	/**
 	 * ???
 	 *
@@ -46,12 +46,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 		$output_text = '';
 
 		/** Bail early if password gets requested - not allowed! */
-		if ( 'user_pass' === $atts[ 'field' ] ) {
+		if ( in_array( $atts['field'], array( 'user_pass', 'user_activation_key' ), true ) ) {
 
 			return sprintf(
 				'<span class="bse-error">%s: %s</span>',
 				__( 'User', 'builder-shortcode-extras' ),
-				__( 'The password field is not allowed', 'builder-shortcode-extras' )
+				__( 'This user field is not allowed', 'builder-shortcode-extras' )
 			);
 
 		}  // end if
@@ -81,11 +81,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-user%2$s">%3$s%4$s%5$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
-			! empty( $atts[ 'class' ] ) ? ' ' . sanitize_html_class( $atts[ 'class' ] ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html__( $atts[ 'before' ] ) . ' ' : '',
-			( $user_data ) ? $user_data : '',
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html__( $atts[ 'after' ] ) : ''
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
+			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
+			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
+			esc_html( (string) $user_data ),
+			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
 		/** Return the output - filterable */
@@ -102,7 +102,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_user_id' ) ) :
 
-	add_shortcode( 'bse-userid', 'ddw_bse_shortcode_user_id' );
+	ddw_bse_register_shortcode( 'bse-userid', 'ddw_bse_shortcode_user_id' );
 	/**
 	 * Shortcode to output a users ID.
 	 *
@@ -132,7 +132,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_user_email' ) ) :
 
-	add_shortcode( 'bse-email', 'ddw_bse_shortcode_user_email' );
+	ddw_bse_register_shortcode( 'bse-email', 'ddw_bse_shortcode_user_email' );
 	/**
 	 * Shortcode to output a users email.
 	 *
@@ -162,7 +162,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_user_login_name' ) ) :
 
-	add_shortcode( 'bse-login', 'ddw_bse_shortcode_user_login_name' );
+	ddw_bse_register_shortcode( 'bse-login', 'ddw_bse_shortcode_user_login_name' );
 	/**
 	 * Shortcode to output a users login handle/name.
 	 *
@@ -192,7 +192,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_user_display_name' ) ) :
 
-	add_shortcode( 'bse-displayname', 'ddw_bse_shortcode_user_display_name' );
+	ddw_bse_register_shortcode( 'bse-displayname', 'ddw_bse_shortcode_user_display_name' );
 	/**
 	 * Shortcode to output a users display name.
 	 *
@@ -222,7 +222,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_user_firstname' ) ) :
 
-	add_shortcode( 'bse-firstname', 'ddw_bse_shortcode_user_firstname' );
+	ddw_bse_register_shortcode( 'bse-firstname', 'ddw_bse_shortcode_user_firstname' );
 	/**
 	 * Shortcode to output a users first name.
 	 *
@@ -252,7 +252,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_user_lastname' ) ) :
 
-	add_shortcode( 'bse-lastname', 'ddw_bse_shortcode_user_lastname' );
+	ddw_bse_register_shortcode( 'bse-lastname', 'ddw_bse_shortcode_user_lastname' );
 	/**
 	 * Shortcode to output a users last name.
 	 *

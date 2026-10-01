@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'ddw_bse_shortcode_genesis_footer' ) ) :
 
-	add_shortcode( 'bse-genesis-footer', 'ddw_bse_shortcode_genesis_footer' );
+	ddw_bse_register_shortcode( 'bse-genesis-footer', 'ddw_bse_shortcode_genesis_footer' );
 	/**
 	 * Shortcode to output the complete Genesis footer text, taken from the
 	 *   Genesis Customizer settings since Genesis 3.1.0 or higher.
@@ -51,7 +51,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_footer' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-genesis-footer%2$s">%3$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
 			( ! empty( $atts[ 'class' ] ) ) ? ' ' . ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) : '',
 			do_shortcode( genesis_strip_p_tags( $creds_text ) )
 		);
@@ -70,7 +70,7 @@ endif;
 
 if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 
-	add_shortcode( 'bse-genesis-breadcrumbs', 'ddw_bse_shortcode_genesis_breadcrumbs' );
+	ddw_bse_register_shortcode( 'bse-genesis-breadcrumbs', 'ddw_bse_shortcode_genesis_breadcrumbs' );
 	/**
 	 * Shortcode to output the complete Genesis Breadcrumb container.
 	 *
@@ -108,7 +108,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-genesis-breadcrumbs%2$s">%3$s</%1$s>',
-			strtolower( sanitize_html_class( $atts[ 'wrapper' ] ) ),
+			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
 			( ! empty( $atts[ 'class' ] ) ) ? ' ' . ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) : '',
 			$genesis_breadcrumbs
 		);
