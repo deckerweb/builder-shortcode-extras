@@ -6,7 +6,7 @@
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
-Version **1.2.0** · WordPress **6.7+** · PHP **8.0+** · GPL-2.0-or-later
+Version **1.2.1** · WordPress **6.7+** · PHP **8.0+** · GPL-2.0-or-later
 
 [Deutsch](README-de.md) · [Guide and FAQ](https://github.com/deckerweb/builder-shortcode-extras/wiki/English) · [Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest)
 
@@ -19,6 +19,7 @@ Version **1.2.0** · WordPress **6.7+** · PHP **8.0+** · GPL-2.0-or-later
 - [Updates and Library](#updates-and-library)
 - [Data and Multisite](#data-and-multisite)
 - [FAQ](#faq)
+- [Screenshots](#screenshots)
 - [Changelog](#changelog)
 - [Author and scope](#author-and-scope)
 - [Support and security](#support-and-security)
@@ -94,7 +95,22 @@ Use Security → Advisories → Report a vulnerability in this plugin’s GitHub
 
 [Complete FAQ by topic](https://github.com/deckerweb/builder-shortcode-extras/wiki/English#faq-by-topic).
 
+## Screenshots
+
+![Shortcode help and generator](assets-github/shortcode-tools-en.png)
+
 ## Changelog
+
+## 1.2.1 — 2026-10-08
+
+- **Improved:** Lower frontend overhead: update and catalog runtimes load only when needed; repeated site-modification queries share a request-local cache.
+- **Improved:** Clearer local help, accessible changelog badges and consistent English, informal German and formal German documentation.
+- **Fixed:** Version shortcodes no longer expose arbitrary installation constants; navigation shortcodes cannot invoke arbitrary PHP callbacks from content.
+- **Fixed:** Private content links, dates and comment forms respect access permissions; labels, taxonomy separators and menu formatting are safely handled.
+- **Fixed:** Network administration uses the appropriate permissions and Settings link; batch deinstallation preserves other plugins and shared Library ownership.
+- **Fixed:** Update packages are checked against the offered version, plugin identity and actual WordPress/PHP requirements, including bulk updates.
+- **Misc:** Bundles deckerweb Library 0.8.1 and Updater 2.1.0. Existing shortcode names, attributes, developer filters and optional integrations remain available.
+- **Misc:** Updated bilingual readmes, FAQ, artwork and security reporting. Requirements remain WordPress 6.7+ and PHP 8.0+.
 
 ## 1.2.0 — 2026-10-01
 

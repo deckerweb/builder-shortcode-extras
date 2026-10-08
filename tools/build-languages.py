@@ -16,7 +16,7 @@ def parse(path):
 def key(e):return e.get('msgctxt','')+'\x04'+e['msgid']
 def quote(s):return json.dumps(s,ensure_ascii=False)
 files=[r/'builder-shortcode-extras.php',r/'uninstall.php']+[p for p in (r/'includes').rglob('*.php') if 'deckerweb-plugin-library' not in str(p) and p.name!='deckerweb-github-release-updater-v2.php']
-subprocess.run(['xgettext','--language=PHP','--from-code=UTF-8','--keyword=__','--keyword=_e','--keyword=_x:1,2c','--keyword=_n:1,2','--keyword=_nx:1,2,4c','--keyword=_n_noop:1,2','--keyword=_nx_noop:1,2,3c','--keyword=esc_html__','--keyword=esc_attr__','--keyword=esc_html_e','--keyword=esc_attr_e','--keyword=esc_html_x:1,2c','--keyword=esc_attr_x:1,2c','--package-name=Builder Shortcode Extras','--package-version=1.2.0','-o',str(r/'languages/builder-shortcode-extras.pot')]+[str(p) for p in files],check=True)
+subprocess.run(['xgettext','--language=PHP','--from-code=UTF-8','--keyword=__','--keyword=_e','--keyword=_x:1,2c','--keyword=_n:1,2','--keyword=_nx:1,2,4c','--keyword=_n_noop:1,2','--keyword=_nx_noop:1,2,3c','--keyword=esc_html__','--keyword=esc_attr__','--keyword=esc_html_e','--keyword=esc_attr_e','--keyword=esc_html_x:1,2c','--keyword=esc_attr_x:1,2c','--package-name=Builder Shortcode Extras','--package-version='+re.search(r'Version:\s*(\S+)',(r/'builder-shortcode-extras.php').read_text())[1],'-o',str(r/'languages/builder-shortcode-extras.pot')]+[str(p) for p in files],check=True)
 pot=r/'languages/builder-shortcode-extras.pot';entries=parse(pot);seen={key(e) for e in entries}
 lib=r/'includes/deckerweb-plugin-library';messages=json.loads((lib/'messages.json').read_text())
 for message in messages:

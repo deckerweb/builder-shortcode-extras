@@ -54,6 +54,11 @@ final class Guide {
 				$code = ! $code; $list = false; continue;
 			}
 			if ( $code ) { $html .= esc_html( $line ) . "\n"; continue; }
+			if ( preg_match( '~^!\[([^\]]+)\]\(\.\./assets-github/(shortcode-tools-(?:en|de)\.png)\)$~D', $line, $picture ) ) {
+				if ( $list ) { $html .= '</ul>'; $list = false; }
+				$html .= '<p><img class="bse-guide-screenshot" src="' . esc_url( plugins_url( 'assets-github/' . $picture[2], BSE_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $picture[1] ) . '" loading="lazy"></p>';
+				continue;
+			}
 			if ( str_starts_with( $line, '|' ) ) {
 				if ( preg_match( '/^\|[\s|:\-]+\|$/', $line ) ) { continue; }
 				$cell = $table ? 'td' : 'th';

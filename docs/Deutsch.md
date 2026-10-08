@@ -6,7 +6,7 @@
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.2.0** · WordPress **6.7+** · PHP **8.0+**
+Version **1.2.1** · WordPress **6.7+** · PHP **8.0+**
 
 ## Erste Schritte
 
@@ -16,6 +16,10 @@ Version **1.2.0** · WordPress **6.7+** · PHP **8.0+**
 4. Füge ihn in einen Shortcode-Block oder ein geeignetes Builder-Feld ein und prüfe die Ausgabe.
 
 BSE speichert keine Generatorwerte und verändert keine Inhalte.
+
+## Plugin-Seite
+
+![Hilfe und Shortcode-Generator](../assets-github/shortcode-tools-de.png)
 
 ## Beispiele
 

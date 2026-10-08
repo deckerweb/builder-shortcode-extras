@@ -1,5 +1,16 @@
 # Änderungsprotokoll
 
+## 1.2.1 — 08.10.2026
+
+- **Verbessert:** Weniger Aufwand im Frontend: Update- und Katalogkomponenten laden nur bei Bedarf; wiederholte Abfragen des Website-Änderungsdatums verwenden einen gemeinsamen Cache pro Anfrage.
+- **Verbessert:** Verständlichere lokale Hilfe, zugängliche Changelog-Kennzeichnung und abgestimmte englische, deutsche und formell deutsche Dokumentation.
+- **Behoben:** Versions-Shortcodes geben keine beliebigen Installationskonstanten mehr aus; Menü-Shortcodes können keine beliebigen PHP-Callbacks aus Inhalten aufrufen.
+- **Behoben:** Links, Datumsangaben und Kommentarformulare zu privaten Inhalten beachten Zugriffsrechte; Beschriftungen, Taxonomie-Trennzeichen und Menüformatierung werden sicher verarbeitet.
+- **Behoben:** Netzwerkverwaltung verwendet passende Berechtigungen und Einstellungen-Links; gemeinsame Deinstallation schützt andere Plugins und gemeinsam genutzte Library-Daten.
+- **Behoben:** Update-Pakete werden auf angebotene Version, Plugin-Identität und tatsächliche WordPress-/PHP-Anforderungen geprüft, auch bei Sammelupdates.
+- **Sonstiges:** deckerweb Library 0.8.1 und Updater 2.1.0 eingebunden. Bestehende Shortcode-Namen, Attribute, Entwicklerfilter und optionale Integrationen bleiben verfügbar.
+- **Sonstiges:** Zweisprachige Readmes, FAQ, Grafiken und vertraulicher Sicherheitsmeldeweg aktualisiert. Voraussetzungen bleiben WordPress 6.7+ und PHP 8.0+.
+
 ## 1.2.0 — 01.10.2026
 
 - **Neu:** Durchsuchbare Shortcode-Hilfe mit Kopierfunktion und lokalem Generator für Copyright, Veröffentlichungsdatum, Änderungsdatum, Beitragslinks und Inhaltseinbettung.

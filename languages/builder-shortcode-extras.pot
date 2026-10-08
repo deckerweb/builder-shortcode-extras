@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Builder Shortcode Extras 1.2.0\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-08 23:08+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+msgstr "Project-Id-Version: Builder Shortcode Extras 1.2.1\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-08 23:51+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "Documentation"
 msgstr ""

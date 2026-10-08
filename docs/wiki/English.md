@@ -6,7 +6,7 @@
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
-Version **1.2.0** · WordPress **6.7+** · PHP **8.0+**
+Version **1.2.1** · WordPress **6.7+** · PHP **8.0+**
 
 ## Quick start
 
@@ -16,6 +16,10 @@ Version **1.2.0** · WordPress **6.7+** · PHP **8.0+**
 4. Paste it into a Shortcode block or supported builder field and check its output.
 
 BSE saves no generator values and changes no content.
+
+## Plugin page
+
+![Shortcode help and generator](https://github.com/deckerweb/builder-shortcode-extras/raw/master/assets-github/shortcode-tools-en.png)
 
 ## Examples
 

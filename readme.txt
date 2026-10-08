@@ -3,7 +3,7 @@ Contributors: deckerweb
 Tags: shortcodes, dynamic content, templates
 Requires at least: 6.7
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,7 +92,23 @@ Use Security → Advisories → Report a vulnerability in this plugin’s GitHub
 
 [Complete FAQ by topic](https://github.com/deckerweb/builder-shortcode-extras/wiki/English#faq-by-topic).
 
+== Screenshots ==
+
+1. Plugin page with help and generator in English.
+2. Plugin page with help and generator in German.
+
 == Changelog ==
+
+= 1.2.1 — 2026-10-08 =
+
+- **Improved:** Lower frontend overhead: update and catalog runtimes load only when needed; repeated site-modification queries share a request-local cache.
+- **Improved:** Clearer local help, accessible changelog badges and consistent English, informal German and formal German documentation.
+- **Fixed:** Version shortcodes no longer expose arbitrary installation constants; navigation shortcodes cannot invoke arbitrary PHP callbacks from content.
+- **Fixed:** Private content links, dates and comment forms respect access permissions; labels, taxonomy separators and menu formatting are safely handled.
+- **Fixed:** Network administration uses the appropriate permissions and Settings link; batch deinstallation preserves other plugins and shared Library ownership.
+- **Fixed:** Update packages are checked against the offered version, plugin identity and actual WordPress/PHP requirements, including bulk updates.
+- **Misc:** Bundles deckerweb Library 0.8.1 and Updater 2.1.0. Existing shortcode names, attributes, developer filters and optional integrations remain available.
+- **Misc:** Updated bilingual readmes, FAQ, artwork and security reporting. Requirements remain WordPress 6.7+ and PHP 8.0+.
 
 = 1.2.0 — 2026-10-01 =
 
