@@ -101,7 +101,7 @@ Use Security → Advisories → Report a vulnerability in this plugin’s GitHub
 
 ## Changelog
 
-## 1.2.1 — 2026-10-08
+## 1.2.1 — 2026-10-09
 
 - **Improved:** Lower frontend overhead: update and catalog runtimes load only when needed; repeated site-modification queries share a request-local cache.
 - **Improved:** Clearer local help, accessible changelog badges and consistent English, informal German and formal German documentation.

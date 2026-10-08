@@ -99,7 +99,7 @@ Verwende Security → Advisories → Report a vulnerability im GitHub-Repository
 
 == Changelog ==
 
-= 1.2.1 — 08.10.2026 =
+= 1.2.1 — 09.10.2026 =
 
 - **Verbessert:** Weniger Aufwand im Frontend: Update- und Katalogkomponenten laden nur bei Bedarf; wiederholte Abfragen des Website-Änderungsdatums verwenden einen gemeinsamen Cache pro Anfrage.
 - **Verbessert:** Verständlichere lokale Hilfe, zugängliche Changelog-Kennzeichnung und abgestimmte englische, deutsche und formell deutsche Dokumentation.
