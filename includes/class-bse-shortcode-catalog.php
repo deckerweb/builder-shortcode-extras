@@ -2,8 +2,13 @@
 /** Shared catalog for the searchable help and focused generator. @package BuilderShortcodeExtras */
 namespace Deckerweb\BuilderShortcodeExtras;
 defined( 'ABSPATH' ) || exit;
+/** Provide task-oriented metadata independently of shortcode execution. */
 final class Catalog {
-	/** Descriptive metadata only; this method never renders frontend shortcodes. */
+	/**
+	 * Describe the searchable helper catalog and five generator cases.
+	 *
+	 * @return array<string,array> Localized labels, examples and attribute metadata.
+	 */
 	public static function all(): array {
 		$catalog = array(
 			'bse-nav-menu' => array( 'label' => __('Navigation menu', 'builder-shortcode-extras' ), 'description' => __('Output an existing WordPress navigation menu.', 'builder-shortcode-extras' ), 'group' => __('More helpers', 'builder-shortcode-extras' ), 'integration' => '', 'example' => '[bse-nav-menu]', 'attributes' => array( 'before', 'after', 'class', 'wrapper', 'menu', 'container', 'container_class', 'container_id', 'menu_class', 'menu_id', 'fallback_cb', 'item_before', 'item_after', 'link_before', 'link_after', 'depth', 'walker', 'theme_location', 'items_wrap', 'item_spacing' ), 'fields' => array(  ) ),

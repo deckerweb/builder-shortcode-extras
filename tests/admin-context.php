@@ -11,6 +11,12 @@ ddw_bse_register_shortcode('bse-item-content','ddw_bse_shortcode_item_content');
 if(!shortcode_exists('bse-copyright') || shortcode_exists('bse-item-content')) throw new RuntimeException('Admin opt-in allows text helpers only');
 wp_set_current_user(0);ob_start();\Deckerweb\BuilderShortcodeExtras\Tools::page();$output=ob_get_clean();
 if('' !== $output) throw new RuntimeException('Tools page must require manage_options');
-wp_set_current_user(1);ob_start();\Deckerweb\BuilderShortcodeExtras\Tools::page();$output=ob_get_clean();
+wp_set_current_user(1);
+if ( WP_NETWORK_ADMIN && ! is_multisite() ) {
+ ob_start();\Deckerweb\BuilderShortcodeExtras\Tools::page();$output=ob_get_clean();
+ if ( '' !== $output ) { throw new RuntimeException('No network settings access on a single site'); }
+ echo "PASS network context on single site denies network-only access\n";exit;
+}
+ob_start();\Deckerweb\BuilderShortcodeExtras\Tools::page();$output=ob_get_clean();
 if(!str_contains($output,'bse-generator-heading') || !str_contains($output,'bse-document-changelog')) throw new RuntimeException('Tools page / changelog markup missing');
 echo 'PASS '.(WP_NETWORK_ADMIN?'network':'site').' admin: registration, opt-in, permission and tools page'.PHP_EOL;

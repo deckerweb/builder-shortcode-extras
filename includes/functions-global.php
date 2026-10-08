@@ -34,6 +34,12 @@ function ddw_bse_get_integrations() {
 	);
 
 	/** Allow the array to be filtered (= adding more integrations) */
+	/**
+	 * Filter integrations/all while preserving its value contract.
+	 * @since 1.0.0
+	 * @param array $integrations Integration definitions; return the amended map.
+	 * @param array $context Reserved extension context.
+	 */
 	$integrations = (array) apply_filters(
 		'bse/filter/integrations/all',
 		$integrations,
@@ -74,30 +80,20 @@ function ddw_bse_get_integrations() {
  */
 function ddw_bse_info_values() {
 
-	/** Get current user */
-	$user = wp_get_current_user();
-
-	/** Build Newsletter URL */
-	$url_nl = sprintf(
-		'https://deckerweb.us2.list-manage.com/subscribe?u=e09bef034abf80704e5ff9809&amp;id=380976af88&amp;MERGE0=%1$s&amp;MERGE1=%2$s',
-		esc_attr( $user->user_email ),
-		esc_attr( $user->user_firstname )
-	);
-
 	$bse_info = [
 
-		'url_snippets'        => 'https://github.com/deckerweb/builder-shortcode-extras/wiki/Code-Snippets',
+		'url_snippets'        => 'https://github.com/deckerweb/builder-shortcode-extras/wiki/English',
 
 		'author'              => __( 'David Decker - DECKERWEB', 'builder-shortcode-extras' ),
-		'author_uri'          => 'https://deckerweb.de/',
+		'author_uri'          => 'https://github.com/deckerweb',
 		'license'             => 'GPL-2.0-or-later',
-		'url_license'         => 'https://opensource.org/licenses/GPL-2.0',
+		'url_license'         => 'https://www.gnu.org/licenses/gpl-2.0.html',
 		'first_code'          => '2019',
 		'plugin_icon_png'     => plugins_url( '/assets/images/bse-icon.png', dirname( __FILE__ ) ),
 
-		'url_donate'          => 'https://www.paypal.me/deckerweb',
+		'url_donate'          => 'https://paypal.me/deckerweb',
 		'url_patreon'         => 'https://www.patreon.com/deckerweb',
-		'url_newsletter'      => $url_nl,
+		'url_newsletter'      => 'https://eepurl.com/gbAUUn',
 		'url_plugin'          => 'https://github.com/deckerweb/builder-shortcode-extras',
 		'url_plugin_docs'     => 'https://github.com/deckerweb/builder-shortcode-extras/wiki',
 		'url_github'          => 'https://github.com/deckerweb/builder-shortcode-extras',
@@ -110,7 +106,7 @@ function ddw_bse_info_values() {
 		'php_recommended'     => '8.2',
 		'wp_current'          => $GLOBALS[ 'wp_version' ],
 		'wp_minimum'          => '6.7',
-		'wp_recommended'      => '6.7.2',
+		'wp_recommended'      => '7.1.3',
 		//'db_current'          => esc_attr( ddw_bse_get_db_version() ),
 		'server_software'     => esc_attr( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ?? '' ) ),
 		'mysql_minimum'       => '5.0',
@@ -222,235 +218,107 @@ function ddw_bse_string_shortcode() {
 
 
 /**
- * Calculate the time difference - a replacement for `human_time_diff()` until
- *   it is improved.
- *
- * Based on BuddyPress function `bp_core_time_since()`, which in turn is based
- *   on functions created by Dunstan Orchard - http://1976design.com
- *
- * This function will return an text representation of the time elapsed since a
- *   given date, giving the two largest units e.g.:
- *
- *  - 2 hours and 50 minutes
- *  - 4 days
- *  - 4 weeks and 6 days
- *
- * Function code based on: Genesis Framework by StudioPress (studiopress.com)
- * @link    https://toolbarextras.com/go/genesis/
- * @license GPLv2-or-later
+ * Format an elapsed interval using bounded approximate calendar units.
  *
  * @since 1.0.0
- *
- * @param int      $older_date     Unix timestamp of date you want to calculate
- *                                 the time since for`.
- * @param int|bool $newer_date     Optional. Unix timestamp of date to compare
- *                                 older date to. Default false (current time).
- * @param int      $relative_depth Optional, how many units to include in
- *                                 relative date. Default 2.
- * @return string The time difference between two dates.
+ * @param int $older_date Older Unix timestamp; other input returns an empty string.
+ * @param int|false $newer_date Comparison timestamp, or false for the current time.
+ * @param int $relative_depth Maximum number of nonzero units, between one and seven.
+ * @return string Localized interval, without HTML.
  */
 function ddw_bse_human_time_diff( $older_date, $newer_date = false, $relative_depth = 2 ) {
-
-	if ( ! is_int( $older_date ) ) {
-		return '';
-	}
-
-	// If no newer date is given, assume now.
-	$newer_date = $newer_date ?: time();
-
-	// Difference in seconds.
-	$since = absint( $newer_date - $older_date );
-
-	if ( ! $since ) {
-		return '0 ' . _x( 'seconds', 'time difference', 'builder-shortcode-extras' );
-	}
-
-	// Hold units of time in seconds, and their pluralised strings (not translated yet).
-	$units = [
-		/* translators: %s: Number of year(s). */
-		[ 31536000, _nx_noop( '%s year', '%s years', 'Time difference', 'builder-shortcode-extras' ) ],  // 60 * 60 * 24 * 365
-		/* translators: %s: Number of month(s). */
-		[ 2592000, _nx_noop( '%s month', '%s months', 'Time difference', 'builder-shortcode-extras' ) ], // 60 * 60 * 24 * 30
-		/* translators: %s: Number of week(s). */
-		[ 604800, _nx_noop( '%s week', '%s weeks', 'Time difference', 'builder-shortcode-extras' ) ],    // 60 * 60 * 24 * 7
-		/* translators: %s: Number of day(s). */
-		[ 86400, _nx_noop( '%s day', '%s days', 'Time difference', 'builder-shortcode-extras' ) ],       // 60 * 60 * 24
-		/* translators: %s: Number of hour(s). */
-		[ 3600, _nx_noop( '%s hour', '%s hours', 'Time difference', 'builder-shortcode-extras' ) ],      // 60 * 60
-		/* translators: %s: Number of minute(s). */
-		[ 60, _nx_noop( '%s minute', '%s minutes', 'Time difference', 'builder-shortcode-extras' ) ],
-		/* translators: %s: Number of second(s). */
-		[ 1, _nx_noop( '%s second', '%s seconds', 'Time difference', 'builder-shortcode-extras' ) ],
-	];
-
-	// Build output with as many units as specified in $relative_depth.
-	$relative_depth = max( 1, min( 7, (int) $relative_depth ?: 2 ) );
-
-	$i = 0;
-
-	$counted_seconds = 0;
-
-	$date_partials        = [];
-	$amount_date_partials = 0;
-	$amount_units         = count( $units );
-
-	while ( $amount_date_partials < $relative_depth && $i < $amount_units ) {
-
-		$seconds = $units[ $i ][0];
-		$count   = (int) floor( ( $since - $counted_seconds ) / $seconds );
-
-		if ( 0 !== $count ) {
-
-			$date_partials[]      = sprintf(
-				translate_nooped_plural( $units[ $i ][1], $count, 'builder-shortcode-extras' ),
-				$count
-			);
-			$counted_seconds     += $count * $seconds;
-			$amount_date_partials = count( $date_partials );
-
-		}  // end if
-
-		$i++;
-
-	}  // end while
-
-	if ( empty( $date_partials ) ) {
-
-		$output = '';
-
-	} elseif ( 1 === count( $date_partials ) ) {
-
-		$output = $date_partials[0];
-
-	} else {
-
-		/** Combine all but last partial using commas. */
-		$output = implode( ', ', array_slice( $date_partials, 0, -1 ) );
-
-		/** Add 'and' separator. */
-		$output .= ' ' . _x( 'and', 'Separator in time difference', 'builder-shortcode-extras' ) . ' ';
-
-		/** Add last partial. */
-		$output .= end( $date_partials );
-
-	}  // end if
-
-	return $output;
-
-}  // end function
-
-
-/**
- * Merge array of attributes with defaults, and apply contextual filter on array.
- *
- * Function code based on: Genesis Framework by StudioPress (studiopress.com)
- * @link    https://toolbarextras.com/go/genesis/
- * @license GPLv2-or-later
- *
- * @since 1.0.0
- *
- * @param string $context    The context, to build filter name.
- * @param array  $attributes Optional. Extra attributes to merge with defaults.
- * @param array  $args       Optional. Custom data to pass to filter.
- * @return array Merged and filtered attributes.
- */
-function ddw_bse_parse_attr( $context, $attributes = [], $args = [] ) {
-
-	$defaults = [
-		'class' => sanitize_html_class( $context ),
-	];
-
-	$attributes = wp_parse_args( $attributes, $defaults );
-
-	/** Contextual filter. */
-	return apply_filters(
-		"bse/filter/attr_{$context}",
-		$attributes,
-		$context,
-		$args
+	if ( ! is_int( $older_date ) ) { return ''; }
+	$remaining = absint( ( $newer_date ?: time() ) - $older_date );
+	$limit = max( 1, min( 7, (int) $relative_depth ?: 2 ) );
+	if ( ! $remaining ) { return '0 ' . _x( 'seconds', 'time difference', 'builder-shortcode-extras' ); }
+	$units = array(
+		31536000 => _nx_noop( '%s year', '%s years', 'Time difference', 'builder-shortcode-extras' ),
+		2592000 => _nx_noop( '%s month', '%s months', 'Time difference', 'builder-shortcode-extras' ),
+		604800 => _nx_noop( '%s week', '%s weeks', 'Time difference', 'builder-shortcode-extras' ),
+		86400 => _nx_noop( '%s day', '%s days', 'Time difference', 'builder-shortcode-extras' ),
+		3600 => _nx_noop( '%s hour', '%s hours', 'Time difference', 'builder-shortcode-extras' ),
+		60 => _nx_noop( '%s minute', '%s minutes', 'Time difference', 'builder-shortcode-extras' ),
+		1 => _nx_noop( '%s second', '%s seconds', 'Time difference', 'builder-shortcode-extras' ),
 	);
-
-}  // end function
-
+	$parts = array();
+	foreach ( $units as $seconds => $labels ) {
+		$amount = intdiv( $remaining, $seconds );
+		$remaining %= $seconds;
+		if ( $amount ) { $parts[] = sprintf( translate_nooped_plural( $labels, $amount, 'builder-shortcode-extras' ), $amount ); }
+		if ( count( $parts ) >= $limit ) { break; }
+	}
+	if ( count( $parts ) < 2 ) { return implode( '', $parts ); }
+	$last = array_pop( $parts );
+	return implode( ', ', $parts ) . ' ' . _x( 'and', 'Separator in time difference', 'builder-shortcode-extras' ) . ' ' . $last;
+}
 
 /**
- * Build list of attributes into a string and apply contextual filter on string.
- *
- * Function code based on: Genesis Framework by StudioPress (studiopress.com)
- * @link    https://toolbarextras.com/go/genesis/
- * @license GPLv2-or-later
+ * Parse attributes with a default context class and the existing extension filter.
  *
  * @since 1.0.0
- *
- * @uses ddw_bse_parse_attr()
- *
- * @param string $context    The context, to build filter name.
- * @param array  $attributes Optional. Extra attributes to merge with defaults.
- * @param array  $args       Optional. Custom data to pass to filter.
- * @return string String of HTML attributes and values.
+ * @param string $context Attribute context used in the filter name.
+ * @param array|string $attributes Values accepted by wp_parse_args().
+ * @param array $args Additional developer data passed unchanged to the filter.
+ * @return array Filtered attribute map.
  */
-function ddw_bse_attr( $context, $attributes = [], $args = [] ) {
-
-	$attributes = ddw_bse_parse_attr( $context, $attributes, $args );
-
-	$output = '';
-
-	// Cycle through attributes, build tag attribute string.
-	foreach ( $attributes as $key => $value ) {
-
-		if ( ! $value ) {
-			continue;
-		}
-
-		if ( TRUE === $value ) {
-
-			$output .= esc_html( $key ) . ' ';
-
-		} else {
-
-			$output .= sprintf(
-				'%s="%s" ',
-				esc_html( $key ),
-				esc_attr( $value )
-			);
-
-		}  // end if
-
-	}  // end foreach
-
-	$output = apply_filters(
-		"bse/filter/attr_{$context}_output",
-		$output,
-		$attributes,
-		$context,
-		$args
-	);
-
-	return trim( $output );
-
-}  // end function
-
+function ddw_bse_parse_attr( $context, $attributes = array(), $args = array() ) {
+	$parsed = wp_parse_args( $attributes, array( 'class' => sanitize_html_class( $context ) ) );
+	/**
+	 * Filter attr {$context} while preserving its value contract.
+	 * @since 1.0.0
+	 * @param array $attributes Parsed attribute map; return its replacement.
+	 * @param string $context Attribute context.
+	 * @param array $args Additional developer context.
+	 */
+	return apply_filters( "bse/filter/attr_{$context}", $parsed, $context, $args );
+}
 
 /**
- * Helper function: This will check the modified_date of all posts and give you
- *   the most/ least recent date.
+ * Serialize safe attribute names and scalar values through the existing output filter.
  *
  * @since 1.0.0
+ * @param string $context Attribute context used in the filter name.
+ * @param array|string $attributes Attributes merged with the default context class.
+ * @param array $args Additional developer data passed unchanged to the filter.
+ * @return string Escaped attributes, without a surrounding element.
+ */
+function ddw_bse_attr( $context, $attributes = array(), $args = array() ) {
+	$map = ddw_bse_parse_attr( $context, $attributes, $args );
+	$parts = array();
+	foreach ( (array) $map as $name => $value ) {
+		if ( ! preg_match( '/^[a-zA-Z][a-zA-Z0-9_:.-]*$/D', (string) $name ) || ! $value || ! is_scalar( $value ) ) { continue; }
+		$parts[] = true === $value ? $name : $name . '="' . esc_attr( (string) $value ) . '"';
+	}
+	/**
+	 * Filter attr {$context} output while preserving its value contract.
+	 * @since 1.0.0
+	 * @param string $output Escaped attribute string; return its replacement.
+	 * @param array $attributes Resolved attribute map.
+	 * @param string $context Attribute context.
+	 * @param array $args Additional developer context.
+	 */
+	return trim( apply_filters( "bse/filter/attr_{$context}_output", implode( ' ', $parts ), $map, $context, $args ) );
+}
+
+/**
+ * Read the earliest or latest modification date among published items.
  *
- * @global mixed $wpdb
- *
- * @param string $val string Defaults to MIN, only accepts MAX as alternative.
- * @return string UNIX Date Time Stamp, e.g. 2014-12-05 01:34:25.
+ * @param string $value MIN selects the earliest date; other values select MAX.
+ * @return string|null Database-local date string, or null without published content.
  */
 function ddw_bse_site_updated( $value = 'MIN' ) {
 
 	global $wpdb;
-	
+
 	/** Sanitize $value */
 	$value = ( 'MIN' === $value ) ? $value : 'MAX';
 
-	/** Return date time stamp */
-	return $wpdb->get_var( "SELECT $value( $wpdb->posts.post_modified ) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish'" );
+	static $dates = array();
+	$key = get_current_blog_id() . ':' . $value . ':' . wp_cache_get_last_changed( 'posts' );
+	if ( ! array_key_exists( $key, $dates ) ) {
+		$dates[$key] = $wpdb->get_var( "SELECT $value( $wpdb->posts.post_modified ) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish'" );
+	}
+	return $dates[$key];
 
 }  // end function
 
@@ -505,44 +373,22 @@ function ddw_bse_sanitize_html_classes( $classes, $return_format = 'input' ) {
 
 
 /**
- * Returns the ID of a post type item based on the incoming slug.
+ * Resolve one published post without changing the global loop.
  *
- * @link https://tommcfarlin.com/permalink-by-slug/
- * @link https://wordpress.stackexchange.com/questions/4999/is-it-possible-to-get-a-page-link-from-its-slug
- *
- * @since 1.0.0
- *
- * @param string $slug The post ID of the post type item to which we're going to link.
- * @return string      The post ID of the post type item.
+ * @param string $slug Requested post slug.
+ * @param string $post_type Optional post type; defaults to post.
+ * @return int|null Matching post ID, or null when absent.
  */
 function ddw_bse_get_post_id_by_slug( $slug = '', $post_type = '' ) {
-
-    /** Initialize the post_id value */
-    $post_id = null;
-
-    /** Set the arguments for WP_Query */
-    $args = array(
-        'name'          => sanitize_key( $slug ),
-        'max_num_posts' => 1
-    );
-
-    /** If the optional argument is set, add it to the arguments array */
-    if ( '' !== $post_type ) {
-        $args = array_merge( $args, array( 'post_type' => sanitize_key( $post_type ) ) );
-    }
-
-    /** Run the query (and afterwards reset it) */
-    $query = new WP_Query( $args );
-
-    if ( $query->have_posts() ) {
-
-        $query->the_post();
-        $post_id = get_the_ID();
-        wp_reset_postdata();
-
-    }  // end if
-
-    /** Return the determined post_id */
-    return $post_id;
-
-}  // end function
+	$query = new WP_Query( array(
+		'name' => sanitize_title( $slug ),
+		'post_type' => $post_type ? sanitize_key( $post_type ) : 'post',
+		'post_status' => 'publish',
+		'posts_per_page' => 1,
+		'fields' => 'ids',
+		'no_found_rows' => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+	) );
+	return $query->posts ? (int) $query->posts[0] : null;
+}

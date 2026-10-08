@@ -44,7 +44,7 @@ function ddw_bse_plugin_links( $bse_links, $bse_file ) {
 		/* translators: Plugins page listing */
 		$bse_links[] = ddw_bse_get_info_link(
 			'url_snippets',
-			esc_html_x( 'Code Snippets', 'Plugins page listing', 'builder-shortcode-extras' ),
+			esc_html_x( 'Documentation', 'Plugins page listing', 'builder-shortcode-extras' ),
 			'dashicons-before dashicons-editor-code'
 		);
 
@@ -58,13 +58,18 @@ function ddw_bse_plugin_links( $bse_links, $bse_file ) {
 		/* translators: Plugins page listing */
 		$bse_links[] = ddw_bse_get_info_link(
 			'url_newsletter',
-			esc_html_x( 'Join our Newsletter', 'Plugins page listing', 'builder-shortcode-extras' ),
+			esc_html_x( 'Newsletter', 'Plugins page listing', 'builder-shortcode-extras' ),
 			'button-primary dashicons-before dashicons-awards'
 		);
 
 	}  // end if plugin links
 
 	/** Output the links */
+	/**
+	 * Filter plugins page/more links while preserving its value contract.
+	 * @since 1.0.0
+	 * @param mixed $value Current value. Return the replacement value.
+	 */
 	return apply_filters(
 		'bse/filter/plugins_page/more_links',
 		$bse_links
@@ -75,13 +80,9 @@ function ddw_bse_plugin_links( $bse_links, $bse_file ) {
 
 add_action( 'admin_enqueue_scripts', 'ddw_bse_inline_styles_plugins_page', 20 );
 /**
- * Add additional inline styles on the admin Plugins page.
+ * Style this plugin’s list-table links only on the Plugins screen.
  *
- * @since 1.0.0
- *
- * @uses wp_add_inline_style()
- *
- * @global string $GLOBALS[ 'pagenow' ]
+ * @return void Adds scoped inline admin CSS.
  */
 function ddw_bse_inline_styles_plugins_page() {
 

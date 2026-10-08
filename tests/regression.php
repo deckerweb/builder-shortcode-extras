@@ -43,11 +43,13 @@ try {
 	check( '' === do_shortcode('[bse-post-link slug="bse-missing-item" post_type="post"]'), 'Missing slug does not link to loop post' );
 	check( !str_contains(do_shortcode('[bse-post-link id="'.$two.'" text="<script>bad</script>"]'),'<script>'), 'Link text escaped' );
 	check( false === ddw_bse_boolean('false') && false === ddw_bse_boolean('0') && false === ddw_bse_boolean('no') && true === ddw_bse_boolean('true'), 'Boolean strings parsed consistently' );
-	$uid=wp_create_user('bse-fixture-'.time(),'unused-test-pass','bse-fixture@example.test');
+	$user_marker = uniqid( 'bse-fixture-' );
+	$uid=wp_create_user($user_marker,'unused-test-pass',$user_marker.'@example.test');
+	if(is_wp_error($uid))throw new RuntimeException($uid->get_error_message());
 	wp_update_user(array('ID'=>$uid,'display_name'=>'<script>bad</script>'));
 	check( !str_contains(do_shortcode('[bse-user user_id="'.$uid.'" field="display_name"]'),'<script>'), 'User value escaped' );
 	check( !str_contains(do_shortcode('[bse-user user_id="999999" default="<img src=x onerror=bad>"]'),'<img'), 'User fallback escaped' );
-	require_once ABSPATH.'wp-admin/includes/user.php';wp_delete_user($uid);
+	require_once ABSPATH.'wp-admin/includes/user.php';if(is_multisite()){require_once ABSPATH.'wp-admin/includes/ms.php';wpmu_delete_user($uid);}else{wp_delete_user($uid);}
 	wp_set_current_user(1);
 	check( 'PRIVATE_SECRET' === do_shortcode('[bse-item-content id="'.$private.'"]'), 'Authorized private embed retained' );
 	check( str_contains( \Deckerweb\BuilderShortcodeExtras\Guide::content(), '<table>' ), 'Local guide renders reference table' );
@@ -57,7 +59,7 @@ try {
 	check( 5 === count($generated), 'Generator limited to five use cases' );
 	foreach($registry as $tag=>$entry){ if(!$entry['integration']) check(shortcode_exists($tag),'Catalog core shortcode exists: '.$tag); }
 	$updater=new \Deckerweb\BuilderShortcodeExtras\GitHubUpdates();check(is_array($updater->artwork()),'Updater has local artwork');
-	check( isset($GLOBALS['deckerweb_library_runtime_v1']) && '0.2.0' === $GLOBALS['deckerweb_library_candidates_v1'][0]['version'], 'Library version' );
+	check( '0.8.1' === $GLOBALS['deckerweb_library_candidates_v1'][0]['version'] && ! isset($GLOBALS['deckerweb_library_runtime_v1']), 'Library version' );
 } finally {
 	foreach($ids as $id) wp_delete_post($id,true);
 	wp_reset_postdata();

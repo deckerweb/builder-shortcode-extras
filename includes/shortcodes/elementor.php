@@ -49,7 +49,7 @@ if ( ! ddw_bse_is_elementor_pro_active() ) :
 	 *
 	 * @param string $column_name Name of the column the content gets added for.
 	 * @param string $post_id     Id of the current post type item, for table row.
-	 * @return string Echoing column content.
+	 * @return void Emits the escaped shortcode input for the selected column.
 	 */
 	function ddw_bse_admin_columns_content_elementor_templates( $column_name, $post_id ) {
 
@@ -80,18 +80,19 @@ if ( ! function_exists( 'ddw_bse_shortcode_elementor_template' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-elementor-template', 'ddw_bse_shortcode_elementor_template' );
 	/**
-	 * Shortcode to output an Elementor Saved Template by given ID.
+	 * Render a readable saved Elementor template through the supported builder API.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses \Elementor\Plugin::$instance
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `footer_home_link` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_elementor_template( $atts = [] ) {
 
-		/** Set default shortcode attributes */
+		/**
+		 * Filter shortcode defaults/elementor template while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/elementor_template',
 			array(
@@ -100,7 +101,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_elementor_template' ) ) :
 			)
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-elementor-template' );
 
 		if ( empty( $atts[ 'id' ] ) ) {
@@ -109,7 +109,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_elementor_template' ) ) :
 
 		$output = ddw_bse_render_item_content( absint( $atts['id'] ), ddw_bse_boolean( $atts['css'] ), 'elementor' );
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/elementor_template',
 			$output,

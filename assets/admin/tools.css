@@ -14,3 +14,7 @@
 #bse-copy-status:not(:empty){position:fixed;z-index:1001;bottom:20px;right:24px;max-width:min(420px,calc(100vw - 48px));padding:14px 18px;border:1px solid #8c8f94;border-radius:8px;background:#fff;box-shadow:0 5px 24px #0002;color:#1d2327}#bse-copy-status textarea{width:100%;margin-bottom:8px}
 
 .bse-guide-table{overflow:auto}.bse-guide-table table{border-collapse:collapse;width:100%;font-size:12px}.bse-guide-table th,.bse-guide-table td{padding:8px;border:1px solid #dcdcde;text-align:left}.bse-document-content pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f6f7f7;padding:12px;border-radius:6px}
+
+.bse-footer-product{display:flex;align-items:center;gap:14px}.bse-footer-product img{flex:none;border-radius:12px}.bse-footer-product>div{min-width:0}
+.ddw-changelog-version{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.ddw-changelog-version h3{margin:0}.ddw-changelog-version>span{color:#50575e}.ddw-changelog-release{margin-bottom:24px}.ddw-changelog-entries{padding-left:0!important;list-style:none!important}.ddw-changelog-entries li{display:flex;align-items:baseline;gap:10px;margin:12px 0}.ddw-changelog-badge{flex:none;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}.ddw-changelog-new{background:#d1fae5;color:#065f46}.ddw-changelog-improved{background:#dbeafe;color:#1e40af}.ddw-changelog-fixed{background:#fef3c7;color:#92400e}.ddw-changelog-misc{background:#f3e8ff;color:#6b21a8}
+@media(max-width:480px){.ddw-changelog-entries li{flex-wrap:wrap}.bse-document-header{padding:14px}.bse-document-content{padding:14px}}

@@ -43,8 +43,6 @@ function ddw_bse_is_elementor_pro_active() {
 /**
  * Is Genesis Framework plugin active or not?
  *   (A Premium theme by StudioPress/ Rainmaker Digital, LLC)
- *   NOTE: Usage of Genesis without Child Theme is absolutely NOT recommended,
- *         therefore Toolbar Extras plugin does not support that!
  *
  * @since 1.0.0
  *
@@ -102,7 +100,7 @@ function ddw_bse_is_astra_custom_layouts_active() {
  *
  * @since 1.0.0
  *
- * @global string $GLOBALS[ 'wp_version' ] 
+ * @global string $GLOBALS[ 'wp_version' ]
  * @return bool TRUE if blocks editor available, FALSE otherwise.
  */
 function ddw_bse_is_block_editor_active() {

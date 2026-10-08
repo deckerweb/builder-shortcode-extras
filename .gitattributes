@@ -7,3 +7,7 @@ docs/wiki export-ignore
 _config.yml export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
+assets-github/alternatives export-ignore
+docs/content.json export-ignore
+assets/css/style.scss export-ignore
+composer.json export-ignore

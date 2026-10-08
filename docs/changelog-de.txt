@@ -6,8 +6,7 @@
 * Neu: deckerweb Plugin Library 0.2.0 und gemeinsamer deckerweb GitHub Release Updater v2 eingebunden.
 * Verbessert: Einheitliche Wrapper-Prüfung, mehrere CSS-Klassen, boolesche Attribute und bereinigte Textausgabe; Shortcode-Namen, Aliase und Ausgabefilter bleiben erhalten.
 * Verbessert: Native Blöcke werden gerendert; Builder werden passend zum Inhalt gewählt; direkte und indirekte rekursive Einbettung wird verhindert.
-* Verbessert: Header/Footer nach Brand Admin Schemes, lokaler Changelog-Dialog, englische/deutsche Dokumentation und aktualisierte deutsche Übersetzungen.
-* Verbessert: Drei originale skalierbare Icon-/Banner-Entwürfe; Variante A mit dem violetten Hintergrund von B ist ausgewählt.
+* Verbessert: Lokaler Änderungsverlauf und Dokumentation sowie deutsche und formell deutsche Übersetzungen.
 * Behoben: Admin-Registrierung, Rückgabe bereinigter Integrationsdaten und versehentlich registrierter Platzhalter korrigiert.
 * Behoben: Veröffentlichungsdatum berücksichtigt die Beitrags-ID; Slug-Links werden korrekt aufgelöst; ungültige IDs und unbekannte Zählstatus werden behandelt.
 * Behoben: Nicht definierte Versionskonstanten, Datenbankversionsabfrage sowie Escaping von Benutzerwerten, Ersatztext, Datumsbeschriftungen, Linktext und Tooltip korrigiert.
@@ -17,7 +16,7 @@
 
 = 1.1.0 — 2025-03-15 =
 
-* Verbessert: Plugin wieder in einen nutzbaren Zustand gebracht.
+* Verbessert: Shortcode-Kompatibilität wiederhergestellt.
 * Sonstiges: Verteilung von WordPress.org zu GitHub verlagert und alten DDWlib-Empfehlungsinstaller entfernt.
 * Sonstiges: Eigenen Übersetzungsloader entfernt; mitgelieferte Übersetzungen beibehalten.
 

@@ -108,7 +108,10 @@
   document.querySelectorAll('[data-bse-document]').forEach(link => link.addEventListener('click', event => {
     const dialog = document.getElementById(`bse-document-${link.dataset.bseDocument}`);
     if (!dialog || !dialog.showModal) return;
-    event.preventDefault(); dialog.showModal();
+    event.preventDefault();
+    const trigger = event.currentTarget;
+    dialog.addEventListener('close', () => trigger.focus(), { once: true });
+    dialog.showModal();
   }));
   document.querySelectorAll('[data-bse-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
   renderFields();

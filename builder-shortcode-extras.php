@@ -4,17 +4,16 @@
  * Plugin URI:        https://github.com/deckerweb/builder-shortcode-extras
  * Description:       Small dynamic helpers for your WordPress website. Find, configure and copy useful shortcodes.
  * Version:           1.2.0
- * Author:            David Decker - DECKERWEB
+ * Requires at least: 6.7
+ * Requires PHP:      8.0
+ * Author:            David Decker – DECKERWEB
  * Author URI:        https://github.com/deckerweb
- * License:           GPL-2.0-or-later
- * License URI:       https://opensource.org/licenses/GPL-2.0
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       builder-shortcode-extras
  * Domain Path:       /languages/
- * Requires at least:       6.7
- * Requires PHP:      8.0
+ * Update URI:        https://github.com/deckerweb/builder-shortcode-extras
  * GitHub Plugin URI: https://github.com/deckerweb/builder-shortcode-extras
- * Update URI:      https://github.com/deckerweb/builder-shortcode-extras
- * GitHub Branch:     master
  *
  * Copyright © 2019–2026 David Decker – DECKERWEB.
  * SPDX-License-Identifier: GPL-2.0-or-later
@@ -57,19 +56,14 @@ require_once BSE_PLUGIN_DIR . 'includes/class-bse-github-updates.php';
 \Deckerweb\BuilderShortcodeExtras\Tools::register();
 ( new \Deckerweb\BuilderShortcodeExtras\GitHubUpdates() )->register();
 require_once BSE_PLUGIN_DIR . 'includes/deckerweb-plugin-library/bootstrap.php';
-deckerweb_library_register( __FILE__, [], BSE_PLUGIN_DIR . 'includes/deckerweb-plugin-library' );
+deckerweb_library_register_v2( __FILE__, [], BSE_PLUGIN_DIR . 'includes/deckerweb-plugin-library' );
 
 
 add_action( 'init', 'ddw_bse_setup_plugin', 1 );
 /**
- * Finally setup the plugin for the main tasks.
- *   Note: The setup fires after all activation checks and routines.
+ * Load shortcode callbacks, optional integrations and host translations.
  *
- *   With the filter 'bse/filter/shortcodes_in_admin' the Shortcodes can be made
- *   available within the admin, for whatever purpose - help pages for clients,
- *   in admin footer, whereever you may need them. But use at your own risk!
- *
- * @since 1.0.0
+ * @return void Registers site-context hooks and shortcodes.
  */
 function ddw_bse_setup_plugin() {
 
@@ -81,6 +75,11 @@ function ddw_bse_setup_plugin() {
 	}
 
 	/** All other Shortcodes as groups */
+	/**
+	 * Filter registered shortcode groups while preserving its value contract.
+	 * @since 1.0.0
+	 * @param mixed $value Current value. Return the replacement value.
+	 */
 	$shortcode_groups = apply_filters(
 		'bse/filter/registered_shortcode_groups',
 		[

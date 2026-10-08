@@ -1,4 +1,5 @@
 <?php
+define( 'WP_ADMIN', true );
 require __DIR__.'/bootstrap.php';
 require_once ABSPATH.'wp-admin/includes/file.php';
 require_once ABSPATH.'wp-admin/includes/plugin.php';
@@ -26,5 +27,12 @@ try{
  file_put_contents($main,str_replace('Plugin Name:       Builder Shortcode Extras','Plugin Name:       Wrong Plugin',$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Wrong identity accepted');
  file_put_contents($main,str_replace('Requires PHP:      8.0','Requires PHP:      99.0',$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Incompatible package accepted');
  file_put_contents($main,str_replace('1.2.1','1.2.2',$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Unoffered version accepted');
+ file_put_contents($main,$candidate);
+ require_once ABSPATH.'wp-admin/includes/class-wp-upgrader.php';
+ $bulk=new Plugin_Upgrader();$bulk->bulk=true;$bulk_context=['plugin'=>$file];
+ if($tmp!==$adapter->validate_source($tmp,null,$bulk,$bulk_context))throw new RuntimeException('Valid native bulk context rejected');
+ file_put_contents($main,str_replace('Plugin Name:       Builder Shortcode Extras','Plugin Name:       Wrong Plugin',$candidate));
+ if(!is_wp_error($adapter->validate_source($tmp,null,$bulk,$bulk_context)))throw new RuntimeException('Bulk identity check skipped');
+ if($tmp!==$adapter->validate_source($tmp,null,$bulk,['plugin'=>'other/other.php']))throw new RuntimeException('Bulk changed foreign plugin source');
  echo "PASS updater stable metadata, scope, artwork, notes, prerelease/foreign URL rejection, identity, requirements and offered-version checks\n";
 }finally{unlink($main);rmdir($tmp);delete_site_transient($cache);delete_site_transient('update_plugins');remove_filter('pre_http_request',$stub,100);}

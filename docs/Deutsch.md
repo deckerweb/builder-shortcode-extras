@@ -1,39 +1,34 @@
 # Builder Shortcode Extras
 
+[English](https://github.com/deckerweb/builder-shortcode-extras/wiki/English) · [Deutsch](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch)
+
 **Kleine dynamische Helfer. Schnell eingesetzt.**
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.2.0** · WordPress **6.7+** · PHP **8.0+** · GPL-2.0-or-later
+Version **1.2.0** · WordPress **6.7+** · PHP **8.0+**
 
-## Inhalt
+## Erste Schritte
 
-- [Schnell starten](#schnell-starten)
-- [Beispiele](#beispiele)
-- [Shortcode-Referenz](#shortcode-referenz)
-- [FAQ](#faq)
+1. Lade das Plugin-ZIP aus den GitHub-Releases herunter.
+2. Öffne Plugins → Installieren → Plugin hochladen und aktiviere es.
+3. Öffne Werkzeuge → Builder Shortcode Extras, wähle einen Helfer und kopiere den Shortcode.
+4. Füge ihn in einen Shortcode-Block oder ein geeignetes Builder-Feld ein und prüfe die Ausgabe.
 
-## Schnell starten
-
-1. Lade das Test-ZIP hoch: Plugins → Installieren → Plugin hochladen.
-2. Aktiviere das Plugin und öffne Werkzeuge → Builder Shortcode Extras.
-3. Suche einen Helfer oder konfiguriere einen der fünf Anwendungsfälle.
-4. Kopiere den Shortcode in einen Shortcode-Block oder ein geeignetes Builder-Feld.
-5. Prüfe die tatsächliche Ausgabe auf deiner Testseite.
-
-Es gibt keine zusätzlichen BSE-Einstellungen. Die Seite ändert keine Inhalte und speichert keine Generatorwerte.
+BSE speichert keine Generatorwerte und verändert keine Inhalte.
 
 ## Beispiele
 
 ```text
 [bse-copyright first="2019"]
 [bse-post-date format="Y-m-d"]
-[bse-post-modified-date label="Zuletzt aktualisiert: "]
-[bse-post-link id="123" text="Mehr erfahren"]
+[bse-post-modified-date label="Last updated: "]
+[bse-post-link id="123" text="Read more"]
 [bse-item-content id="123"]
 ```
 
 ## Shortcode-Referenz
+
 
 | Shortcode | Attribute | Voraussetzung |
 |---|---|---|
@@ -74,103 +69,122 @@ Es gibt keine zusätzlichen BSE-Einstellungen. Die Seite ändert keine Inhalte u
 | `bse-wpblock` | `id`, `css` | WordPress synced patterns |
 | `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |
 
-## FAQ
 
-### Muss ich das Plugin konfigurieren?
+## Fragen nach Themen
+
+### Einrichtung
+
+#### Muss ich das Plugin konfigurieren?
 
 Nein. Öffne Werkzeuge → Builder Shortcode Extras, um einen Shortcode zu finden oder zu erstellen. Die Seite speichert keine Einstellungen.
 
-### Wo füge ich einen Shortcode ein?
+#### Wo füge ich einen Shortcode ein?
 
 In einen WordPress-Shortcode-Block oder ein Builder-Feld mit ausdrücklicher Shortcode-Unterstützung. Beliebige Text-, URL- und HTML-Felder führen Shortcodes nicht automatisch aus.
 
-### Was kann der Generator erstellen?
+#### Was kann der Generator erstellen?
 
 Copyright, Veröffentlichungsdatum, Änderungsdatum, einen Beitrags-/Seiten-Link und Inhaltseinbettungen. Weitere Helfer findest du in der durchsuchbaren Übersicht.
 
-### Kann ich auf Deutsch suchen?
+#### Kann ich auf Deutsch suchen?
 
 Ja. Oberfläche und Aufgabenbeschreibungen folgen der WordPress-Administrationssprache. Shortcode- und Attributnamen bleiben unverändert.
 
-### Wo finde ich eine Beitrags- oder Vorlagen-ID?
+#### Wo finde ich eine Beitrags- oder Vorlagen-ID?
 
 Öffne den Inhalt in WordPress. Die Zahl hinter post= in der Editor-Adresse ist seine ID. Unterstützte Vorlagenlisten zeigen zusätzlich Shortcode-Beispiele.
 
-### Auf welchen Beitrag bezieht sich ein Datum?
+### Ausgabe und Integrationen
+
+#### Auf welchen Beitrag bezieht sich ein Datum?
 
 Ohne post_id auf den aktuellen WordPress-Beitrag. Gib eine ID für einen anderen Inhalt an. Der Kontext in einer Builder-Vorschau kann von der fertigen Seite abweichen.
 
-### Gibt es relative Datumsangaben?
+#### Gibt es relative Datumsangaben?
 
 Wähle Relatives Datum im Generator oder verwende format="relative". Die Ausgabe verwendet den vorhandenen Helfer für verstrichene Zeit.
 
-### Kann ich HTML und Klassen ändern?
+#### Kann ich HTML und Klassen ändern?
 
 Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Diese Version ergänzt keinen Modus ohne Wrapper.
 
-### Werden Frontend-CSS oder JavaScript geladen?
+#### Werden Frontend-CSS oder JavaScript geladen?
 
 Hilfe und Generator laden Ressourcen nur auf ihrer eigenen Admin-Seite. Eingebettete Builder-Vorlagen können Ressourcen ihres Builders laden; das Kommentarformular kann WordPress-Ressourcen benötigen.
 
-### Warum bleibt eine Inhaltseinbettung leer?
+#### Warum bleibt eine Inhaltseinbettung leer?
 
 Prüfe ID, Veröffentlichungsstatus und erforderlichen Builder. Private, unveröffentlichte, gelöschte oder passwortgeschützte Inhalte werden Besuchern ohne erforderlichen Zugriff nicht ausgegeben. Rekursive Referenzen werden gestoppt.
 
-### Werden native Blöcke unterstützt?
+#### Werden native Blöcke unterstützt?
 
 Ja. Eingebettete Inhalte werden durch die native Block-Ausgabe und Shortcode-Verarbeitung geführt. Die vollständigen Inhaltsfilter des Themes werden bewusst nicht angewendet.
 
-### Brauche ich Elementor Pro?
+#### Brauche ich Elementor Pro?
 
 bse-elementor-template wird bei Elementor Free ohne aktives Pro registriert. Der allgemeine Inhaltshelfer kann Elementor-Inhalte rendern, wenn Elementor verfügbar ist.
 
-### Bleibt Beaver Builder unterstützt?
+#### Bleibt Beaver Builder unterstützt?
 
 Ja. Inhalte mit _fl_builder_enabled verwenden Beavers eigenen Layout-Shortcode. Die Installation von Beaver verändert die Ausgabe normaler Beiträge nicht. Zusätzliche Beaver-Funktionen wurden nicht ergänzt.
 
-### Bleibt Genesis unterstützt?
+#### Bleibt Genesis unterstützt?
 
 Ja. Die vorhandenen Footer- und Breadcrumb-Helfer bleiben mit Genesis 3.1+ als Kompatibilitätsfunktionen erhalten.
 
-### Funktionieren synchronisierte Vorlagen mit Classic Editor?
+### Updates, Daten und Sicherheit
+
+#### Funktionieren synchronisierte Vorlagen mit Classic Editor?
 
 bse-wpblock ist verfügbar, sobald WordPress den Inhaltstyp wp_block registriert. Das zusätzliche alte Blocks-Menü entfällt.
 
-### Warum hat der Generator keine Live-Vorschau?
+#### Warum hat der Generator keine Live-Vorschau?
 
-Dieser erste Generator erstellt die Shortcode-Syntax lokal. Prüfe die tatsächliche Ausgabe auf einer Testseite mit dem vorgesehenen Beitrags- und Builder-Kontext.
+Der Generator erstellt die Syntax lokal. Prüfe die Ausgabe auf einer Seite im vorgesehenen Beitrags- und Builder-Kontext.
 
-### Wie funktioniert Kopieren ohne HTTPS?
+#### Wie funktioniert Kopieren ohne HTTPS?
 
 Zuerst wird die Browser-Zwischenablage versucht, danach eine lokale Kopierfunktion. Ist beides nicht verfügbar, wird der Text zum manuellen Kopieren markiert. Beispiele bleiben ohne JavaScript lesbar.
 
-### Wie funktionieren Updates?
+#### Wie funktionieren Updates?
 
 Der mitgelieferte deckerweb Updater prüft das öffentliche GitHub-Repository auf neuere stabile Releases über die normale WordPress-Updateverwaltung. Er installiert keine Vorabversionen automatisch und aktiviert keine automatischen Updates. Testversionen installierst du manuell.
 
-### Was ist die deckerweb Library?
+#### Was ist die deckerweb Library?
 
-Sie ergänzt einen deckerweb-Tab unter Plugins → Installieren, ist eingebettet und teilt eine Laufzeit mit anderen deckerweb-Plugins. Unter Einstellungen → deckerweb Library lässt sie sich ausblenden. Der mitgelieferte Katalog enthält freigegebene Releases; BSE RC1 wird dadurch nicht veröffentlicht oder neu in den Katalog aufgenommen.
+Die eingebettete deckerweb Library ergänzt einen Katalog unter Plugins → Installieren → deckerweb. Ihre Optionen liegen unter Einstellungen → deckerweb Library, bei Multisite in den Netzwerkeinstellungen. Das Öffnen des Katalogs installiert nichts. Installation und Aktivierung sind getrennte Aktionen.
 
-### Sendet das Plugin Nutzungsdaten?
+#### Sendet das Plugin Nutzungsdaten?
 
 BSE enthält keine Nutzungstelemetrie. Der Updater fragt GitHub-Release-Metadaten ab. Die Library nutzt standardmäßig ihren lokalen Katalog; Online-Katalogupdates erfordern eine ausdrückliche Konfiguration. Server sehen technisch die anfragende IP-Adresse.
 
-### Was ändert sich für bestehende Installationen?
+#### Was ändert sich für bestehende Installationen?
 
 Namen, Aliase und Ausgabefilter bleiben. PHP 8.0 ist jetzt erforderlich. Ungültige Wrapper werden zu span, Text wird konsistenter escaped, unzugängliche Inhalte werden nicht eingebettet und die Admin-Registrierung folgt dem Opt-in-Filter.
 
-### Kann ich Texthelfer im Backend aktivieren?
+#### Kann ich Texthelfer im Backend aktivieren?
 
 Entwickler können über bse/filter/shortcodes_in_admin true zurückgeben. Inhaltseinbettungen, Navigation, Kommentarformulare sowie Builder-/Genesis-Ausgaben bleiben dort ausgeschlossen. REST-Anfragen bleiben für Frontend-Ausgaben verfügbar.
 
-### Funktioniert das Plugin mit Multisite?
+#### Funktioniert das Plugin mit Multisite?
 
-BSE kann netzwerkweit aktiviert werden. Inhalte beziehen sich auf die jeweilige Website; autorisierte Website-Administratoren können die Werkzeuge öffnen. Die Library besitzt eigene Netzwerkeinstellungen. Ein Generator in der Netzwerkverwaltung wurde nicht ergänzt.
+BSE lässt sich je Website oder netzwerkweit aktivieren. Inhalts-IDs beziehen sich auf die aktuelle Website. Website-Administratoren verwenden Werkzeuge → Builder Shortcode Extras; Super-Administratoren zusätzlich Netzwerkeinstellungen → Builder Shortcode Extras. Die Library-Optionen gelten je Netzwerk.
 
-### Welche Anforderungen und welchen Support gibt es?
+#### Welche Anforderungen und welchen Support gibt es?
 
 WordPress 6.7+ und PHP 8.0+. Die Library-Installation benötigt ZipArchive. Melde reproduzierbare Fehler auf GitHub mit Plugin-, WordPress-, PHP- und Builder-Version. Kommerzielle Builder wurden mit repräsentativen Testfällen geprüft, nicht mit lizenzierten Installationen.
+
+#### Was passiert beim Entfernen mit den Daten?
+
+BSE speichert keine Shortcode- oder Generator-Einstellungen. Deaktivierung erhält alle Daten. Deinstallation entfernt nur den temporären BSE-Updater-Cache und gibt die Library-Zuständigkeit frei. Andere installierte Library-Hosts schützen gemeinsame Daten, auch wenn sie deaktiviert sind. Der letzte Host entfernt temporäre Library-Daten; Optionen bleiben erhalten, außer die Löschoption der Library war aktiviert. Beiträge, Shortcodes, installierte Plugins und fremde Daten bleiben erhalten.
+
+#### Kann der Versionshelfer Zugangsdaten anzeigen?
+
+Nein. Shortcode-Attribute können Konstanten mit Namen auswählen, die auf VERSION oder VER enden. Andere Konstanten benötigen einen ausdrücklich gesetzten vertrauenswürdigen PHP-Standardfilter. Gib über Entwicklerfilter keine Installationsgeheimnisse frei.
+
+#### Wie melde ich eine Sicherheitslücke?
+
+Verwende Security → Advisories → Report a vulnerability im GitHub-Repository dieses Plugins. Nenne Plugin-, Library- und Umgebungsversionen und eine minimale Reproduktion ohne Zugangsdaten. Poste Sicherheitsdetails nicht in öffentlichen Issues. Siehe SECURITY.md.
 
 ## Entwickler
 
@@ -178,6 +192,6 @@ WordPress 6.7+ und PHP 8.0+. Die Library-Installation benötigt ZipArchive. Meld
 add_filter( 'bse/filter/shortcodes_in_admin', '__return_true' );
 ```
 
-Bestehende Filter unter `bse/filter/shortcode_defaults/*` und `bse/filter/shortcode/*` bleiben erhalten. Filterausgaben gelten als vertrauenswürdiger Entwicklercode und können HTML zurückgeben. Die Registrierungsdateien liegen weiterhin nach Themen getrennt unter `includes/shortcodes/`.
+Bestehende Filter unter `bse/filter/shortcode_defaults/*` und `bse/filter/shortcode/*` bleiben erhalten. PHP-Callbacks sind vertrauenswürdiger Entwicklercode und können HTML zurückgeben. Menüs verwenden einen sicheren Standard-Callback; eigene Callbacks werden nur durch PHP-Standardfilter konfiguriert.
 
-[Changelog](CHANGELOG-de.md) · [Testanleitung](TESTING-de.md)
+[Changelog](https://github.com/deckerweb/builder-shortcode-extras/wiki/CHANGELOG%E2%80%90de) · [Security](https://github.com/deckerweb/builder-shortcode-extras/security/advisories/new)

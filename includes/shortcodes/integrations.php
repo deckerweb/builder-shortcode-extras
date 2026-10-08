@@ -14,21 +14,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'init', 'ddw_bse_run_integrations' );
 /**
- * Run all currently registered and active integrations.
+ * Register integration aliases and admin list-table columns.
  *
- * @since 1.0.0
- *
- * @uses ddw_bse_get_integrations()
- * @uses ddw_bse_admin_columns_headers_integrations_post_type()
- * @uses ddw_bse_admin_columns_content_integrations_post_type()
- * @uses ddw_bse_shortcode_item_content()
+ * @return void Attaches integration callbacks.
  */
 function ddw_bse_run_integrations() {
 
 	$integrations = ddw_bse_get_integrations();
 
 	foreach ( $integrations as $key => $integration ) {
-		
+
 		if ( 'default-none' !== $key ) {
 
 			add_filter( "manage_{$integration[ 'post_type' ]}_posts_columns", 'ddw_bse_admin_columns_headers_integrations_post_type' );
@@ -77,7 +72,7 @@ function ddw_bse_admin_columns_headers_integrations_post_type( $columns ) {
  *
  * @param string $column_name Name of the column the content gets added for.
  * @param string $post_id     Id of the current post type item, for table row.
- * @return string Echoing column content.
+ * @return void Emits the escaped shortcode input for the selected column.
  */
 function ddw_bse_admin_columns_content_integrations_post_type( $column_name, $post_id ) {
 

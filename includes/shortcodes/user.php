@@ -16,16 +16,20 @@ if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-user', 'ddw_bse_shortcode_user' );
 	/**
-	 * ???
+	 * Render an allowed user-table field or escaped fallback; password fields are refused.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses get_current_user_id()
-	 * @uses get_user_by()
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_user( $atts = null, $content = null ) {
 
-		/** Set default shortcode attributes */
+		/**
+		 * Filter shortcode defaults/user while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/user',
 			array(
@@ -39,7 +43,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 			)
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-user' );
 
 
@@ -78,7 +81,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 		/** Get the requested user data by 'field' if user was found */
 		$user_data = ( $user && isset( $user->data->{ $atts[ 'field' ] } ) ) ? $user->data->{ $atts[ 'field' ] } : $atts[ 'default' ];
 
-		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-user%2$s">%3$s%4$s%5$s</%1$s>',
 			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
@@ -88,7 +90,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_user' ) ) :
 			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/user',
 			$output,
@@ -104,13 +111,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_id' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-userid', 'ddw_bse_shortcode_user_id' );
 	/**
-	 * Shortcode to output a users ID.
+	 * Return the logged-in user’s numeric ID.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's ID.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return int|null Current user ID, or null for logged-out visitors.
 	 */
 	function ddw_bse_shortcode_user_id( $atts, $content ) {
 
@@ -119,10 +125,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_id' ) ) :
 			return;
 		}
 
-		/** Get current user */
 		$user = wp_get_current_user();
 
-		/** Output */
 		return $user->ID;
 
 	}  // end function
@@ -134,13 +138,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_email' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-email', 'ddw_bse_shortcode_user_email' );
 	/**
-	 * Shortcode to output a users email.
+	 * Render the logged-in user’s escaped email address.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's email.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return string|null Escaped current-user value, or null for logged-out visitors.
 	 */
 	function ddw_bse_shortcode_user_email( $atts, $content ) {
 
@@ -149,11 +152,9 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_email' ) ) :
 			return;
 		}
 
-		/** Get current user */
 		$user = wp_get_current_user();
 
-		/** Output */
-		return $user->user_email;
+		return esc_html( $user->user_email );
 
 	}  // end function
 
@@ -164,13 +165,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_login_name' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-login', 'ddw_bse_shortcode_user_login_name' );
 	/**
-	 * Shortcode to output a users login handle/name.
+	 * Render the logged-in user’s escaped login name.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's login name.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return string|null Escaped current-user value, or null for logged-out visitors.
 	 */
 	function ddw_bse_shortcode_user_login_name( $atts, $content ) {
 
@@ -179,11 +179,9 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_login_name' ) ) :
 			return;
 		}
 
-		/** Get current user */
 		$user = wp_get_current_user();
 
-		/** Output */
-		return $user->user_login;
+		return esc_html( $user->user_login );
 
 	}  // end function
 
@@ -194,13 +192,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_display_name' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-displayname', 'ddw_bse_shortcode_user_display_name' );
 	/**
-	 * Shortcode to output a users display name.
+	 * Render the logged-in user’s escaped display name.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's display name.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return string|null Escaped current-user value, or null for logged-out visitors.
 	 */
 	function ddw_bse_shortcode_user_display_name( $atts, $content ) {
 
@@ -209,10 +206,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_display_name' ) ) :
 			return;
 		}
 
-		/** Get current user */
 		$user = wp_get_current_user();
 
-		/** Output */
 		return ! empty( $user->display_name ) ? esc_attr( $user->display_name ) : '';
 
 	}  // end function
@@ -224,13 +219,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_firstname' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-firstname', 'ddw_bse_shortcode_user_firstname' );
 	/**
-	 * Shortcode to output a users first name.
+	 * Render the logged-in user’s first name, falling back to the display name.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's first name.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string|null Escaped current-user value, or null for logged-out visitors.
 	 */
 	function ddw_bse_shortcode_user_firstname( $atts ) {
 
@@ -239,10 +232,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_firstname' ) ) :
 			return;
 		}
 
-		/** Get current user */
 		$user = wp_get_current_user();
 
-		/** Output */
 		return ! empty( $user->user_firstname ) ? esc_attr( $user->user_firstname ) : esc_attr( $user->display_name );
 
 	}  // end function
@@ -254,13 +245,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_lastname' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-lastname', 'ddw_bse_shortcode_user_lastname' );
 	/**
-	 * Shortcode to output a users last name.
+	 * Render the logged-in user’s last name, or an empty value.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's last name.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string|null Escaped current-user value, or null for logged-out visitors.
 	 */
 	function ddw_bse_shortcode_user_lastname( $atts ) {
 
@@ -269,10 +258,8 @@ if ( ! function_exists( 'ddw_bse_shortcode_user_lastname' ) ) :
 			return;
 		}
 
-		/** Get current user */
 		$user = wp_get_current_user();
 
-		/** Output */
 		return ! empty( $user->user_lastname ) ? esc_attr( $user->user_lastname ) : '';
 
 	}  // end function

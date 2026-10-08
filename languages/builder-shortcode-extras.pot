@@ -1,811 +1,1125 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Builder Shortcode Extras package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
-msgstr ""
-"Project-Id-Version: Builder Shortcode Extras 1.2.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 17:31+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+msgstr "Project-Id-Version: Builder Shortcode Extras 1.2.0\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-08 23:08+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: work/repo/includes/functions-global.php:30
+msgid "Documentation"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
 msgid "No Integration registered"
 msgstr ""
 
-#: work/repo/includes/functions-global.php:91
 msgid "David Decker - DECKERWEB"
 msgstr ""
 
-#: work/repo/includes/functions-global.php:219
 msgid "Shortcode"
 msgstr ""
 
-#: work/repo/includes/functions-global.php:265
 msgctxt "time difference"
 msgid "seconds"
 msgstr ""
 
-#: work/repo/includes/functions-global.php:271
-#, php-format
 msgctxt "Time difference"
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:273
-#, php-format
 msgctxt "Time difference"
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:275
-#, php-format
 msgctxt "Time difference"
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:277
-#, php-format
 msgctxt "Time difference"
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:279
-#, php-format
 msgctxt "Time difference"
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:281
-#, php-format
 msgctxt "Time difference"
 msgid "%s minute"
 msgid_plural "%s minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:283
-#, php-format
 msgctxt "Time difference"
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: work/repo/includes/functions-global.php:331
 msgctxt "Separator in time difference"
 msgid "and"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:9
+msgid "Private mode must be boolean."
+msgstr ""
+
+msgid "Invalid authentication provider."
+msgstr ""
+
+msgid "The plugin must be installed in a stable slug directory."
+msgstr ""
+
+msgid "Invalid GitHub repository URL."
+msgstr ""
+
+msgid "The private update could not be authorized. Check the repository credentials and refresh updates."
+msgstr ""
+
+msgid "Could not create the update download file."
+msgstr ""
+
+msgid "The private update download failed. Check credentials and try again."
+msgstr ""
+
+msgid "Could not access the update filesystem."
+msgstr ""
+
+msgid "GitHub release does not contain the plugin main file."
+msgstr ""
+
+msgid "Could not prepare the GitHub release package."
+msgstr ""
+
+msgid "See the release on GitHub."
+msgstr ""
+
 msgid "Navigation menu"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:9
 msgid "Output an existing WordPress navigation menu."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:9
-#: work/repo/includes/class-bse-shortcode-catalog.php:11
-#: work/repo/includes/class-bse-shortcode-catalog.php:19
-#: work/repo/includes/class-bse-shortcode-catalog.php:21
-#: work/repo/includes/class-bse-shortcode-catalog.php:23
-#: work/repo/includes/class-bse-shortcode-catalog.php:25
-#: work/repo/includes/class-bse-shortcode-catalog.php:26
-#: work/repo/includes/class-bse-shortcode-catalog.php:27
-#: work/repo/includes/class-bse-shortcode-catalog.php:28
-#: work/repo/includes/class-bse-shortcode-catalog.php:29
-#: work/repo/includes/class-bse-shortcode-catalog.php:30
-#: work/repo/includes/class-bse-shortcode-catalog.php:31
-#: work/repo/includes/class-bse-shortcode-catalog.php:32
-#: work/repo/includes/class-bse-shortcode-catalog.php:33
-#: work/repo/includes/class-bse-shortcode-catalog.php:35
-#: work/repo/includes/class-bse-shortcode-catalog.php:36
-#: work/repo/includes/class-bse-shortcode-catalog.php:37
-#: work/repo/includes/class-bse-shortcode-catalog.php:38
-#: work/repo/includes/class-bse-shortcode-catalog.php:39
-#: work/repo/includes/class-bse-shortcode-catalog.php:40
-#: work/repo/includes/class-bse-shortcode-catalog.php:41
-#: work/repo/includes/class-bse-shortcode-catalog.php:42
 msgid "More helpers"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
 msgid "Embed content"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
-msgid ""
-"Reuse a published item by ID; native blocks and supported builders are "
-"rendered."
+msgid "Reuse a published item by ID; native blocks and supported builders are rendered."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
-#: work/repo/includes/class-bse-shortcode-catalog.php:16
-#: work/repo/includes/class-bse-shortcode-catalog.php:17
-#: work/repo/includes/class-bse-shortcode-catalog.php:18
-#: work/repo/includes/class-bse-shortcode-catalog.php:20
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "Essentials"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
 msgid "Content ID"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
 msgid "Include Elementor CSS"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
 msgid "No"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:10
 msgid "Yes"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:11
 msgid "Comment form"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:11
 msgid "Output the WordPress comment form."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:12
 msgid "Elementor template"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:12
 msgid "Embed a saved Elementor template; offered with Elementor Free."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:12
-#: work/repo/includes/class-bse-shortcode-catalog.php:13
-#: work/repo/includes/class-bse-shortcode-catalog.php:14
-#: work/repo/includes/class-bse-shortcode-catalog.php:43
-#: work/repo/includes/class-bse-shortcode-catalog.php:44
 msgid "Integrations"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:13
 msgid "Genesis footer"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:13
 msgid "The footer text configured in Genesis."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:14
 msgid "Genesis breadcrumbs"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:14
 msgid "The breadcrumb trail provided by Genesis."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
 msgid "Copyright"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
 msgid "A copyright notice with the current year."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
 msgid "First year"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
 msgid "Text before"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
 msgid "Text after"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "CSS classes (optional)"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:15
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "Wrapper"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:16
 msgid "Site title"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:16
 msgid "The name of your website."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:17
 msgid "Site tagline"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:17
 msgid "The tagline of your website."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:18
 msgid "Homepage link"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:18
 msgid "A link to your homepage."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:19
 msgid "Login / logout link"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:19
 msgid "A link matching the visitor’s login state."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:20
 msgid "Website updated"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:20
 msgid "The earliest or latest modification of published content."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:21
 msgid "Post count"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:21
 msgid "Count content by post type and status."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
 msgid "Publication date"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
 msgid "The publication date of the current or selected post."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "Post ID (optional)"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "Date format"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "Website default"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "31.12.2026"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "December 31, 2026"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "2026-12-31"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "Relative date"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:22
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "Label"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:23
 msgid "Publication time"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:23
 msgid "The publication time of the current or selected post."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "Last updated"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:24
 msgid "The modification date of the current or selected post."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:25
 msgid "Last updated (alias)"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:25
 msgid "An alias for bse-post-modified-date."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:26
 msgid "Last updated time"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:26
 msgid "The modification time of the current or selected post."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:27
 msgid "Post author"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:27
 msgid "The author’s display name."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:28
 msgid "Author website link"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:28
 msgid "The author’s name linked to their website."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:29
 msgid "Author archive link"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:29
 msgid "The author’s name linked to their archive."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:30
 msgid "Post tags"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:30
 msgid "The tags assigned to the current post."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:31
 msgid "Post categories"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:31
 msgid "The categories assigned to the current post."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:32
 msgid "Taxonomy terms"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:32
 msgid "Terms from a selected taxonomy."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:33
 msgid "Edit post link"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:33
 msgid "An edit link for visitors with editing permission."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "Post / page link"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "Link to an item by ID or slug, or to the privacy policy."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "Post ID"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:34
 msgid "Link text (optional)"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:35
 msgid "User information"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:35
 msgid "A selected user field with an optional fallback."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:36
 msgid "Current user ID"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:36
 msgid "The ID of the signed-in user."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:37
 msgid "Current user email"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:37
 msgid "The email address of the signed-in user."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:38
 msgid "Current user login"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:38
 msgid "The login name of the signed-in user."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:39
 msgid "Current user name"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:39
 msgid "The display name of the signed-in user."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:40
 msgid "Current user first name"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:40
 msgid "The first name of the signed-in user."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:41
 msgid "Current user last name"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:41
 msgid "The last name of the signed-in user."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:42
 msgid "Version information"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:42
 msgid "Technical version information for documentation and support."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:43
 msgid "Synced pattern"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:43
 msgid "Embed a WordPress synced pattern by ID."
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:44
 msgid "Astra layout"
 msgstr ""
 
-#: work/repo/includes/class-bse-shortcode-catalog.php:44
 msgid "Embed an Astra Pro custom layout by ID."
 msgstr ""
 
-#: work/repo/includes/class-bse-changelog.php:78
-msgid "Close"
-msgstr ""
-
-#: work/repo/includes/class-bse-changelog.php:79
-#: work/repo/includes/admin/class-bse-tools.php:93
 msgid "Changelog"
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:32
-msgid ""
-"Small dynamic helpers for your WordPress website. Find, configure and copy "
-"useful shortcodes."
+msgid "Small dynamic helpers for your WordPress website. Find, configure and copy useful shortcodes."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:98
+msgid "Builder Shortcode Extras cannot use the shared updater loaded by another plugin. Update the other deckerweb plugins or install the latest plugin ZIP manually."
+msgstr ""
+
 msgid "The update filesystem is unavailable. Please try again."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:99
-msgid ""
-"The GitHub package does not contain the Builder Shortcode Extras plugin file."
+msgid "The GitHub package does not contain the Builder Shortcode Extras plugin file."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:100
-msgid ""
-"The GitHub package could not be prepared. The installed version has been "
-"kept."
+msgid "The GitHub package could not be prepared. The installed version has been kept."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:107
-#: work/repo/includes/class-bse-github-updates.php:111
-#: work/repo/includes/class-bse-github-updates.php:115
 msgid "The update package could not be checked."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:122
-msgid ""
-"The package identity or version does not match a newer Builder Shortcode "
-"Extras release."
+msgid "The package identity or version does not match a newer Builder Shortcode Extras release."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:127
-msgid ""
-"The package version differs from the offered update. Please check for "
-"updates again."
+msgid "The package version differs from the offered update. Please check for updates again."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:131
 msgid "The update package has missing or invalid WordPress/PHP requirements."
 msgstr ""
 
-#: work/repo/includes/class-bse-github-updates.php:135
-msgid ""
-"This release requires a newer WordPress or PHP version. The installed "
-"version has been kept."
+msgid "This release requires a newer WordPress or PHP version. The installed version has been kept."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:13
-#: work/repo/includes/admin/admin-extras.php:139
 msgid "Builder Shortcode Extras"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:17
-msgid "Shortcodes"
+msgid "Settings"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:30
 msgid "Copied. Paste this shortcode into a shortcode-enabled field."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:31
 msgid "Copy the selected shortcode manually."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:32
 msgid "Enter a valid content ID greater than zero."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:33
 msgid "Use a whole number greater than zero."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:34
-msgid ""
-"Attribute values cannot contain quotation marks, square brackets or line "
-"breaks."
+msgid "Attribute values cannot contain quotation marks, square brackets or line breaks."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:45
-#: work/repo/includes/admin/class-bse-tools.php:93
 msgid "Small dynamic helpers. Ready when you need them."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:46
-msgid ""
-"Find a helper, copy its shortcode and paste it into a Shortcode block or a "
-"shortcode-enabled builder field. No settings to save."
+msgid "Find a helper, copy its shortcode and paste it into a Shortcode block or a shortcode-enabled builder field. No settings to save."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:49
 msgid "Build your shortcode"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:50
 msgid "What would you like to add?"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:57
 msgid "Your shortcode"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:60
-#: work/repo/includes/admin/class-bse-tools.php:77
 msgid "Copy shortcode"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:61
-msgid ""
-"For dates, leave the post ID empty to use the current post. Insert generated "
-"shortcodes on your website to see their output."
+msgid "For dates, leave the post ID empty to use the current post. Insert generated shortcodes on your website to see their output."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:62
-msgid ""
-"The generator needs JavaScript. You can still select and copy examples from "
-"the help below."
+msgid "The generator needs JavaScript. You can still select and copy examples from the help below."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:65
 msgid "Find a shortcode"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:66
 msgid "Search by task, name or attribute"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:67
 msgid "Try: copyright, date, author…"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:68
 msgid "No matching shortcode. Try another search term."
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:77
 msgid "Copy"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:78
 msgid "Configure in generator"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:79
 msgid "Available attributes"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:93
 msgid "Plugin information"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:93
 msgid "Version"
 msgstr ""
 
-#: work/repo/includes/admin/class-bse-tools.php:93
-msgid "Documentation"
-msgstr ""
-
-#: work/repo/includes/admin/class-bse-tools.php:93
 msgid "Plugin website"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:40
 msgctxt "Plugins page listing"
 msgid "Support"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:47
 msgctxt "Plugins page listing"
-msgid "Code Snippets"
+msgid "Documentation"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:54
 msgctxt "Plugins page listing"
 msgid "Donate"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:61
 msgctxt "Plugins page listing"
-msgid "Join our Newsletter"
+msgid "Newsletter"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:134
 msgid "Enabled"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:135
 msgid "Disabled"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:139
 msgid "Plugin"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:142
 msgid "Plugin version"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:146
 msgid "Elementor free"
 msgstr ""
 
-#: work/repo/includes/admin/admin-extras.php:150
 msgid "Elementor Pro"
 msgstr ""
 
-#: work/repo/includes/shortcodes/info.php:284
 msgid "Log in"
 msgstr ""
 
-#: work/repo/includes/shortcodes/info.php:285
 msgid "Log out"
 msgstr ""
 
-#: work/repo/includes/shortcodes/post.php:117
-#: work/repo/includes/shortcodes/post.php:255
 msgid "ago"
 msgstr ""
 
-#: work/repo/includes/shortcodes/post.php:668
 msgid "Tagged With:"
 msgstr ""
 
-#: work/repo/includes/shortcodes/post.php:738
-#: work/repo/includes/shortcodes/post.php:798
 msgid "Filed Under:"
 msgstr ""
 
-#: work/repo/includes/shortcodes/post.php:892
 msgid "(Edit)"
 msgstr ""
 
-#: work/repo/includes/shortcodes/user.php:53
-#: work/repo/includes/shortcodes/user.php:69
 msgid "User"
 msgstr ""
 
-#: work/repo/includes/shortcodes/user.php:54
 msgid "This user field is not allowed"
 msgstr ""
 
-#: work/repo/includes/shortcodes/user.php:70
 msgid "The user ID is incorrect"
 msgstr ""
 
-#: work/repo/includes/shortcodes/content.php:171
 msgctxt "Label for Comment Form"
 msgid "Leave a Reply"
 msgstr ""
 
-#: work/repo/includes/shortcodes/content.php:173
-#, php-format
 msgctxt "Label for Comment Form"
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: work/repo/includes/shortcodes/content.php:174
 msgctxt "Label for Comment Form"
 msgid "Cancel reply"
 msgstr ""
 
-#: work/repo/includes/shortcodes/content.php:175
 msgctxt "Label for Comment Form"
 msgid "Post Comment"
 msgstr ""
 
-#: work/repo/includes/shortcodes/version.php:88
 msgid "(Not defined)"
 msgstr ""
 
-#: work/repo/includes/integrations/astra.php:27
 msgid "Astra Custom Layouts"
 msgstr ""
 
-#: work/repo/includes/integrations/block-editor.php:27
 msgid "WordPress Synced Patterns"
+msgstr ""
+
+msgid "%s is installed but inactive. Activate it first."
+msgstr ""
+
+msgid "%s is missing. Install and activate it first."
+msgstr ""
+
+msgid "%s must be network activated first."
+msgstr ""
+
+msgid "%s supports activation per site only."
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Activate Bricks QuickNav per site after selecting the Bricks parent or child theme."
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Already active"
+msgstr ""
+
+msgid "Archive contains too many files."
+msgstr ""
+
+msgid "Archive symlinks are not permitted."
+msgstr ""
+
+msgid "As of "
+msgstr ""
+
+msgid "Back to deckerweb"
+msgstr ""
+
+msgid "Builder"
+msgstr ""
+
+msgid "Cannot create temporary file."
+msgstr ""
+
+msgid "Cannot create verified archive."
+msgstr ""
+
+msgid "Cannot finalize archive."
+msgstr ""
+
+msgid "Cannot normalize archive."
+msgstr ""
+
+msgid "Cannot read archive entry."
+msgstr ""
+
+msgid "Catalog URL"
+msgstr ""
+
+msgid "Compatible additions only"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Delete Library settings when removing the last host plugin"
+msgstr ""
+
+msgid "Details & requirements"
+msgstr ""
+
+msgid "Discover more plugins by deckerweb"
+msgstr ""
+
+msgid "Dismiss permanently"
+msgstr ""
+
+msgid "Done. The plugin is active."
+msgstr ""
+
+msgid "Enter a catalog URL first."
+msgstr ""
+
+msgid "Expanded archive is too large."
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "GitHub Stars"
+msgstr ""
+
+msgid "Hide catalog"
+msgstr ""
+
+msgid "Improved"
+msgstr ""
+
+msgid "Install and activate this plugin in the network admin."
+msgstr ""
+
+msgid "Install deckerweb plugin"
+msgstr ""
+
+msgid "Install now"
+msgstr ""
+
+msgid "Installed"
+msgstr ""
+
+msgid "Installed: "
+msgstr ""
+
+msgid "Invalid ZIP archive."
+msgstr ""
+
+msgid "Invalid approval flag."
+msgstr ""
+
+msgid "Invalid catalog field: "
+msgstr ""
+
+msgid "Invalid catalog schema."
+msgstr ""
+
+msgid "Invalid dependencies."
+msgstr ""
+
+msgid "Invalid dependency URL."
+msgstr ""
+
+msgid "Invalid dependency metadata."
+msgstr ""
+
+msgid "Invalid display field."
+msgstr ""
+
+msgid "Invalid icon color."
+msgstr ""
+
+msgid "Invalid icon label."
+msgstr ""
+
+msgid "Invalid identity or release metadata."
+msgstr ""
+
+msgid "Invalid local icon."
+msgstr ""
+
+msgid "Invalid network policy."
+msgstr ""
+
+msgid "Invalid network requirement."
+msgstr ""
+
+msgid "Invalid platform version."
+msgstr ""
+
+msgid "Invalid star count."
+msgstr ""
+
+msgid "Invalid stars date."
+msgstr ""
+
+msgid "Library"
+msgstr ""
+
+msgid "Library changelog"
+msgstr ""
+
+msgid "Library settings"
+msgstr ""
+
+msgid "Library settings saved."
+msgstr ""
+
+msgid "Manage installed plugins"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Missing display text."
+msgstr ""
+
+msgid "Missing plugin header."
+msgstr ""
+
+msgid "More by deckerweb"
+msgstr ""
+
+msgid "Multisite"
+msgstr ""
+
+msgid "Network activate"
+msgstr ""
+
+msgid "Network permission denied."
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "No approved plugins match this selection."
+msgstr ""
+
+msgid "Off by default. Applies only when no other host is installed, including inactive hosts. Removes Library settings, installation records and introduction status. Installed plugins, their content and other plugin settings remain unchanged. Network data is shared across sites."
+msgstr ""
+
+msgid "Online catalog"
+msgstr ""
+
+msgid "Only approved releases"
+msgstr ""
+
+msgid "Open catalog"
+msgstr ""
+
+msgid "PHP ZIP support is required."
+msgstr ""
+
+msgid "POST required."
+msgstr ""
+
+msgid "Permission denied."
+msgstr ""
+
+msgid "Plugin identity or version does not match the catalog."
+msgstr ""
+
+msgid "Plugin is not installed."
+msgstr ""
+
+msgid "Product website"
+msgstr ""
+
+msgid "Refresh catalog"
+msgstr ""
+
+msgid "Release checksum is verified before installation. Activation is a separate step."
+msgstr ""
+
+msgid "Release must contain exactly the approved plugin directory."
+msgstr ""
+
+msgid "Repository & documentation"
+msgstr ""
+
+msgid "Requires PHP %s or newer."
+msgstr ""
+
+msgid "Requires WordPress %s or newer."
+msgstr ""
+
+msgid "Requires a WordPress Multisite network."
+msgstr ""
+
+msgid "Retrieve approved catalog updates online"
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "Scripts"
+msgstr ""
+
+msgid "Search this catalog"
+msgstr ""
+
+msgid "Selected by deckerweb · Installed from GitHub releases"
+msgstr ""
+
+msgid "Show deckerweb under Add Plugins"
+msgstr ""
+
+msgid "Small plugins. Practical improvements."
+msgstr ""
+
+msgid "Source: GitHub"
+msgstr ""
+
+msgid "The GitHub release could not be downloaded."
+msgstr ""
+
+msgid "The approved release changed. Refresh updates first."
+msgstr ""
+
+msgid "The catalog URL is not an allowed first-party HTTPS endpoint."
+msgstr ""
+
+msgid "The catalog could not be verified. Please try again later."
+msgstr ""
+
+msgid "The catalog is disabled."
+msgstr ""
+
+msgid "The catalog is hidden."
+msgstr ""
+
+msgid "The online catalog is unavailable. Showing cached or bundled entries; online approval is checked again before installation."
+msgstr ""
+
+msgid "The online catalog source is not trusted."
+msgstr ""
+
+msgid "The release checksum does not match. Installation stopped."
+msgstr ""
+
+msgid "This plugin directory already exists. Use the installed plugin; it will not be overwritten."
+msgstr ""
+
+msgid "This release is no longer approved."
+msgstr ""
+
+msgid "This release is not approved."
+msgstr ""
+
+msgid "Unsafe archive path."
+msgstr ""
+
+msgid "Untrusted release URL."
+msgstr ""
+
+msgid "Update %1$s to version %2$s or newer."
+msgstr ""
+
+msgid "View plugins"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "WordPress"
+msgstr ""
+
+msgid "You already use one of my plugins. Find selected additions in the deckerweb tab."
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "February"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "April"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
+msgid "Jan"
+msgstr ""
+
+msgid "Feb"
+msgstr ""
+
+msgid "Mar"
+msgstr ""
+
+msgid "Apr"
+msgstr ""
+
+msgid "Jun"
+msgstr ""
+
+msgid "Jul"
+msgstr ""
+
+msgid "Aug"
+msgstr ""
+
+msgid "Sep"
+msgstr ""
+
+msgid "Oct"
+msgstr ""
+
+msgid "Nov"
+msgstr ""
+
+msgid "Dec"
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Mon"
+msgstr ""
+
+msgid "Tue"
+msgstr ""
+
+msgid "Wed"
+msgstr ""
+
+msgid "Thu"
+msgstr ""
+
+msgid "Fri"
+msgstr ""
+
+msgid "Sat"
+msgstr ""
+
+msgid "Sun"
+msgstr ""
+
+msgid "F j, Y"
+msgstr ""
+
+msgid "Plugin series"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Fits my installation"
+msgstr ""
+
+msgid "Reset filters"
+msgstr ""
+
+msgid "Invalid plugin series."
+msgstr ""
+
+msgid "Shows plugins whose platform and dependency requirements are met in this site or network. Without this filter, plugins with missing requirements remain visible."
+msgstr ""
+
+msgid "Fixed"
+msgstr ""
+
+msgid "Invalid catalog revision."
+msgstr ""
+
+msgid "This catalog requires a newer Library."
+msgstr ""
+
+msgid "Optional. The bundled catalog works immediately. Catalog requests are cached for 24 hours. No site URL, plugin list or usage data is sent."
+msgstr ""
+
+msgid "Invalid catalog timestamp."
+msgstr ""
+
+msgid "The approved release could not be verified."
+msgstr ""
+
+msgid "Only HTTPS on raw.githubusercontent.com/deckerweb. The server receives the requesting IP address. GitHub is contacted when installing a release."
+msgstr ""
+
+msgid "Manage Content"
+msgstr ""
+
+msgid "Commerce"
+msgstr ""
+
+msgid "Release in preparation"
+msgstr ""
+
+msgid "Planned: "
+msgstr ""
+
+msgid "Release 1.0.0 is being prepared. Installation will be available after package verification."
+msgstr ""
+
+msgid "Requirements shown are preliminary until the stable release is verified."
+msgstr ""
+
+msgid "Installing…"
+msgstr ""
+
+msgid "Activating…"
+msgstr ""
+
+msgid "The request could not be completed. Check the plugin status before trying again."
+msgstr ""
+
+msgid "Installation cancelled."
+msgstr ""
+
+msgid "Another action for this plugin is running. Please wait."
+msgstr ""
+
+msgid "Filesystem credentials are required."
+msgstr ""
+
+msgid "Installation failed."
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Check status"
+msgstr ""
+
+msgid "The action is still running. Check its status again."
+msgstr ""
+
+msgid "Not installed. You can try again."
+msgstr ""
+
+msgid "Checking status…"
+msgstr ""
+
+msgid "The requirements below describe the offered release."
 msgstr ""

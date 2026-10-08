@@ -1,55 +1,66 @@
 === Builder Shortcode Extras ===
 Contributors: deckerweb
-Tags: shortcodes, dynamic content, site builder, templates
+Tags: shortcodes, dynamic content, templates
 Requires at least: 6.7
 Requires PHP: 8.0
 Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-== Description ==
-
 Kleine dynamische Helfer. Schnell eingesetzt.
+
+== Description ==
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version 1.2.0 · WordPress 6.7+ · PHP 8.0+ · GPL-2.0-or-later
+= Auf einen Blick =
 
+- Durchsuchbare Shortcode-Hilfe direkt unter Werkzeuge → Builder Shortcode Extras.
+- Fünf Generatorfälle: Copyright, Veröffentlichungs-/Änderungsdatum, Beitragslink und Inhaltseinbettung.
+- Native Blöcke, synchronisierte Vorlagen und optionale Elementor-, Beaver-, Astra- und Genesis-Integrationen.
+- Lokale Ressourcen, deutsche Du-/Sie-Texte und WordPress-Updates über GitHub.
 
-English (README.md) · Anleitung & FAQ (docs/Deutsch.md) · Changelog (docs/CHANGELOG-de.md) · GitHub Releases (https://github.com/deckerweb/builder-shortcode-extras/releases) · Support (https://github.com/deckerweb/builder-shortcode-extras/issues)
+= Installation und erste Schritte =
 
-== Inhalt ==
+1. Lade das Plugin-ZIP aus den GitHub-Releases herunter.
+2. Öffne Plugins → Installieren → Plugin hochladen und aktiviere es.
+3. Öffne Werkzeuge → Builder Shortcode Extras, wähle einen Helfer und kopiere den Shortcode.
+4. Füge ihn in einen Shortcode-Block oder ein geeignetes Builder-Feld ein und prüfe die Ausgabe.
 
-- Schnell starten (#schnell-starten)
-- Beispiele (#beispiele)
-- Updates und Library (#updates-und-library)
-- FAQ (#faq)
-- Changelog (#changelog)
+BSE speichert keine Generatorwerte und verändert keine Inhalte.
 
-== Schnell starten ==
+= Helfer für den Alltag =
 
-1. Lade das Test-ZIP hoch: Plugins → Installieren → Plugin hochladen.
-2. Aktiviere das Plugin und öffne Werkzeuge → Builder Shortcode Extras.
-3. Suche einen Helfer oder konfiguriere einen der fünf Anwendungsfälle.
-4. Kopiere den Shortcode in einen Shortcode-Block oder ein geeignetes Builder-Feld.
-5. Prüfe die tatsächliche Ausgabe auf deiner Testseite.
+Copyright, Datumsangaben, Benutzerinformationen, Beitragslinks, Taxonomiebegriffe, Menüs und Kommentarformulare lassen sich gezielt einfügen. Viele Texthelfer unterstützen eigene CSS-Klassen und geprüfte HTML-Wrapper. Inhaltseinbettungen beachten Zugriffsrechte und unterbinden rekursive Verweise. Optionale Integrationen setzen den jeweiligen Builder beziehungsweise das Theme voraus.
 
-Es gibt keine zusätzlichen BSE-Einstellungen. Die Seite ändert keine Inhalte und speichert keine Generatorwerte.
+= Beispiele =
 
-== Beispiele ==
-
+```text
 [bse-copyright first="2019"]
 [bse-post-date format="Y-m-d"]
-[bse-post-modified-date label="Zuletzt aktualisiert: "]
-[bse-post-link id="123" text="Mehr erfahren"]
+[bse-post-modified-date label="Last updated: "]
+[bse-post-link id="123" text="Read more"]
 [bse-item-content id="123"]
+```
 
+= Updates und Library =
 
-== Updates und Library ==
+Der deckerweb Updater 2.1.0 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 0.8.1 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
 
-Der deckerweb Updater integriert stabile GitHub-Releases in die WordPress-Updateverwaltung. Vorabversionen werden manuell installiert. Die eingebettete deckerweb Library 0.2.0 ergänzt einen kuratierten Plugin-Katalog unter Plugins → Installieren; ihre Optionen liegen unter Einstellungen → deckerweb Library. BSE wird durch dieses Testpaket nicht in den Katalog aufgenommen.
+= Daten und Multisite =
 
-== FAQ ==
+BSE kann je Website oder netzwerkweit aktiviert werden. Inhalts-IDs gelten für die aktuelle Website. Website-Administratoren verwenden Werkzeuge → Builder Shortcode Extras; Super-Administratoren zusätzlich Netzwerkeinstellungen → Builder Shortcode Extras. Die Library-Optionen gelten je Netzwerk. BSE speichert keine Einstellungen. Deaktivierung erhält Daten; Deinstallation bereinigt den eigenen Updatecache. Library-Daten bleiben erhalten, solange ein weiterer Host installiert ist. Beim letzten Host werden temporäre Daten bereinigt; Optionen bleiben standardmäßig erhalten. Inhalte und installierte Plugins werden nicht gelöscht.
+
+== Installation ==
+
+1. Lade das Plugin-ZIP aus den GitHub-Releases herunter.
+2. Öffne Plugins → Installieren → Plugin hochladen und aktiviere es.
+3. Öffne Werkzeuge → Builder Shortcode Extras, wähle einen Helfer und kopiere den Shortcode.
+4. Füge ihn in einen Shortcode-Block oder ein geeignetes Builder-Feld ein und prüfe die Ausgabe.
+
+BSE speichert keine Generatorwerte und verändert keine Inhalte.
+
+== Frequently Asked Questions ==
 
 = Muss ich das Plugin konfigurieren? =
 
@@ -67,51 +78,58 @@ Copyright, Veröffentlichungsdatum, Änderungsdatum, einen Beitrags-/Seiten-Link
 
 Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Diese Version ergänzt keinen Modus ohne Wrapper.
 
-= Werden Frontend-CSS oder JavaScript geladen? =
+= Funktionieren synchronisierte Vorlagen mit Classic Editor? =
 
-Hilfe und Generator laden Ressourcen nur auf ihrer eigenen Admin-Seite. Eingebettete Builder-Vorlagen können Ressourcen ihres Builders laden; das Kommentarformular kann WordPress-Ressourcen benötigen.
+bse-wpblock ist verfügbar, sobald WordPress den Inhaltstyp wp_block registriert. Das zusätzliche alte Blocks-Menü entfällt.
 
-= Warum bleibt eine Inhaltseinbettung leer? =
+= Was passiert beim Entfernen mit den Daten? =
 
-Prüfe ID, Veröffentlichungsstatus und erforderlichen Builder. Private, unveröffentlichte, gelöschte oder passwortgeschützte Inhalte werden Besuchern ohne erforderlichen Zugriff nicht ausgegeben. Rekursive Referenzen werden gestoppt.
+BSE speichert keine Shortcode- oder Generator-Einstellungen. Deaktivierung erhält alle Daten. Deinstallation entfernt nur den temporären BSE-Updater-Cache und gibt die Library-Zuständigkeit frei. Andere installierte Library-Hosts schützen gemeinsame Daten, auch wenn sie deaktiviert sind. Der letzte Host entfernt temporäre Library-Daten; Optionen bleiben erhalten, außer die Löschoption der Library war aktiviert. Beiträge, Shortcodes, installierte Plugins und fremde Daten bleiben erhalten.
 
-= Wie funktionieren Updates? =
+= Wie melde ich eine Sicherheitslücke? =
 
-Der mitgelieferte deckerweb Updater prüft das öffentliche GitHub-Repository auf neuere stabile Releases über die normale WordPress-Updateverwaltung. Er installiert keine Vorabversionen automatisch und aktiviert keine automatischen Updates. Testversionen installierst du manuell.
+Verwende Security → Advisories → Report a vulnerability im GitHub-Repository dieses Plugins. Nenne Plugin-, Library- und Umgebungsversionen und eine minimale Reproduktion ohne Zugangsdaten. Poste Sicherheitsdetails nicht in öffentlichen Issues. Siehe SECURITY.md.
+
+[Alle Fragen nach Themen](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch#fragen-nach-themen).
 
 == Changelog ==
 
 = 1.2.0 — 01.10.2026 =
 
-- Neu: Durchsuchbare Shortcode-Hilfe mit Kopierfunktion und lokalem Generator für Copyright, Veröffentlichungsdatum, Änderungsdatum, Beitragslinks und Inhaltseinbettung.
-- Neu: deckerweb Plugin Library 0.2.0 und gemeinsamer deckerweb GitHub Release Updater v2 eingebunden.
-- Verbessert: Einheitliche Wrapper-Prüfung, mehrere CSS-Klassen, boolesche Attribute und bereinigte Textausgabe; Shortcode-Namen, Aliase und Ausgabefilter bleiben erhalten.
-- Verbessert: Native Blöcke werden gerendert; Builder werden passend zum Inhalt gewählt; direkte und indirekte rekursive Einbettung wird verhindert.
-- Verbessert: Header/Footer nach Brand Admin Schemes, lokaler Changelog-Dialog, englische/deutsche Dokumentation und aktualisierte deutsche Übersetzungen.
-- Verbessert: Drei originale skalierbare Icon-/Banner-Entwürfe; Variante A mit dem violetten Hintergrund von B ist ausgewählt.
-- Behoben: Admin-Registrierung, Rückgabe bereinigter Integrationsdaten und versehentlich registrierter Platzhalter korrigiert.
-- Behoben: Veröffentlichungsdatum berücksichtigt die Beitrags-ID; Slug-Links werden korrekt aufgelöst; ungültige IDs und unbekannte Zählstatus werden behandelt.
-- Behoben: Nicht definierte Versionskonstanten, Datenbankversionsabfrage sowie Escaping von Benutzerwerten, Ersatztext, Datumsbeschriftungen, Linktext und Tooltip korrigiert.
-- Behoben: Website-Änderungsdatum verwendet die WordPress-Zeitzone und liefert bei fehlenden veröffentlichten Inhalten kein falsches Datum.
-- Sonstiges: Benötigt WordPress 6.7+ und PHP 8.0+; PHP 8.0 wird von der Library vorausgesetzt. Die Helfer-Oberfläche lädt keine Frontend-Ressourcen.
-- Sonstiges: Genesis und Beaver bleiben erhalten; doppelter Astra-Loader, altes Blocks-Menü und sachfremde Werbe-/Core-Admin-Eingriffe entfernt.
+- **Neu:** Durchsuchbare Shortcode-Hilfe mit Kopierfunktion und lokalem Generator für Copyright, Veröffentlichungsdatum, Änderungsdatum, Beitragslinks und Inhaltseinbettung.
+- **Neu:** deckerweb Plugin Library 0.2.0 und gemeinsamer deckerweb GitHub Release Updater v2 eingebunden.
+- **Verbessert:** Einheitliche Wrapper-Prüfung, mehrere CSS-Klassen, boolesche Attribute und bereinigte Textausgabe; Shortcode-Namen, Aliase und Ausgabefilter bleiben erhalten.
+- **Verbessert:** Native Blöcke werden gerendert; Builder werden passend zum Inhalt gewählt; direkte und indirekte rekursive Einbettung wird verhindert.
+- **Verbessert:** Lokaler Änderungsverlauf und Dokumentation sowie deutsche und formell deutsche Übersetzungen.
+- **Behoben:** Admin-Registrierung, Rückgabe bereinigter Integrationsdaten und versehentlich registrierter Platzhalter korrigiert.
+- **Behoben:** Veröffentlichungsdatum berücksichtigt die Beitrags-ID; Slug-Links werden korrekt aufgelöst; ungültige IDs und unbekannte Zählstatus werden behandelt.
+- **Behoben:** Nicht definierte Versionskonstanten, Datenbankversionsabfrage sowie Escaping von Benutzerwerten, Ersatztext, Datumsbeschriftungen, Linktext und Tooltip korrigiert.
+- **Behoben:** Website-Änderungsdatum verwendet die WordPress-Zeitzone und liefert bei fehlenden veröffentlichten Inhalten kein falsches Datum.
+- **Sonstiges:** Benötigt WordPress 6.7+ und PHP 8.0+; PHP 8.0 wird von der Library vorausgesetzt. Die Helfer-Oberfläche lädt keine Frontend-Ressourcen.
+- **Sonstiges:** Genesis und Beaver bleiben erhalten; doppelter Astra-Loader, altes Blocks-Menü und sachfremde Werbe-/Core-Admin-Eingriffe entfernt.
 
 = 1.1.0 — 2025-03-15 =
 
-- Verbessert: Plugin wieder in einen nutzbaren Zustand gebracht.
-- Sonstiges: Verteilung von WordPress.org zu GitHub verlagert und alten DDWlib-Empfehlungsinstaller entfernt.
-- Sonstiges: Eigenen Übersetzungsloader entfernt; mitgelieferte Übersetzungen beibehalten.
+- **Verbessert:** Shortcode-Kompatibilität wiederhergestellt.
+- **Sonstiges:** Verteilung von WordPress.org zu GitHub verlagert und alten DDWlib-Empfehlungsinstaller entfernt.
+- **Sonstiges:** Eigenen Übersetzungsloader entfernt; mitgelieferte Übersetzungen beibehalten.
 
 = 1.0.0 — 2019-09-10 =
 
-- Neu: Erste Veröffentlichung mit 25 allgemeinen Helfern und 5 Integrations-Shortcodes.
+- **Neu:** Erste Veröffentlichung mit 25 allgemeinen Helfern und 5 Integrations-Shortcodes.
 
 = 0.9.0 — 2019-09-09 =
 
-- Neu: Erste öffentliche Beta auf GitHub.
+- **Neu:** Erste öffentliche Beta auf GitHub.
 
-== Über das Plugin ==
+= Autor und Zweck =
 
-Direkte Verteilung über GitHub. Keine Shortcode-Gestaltungselemente wie Slider oder Akkordeons. Genesis, Beaver, Elementor, Astra und synchronisierte Vorlagen bleiben optionale Integrationen; eine umfassende Builder-Zertifizierung wird nicht behauptet.
+David Decker – DECKERWEB entwickelt und veröffentlicht dieses Plugin seit 2019. Es konzentriert sich auf kleine dynamische Helfer und wird direkt über GitHub verteilt. Die Builder-Integrationen sind optional; eine allgemeine Zertifizierung kommerzieller Builder wird nicht behauptet.
 
-© 2019–2026 David Decker – DECKERWEB. GPL-2.0-or-later.
+[Issues](https://github.com/deckerweb/builder-shortcode-extras/issues) · [Discussions](https://github.com/deckerweb/builder-shortcode-extras/discussions) · [Security](https://github.com/deckerweb/builder-shortcode-extras/security/advisories/new)
+
+Sicherheitslücken bitte vertraulich melden. [Meldeweg](SECURITY.md). Unterstützung: [Ko-fi](https://ko-fi.com/deckerweb) · [Buy Me a Coffee](https://buymeacoffee.com/daveshine) · [PayPal](https://paypal.me/deckerweb).
+
+© 2019–2026 David Decker – DECKERWEB. [GPL v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
+
+Mitgelieferte deckerweb Library und Updater: David Decker – DECKERWEB, GPL-2.0-or-later. Die BSE-Grafiken sind originale Vektorarbeiten; es werden keine Schriftdateien mitgeliefert. WordPress- und Builder-Namen gehören ihren jeweiligen Rechteinhabern.

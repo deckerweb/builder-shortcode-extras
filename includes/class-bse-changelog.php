@@ -21,18 +21,18 @@ final class Changelog {
 	}
 
 	/**
-	 * Local documentation URL, also used when dialogs or JavaScript are unavailable.
+	 * Return the localized local documentation URL.
 	 *
-	 * @return string Changelog URL.
+	 * @return string URL to the bundled language document.
 	 */
 	public static function url(): string {
 		return plugins_url( self::is_german() ? 'docs/changelog-de.txt' : 'docs/changelog.txt', BSE_PLUGIN_FILE );
 	}
 
 	/**
-	 * Extract only the changelog section; never interpret readme text as HTML.
+	 * Render bounded local documentation as escaped structural HTML.
 	 *
-	 * @return string Escaped headings and lists, or an empty string if unavailable.
+	 * @return string Rendered document or an empty string when unavailable.
 	 */
 	public static function content(): string {
 		$file = BSE_PLUGIN_DIR . ( self::is_german() ? 'docs/changelog-de.txt' : 'docs/changelog.txt' );
@@ -44,31 +44,14 @@ final class Changelog {
 		if ( false === $text || ! preg_match( '/^== Changelog ==\s*\R(.*?)(?=^== [^\r\n]+ ==\s*$|\z)/ms', $text, $section ) ) {
 			return '';
 		}
-		$html = '';
-		$list = false;
-		foreach ( preg_split( '/\R/', trim( $section[1] ) ) as $line ) {
-			$line = trim( $line );
-			if ( '' === $line ) {
-				continue;
-			}
-			if ( preg_match( '/^= (.+) =$/', $line, $heading ) ) {
-				$html .= ( $list ? '</ul>' : '' ) . '<h3>' . esc_html( $heading[1] ) . '</h3>';
-				$list  = false;
-			} elseif ( str_starts_with( $line, '* ' ) ) {
-				$html .= ( $list ? '' : '<ul>' ) . '<li>' . esc_html( substr( $line, 2 ) ) . '</li>';
-				$list  = true;
-			} else {
-				$html .= ( $list ? '</ul>' : '' ) . '<p>' . esc_html( $line ) . '</p>';
-				$list  = false;
-			}
-		}
-		return $html . ( $list ? '</ul>' : '' );
+		require_once BSE_PLUGIN_DIR . 'includes/deckerweb-changelog-v1.php';
+		return \Deckerweb_Changelog_Renderer_V1::render( $text );
 	}
 
 	/**
-	 * Dialog markup; the footer link remains usable if content cannot be read.
+	 * Output an accessible documentation dialog with a fallback link.
 	 *
-	 * @return void
+	 * @return void Emits escaped content and fixed dialog markup.
 	 */
 	public static function dialog(): void {
 		$content = self::content();

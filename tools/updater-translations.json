@@ -1,0 +1,46 @@
+{
+  "Private mode must be boolean.": {
+    "de_DE": "Der Private-Modus muss ein boolescher Wert sein.",
+    "de_DE_formal": "Der Private-Modus muss ein boolescher Wert sein."
+  },
+  "Invalid authentication provider.": {
+    "de_DE": "Ungültiger Authentifizierungsanbieter.",
+    "de_DE_formal": "Ungültiger Authentifizierungsanbieter."
+  },
+  "The plugin must be installed in a stable slug directory.": {
+    "de_DE": "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert sein.",
+    "de_DE_formal": "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert sein."
+  },
+  "Invalid GitHub repository URL.": {
+    "de_DE": "Ungültige GitHub-Repository-URL.",
+    "de_DE_formal": "Ungültige GitHub-Repository-URL."
+  },
+  "The private update could not be authorized. Check the repository credentials and refresh updates.": {
+    "de_DE": "Das private Update konnte nicht autorisiert werden. Prüfe die Repository-Zugangsdaten und suche erneut nach Updates.",
+    "de_DE_formal": "Das private Update konnte nicht autorisiert werden. Prüfen Sie die Repository-Zugangsdaten und suchen Sie erneut nach Updates."
+  },
+  "Could not create the update download file.": {
+    "de_DE": "Die Datei für den Update-Download konnte nicht erstellt werden.",
+    "de_DE_formal": "Die Datei für den Update-Download konnte nicht erstellt werden."
+  },
+  "The private update download failed. Check credentials and try again.": {
+    "de_DE": "Der Download des privaten Updates ist fehlgeschlagen. Prüfe die Zugangsdaten und versuche es erneut.",
+    "de_DE_formal": "Der Download des privaten Updates ist fehlgeschlagen. Prüfen Sie die Zugangsdaten und versuchen Sie es erneut."
+  },
+  "Could not access the update filesystem.": {
+    "de_DE": "Auf das Dateisystem für das Update konnte nicht zugegriffen werden.",
+    "de_DE_formal": "Auf das Dateisystem für das Update konnte nicht zugegriffen werden."
+  },
+  "GitHub release does not contain the plugin main file.": {
+    "de_DE": "Der GitHub-Release enthält nicht die Hauptdatei des Plugins.",
+    "de_DE_formal": "Der GitHub-Release enthält nicht die Hauptdatei des Plugins."
+  },
+  "Could not prepare the GitHub release package.": {
+    "de_DE": "Das GitHub-Release-Paket konnte nicht vorbereitet werden.",
+    "de_DE_formal": "Das GitHub-Release-Paket konnte nicht vorbereitet werden."
+  },
+  "See the release on GitHub.": {
+    "de_DE": "Sieh dir den Release auf GitHub an.",
+    "de_DE_formal": "Sehen Sie sich den Release auf GitHub an."
+  }
+}

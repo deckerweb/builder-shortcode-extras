@@ -1,34 +1,48 @@
 # Builder Shortcode Extras
 
+![Builder Shortcode Extras](assets-github/banner.png)
+
 **Small dynamic helpers. Ready when you need them.**
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
 Version **1.2.0** · WordPress **6.7+** · PHP **8.0+** · GPL-2.0-or-later
 
-![Builder Shortcode Extras](assets/banner-1544x500.png)
-
-[Deutsch](README-de.md) · [Guide & FAQ](docs/English.md) · [Changelog](docs/CHANGELOG.md) · [GitHub Releases](https://github.com/deckerweb/builder-shortcode-extras/releases) · [Support](https://github.com/deckerweb/builder-shortcode-extras/issues)
+[Deutsch](README-de.md) · [Guide and FAQ](https://github.com/deckerweb/builder-shortcode-extras/wiki/English) · [Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest)
 
 ## Contents
 
-- [Quick start](#quick-start)
+- [At a Glance](#at-a-glance)
+- [Installation and first steps](#installation-and-first-steps)
+- [Everyday helpers](#everyday-helpers)
 - [Examples](#examples)
 - [Updates and Library](#updates-and-library)
+- [Data and Multisite](#data-and-multisite)
 - [FAQ](#faq)
 - [Changelog](#changelog)
+- [Author and scope](#author-and-scope)
+- [Support and security](#support-and-security)
+- [License and provenance](#license-and-provenance)
 
-![Shortcode help and generator](assets-github/shortcode-tools-en.png)
+## At a Glance
 
-## Quick start
+- Searchable shortcode help under Tools → Builder Shortcode Extras.
+- Five generator cases: copyright, publication/modification date, post link and embedded content.
+- Native blocks, synced patterns and optional Elementor, Beaver, Astra and Genesis integrations.
+- Local assets, informal/formal German translations and WordPress updates from GitHub.
 
-1. Upload the test ZIP through Plugins → Add New → Upload Plugin.
-2. Activate it and open Tools → Builder Shortcode Extras.
-3. Find a helper or configure one of the five use cases.
-4. Copy the shortcode into a Shortcode block or a supported builder field.
-5. Check the actual output on your test page.
+## Installation and first steps
 
-There are no additional BSE settings. The page does not edit content or save generator values.
+1. Download the plugin ZIP from GitHub Releases.
+2. Open Plugins → Add New → Upload Plugin and activate it.
+3. Open Tools → Builder Shortcode Extras, choose a helper and copy its shortcode.
+4. Paste it into a Shortcode block or supported builder field and check its output.
+
+BSE saves no generator values and changes no content.
+
+## Everyday helpers
+
+Insert copyright, dates, user information, post links, taxonomy terms, menus and comment forms where you need them. Most text helpers accept CSS classes and validated HTML wrappers. Content embedding respects access checks and prevents recursive references. Optional integrations require the corresponding builder or theme.
 
 ## Examples
 
@@ -42,7 +56,11 @@ There are no additional BSE settings. The page does not edit content or save gen
 
 ## Updates and Library
 
-The deckerweb updater integrates stable GitHub releases with WordPress updates. Install prereleases manually. Embedded deckerweb Library 0.2.0 adds a curated catalog under Plugins → Add New; its preferences live under Settings → deckerweb Library. This test package does not add BSE to the catalog.
+The deckerweb Updater 2.1.0 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 0.8.1 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
+
+## Data and Multisite
+
+Activate BSE per website or network-wide. Content IDs belong to the current website. Site administrators use Tools → Builder Shortcode Extras; super administrators also have Network Settings → Builder Shortcode Extras. Library preferences are shared per network. BSE saves no settings. Deactivation preserves data; uninstall removes its update cache. Other installed hosts protect shared Library data. The final host clears temporary data and preserves preferences by default. Content and installed plugins are never removed.
 
 ## FAQ
 
@@ -62,17 +80,19 @@ Copyright, publication date, last-updated date, a post/page link and embedded co
 
 Most text helpers accept wrapper, class, before and after. Multiple classes are supported. Unsafe or unsupported wrapper tags fall back to span. This version does not add a wrapper-free mode.
 
-### Does it load frontend CSS or JavaScript?
+### Are synced patterns supported with Classic Editor?
 
-The help and generator load assets only on their own admin page. Embedded builder templates may load their builder’s own assets, and the comment form may rely on WordPress resources.
+The bse-wpblock helper is available whenever WordPress registers the wp_block post type. A legacy extra Blocks menu is no longer added.
 
-### Why is embedded content empty?
+### What happens to data when I remove the plugin?
 
-Check the ID, publication status and required builder. Visitors cannot embed private, draft, trashed or password-protected content without the required access. Recursive references stop with empty output.
+BSE saves no shortcode or generator settings. Deactivation preserves all data. Uninstall clears only its temporary updater cache and releases Library ownership. Other installed Library hosts, even inactive, protect shared data. The final host removes temporary Library data; preferences remain unless the Library deletion option was enabled. Posts, shortcodes, installed plugins and foreign data remain.
 
-### How do updates work?
+### How do I report a security issue?
 
-The bundled deckerweb updater checks this public GitHub repository for newer stable releases through the regular WordPress update system. It does not automatically install prereleases or enable automatic updates. Test releases are installed manually.
+Use Security → Advisories → Report a vulnerability in this plugin’s GitHub repository. Include plugin, Library and environment versions plus a minimal reproduction, without credentials. Keep details out of public issues. See SECURITY.md.
+
+[Complete FAQ by topic](https://github.com/deckerweb/builder-shortcode-extras/wiki/English#faq-by-topic).
 
 ## Changelog
 
@@ -82,8 +102,7 @@ The bundled deckerweb updater checks this public GitHub repository for newer sta
 - **New:** Embedded deckerweb Plugin Library 0.2.0 and shared deckerweb GitHub Release Updater v2.
 - **Improved:** Unified wrapper validation, multiple CSS classes, boolean attributes and escaped text boundaries; existing shortcode names, aliases and output filters remain.
 - **Improved:** Native block rendering, builder-specific routing and guarded content embedding with direct/indirect recursion protection.
-- **Improved:** Brand Admin Schemes-style header/footer, local changelog dialog, English/German documentation and German/formal German translations.
-- **Improved:** Three original scalable icon/banner concepts; selected concept A uses the purple background from concept B.
+- **Improved:** Local changelog and documentation, with informal and formal German translations.
 - **Fixed:** Corrected admin registration policy, persistent integration normalization and placeholder integration registration.
 - **Fixed:** Publication dates honor explicit post IDs; slug links resolve correctly; missing IDs and unknown post-count statuses are handled.
 - **Fixed:** Undefined version constants, database version lookup, user/fallback escaping, date labels, link text and tooltip escaping.
@@ -93,7 +112,7 @@ The bundled deckerweb updater checks this public GitHub repository for newer sta
 
 ## 1.1.0 — 2025-03-15
 
-- **Improved:** Restored the plugin to a usable state.
+- **Improved:** Restored shortcode compatibility.
 - **Misc:** Moved distribution away from WordPress.org and removed the old DDWlib recommendation installer.
 - **Misc:** Removed the custom translation loader; retained packaged translations.
 
@@ -105,8 +124,18 @@ The bundled deckerweb updater checks this public GitHub repository for newer sta
 
 - **New:** First public beta on GitHub.
 
-## About
+## Author and scope
 
-Distributed directly through GitHub. Focused on dynamic helpers rather than styled sliders or accordions. Genesis, Beaver, Elementor, Astra and synced patterns remain optional integrations; broad builder certification is not claimed.
+David Decker – DECKERWEB develops and publishes this plugin, first released in 2019. It focuses on small dynamic helpers and is distributed directly through GitHub. Builder integrations are optional; broad certification of commercial builders is not claimed.
 
-© 2019–2026 David Decker – DECKERWEB. GPL-2.0-or-later.
+## Support and security
+
+[Issues](https://github.com/deckerweb/builder-shortcode-extras/issues) · [Discussions](https://github.com/deckerweb/builder-shortcode-extras/discussions) · [Security](https://github.com/deckerweb/builder-shortcode-extras/security/advisories/new)
+
+Report vulnerabilities privately. [Reporting policy](SECURITY.md). Support the project: [Ko-fi](https://ko-fi.com/deckerweb) · [Buy Me a Coffee](https://buymeacoffee.com/daveshine) · [PayPal](https://paypal.me/deckerweb).
+
+## License and provenance
+
+© 2019–2026 David Decker – DECKERWEB. [GPL v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
+
+Bundled deckerweb Library and Updater: David Decker – DECKERWEB, GPL-2.0-or-later. BSE artwork is original vector work; no font files are bundled. WordPress and builder names belong to their respective owners.

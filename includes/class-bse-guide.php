@@ -1,14 +1,31 @@
 <?php
-/** Read-only local guide, usable before GitHub documentation is published. @package BuilderShortcodeExtras */
+/** Read-only local documentation renderer. @package BuilderShortcodeExtras */
 namespace Deckerweb\BuilderShortcodeExtras;
 defined( 'ABSPATH' ) || exit;
+/** Read and safely render bundled language guides without remote requests. */
 final class Guide {
+	/**
+	 * Return the localized local documentation URL.
+	 *
+	 * @return string URL to the bundled language document.
+	 */
 	public static function url(): string {
-		return plugins_url( Changelog::is_german() ? 'docs/Deutsch.md' : 'docs/English.md', BSE_PLUGIN_FILE );
+		return plugins_url( ( 'de_DE_formal' === determine_locale() ? 'docs/Deutsch-formal.md' : ( Changelog::is_german() ? 'docs/Deutsch.md' : 'docs/English.md' ) ), BSE_PLUGIN_FILE );
 	}
+	/**
+	 * Format one escaped Markdown line with safe links and inline markup.
+	 *
+	 * @param string $line Local source line.
+	 * @return string HTML restricted to the supported inline elements.
+	 */
 	private static function text( string $line ): string {
 		$line = esc_html( $line );
-		$line = preg_replace_callback( '/\[([^\]]+)\]\(([^)\s]+)\)/', static function( $match ) {
+		$line = preg_replace_callback( '/\[([^\]]+)\]\(([^)\s]+)\)/', /**
+		 * Convert one escaped Markdown link to an allowed destination.
+		 * @param array $match Matched label and target URL.
+		 * @return string Escaped anchor or its label.
+		 */
+		static function( $match ) {
 			$url = html_entity_decode( $match[2], ENT_QUOTES, 'UTF-8' );
 			if ( str_starts_with( $url, '#' ) ) {
 				$href = esc_attr( $url );
@@ -22,8 +39,13 @@ final class Guide {
 		$line = preg_replace( '/\*\*([^*]+)\*\*/', '<strong>$1</strong>', $line );
 		return preg_replace( '/`([^`]+)`/', '<code>$1</code>', $line );
 	}
+	/**
+	 * Render bounded local documentation as escaped structural HTML.
+	 *
+	 * @return string Rendered document or an empty string when unavailable.
+	 */
 	public static function content(): string {
-		$file = BSE_PLUGIN_DIR . ( Changelog::is_german() ? 'docs/Deutsch.md' : 'docs/English.md' );
+		$file = BSE_PLUGIN_DIR . ( ( 'de_DE_formal' === determine_locale() ? 'docs/Deutsch-formal.md' : ( Changelog::is_german() ? 'docs/Deutsch.md' : 'docs/English.md' ) ) );
 		if ( ! is_readable( $file ) || filesize( $file ) > 262144 ) { return ''; }
 		$html = ''; $code = false; $table = false; $list = false;
 		foreach ( preg_split( '/\R/', (string) file_get_contents( $file ) ) as $line ) {
@@ -51,6 +73,11 @@ final class Guide {
 		}
 		return $html . ( $code ? '</code></pre>' : '' ) . ( $table ? '</table></div>' : '' ) . ( $list ? '</ul>' : '' );
 	}
+	/**
+	 * Output an accessible documentation dialog with a fallback link.
+	 *
+	 * @return void Emits escaped content and fixed dialog markup.
+	 */
 	public static function dialog(): void {
 		$content = self::content(); if ( '' === $content ) { return; }
 		echo '<dialog id="bse-document-guide" class="bse-document-dialog" aria-labelledby="bse-document-guide-title"><header class="bse-document-header"><h2 id="bse-document-guide-title">Builder Shortcode Extras · ' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</h2><button type="button" class="button" data-bse-close autofocus>' . esc_html__( 'Close', 'builder-shortcode-extras' ) . '</button></header><div class="bse-document-content" tabindex="0">';

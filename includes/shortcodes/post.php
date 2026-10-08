@@ -16,20 +16,20 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_count' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-count', 'ddw_bse_shortcode_post_count' );
 	/**
-	 * Shortcode to output the current number of all items of a given post type
-	 *   for a given post status.
+	 * Render a count for the selected post type and status.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses wp_count_posts()
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's ID.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_count( $atts, $content ) {
 
-		/** Set default shortcode attributes */
+		/**
+		 * Filter shortcode defaults/post count while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_count',
 			[
@@ -42,7 +42,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_count' ) ) :
 			]
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-count' );
 
 		$post_type   = sanitize_key( $atts[ 'post_type' ] );
@@ -52,7 +51,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_count' ) ) :
 
 		$post_count_result = $post_count->$post_status ?? 0;
 
-		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-count%2$s">%3$s%4$s%5$s</%1$s>',
 			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
@@ -62,7 +60,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_count' ) ) :
 			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/post_count',
 			$output,
@@ -78,21 +81,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_date' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-date', 'ddw_bse_shortcode_post_date' );
 	/**
-	 * Shortcode to output the date of post publication (or for any post type).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the publication date of a readable content item.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_human_time_diff()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `post_date` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_date( $atts ) {
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_date',
 			[
@@ -106,45 +106,29 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_date' ) ) :
 				'wrapper'        => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-date' );
-
-		$post_id = ( ! is_null( $atts[ 'post_id' ] ) ) ? absint( $atts[ 'post_id' ] ) : null;
-
-		if ( 'relative' === $atts[ 'format' ] ) {
-
-			$display  = ddw_bse_human_time_diff( get_post_timestamp( $post_id ), time(), $atts[ 'relative_depth' ] );
-			$display .= ' ' . __( 'ago', 'builder-shortcode-extras' );
-
+		$item = ddw_bse_readable_item( absint( $atts['post_id'] ) );
+		if ( ! $item ) {
+			return '';
+		}
+		if ( $atts['format'] === 'relative' ) {
+			$timestamp = get_post_timestamp( $item, 'date' );
+			if ( $timestamp === false ) {
+				return '';
+			}
+			$text = ddw_bse_human_time_diff( $timestamp, time(), $atts['relative_depth'] ) . ' ' . __( 'ago', 'builder-shortcode-extras' );
 		} else {
-
-			$display = get_the_time( $atts[ 'format' ], $post_id );
-
-		}  // end if
-
-		$date_string = sprintf(
-			'<time %s>%s</time>',
-			ddw_bse_attr( 'entry-time' ),
-			esc_html( $atts[ 'label' ] . $display )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="bse-post-time%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$date_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_date',
-			$output,
-			$atts 		// additional param
-		);
-
+			$text = get_the_time( $atts['format'], $item );
+		}
+		$html = '<time ' . ddw_bse_attr( 'entry-time' ) . '>' . esc_html( $atts['label'] . $text ) . '</time>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'bse-post-time', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_date', $output, $atts );
 	}  // end function
 
 endif;
@@ -154,19 +138,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_time' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-time', 'ddw_bse_shortcode_post_time' );
 	/**
-	 * Shortcode to output the time of post publication (or for any post type).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the publication time of a readable content item.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `post_time` shortcode`.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_time( $atts ) {
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_time',
 			[
@@ -179,34 +162,21 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_time' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-time' );
-
-		$post_id = ( ! is_null( $atts[ 'post_id' ] ) ) ? absint( $atts[ 'post_id' ] ) : null;
-
-		$time_string = sprintf(
-			'<time %s>%s</time>',
-			ddw_bse_attr( 'entry-time' ),
-			esc_html( $atts[ 'label' ] . get_the_time( $atts[ 'format' ], $post_id ) )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="bse-post-time%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$time_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_time',
-			$output,
-			$atts 		// additional param
-		);
-
+		$item = ddw_bse_readable_item( absint( $atts['post_id'] ) );
+		if ( ! $item ) {
+			return '';
+		}
+		$text = get_the_time( $atts['format'], $item );
+		$html = '<time ' . ddw_bse_attr( 'entry-time' ) . '>' . esc_html( $atts['label'] . $text ) . '</time>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'bse-post-time', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_time', $output, $atts );
 	}  // end function
 
 endif;
@@ -216,21 +186,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_date' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-modified-date', 'ddw_bse_shortcode_post_modified_date' );
 	/**
-	 * Shortcode to output the post last modified date (or for any post type).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the modification date of a readable content item.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_human_time_diff()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `post_modified_date` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_modified_date( $atts ) {
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_modified_date',
 			[
@@ -244,45 +211,29 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_date' ) ) :
 				'wrapper'        => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-modified-date' );
-
-		$post_id = ( ! is_null( $atts[ 'post_id' ] ) ) ? absint( $atts[ 'post_id' ] ) : null;
-
-		if ( 'relative' === $atts[ 'format' ] ) {
-
-			$display  = ddw_bse_human_time_diff( get_post_timestamp( $post_id, 'modified' ), time(), $atts[ 'relative_depth' ] );
-			$display .= ' ' . __( 'ago', 'builder-shortcode-extras' );
-
+		$item = ddw_bse_readable_item( absint( $atts['post_id'] ) );
+		if ( ! $item ) {
+			return '';
+		}
+		if ( $atts['format'] === 'relative' ) {
+			$timestamp = get_post_timestamp( $item, 'modified' );
+			if ( $timestamp === false ) {
+				return '';
+			}
+			$text = ddw_bse_human_time_diff( $timestamp, time(), $atts['relative_depth'] ) . ' ' . __( 'ago', 'builder-shortcode-extras' );
 		} else {
-
-			$display = get_the_modified_time( $atts[ 'format' ], $post_id );
-
-		}  // end if
-
-		$date_string = sprintf(
-			'<time %s>%s</time>',
-			ddw_bse_attr( 'entry-modified-time' ),
-			esc_html( $atts[ 'label' ] . $display )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="bse-post-modified-date%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$date_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_modified_date',
-			$output,
-			$atts 		// additional param
-		);
-
+			$text = get_the_modified_time( $atts['format'], $item );
+		}
+		$html = '<time ' . ddw_bse_attr( 'entry-modified-time' ) . '>' . esc_html( $atts['label'] . $text ) . '</time>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'bse-post-modified-date', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_modified_date', $output, $atts );
 	}  // end function
 
 endif;
@@ -292,21 +243,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_item_last_updated' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-item-last-updated', 'ddw_bse_shortcode_item_last_updated' );
 	/**
-	 * Shortcode to output the date when a post type item was last updated.
+	 * Delegate the existing last-updated alias to the modification-date helper.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_shortcode_post_modified_date()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `bse-item-last-updated` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_item_last_updated( $atts ) {
 
 		return ddw_bse_shortcode_post_modified_date( $atts );
 
 	}  // end function
-	
+
 endif;
 
 
@@ -314,19 +262,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_time' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-modified-time', 'ddw_bse_shortcode_post_modified_time' );
 	/**
-	 * Shortcode to output the post last modified time (or for any post type).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the modification time of a readable content item.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `bse-post-modified-time` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_modified_time( $atts ) {
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_modified_time',
 			[
@@ -339,34 +286,21 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_modified_time' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-modified-time' );
-
-		$post_id = ( ! is_null( $atts[ 'post_id' ] ) ) ? absint( $atts[ 'post_id' ] ) : null;
-
-		$time_string = sprintf(
-			'<time %s>%s</time>',
-			ddw_bse_attr( 'entry-modified-time' ),
-			esc_html( $atts[ 'label' ] . get_the_modified_time( $atts[ 'format' ], $post_id ) )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="bse-post-modified-time%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$time_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_modified_time',
-			$output,
-			$atts 		// additional param
-		);
-
+		$item = ddw_bse_readable_item( absint( $atts['post_id'] ) );
+		if ( ! $item ) {
+			return '';
+		}
+		$text = get_the_modified_time( $atts['format'], $item );
+		$html = '<time ' . ddw_bse_attr( 'entry-modified-time' ) . '>' . esc_html( $atts['label'] . $text ) . '</time>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'bse-post-modified-time', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_modified_time', $output, $atts );
 	}  // end function
 
 endif;
@@ -376,35 +310,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-author', 'ddw_bse_shortcode_post_author' );
 	/**
-	 * Shortcode to output the author of the post/ post type item (unlinked
-	 *   display name).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the current post author’s display name.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_attr()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Return empty string if post type does not support `author`, or has no author assigned.
-	 *                Otherwise, output for `bse-post-author` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_author( $atts ) {
-
-		/** Bail early if post type supports no author */
-		if ( ! post_type_supports( get_post_type(), 'author' ) ) {
-			return '';
-		}
-
-		$author = get_the_author();
-
-		/** Bail early if there is no author */
-		if ( ! $author ) {
-			return '';
-		}
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_author',
 			[
@@ -414,33 +331,19 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-author' );
-
-		/** Author string */
-		$author_string = sprintf(
-			'<span %s>%s</span>',
-			ddw_bse_attr( 'entry-author-name' ),
-			esc_html( $author )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="entry-author bse-post-author%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$author_string,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_author',
-			$output,
-			$atts 		// additional param
-		);
-
+		if ( ! post_type_supports( get_post_type(), 'author' ) || ! get_the_author() ) {
+			return '';
+		}
+		$html = '<span ' . ddw_bse_attr( 'entry-author-name' ) . '>' . esc_html( get_the_author() ) . '</span>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'entry-author bse-post-author', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_author', $output, $atts );
 	}  // end function
 
 endif;
@@ -450,44 +353,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author_link' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-author-link', 'ddw_bse_shortcode_post_author_link' );
 	/**
-	 * Shortcode to output the author of the post/ post type item (link to
-	 *   author URL).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Link the current author’s display name to their website, or show the name alone.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_shortcode_post_author()
-	 * @uses ddw_bse_attr()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Return empty string if post type does not support `author` or post has no author assigned.
-	 *                Return `genesis_post_author_shortcode()` if author has no URL.
-	 *                Otherwise, output for `post_author_link` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_author_link( $atts ) {
-
-		/** Bail early if post type supports no author */
-		if ( ! post_type_supports( get_post_type(), 'author' ) ) {
-			return '';
-		}
-
-		$url = get_the_author_meta( 'url' );
-
-		/** If no URL, use post author shortcode function. */
-		if ( ! $url ) {
-			return ddw_bse_shortcode_post_author( $atts );
-		}
-
-		$author = get_the_author();
-
-		/** Bail early if there is no author */
-		if ( ! $author ) {
-			return '';
-		}
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_author_link',
 			[
@@ -499,47 +376,24 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author_link' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-author-link' );
-
-		$target = sprintf(
-			'target="%s"',
-			sanitize_key( $atts[ 'target' ] )
-		);
-
-		$rel = sprintf(
-			'rel="%s"',
-			strtolower( esc_attr( $atts[ 'rel' ] ) )
-		);
-
-		/** Author link */
-		$author_link = sprintf(
-			'<a href="%1$s" %2$s %3$s %4$s><span %5$s>%6$s</span></a>',
-			esc_url( $url ),
-			( ! empty( $atts[ 'target' ] ) ) ? $target : '',
-			( ! empty( $atts[ 'target' ] ) && ! empty( $atts[ 'rel' ] ) ) ? $rel : '',
-			ddw_bse_attr( 'entry-author-link' ),
-			ddw_bse_attr( 'entry-author-name' ),
-			esc_html( $author )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="entry-author bse-post-author-link%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			( ! empty( $atts[ 'class' ] ) ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$author_link,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_author_link',
-			$output,
-			$atts 		// additional param
-		);
-
+		if ( ! post_type_supports( get_post_type(), 'author' ) || ! get_the_author() ) {
+			return '';
+		}
+		$html = '<span ' . ddw_bse_attr( 'entry-author-name' ) . '>' . esc_html( get_the_author() ) . '</span>';
+		$url = get_the_author_meta( 'url' );
+		if ( ! $url ) {
+			return ddw_bse_shortcode_post_author( $atts );
+		}
+		$html = '<a href="' . esc_url( $url ) . '"' . ddw_bse_metadata_link_attributes( $atts ) . ' ' . ddw_bse_attr( 'entry-author-link' ) . '>' . $html . '</a>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'entry-author bse-post-author-link', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_author_link', $output, $atts );
 	}  // end function
 
 endif;
@@ -549,35 +403,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author_posts_link' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-author-posts-link', 'ddw_bse_shortcode_post_author_posts_link' );
 	/**
-	 * Shortcode to output the author of the post/ post type item (link to
-	 *   author archive).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Link the current author’s display name to their post archive.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_attr()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Return empty string if post type does not support `author` or post has no author assigned.
-	 *                Otherwise, output for `post_author_posts_link` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_author_posts_link( $atts ) {
-
-		/** Bail early if post type supports no author */
-		if ( ! post_type_supports( get_post_type(), 'author' ) ) {
-			return '';
-		}
-
-		$author = get_the_author();
-
-		/** Bail early if there is no author */
-		if ( ! $author ) {
-			return '';
-		}
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_author_posts_link',
 			[
@@ -589,49 +426,21 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_author_posts_link' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'post_author_posts_link' );
-
+		if ( ! post_type_supports( get_post_type(), 'author' ) || ! get_the_author() ) {
+			return '';
+		}
+		$html = '<span ' . ddw_bse_attr( 'entry-author-name' ) . '>' . esc_html( get_the_author() ) . '</span>';
 		$url = get_author_posts_url( get_the_author_meta( 'ID' ) );
-
-		$target = sprintf(
-			'target="%s"',
-			sanitize_key( $atts[ 'target' ] )
-		);
-
-		$rel = sprintf(
-			'rel="%s"',
-			strtolower( esc_attr( $atts[ 'rel' ] ) )
-		);
-
-		/** Author link */
-		$author_link = sprintf(
-			'<a href="%1$s" %2$s %3$s %4$s><span %5$s>%6$s</span></a>',
-			esc_url( $url ),
-			( ! empty( $atts[ 'target' ] ) ) ? $target : '',
-			( ! empty( $atts[ 'target' ] ) && ! empty( $atts[ 'rel' ] ) ) ? $rel : '',
-			ddw_bse_attr( 'entry-author-link' ),
-			ddw_bse_attr( 'entry-author-name' ),
-			esc_html( $author )
-		);
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="entry-author bse-post-author-posts-link%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$author_link,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_author_posts_link',
-			$output,
-			$atts
-		);
-
+		$html = '<a href="' . esc_url( $url ) . '"' . ddw_bse_metadata_link_attributes( $atts ) . ' ' . ddw_bse_attr( 'entry-author-link' ) . '>' . $html . '</a>';
+		$output = ddw_bse_metadata_wrapper( $atts, 'entry-author bse-post-author-posts-link', $html, true );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_author_posts_link', $output, $atts );
 	}  // end function
 
 endif;
@@ -641,26 +450,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_tags' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-tags', 'ddw_bse_shortcode_post_tags' );
 	/**
-	 * Shortcode to output the tag links list (Post Tags).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the current post’s linked tags with escaped labels and separators.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_attr()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Return empty string if the `post_tag` taxonomy is not associated with the current post type
-	 *                or if the post has no tags. Otherwise, output for `post_tags` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_tags( $atts ) {
-
-		if ( ! is_object_in_taxonomy( get_post_type(), 'post_tag' ) ) {
-			return '';
-		}
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_tags',
 			[
@@ -671,37 +472,24 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_tags' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-tags' );
-
-		$tags = get_the_tag_list(
-			$atts[ 'before' ] . ' ',
-			trim( $atts[ 'sep' ] ) . ' ',
-			' ' . $atts[ 'after' ]
-		);
-
-		/** Do nothing if no tags. */
-		if ( ! $tags ) {
+		$taxonomy = 'post_tag';
+		if ( ! is_object_in_taxonomy( get_post_type(), $taxonomy ) ) {
 			return '';
 		}
-
-		//$output = sprintf( '<span %s>', ddw_bse_attr( 'entry-tags' ) ) . $tags . '</span>';
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="entry-tags bse-post-tags%2$s">%3$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			$tags
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_tags',
-			$output,
-			$atts 		// additional param
-		);
-
+		$terms = get_the_term_list( get_the_ID(), $taxonomy, esc_html( $atts['before'] ) . ' ', esc_html( $atts['sep'] ), esc_html( $atts['after'] ) );
+		$html = $terms;
+		if ( is_wp_error( $terms ) || ! $terms ) {
+			return '';
+		}
+		$output = ddw_bse_metadata_wrapper( $atts, 'entry-tags bse-post-tags', $html, false );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_tags', $output, $atts );
 	}  // end function
 
 endif;
@@ -711,26 +499,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_categories' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-categories', 'ddw_bse_shortcode_post_categories' );
 	/**
-	 * Shortcode to output the category links list (Post Categories).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render the current post’s linked categories with escaped labels and separators.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_attr()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Return empty string if the `category` taxonomy is not associated with the current post type
-	 *                or if the post has no categories. Otherwise, output for `post_categories` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_categories( $atts ) {
-
-		if ( ! is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-			return '';
-		}
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_categories',
 			[
@@ -741,33 +521,24 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_categories' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-categories' );
-
-		$cats = get_the_category_list( trim( $atts[ 'sep' ] ) . ' ' );
-
-		/** Do nothing if there are no categories. */
-		if ( ! $cats ) {
+		$taxonomy = 'category';
+		if ( ! is_object_in_taxonomy( get_post_type(), $taxonomy ) ) {
 			return '';
 		}
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="entry-categories bse-post-categories%2$s">%3$s%4$s%5$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			( ! empty( $atts[ 'before' ] ) ) ? esc_html( $atts[ 'before' ] ) . ' ' : '',
-			$cats,
-			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_categories',
-			$output,
-			$atts 		// additional param
-		);
-
+		$terms = get_the_category_list( esc_html( trim( $atts['sep'] ) ) . ' ' );
+		$html = esc_html( $atts['before'] ) . ' ' . $terms . ' ' . esc_html( $atts['after'] );
+		if ( is_wp_error( $terms ) || ! $terms ) {
+			return '';
+		}
+		$output = ddw_bse_metadata_wrapper( $atts, 'entry-categories bse-post-categories', $html, false );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_categories', $output, $atts );
 	}  // end function
 
 endif;
@@ -777,20 +548,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_terms' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-terms', 'ddw_bse_shortcode_post_terms' );
 	/**
-	 * Shortcode to output the linked post taxonomy terms list (for any (custom)
-	 *   taxonomy).
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Render linked terms from the requested taxonomy for the current post.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `post_terms` shortcode, or empty string on failure to retrieve terms.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_terms( $atts ) {
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_terms',
 			[
@@ -802,61 +571,24 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_terms' ) ) :
 				'wrapper'  => 'span',
 			]
 		);
-
-		/**
-		 * Post terms shortcode defaults. Allows the default args in the post
-		 *   terms shortcode function to be filtered.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $defaults The default args array.
-		 */
-		$defaults = apply_filters( 'bse/filter/shortcode_defaults/post_terms', $defaults );
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-terms' );
-
-		$terms = get_the_term_list(
-			get_the_ID(),
-			$atts[ 'taxonomy' ],
-			$atts[ 'before' ] . ' ',
-			trim( $atts[ 'sep' ] ) . ' ',
-			$atts[ 'after' ]
-		);
-
-		/** Do nothing if WP_Error object is true */
-		if ( is_wp_error( $terms ) ) {
-				return '';
+		$taxonomy = $atts['taxonomy'];
+		if ( ! is_object_in_taxonomy( get_post_type(), $taxonomy ) ) {
+			return '';
 		}
-
-		/** Do nothing if terms list is empty */
-		if ( empty( $terms ) ) {
-				return '';
+		$terms = get_the_term_list( get_the_ID(), $taxonomy, esc_html( $atts['before'] ) . ' ', esc_html( $atts['sep'] ), esc_html( $atts['after'] ) );
+		$html = $terms;
+		if ( is_wp_error( $terms ) || ! $terms ) {
+			return '';
 		}
-
-		/*
-		$output = sprintf(
-			'<span %s>%s</span>',
-			ddw_bse_attr( 'entry-terms' ),
-			$terms
-		);
-		*/
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="entry-terms bse-post-terms%2$s">%3$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			$terms
-		);
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_terms',
-			$output,
-			$terms, 		// additional param
-			$atts 			// additional param
-		);
-
+		$output = ddw_bse_metadata_wrapper( $atts, 'entry-terms bse-post-terms', $html, false );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_terms', $output, $atts );
 	}  // end function
 
 endif;
@@ -866,24 +598,18 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_edit' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-edit', 'ddw_bse_shortcode_post_edit' );
 	/**
-	 * Shortcode to output the edit post link for logged in users.
-	 *
-	 * Function code based on: Genesis Framework by StudioPress (studiopress.com)
-	 * @link    https://toolbarextras.com/go/genesis/
-	 * @license GPLv2-or-later
+	 * Capture WordPress’s edit link when permitted by capabilities and the existing filter.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `post_edit` shortcode, or empty string if `genesis_edit_post_link` filter returns `false`.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_edit( $atts ) {
-
-		/** Bail early if deactivated via our filter */
-		if ( ! apply_filters( 'bse/filter/edit_post_link', TRUE ) ) {
-			return '';
-		}
-
+		/**
+		 * Resolve the existing shortcode default attributes.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_edit',
 			[
@@ -894,31 +620,30 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_edit' ) ) :
 				'wrapper' => 'span',
 			]
 		);
-
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-edit' );
-
-		/** Create the Edit link via Output Buffering (we have no chance...) */
+		/**
+		 * Enable the edit link when the current user can edit the item.
+		 * @since 1.0.0
+		 * @param bool $enabled Whether the link is enabled.
+		 */
+		if ( ! apply_filters( 'bse/filter/edit_post_link', true ) ) {
+			return '';
+		}
 		ob_start();
-		edit_post_link( $atts[ 'label' ], $atts[ 'before' ], $atts[ 'after' ] );
-		$edit = ob_get_clean();
-
-		/** Prepare output */
-		$output = sprintf(
-			'<%1$s class="bse-post-edit%2$s">%3$s</%1$s>',
-			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
-			! empty( $atts[ 'class' ] ) ? ' ' . esc_attr( ddw_bse_sanitize_html_classes( $atts[ 'class' ], 'string' ) ) : '',
-			$edit
-		);
-
-		//$output = $edit;
-
-		/** Return the output - filterable */
-		return apply_filters(
-			'bse/filter/shortcode/post_edit',
-			$output,
-			$atts 			// additional param
-		);
-
+		try {
+			edit_post_link( esc_html( $atts['label'] ), esc_html( $atts['before'] ), esc_html( $atts['after'] ) );
+			$html = ob_get_contents();
+		} finally {
+			ob_end_clean();
+		}
+		$output = ddw_bse_metadata_wrapper( $atts, 'bse-post-edit', $html, false );
+		/**
+		 * Filter rendered shortcode output for trusted PHP integrations.
+		 * @since 1.0.0
+		 * @param string $output Rendered markup. Return replacement markup.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
+		return apply_filters( 'bse/filter/shortcode/post_edit', $output, $atts );
 	}  // end function
 
 endif;
@@ -928,20 +653,20 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-post-link', 'ddw_bse_shortcode_post_link' );
 	/**
-	 * Shortcode to output the current number of all items of a given post type
-	 *   for a given post status.
+	 * Render a link to readable content selected by ID or published slug.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_get_post_id_by_slug()
-	 *
-	 * @param array  $atts Array of Shortcode attributes.
-	 * @param string $content Content of Shortcode.
-	 * @return string Filterable text string of user's ID.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @param string|null $content Optional enclosed text; unused by this callback.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_post_link( $atts, $content ) {
 
-		/** Set default shortcode attributes */
+		/**
+		 * Filter shortcode defaults/post link while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/post_link',
 			[
@@ -959,7 +684,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 			]
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-post-link' );
 
 		$target = sprintf(
@@ -980,6 +704,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 
 		if ( $post_id > 0 ) {
 
+			if ( ! ddw_bse_readable_item( $post_id ) ) { return ''; }
 			$permalink = get_permalink( $post_id );
 			$title     = get_the_title( $post_id );
 
@@ -1004,7 +729,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 			esc_html( ( empty( $atts[ 'text' ] ) ) ? (string) $title : $atts[ 'text' ] )
 		);
 
-		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-post-link%2$s">%3$s%4$s%5$s</%1$s>',
 			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
@@ -1014,7 +738,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/post_link',
 			$output,

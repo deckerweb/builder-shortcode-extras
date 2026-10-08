@@ -21,8 +21,14 @@ final class GitHubUpdates {
 
 	/** Load the shared versioned class once, including beside other deckerweb plugins. @return void */
 	public function boot(): void {
+		if ( ! is_admin() && ! wp_doing_cron() && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { return; }
 		if ( ! class_exists( '\Deckerweb\GitHubReleaseUpdater\V2\Updater' ) ) {
 			require_once BSE_PLUGIN_DIR . 'includes/deckerweb-github-release-updater-v2.php';
+		}
+		if ( ! defined( 'Deckerweb\\GitHubReleaseUpdater\\V2\\Updater::SUPPORTS_HOST_TRANSLATIONS' ) || ! \Deckerweb\GitHubReleaseUpdater\V2\Updater::SUPPORTS_HOST_TRANSLATIONS ) {
+			add_action( 'admin_notices', array( $this, 'compatibility_notice' ) );
+			add_action( 'network_admin_notices', array( $this, 'compatibility_notice' ) );
+			return;
 		}
 		try {
 			$updater = new \Deckerweb\GitHubReleaseUpdater\V2\Updater(
@@ -30,15 +36,27 @@ final class GitHubUpdates {
 				self::REPOSITORY,
 				'Builder Shortcode Extras',
 				__( 'Small dynamic helpers for your WordPress website. Find, configure and copy useful shortcodes.', 'builder-shortcode-extras' ),
-				$this->artwork()
+				$this->artwork(),
+				array( 'translate' => require BSE_PLUGIN_DIR . 'includes/updater-translations.php' )
 			);
 		} catch ( \InvalidArgumentException $error ) {
-			// An unsupported directory must not break the admin or login design.
+			add_action( 'admin_notices', array( $this, 'compatibility_notice' ) );
+			add_action( 'network_admin_notices', array( $this, 'compatibility_notice' ) );
 			return;
 		}
 		$updater->register();
 		add_filter( 'http_request_args', array( $this, 'request_limits' ), 20, 2 );
 		add_filter( 'upgrader_source_selection', array( $this, 'validate_source' ), 30, 4 );
+	}
+
+	/**
+	 * Explain a shared updater conflict without exposing exception details.
+	 *
+	 * @return void Outputs a notice only to administrators allowed to update plugins.
+	 */
+	public function compatibility_notice(): void {
+		if ( ! current_user_can( 'update_plugins' ) ) { return; }
+		echo '<div class="notice notice-warning"><p>' . esc_html__( 'Builder Shortcode Extras cannot use the shared updater loaded by another plugin. Update the other deckerweb plugins or install the latest plugin ZIP manually.', 'builder-shortcode-extras' ) . '</p></div>';
 	}
 
 	/**
@@ -66,7 +84,7 @@ final class GitHubUpdates {
 	 *
 	 * @param array  $args WordPress HTTP arguments.
 	 * @param string $url Requested URL.
-	 * @return array
+	 * @return array Bounded repository metadata arguments; other requests remain unchanged.
 	 */
 	public function request_limits( array $args, string $url ): array {
 		if ( 'https://api.github.com/repos/deckerweb/builder-shortcode-extras/releases/latest' === $url ) {
@@ -85,12 +103,16 @@ final class GitHubUpdates {
 	 *
 	 * @param mixed $source Normalized directory or WP_Error from the shared updater.
 	 * @param mixed $remote_source Unused extraction root.
-	 * @param mixed $upgrader Unused WordPress upgrader instance.
+	 * @param mixed $upgrader WordPress upgrader; identifies its native bulk-update context.
 	 * @param array $hook_extra Upgrade context.
 	 * @return mixed Original source or localized WP_Error.
 	 */
 	public function validate_source( $source, $remote_source, $upgrader, array $hook_extra ) {
-		if ( ( $hook_extra['plugin'] ?? '' ) !== plugin_basename( BSE_PLUGIN_FILE ) || ( $hook_extra['type'] ?? '' ) !== 'plugin' || ( $hook_extra['action'] ?? '' ) !== 'update' ) {
+		if ( ( $hook_extra['plugin'] ?? '' ) !== plugin_basename( BSE_PLUGIN_FILE )
+			|| ( isset( $hook_extra['type'] ) && 'plugin' !== $hook_extra['type'] )
+			|| ( isset( $hook_extra['action'] ) && 'update' !== $hook_extra['action'] )
+			|| ( ! isset( $hook_extra['type'], $hook_extra['action'] ) && ! ( $upgrader instanceof \Plugin_Upgrader && true === $upgrader->bulk ) )
+		) {
 			return $source;
 		}
 		if ( is_wp_error( $source ) ) {

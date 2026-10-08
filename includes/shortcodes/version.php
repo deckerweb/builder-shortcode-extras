@@ -16,20 +16,19 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 
 	ddw_bse_register_shortcode( 'bse-version', 'ddw_bse_shortcode_version' );
 	/**
-	 * Shortcode to output a version number for various types and occeasions,
-	 *   like WordPress, PHP, MySQL/ MariaDB, Database, Server, Elementor,
-	 *   Genesis Framework, Astra Theme amongst others.
+	 * Render WordPress, PHP, database or an allowed version constant as escaped text.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses ddw_bse_info_values()
-	 *
-	 * @param array $atts Array of Shortcode attributes.
-	 * @return string Filterable text string of user's last name.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_version( $atts ) {
 
-		/** Set default shortcode attributes */
+		/**
+		 * Filter shortcode defaults/version while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/version',
 			[
@@ -44,7 +43,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 			]
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-version' );
 
 		global $wpdb;
@@ -84,7 +82,10 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 		} elseif ( 'constant' === $type ) {
 
 			$constant = strtoupper( sanitize_key( $atts[ 'constant' ] ) );
-			$constant = defined( $constant ) ? constant( $constant ) : '';
+			// Content authors may read version constants, never installation secrets.
+			$version_name = preg_match( '/(?:^|_)(?:VERSION|VER)$/D', $constant );
+			$trusted_default = ! empty( $defaults['constant'] ) && $constant === strtoupper( sanitize_key( $defaults['constant'] ) );
+			$constant = ( $version_name || $trusted_default ) && defined( $constant ) ? constant( $constant ) : '';
 			$version  = $constant ? $constant : __( '(Not defined)', 'builder-shortcode-extras' );
 
 		} elseif ( 'db_current' === $type ) {
@@ -102,7 +103,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 
 		}  // end if
 
-		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-version%2$s">%3$s%4$s%5$s</%1$s>',
 			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
@@ -112,7 +112,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_version' ) ) {
 			( ! empty( $atts[ 'after' ] ) ) ? ' ' . esc_html( $atts[ 'after' ] ) : ''
 		);
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/version',
 			$output,

@@ -16,17 +16,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_footer' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-genesis-footer', 'ddw_bse_shortcode_genesis_footer' );
 	/**
-	 * Shortcode to output the complete Genesis footer text, taken from the
-	 *   Genesis Customizer settings since Genesis 3.1.0 or higher.
+	 * Render the configured Genesis footer text through its public theme API.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses genesis_get_option()
-	 * @uses ddw_bse_sanitize_html_classes()
-	 * @uses genesis_strip_p_tags()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `footer_copyright` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_genesis_footer( $atts ) {
 
@@ -35,6 +29,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_footer' ) ) :
 			return '';
 		}
 
+		/**
+		 * Filter shortcode defaults/genesis footer while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/genesis_footer',
 			[
@@ -43,12 +42,10 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_footer' ) ) :
 			]
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-genesis-footer' );
 
 		$creds_text = wp_kses_post( genesis_get_option( 'footer_text' ) );
 
-		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-genesis-footer%2$s">%3$s</%1$s>',
 			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
@@ -56,7 +53,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_footer' ) ) :
 			do_shortcode( genesis_strip_p_tags( $creds_text ) )
 		);
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/genesis_footer',
 			$output,
@@ -72,15 +74,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 
 	ddw_bse_register_shortcode( 'bse-genesis-breadcrumbs', 'ddw_bse_shortcode_genesis_breadcrumbs' );
 	/**
-	 * Shortcode to output the complete Genesis Breadcrumb container.
+	 * Capture Genesis breadcrumbs through its public theme API.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @uses genesis_do_breadcrumbs()
-	 * @uses ddw_bse_sanitize_html_classes()
-	 *
-	 * @param array|string $atts Shortcode attributes. Empty string if no attributes.
-	 * @return string Output for `breadcrumbs_copyright` shortcode.
+	 * @param array|string|null $atts Shortcode attributes; empty string or null when omitted.
+	 * @return string Rendered output; empty when unavailable.
 	 */
 	function ddw_bse_shortcode_genesis_breadcrumbs( $atts ) {
 
@@ -89,6 +87,11 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 			return '';
 		}
 
+		/**
+		 * Filter shortcode defaults/genesis breadcrumbs while preserving its value contract.
+		 * @since 1.0.0
+		 * @param array $defaults Default attribute map. Return the replacement map.
+		 */
 		$defaults = apply_filters(
 			'bse/filter/shortcode_defaults/genesis_breadcrumbs',
 			[
@@ -97,7 +100,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 			]
 		);
 
-		/** Default shortcode attributes */
 		$atts = shortcode_atts( $defaults, $atts, 'bse-genesis-breadcrumbs' );
 
 		/** Create the Edit link via Output Buffering (we have no chance...) */
@@ -105,7 +107,6 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 		genesis_do_breadcrumbs();
 		$genesis_breadcrumbs = ob_get_clean();
 
-		/** Prepare output */
 		$output = sprintf(
 			'<%1$s class="bse-genesis-breadcrumbs%2$s">%3$s</%1$s>',
 			ddw_bse_wrapper_tag( $atts[ 'wrapper' ] ),
@@ -113,7 +114,12 @@ if ( ! function_exists( 'ddw_bse_shortcode_genesis_breadcrumbs' ) ) :
 			$genesis_breadcrumbs
 		);
 
-		/** Return the output - filterable */
+		/**
+		 * Filter shortcode output; callbacks are trusted developer code.
+		 * @since 1.0.0
+		 * @param string $output HTML/text value. Return the replacement output.
+		 * @param array $atts Resolved shortcode attributes.
+		 */
 		return apply_filters(
 			'bse/filter/shortcode/genesis_breadcrumbs',
 			$output,

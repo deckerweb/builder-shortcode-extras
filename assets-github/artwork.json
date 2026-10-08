@@ -1,0 +1,16 @@
+{
+  "copyright": "2019–2026 David Decker – DECKERWEB",
+  "license": "GPL-2.0-or-later",
+  "background": "#2b2251",
+  "accent": "#5eead4",
+  "github_size": [
+    1280,
+    640
+  ],
+  "title_layout": "single line",
+  "languages": [
+    "en",
+    "de"
+  ],
+  "font_files_bundled": false
+}

@@ -3,23 +3,52 @@
 namespace Deckerweb\BuilderShortcodeExtras;
 defined( 'ABSPATH' ) || exit;
 
+/** Own the read-only admin tools screen, its scoped assets and product footer. */
 final class Tools {
+	/**
+	 * Register the shortcode tools menu, assets and plugin action links.
+	 *
+	 * @return void Attaches admin-only hooks.
+	 */
 	public static function register(): void {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
+		add_action( 'network_admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( BSE_PLUGIN_FILE ), array( __CLASS__, 'links' ) );
+		add_filter( 'network_admin_plugin_action_links_' . plugin_basename( BSE_PLUGIN_FILE ), array( __CLASS__, 'links' ) );
 	}
+	/**
+	 * Register the representative tools screen for the current admin scope.
+	 *
+	 * @return void Adds a management or network settings page.
+	 */
 	public static function menu(): void {
+		if ( is_network_admin() ) {
+			add_submenu_page( 'settings.php', 'Builder Shortcode Extras', 'Builder Shortcode Extras', 'manage_network_options', 'builder-shortcode-extras', array( __CLASS__, 'page' ) );
+			return;
+		}
 		add_management_page( 'Builder Shortcode Extras', __( 'Builder Shortcode Extras', 'builder-shortcode-extras' ), 'manage_options', 'builder-shortcode-extras', array( __CLASS__, 'page' ) );
 	}
+	/**
+	 * Prepend the representative Settings link when permitted in this admin scope.
+	 *
+	 * @param array $links Existing plugin action links.
+	 * @return array Action links with the permitted Settings link first.
+	 */
 	public static function links( array $links ): array {
-		if ( current_user_can( 'manage_options' ) ) {
-			$links = array( 'bse_tools' => '<a href="' . esc_url( admin_url( 'tools.php?page=builder-shortcode-extras' ) ) . '">' . esc_html__( 'Shortcodes', 'builder-shortcode-extras' ) . '</a>' ) + $links;
+		if ( current_user_can( is_network_admin() ? 'manage_network_options' : 'manage_options' ) ) {
+			$links = array( 'bse_tools' => '<a href="' . esc_url( is_network_admin() ? network_admin_url( 'settings.php?page=builder-shortcode-extras' ) : admin_url( 'tools.php?page=builder-shortcode-extras' ) ) . '">' . esc_html__( 'Settings', 'builder-shortcode-extras' ) . '</a>' ) + $links;
 		}
 		return $links;
 	}
+	/**
+	 * Enqueue help assets and catalog data only on the tools screen.
+	 *
+	 * @param string $hook Current admin page hook suffix.
+	 * @return void Enqueues local styles, JavaScript and escaped catalog JSON.
+	 */
 	public static function assets( $hook ): void {
-		if ( 'tools_page_builder-shortcode-extras' !== $hook ) {
+		if ( ! in_array( $hook, array( 'tools_page_builder-shortcode-extras', 'settings_page_builder-shortcode-extras' ), true ) ) {
 			return;
 		}
 		wp_enqueue_style( 'bse-tools', plugins_url( 'assets/admin/tools.css', BSE_PLUGIN_FILE ), array(), BSE_PLUGIN_VERSION );
@@ -35,8 +64,13 @@ final class Tools {
 			),
 		) ) . ';', 'before' );
 	}
+	/**
+	 * Render help and the generator for authorized site or network administrators.
+	 *
+	 * @return void Outputs the read-only tools interface; no settings are written.
+	 */
 	public static function page(): void {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( is_network_admin() ? 'manage_network_options' : 'manage_options' ) ) {
 			return;
 		}
 		$catalog = Catalog::all();
@@ -87,10 +121,15 @@ final class Tools {
 		</div>
 		<?php
 	}
+	/**
+	 * Render product information and localized documentation dialogs.
+	 *
+	 * @return void Emits the tools-page footer and its dialogs.
+	 */
 	private static function footer(): void {
 		$repo = 'https://github.com/deckerweb/builder-shortcode-extras';
 		$guide = Guide::url();
-		echo '<footer class="bse-footer" aria-label="' . esc_attr__( 'Plugin information', 'builder-shortcode-extras' ) . '"><div><strong>Builder Shortcode Extras</strong> <span>' . esc_html__( 'Version', 'builder-shortcode-extras' ) . ' ' . esc_html( BSE_PLUGIN_VERSION ) . '</span> · <a href="' . esc_url( Changelog::url() ) . '" data-bse-document="changelog">' . esc_html__( 'Changelog', 'builder-shortcode-extras' ) . '</a> · <a href="' . esc_url( $guide ) . '" data-bse-document="guide">' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</a><p>' . esc_html__( 'Small dynamic helpers. Ready when you need them.', 'builder-shortcode-extras' ) . '</p></div><div><span>© 2019–2026 <a href="https://github.com/deckerweb" target="_blank" rel="noopener noreferrer">David Decker – DECKERWEB</a></span><a href="' . esc_url( $repo ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Plugin website', 'builder-shortcode-extras' ) . '</a></div></footer>';
+		echo '<footer class="bse-footer" aria-label="' . esc_attr__( 'Plugin information', 'builder-shortcode-extras' ) . '"><div class="bse-footer-product"><img src="' . esc_url( plugins_url( 'assets/icon.svg', BSE_PLUGIN_FILE ) ) . '" alt="" width="52" height="52"><div><strong>Builder Shortcode Extras</strong> <span>' . esc_html__( 'Version', 'builder-shortcode-extras' ) . ' ' . esc_html( BSE_PLUGIN_VERSION ) . '</span> · <a href="' . esc_url( Changelog::url() ) . '" data-bse-document="changelog">' . esc_html__( 'Changelog', 'builder-shortcode-extras' ) . '</a> · <a href="' . esc_url( $guide ) . '" data-bse-document="guide">' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</a><p>' . esc_html__( 'Small dynamic helpers. Ready when you need them.', 'builder-shortcode-extras' ) . '</p></div></div><div><span>© 2019–2026 <a href="https://github.com/deckerweb" target="_blank" rel="noopener noreferrer">David Decker – DECKERWEB</a></span><a href="' . esc_url( $repo ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Plugin website', 'builder-shortcode-extras' ) . '</a></div></footer>';
 		Changelog::dialog();
 		Guide::dialog();
 	}

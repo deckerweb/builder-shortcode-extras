@@ -1,0 +1,241 @@
+{
+  "version": "1.2.0",
+  "requires_wp": "6.7",
+  "requires_php": "8.0",
+  "languages": {
+    "en": {
+      "title": "Builder Shortcode Extras",
+      "slogan": "Small dynamic helpers. Ready when you need them.",
+      "intro": "Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.",
+      "faq": [
+        {
+          "q": "Do I need to configure the plugin?",
+          "a": "No. Open Tools → Builder Shortcode Extras to find or generate a shortcode. The page does not save settings."
+        },
+        {
+          "q": "Where do I paste a shortcode?",
+          "a": "Use a WordPress Shortcode block or a builder field that explicitly supports shortcodes. Arbitrary text, URL and HTML fields do not necessarily execute them."
+        },
+        {
+          "q": "What can the generator create?",
+          "a": "Copyright, publication date, last-updated date, a post/page link and embedded content. Other helpers remain available in the searchable catalog."
+        },
+        {
+          "q": "Can I search in German?",
+          "a": "Yes. The interface and task descriptions follow your WordPress admin language. Shortcode and attribute names remain unchanged."
+        },
+        {
+          "q": "How do I find a post or template ID?",
+          "a": "Open the item in WordPress. The number after post= in the editor URL is its ID. Supported template list tables also show shortcode examples."
+        },
+        {
+          "q": "Which post does a date refer to?",
+          "a": "Leave post_id empty to use the current WordPress post. Specify an ID for another item. A page-builder preview may have a different context from the final page."
+        },
+        {
+          "q": "Can I use a relative date?",
+          "a": "Choose Relative date in the generator or use format=\"relative\". Relative output uses the existing elapsed-time helper."
+        },
+        {
+          "q": "Can I change the HTML and classes?",
+          "a": "Most text helpers accept wrapper, class, before and after. Multiple classes are supported. Unsafe or unsupported wrapper tags fall back to span. This version does not add a wrapper-free mode."
+        },
+        {
+          "q": "Does it load frontend CSS or JavaScript?",
+          "a": "The help and generator load assets only on their own admin page. Embedded builder templates may load their builder’s own assets, and the comment form may rely on WordPress resources."
+        },
+        {
+          "q": "Why is embedded content empty?",
+          "a": "Check the ID, publication status and required builder. Visitors cannot embed private, draft, trashed or password-protected content without the required access. Recursive references stop with empty output."
+        },
+        {
+          "q": "Are native blocks supported?",
+          "a": "Yes. Embedded content is passed through native block rendering and shortcode processing. Full theme content filters are intentionally not applied."
+        },
+        {
+          "q": "Does Elementor need Pro?",
+          "a": "The bse-elementor-template integration is registered with Elementor Free when Pro is inactive. The generic content helper can route Elementor-built items when Elementor is available."
+        },
+        {
+          "q": "Is Beaver Builder supported?",
+          "a": "Yes. Items with _fl_builder_enabled use Beaver’s own saved-layout shortcode. Merely installing Beaver does not reroute ordinary posts. No additional Beaver features were added."
+        },
+        {
+          "q": "Is Genesis still supported?",
+          "a": "Yes. The existing Genesis footer and breadcrumb helpers remain available with Genesis 3.1+. They are maintained as compatibility features."
+        },
+        {
+          "q": "Are synced patterns supported with Classic Editor?",
+          "a": "The bse-wpblock helper is available whenever WordPress registers the wp_block post type. A legacy extra Blocks menu is no longer added."
+        },
+        {
+          "q": "Why is there no live preview in the generator?",
+          "a": "The generator constructs valid shortcode syntax locally. View the actual output on a test page with the intended post and builder context."
+        },
+        {
+          "q": "How does copying work without HTTPS?",
+          "a": "The interface tries the browser clipboard, then a local copy fallback. If copying is unavailable, it selects the text for manual copying. Examples remain readable without JavaScript."
+        },
+        {
+          "q": "How do updates work?",
+          "a": "The bundled deckerweb updater checks this public GitHub repository for newer stable releases through the regular WordPress update system. It does not automatically install prereleases or enable automatic updates. Test releases are installed manually."
+        },
+        {
+          "q": "What is the deckerweb Library?",
+          "a": "The embedded deckerweb Library adds a curated catalog under Plugins → Add New → deckerweb. Its preferences live under Settings → deckerweb Library, or Network Settings on Multisite. Opening the catalog installs nothing. Installation and activation are separate actions."
+        },
+        {
+          "q": "Does the plugin send usage data?",
+          "a": "BSE has no usage telemetry. The updater requests GitHub release metadata. The Library uses its bundled catalog by default; online catalog updates require explicit configuration. Servers naturally see the requesting IP address."
+        },
+        {
+          "q": "What changed for existing installations?",
+          "a": "Names, aliases and output filters remain. PHP 8.0 is now required. Invalid wrappers fall back to span, text is escaped more consistently, inaccessible embedded content is withheld, and wp-admin shortcode registration follows its opt-in filter."
+        },
+        {
+          "q": "Can I enable text helpers in wp-admin?",
+          "a": "Developers can return true from bse/filter/shortcodes_in_admin. Content embedding, navigation, comment forms and builder/Genesis rendering remain excluded there. REST requests remain available for frontend rendering."
+        },
+        {
+          "q": "Is multisite supported?",
+          "a": "BSE can be activated per website or network-wide. Content IDs belong to the current website. Website administrators use Tools → Builder Shortcode Extras; super administrators also have Network Settings → Builder Shortcode Extras. Library preferences are shared per network."
+        },
+        {
+          "q": "What are the requirements and support scope?",
+          "a": "WordPress 6.7+ and PHP 8.0+. Library installation requires ZipArchive. Report reproducible issues on GitHub with plugin, WordPress, PHP and builder versions. Commercial builder adapters were checked with representative fixtures, not licensed builder installations."
+        },
+        {
+          "q": "What happens to data when I remove the plugin?",
+          "a": "BSE saves no shortcode or generator settings. Deactivation preserves all data. Uninstall clears only its temporary updater cache and releases Library ownership. Other installed Library hosts, even inactive, protect shared data. The final host removes temporary Library data; preferences remain unless the Library deletion option was enabled. Posts, shortcodes, installed plugins and foreign data remain."
+        },
+        {
+          "q": "Can the version helper display credentials?",
+          "a": "No. Shortcode attributes can select constants whose names end in VERSION or VER. Other constants require an explicit trusted PHP default filter. Do not use developer filters to expose installation secrets."
+        },
+        {
+          "q": "How do I report a security issue?",
+          "a": "Use Security → Advisories → Report a vulnerability in this plugin’s GitHub repository. Include plugin, Library and environment versions plus a minimal reproduction, without credentials. Keep details out of public issues. See SECURITY.md."
+        }
+      ],
+      "changelog": "# Changelog\n\n## 1.2.0 — 2026-10-01\n\n- **New:** Searchable shortcode help with copy buttons and a local generator for copyright, publication date, modification date, post links and embedded content.\n- **New:** Embedded deckerweb Plugin Library 0.2.0 and shared deckerweb GitHub Release Updater v2.\n- **Improved:** Unified wrapper validation, multiple CSS classes, boolean attributes and escaped text boundaries; existing shortcode names, aliases and output filters remain.\n- **Improved:** Native block rendering, builder-specific routing and guarded content embedding with direct/indirect recursion protection.\n- **Improved:** Local changelog and documentation, with informal and formal German translations.\n- **Fixed:** Corrected admin registration policy, persistent integration normalization and placeholder integration registration.\n- **Fixed:** Publication dates honor explicit post IDs; slug links resolve correctly; missing IDs and unknown post-count statuses are handled.\n- **Fixed:** Undefined version constants, database version lookup, user/fallback escaping, date labels, link text and tooltip escaping.\n- **Fixed:** Site-updated dates use the WordPress timezone and return no false date when no published item exists.\n- **Misc:** Requires WordPress 6.7+ and PHP 8.0+; the library requires PHP 8.0. No frontend assets are added by the helper UI.\n- **Misc:** Retains Genesis and Beaver compatibility, removes the duplicate Astra loader, legacy Blocks menu and unrelated promotion/Core admin overrides.\n\n## 1.1.0 — 2025-03-15\n\n- **Improved:** Restored shortcode compatibility.\n- **Misc:** Moved distribution away from WordPress.org and removed the old DDWlib recommendation installer.\n- **Misc:** Removed the custom translation loader; retained packaged translations.\n\n## 1.0.0 — 2019-09-10\n\n- **New:** Initial plugin release with 25 general helpers and 5 integration shortcodes.\n\n## 0.9.0 — 2019-09-09\n\n- **New:** First public beta on GitHub.\n",
+      "reference": "\n| Shortcode | Attributes | Prerequisite |\n|---|---|---|\n| `bse-nav-menu` | `before`, `after`, `class`, `wrapper`, `menu`, `container`, `container_class`, `container_id`, `menu_class`, `menu_id`, `fallback_cb`, `item_before`, `item_after`, `link_before`, `link_after`, `depth`, `walker`, `theme_location`, `items_wrap`, `item_spacing` | WordPress |\n| `bse-item-content` | `id`, `css` | WordPress |\n| `bse-comment-form` | `before`, `after`, `class`, `wrapper`, `post_id`, `id_form`, `class_form`, `title_reply`, `title_reply_to`, `cancel_reply_link`, `label_submit` | WordPress |\n| `bse-elementor-template` | `id`, `css` | Elementor Free |\n| `bse-genesis-footer` | `class`, `wrapper` | Genesis 3.1+ |\n| `bse-genesis-breadcrumbs` | `class`, `wrapper` | Genesis 3.1+ |\n| `bse-copyright` | `after`, `before`, `copyright`, `first`, `class`, `wrapper` | WordPress |\n| `bse-site-title` | `after`, `before`, `class`, `wrapper` | WordPress |\n| `bse-site-slogan` | `after`, `before`, `class`, `wrapper` | WordPress |\n| `bse-home-link` | `after`, `before`, `text`, `target`, `rel`, `class`, `wrapper` | WordPress |\n| `bse-loginout` | `after`, `before`, `login_text`, `logout_text`, `login_target`, `logout_target`, `login_redirect`, `logout_redirect`, `class`, `wrapper` | WordPress |\n| `bse-site-updated` | `before`, `after`, `type`, `label_date`, `date_format`, `label_time`, `time_format`, `tooltip`, `class`, `wrapper` | WordPress |\n| `bse-post-count` | `post_type`, `status`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-post-date` | `after`, `before`, `post_id`, `format`, `label`, `relative_depth`, `class`, `wrapper` | WordPress |\n| `bse-post-time` | `after`, `before`, `post_id`, `format`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-modified-date` | `after`, `before`, `post_id`, `format`, `label`, `relative_depth`, `class`, `wrapper` | WordPress |\n| `bse-item-last-updated` | `after`, `before`, `post_id`, `format`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-modified-time` | `after`, `before`, `post_id`, `format`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-author` | `after`, `before`, `class`, `wrapper` | WordPress |\n| `bse-post-author-link` | `after`, `before`, `target`, `rel`, `class`, `wrapper` | WordPress |\n| `bse-post-author-posts-link` | `after`, `before`, `target`, `rel`, `class`, `wrapper` | WordPress |\n| `bse-post-tags` | `after`, `before`, `sep`, `class`, `wrapper` | WordPress |\n| `bse-post-categories` | `sep`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-post-terms` | `after`, `before`, `sep`, `taxonomy`, `class`, `wrapper` | WordPress |\n| `bse-post-edit` | `after`, `before`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-link` | `id`, `slug`, `post_type`, `privacy`, `text`, `target`, `rel`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-user` | `user_id`, `field`, `default`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-userid` |  | WordPress |\n| `bse-email` |  | WordPress |\n| `bse-login` |  | WordPress |\n| `bse-displayname` |  | WordPress |\n| `bse-firstname` |  | WordPress |\n| `bse-lastname` |  | WordPress |\n| `bse-version` | `type`, `plugin`, `constant`, `custom`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-wpblock` | `id`, `css` | WordPress synced patterns |\n| `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |\n"
+    },
+    "de": {
+      "title": "Builder Shortcode Extras",
+      "slogan": "Kleine dynamische Helfer. Schnell eingesetzt.",
+      "intro": "Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.",
+      "faq": [
+        {
+          "q": "Muss ich das Plugin konfigurieren?",
+          "a": "Nein. Öffne Werkzeuge → Builder Shortcode Extras, um einen Shortcode zu finden oder zu erstellen. Die Seite speichert keine Einstellungen."
+        },
+        {
+          "q": "Wo füge ich einen Shortcode ein?",
+          "a": "In einen WordPress-Shortcode-Block oder ein Builder-Feld mit ausdrücklicher Shortcode-Unterstützung. Beliebige Text-, URL- und HTML-Felder führen Shortcodes nicht automatisch aus."
+        },
+        {
+          "q": "Was kann der Generator erstellen?",
+          "a": "Copyright, Veröffentlichungsdatum, Änderungsdatum, einen Beitrags-/Seiten-Link und Inhaltseinbettungen. Weitere Helfer findest du in der durchsuchbaren Übersicht."
+        },
+        {
+          "q": "Kann ich auf Deutsch suchen?",
+          "a": "Ja. Oberfläche und Aufgabenbeschreibungen folgen der WordPress-Administrationssprache. Shortcode- und Attributnamen bleiben unverändert."
+        },
+        {
+          "q": "Wo finde ich eine Beitrags- oder Vorlagen-ID?",
+          "a": "Öffne den Inhalt in WordPress. Die Zahl hinter post= in der Editor-Adresse ist seine ID. Unterstützte Vorlagenlisten zeigen zusätzlich Shortcode-Beispiele."
+        },
+        {
+          "q": "Auf welchen Beitrag bezieht sich ein Datum?",
+          "a": "Ohne post_id auf den aktuellen WordPress-Beitrag. Gib eine ID für einen anderen Inhalt an. Der Kontext in einer Builder-Vorschau kann von der fertigen Seite abweichen."
+        },
+        {
+          "q": "Gibt es relative Datumsangaben?",
+          "a": "Wähle Relatives Datum im Generator oder verwende format=\"relative\". Die Ausgabe verwendet den vorhandenen Helfer für verstrichene Zeit."
+        },
+        {
+          "q": "Kann ich HTML und Klassen ändern?",
+          "a": "Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Diese Version ergänzt keinen Modus ohne Wrapper."
+        },
+        {
+          "q": "Werden Frontend-CSS oder JavaScript geladen?",
+          "a": "Hilfe und Generator laden Ressourcen nur auf ihrer eigenen Admin-Seite. Eingebettete Builder-Vorlagen können Ressourcen ihres Builders laden; das Kommentarformular kann WordPress-Ressourcen benötigen."
+        },
+        {
+          "q": "Warum bleibt eine Inhaltseinbettung leer?",
+          "a": "Prüfe ID, Veröffentlichungsstatus und erforderlichen Builder. Private, unveröffentlichte, gelöschte oder passwortgeschützte Inhalte werden Besuchern ohne erforderlichen Zugriff nicht ausgegeben. Rekursive Referenzen werden gestoppt."
+        },
+        {
+          "q": "Werden native Blöcke unterstützt?",
+          "a": "Ja. Eingebettete Inhalte werden durch die native Block-Ausgabe und Shortcode-Verarbeitung geführt. Die vollständigen Inhaltsfilter des Themes werden bewusst nicht angewendet."
+        },
+        {
+          "q": "Brauche ich Elementor Pro?",
+          "a": "bse-elementor-template wird bei Elementor Free ohne aktives Pro registriert. Der allgemeine Inhaltshelfer kann Elementor-Inhalte rendern, wenn Elementor verfügbar ist."
+        },
+        {
+          "q": "Bleibt Beaver Builder unterstützt?",
+          "a": "Ja. Inhalte mit _fl_builder_enabled verwenden Beavers eigenen Layout-Shortcode. Die Installation von Beaver verändert die Ausgabe normaler Beiträge nicht. Zusätzliche Beaver-Funktionen wurden nicht ergänzt."
+        },
+        {
+          "q": "Bleibt Genesis unterstützt?",
+          "a": "Ja. Die vorhandenen Footer- und Breadcrumb-Helfer bleiben mit Genesis 3.1+ als Kompatibilitätsfunktionen erhalten."
+        },
+        {
+          "q": "Funktionieren synchronisierte Vorlagen mit Classic Editor?",
+          "a": "bse-wpblock ist verfügbar, sobald WordPress den Inhaltstyp wp_block registriert. Das zusätzliche alte Blocks-Menü entfällt."
+        },
+        {
+          "q": "Warum hat der Generator keine Live-Vorschau?",
+          "a": "Der Generator erstellt die Syntax lokal. Prüfe die Ausgabe auf einer Seite im vorgesehenen Beitrags- und Builder-Kontext."
+        },
+        {
+          "q": "Wie funktioniert Kopieren ohne HTTPS?",
+          "a": "Zuerst wird die Browser-Zwischenablage versucht, danach eine lokale Kopierfunktion. Ist beides nicht verfügbar, wird der Text zum manuellen Kopieren markiert. Beispiele bleiben ohne JavaScript lesbar."
+        },
+        {
+          "q": "Wie funktionieren Updates?",
+          "a": "Der mitgelieferte deckerweb Updater prüft das öffentliche GitHub-Repository auf neuere stabile Releases über die normale WordPress-Updateverwaltung. Er installiert keine Vorabversionen automatisch und aktiviert keine automatischen Updates. Testversionen installierst du manuell."
+        },
+        {
+          "q": "Was ist die deckerweb Library?",
+          "a": "Die eingebettete deckerweb Library ergänzt einen Katalog unter Plugins → Installieren → deckerweb. Ihre Optionen liegen unter Einstellungen → deckerweb Library, bei Multisite in den Netzwerkeinstellungen. Das Öffnen des Katalogs installiert nichts. Installation und Aktivierung sind getrennte Aktionen."
+        },
+        {
+          "q": "Sendet das Plugin Nutzungsdaten?",
+          "a": "BSE enthält keine Nutzungstelemetrie. Der Updater fragt GitHub-Release-Metadaten ab. Die Library nutzt standardmäßig ihren lokalen Katalog; Online-Katalogupdates erfordern eine ausdrückliche Konfiguration. Server sehen technisch die anfragende IP-Adresse."
+        },
+        {
+          "q": "Was ändert sich für bestehende Installationen?",
+          "a": "Namen, Aliase und Ausgabefilter bleiben. PHP 8.0 ist jetzt erforderlich. Ungültige Wrapper werden zu span, Text wird konsistenter escaped, unzugängliche Inhalte werden nicht eingebettet und die Admin-Registrierung folgt dem Opt-in-Filter."
+        },
+        {
+          "q": "Kann ich Texthelfer im Backend aktivieren?",
+          "a": "Entwickler können über bse/filter/shortcodes_in_admin true zurückgeben. Inhaltseinbettungen, Navigation, Kommentarformulare sowie Builder-/Genesis-Ausgaben bleiben dort ausgeschlossen. REST-Anfragen bleiben für Frontend-Ausgaben verfügbar."
+        },
+        {
+          "q": "Funktioniert das Plugin mit Multisite?",
+          "a": "BSE lässt sich je Website oder netzwerkweit aktivieren. Inhalts-IDs beziehen sich auf die aktuelle Website. Website-Administratoren verwenden Werkzeuge → Builder Shortcode Extras; Super-Administratoren zusätzlich Netzwerkeinstellungen → Builder Shortcode Extras. Die Library-Optionen gelten je Netzwerk."
+        },
+        {
+          "q": "Welche Anforderungen und welchen Support gibt es?",
+          "a": "WordPress 6.7+ und PHP 8.0+. Die Library-Installation benötigt ZipArchive. Melde reproduzierbare Fehler auf GitHub mit Plugin-, WordPress-, PHP- und Builder-Version. Kommerzielle Builder wurden mit repräsentativen Testfällen geprüft, nicht mit lizenzierten Installationen."
+        },
+        {
+          "q": "Was passiert beim Entfernen mit den Daten?",
+          "a": "BSE speichert keine Shortcode- oder Generator-Einstellungen. Deaktivierung erhält alle Daten. Deinstallation entfernt nur den temporären BSE-Updater-Cache und gibt die Library-Zuständigkeit frei. Andere installierte Library-Hosts schützen gemeinsame Daten, auch wenn sie deaktiviert sind. Der letzte Host entfernt temporäre Library-Daten; Optionen bleiben erhalten, außer die Löschoption der Library war aktiviert. Beiträge, Shortcodes, installierte Plugins und fremde Daten bleiben erhalten."
+        },
+        {
+          "q": "Kann der Versionshelfer Zugangsdaten anzeigen?",
+          "a": "Nein. Shortcode-Attribute können Konstanten mit Namen auswählen, die auf VERSION oder VER enden. Andere Konstanten benötigen einen ausdrücklich gesetzten vertrauenswürdigen PHP-Standardfilter. Gib über Entwicklerfilter keine Installationsgeheimnisse frei."
+        },
+        {
+          "q": "Wie melde ich eine Sicherheitslücke?",
+          "a": "Verwende Security → Advisories → Report a vulnerability im GitHub-Repository dieses Plugins. Nenne Plugin-, Library- und Umgebungsversionen und eine minimale Reproduktion ohne Zugangsdaten. Poste Sicherheitsdetails nicht in öffentlichen Issues. Siehe SECURITY.md."
+        }
+      ],
+      "changelog": "# Änderungsprotokoll\n\n## 1.2.0 — 01.10.2026\n\n- **Neu:** Durchsuchbare Shortcode-Hilfe mit Kopierfunktion und lokalem Generator für Copyright, Veröffentlichungsdatum, Änderungsdatum, Beitragslinks und Inhaltseinbettung.\n- **Neu:** deckerweb Plugin Library 0.2.0 und gemeinsamer deckerweb GitHub Release Updater v2 eingebunden.\n- **Verbessert:** Einheitliche Wrapper-Prüfung, mehrere CSS-Klassen, boolesche Attribute und bereinigte Textausgabe; Shortcode-Namen, Aliase und Ausgabefilter bleiben erhalten.\n- **Verbessert:** Native Blöcke werden gerendert; Builder werden passend zum Inhalt gewählt; direkte und indirekte rekursive Einbettung wird verhindert.\n- **Verbessert:** Lokaler Änderungsverlauf und Dokumentation sowie deutsche und formell deutsche Übersetzungen.\n- **Behoben:** Admin-Registrierung, Rückgabe bereinigter Integrationsdaten und versehentlich registrierter Platzhalter korrigiert.\n- **Behoben:** Veröffentlichungsdatum berücksichtigt die Beitrags-ID; Slug-Links werden korrekt aufgelöst; ungültige IDs und unbekannte Zählstatus werden behandelt.\n- **Behoben:** Nicht definierte Versionskonstanten, Datenbankversionsabfrage sowie Escaping von Benutzerwerten, Ersatztext, Datumsbeschriftungen, Linktext und Tooltip korrigiert.\n- **Behoben:** Website-Änderungsdatum verwendet die WordPress-Zeitzone und liefert bei fehlenden veröffentlichten Inhalten kein falsches Datum.\n- **Sonstiges:** Benötigt WordPress 6.7+ und PHP 8.0+; PHP 8.0 wird von der Library vorausgesetzt. Die Helfer-Oberfläche lädt keine Frontend-Ressourcen.\n- **Sonstiges:** Genesis und Beaver bleiben erhalten; doppelter Astra-Loader, altes Blocks-Menü und sachfremde Werbe-/Core-Admin-Eingriffe entfernt.\n\n## 1.1.0 — 2025-03-15\n\n- **Verbessert:** Shortcode-Kompatibilität wiederhergestellt.\n- **Sonstiges:** Verteilung von WordPress.org zu GitHub verlagert und alten DDWlib-Empfehlungsinstaller entfernt.\n- **Sonstiges:** Eigenen Übersetzungsloader entfernt; mitgelieferte Übersetzungen beibehalten.\n\n## 1.0.0 — 2019-09-10\n\n- **Neu:** Erste Veröffentlichung mit 25 allgemeinen Helfern und 5 Integrations-Shortcodes.\n\n## 0.9.0 — 2019-09-09\n\n- **Neu:** Erste öffentliche Beta auf GitHub.\n",
+      "reference": "\n| Shortcode | Attribute | Voraussetzung |\n|---|---|---|\n| `bse-nav-menu` | `before`, `after`, `class`, `wrapper`, `menu`, `container`, `container_class`, `container_id`, `menu_class`, `menu_id`, `fallback_cb`, `item_before`, `item_after`, `link_before`, `link_after`, `depth`, `walker`, `theme_location`, `items_wrap`, `item_spacing` | WordPress |\n| `bse-item-content` | `id`, `css` | WordPress |\n| `bse-comment-form` | `before`, `after`, `class`, `wrapper`, `post_id`, `id_form`, `class_form`, `title_reply`, `title_reply_to`, `cancel_reply_link`, `label_submit` | WordPress |\n| `bse-elementor-template` | `id`, `css` | Elementor Free |\n| `bse-genesis-footer` | `class`, `wrapper` | Genesis 3.1+ |\n| `bse-genesis-breadcrumbs` | `class`, `wrapper` | Genesis 3.1+ |\n| `bse-copyright` | `after`, `before`, `copyright`, `first`, `class`, `wrapper` | WordPress |\n| `bse-site-title` | `after`, `before`, `class`, `wrapper` | WordPress |\n| `bse-site-slogan` | `after`, `before`, `class`, `wrapper` | WordPress |\n| `bse-home-link` | `after`, `before`, `text`, `target`, `rel`, `class`, `wrapper` | WordPress |\n| `bse-loginout` | `after`, `before`, `login_text`, `logout_text`, `login_target`, `logout_target`, `login_redirect`, `logout_redirect`, `class`, `wrapper` | WordPress |\n| `bse-site-updated` | `before`, `after`, `type`, `label_date`, `date_format`, `label_time`, `time_format`, `tooltip`, `class`, `wrapper` | WordPress |\n| `bse-post-count` | `post_type`, `status`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-post-date` | `after`, `before`, `post_id`, `format`, `label`, `relative_depth`, `class`, `wrapper` | WordPress |\n| `bse-post-time` | `after`, `before`, `post_id`, `format`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-modified-date` | `after`, `before`, `post_id`, `format`, `label`, `relative_depth`, `class`, `wrapper` | WordPress |\n| `bse-item-last-updated` | `after`, `before`, `post_id`, `format`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-modified-time` | `after`, `before`, `post_id`, `format`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-author` | `after`, `before`, `class`, `wrapper` | WordPress |\n| `bse-post-author-link` | `after`, `before`, `target`, `rel`, `class`, `wrapper` | WordPress |\n| `bse-post-author-posts-link` | `after`, `before`, `target`, `rel`, `class`, `wrapper` | WordPress |\n| `bse-post-tags` | `after`, `before`, `sep`, `class`, `wrapper` | WordPress |\n| `bse-post-categories` | `sep`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-post-terms` | `after`, `before`, `sep`, `taxonomy`, `class`, `wrapper` | WordPress |\n| `bse-post-edit` | `after`, `before`, `label`, `class`, `wrapper` | WordPress |\n| `bse-post-link` | `id`, `slug`, `post_type`, `privacy`, `text`, `target`, `rel`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-user` | `user_id`, `field`, `default`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-userid` |  | WordPress |\n| `bse-email` |  | WordPress |\n| `bse-login` |  | WordPress |\n| `bse-displayname` |  | WordPress |\n| `bse-firstname` |  | WordPress |\n| `bse-lastname` |  | WordPress |\n| `bse-version` | `type`, `plugin`, `constant`, `custom`, `before`, `after`, `class`, `wrapper` | WordPress |\n| `bse-wpblock` | `id`, `css` | WordPress synced patterns |\n| `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |\n"
+    }
+  }
+}

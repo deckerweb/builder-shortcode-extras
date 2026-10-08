@@ -6,8 +6,7 @@
 * New: Embedded deckerweb Plugin Library 0.2.0 and shared deckerweb GitHub Release Updater v2.
 * Improved: Unified wrapper validation, multiple CSS classes, boolean attributes and escaped text boundaries; existing shortcode names, aliases and output filters remain.
 * Improved: Native block rendering, builder-specific routing and guarded content embedding with direct/indirect recursion protection.
-* Improved: Brand Admin Schemes-style header/footer, local changelog dialog, English/German documentation and German/formal German translations.
-* Improved: Three original scalable icon/banner concepts; selected concept A uses the purple background from concept B.
+* Improved: Local changelog and documentation, with informal and formal German translations.
 * Fixed: Corrected admin registration policy, persistent integration normalization and placeholder integration registration.
 * Fixed: Publication dates honor explicit post IDs; slug links resolve correctly; missing IDs and unknown post-count statuses are handled.
 * Fixed: Undefined version constants, database version lookup, user/fallback escaping, date labels, link text and tooltip escaping.
@@ -17,7 +16,7 @@
 
 = 1.1.0 — 2025-03-15 =
 
-* Improved: Restored the plugin to a usable state.
+* Improved: Restored shortcode compatibility.
 * Misc: Moved distribution away from WordPress.org and removed the old DDWlib recommendation installer.
 * Misc: Removed the custom translation loader; retained packaged translations.
 
