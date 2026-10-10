@@ -381,6 +381,57 @@ msgstr "Astra-Layout"
 msgid "Embed an Astra Pro custom layout by ID."
 msgstr "Ein Astra-Pro-Layout per ID einbetten."
 
+msgid "Post title"
+msgstr "Beitragstitel"
+
+msgid "The title of the current or selected readable item."
+msgstr "Titel des aktuellen oder ausgewählten lesbaren Inhalts."
+
+msgid "Post excerpt"
+msgstr "Beitragsauszug"
+
+msgid "A plain-text excerpt with a configurable word limit."
+msgstr "Ein Klartextauszug mit einstellbarer Wortzahl."
+
+msgid "Featured image"
+msgstr "Beitragsbild"
+
+msgid "The native responsive featured image of readable content."
+msgstr "Das native responsive Beitragsbild lesbarer Inhalte."
+
+msgid "Reading time"
+msgstr "Lesezeit"
+
+msgid "Estimated reading time of stored text; embedded content is not executed."
+msgstr "Geschätzte Lesezeit des gespeicherten Textes; eingebettete Inhalte werden nicht ausgeführt."
+
+msgid "Content ID (empty = current item)"
+msgstr "Inhalts-ID (leer = aktueller Inhalt)"
+
+msgid "Maximum words"
+msgstr "Maximale Wortzahl"
+
+msgid "Words per minute"
+msgstr "Wörter pro Minute"
+
+msgid "Image size"
+msgstr "Bildgröße"
+
+msgid "Use wrapper=\"none\" for output without the outer wrapper."
+msgstr "Nutze wrapper=\"none\" für Ausgabe ohne äußeren Wrapper."
+
+msgid "Fallback text"
+msgstr "Fallback-Text"
+
+msgid "None"
+msgstr "Keiner"
+
+msgid "Output wrapper"
+msgstr "HTML-Wrapper"
+
+msgid "Semantic date markup"
+msgstr "Semantisches Datums-HTML"
+
 msgid "Changelog"
 msgstr "Änderungsprotokoll"
 
@@ -432,6 +483,21 @@ msgstr "Gib eine gültige Inhalts-ID größer als null ein."
 msgid "Use a whole number greater than zero."
 msgstr "Verwende eine ganze Zahl größer als null."
 
+msgid "Searching…"
+msgstr "Suche läuft…"
+
+msgid "No readable content found."
+msgstr "Keine lesbaren Inhalte gefunden."
+
+msgid "Search unavailable. Enter the content ID manually."
+msgstr "Suche nicht verfügbar. Gib die Inhalts-ID manuell ein."
+
+msgid "Current frontend item"
+msgstr "Aktueller Frontend-Inhalt"
+
+msgid "Selected content ID:"
+msgstr "Ausgewählte Inhalts-ID:"
+
 msgid "Attribute values cannot contain quotation marks, square brackets or line breaks."
 msgstr "Attributwerte dürfen keine Anführungszeichen, eckigen Klammern oder Zeilenumbrüche enthalten."
 
@@ -446,6 +512,12 @@ msgstr "Deinen Shortcode erstellen"
 
 msgid "What would you like to add?"
 msgstr "Was möchtest du hinzufügen?"
+
+msgid "Find a page, post or template"
+msgstr "Seite, Beitrag oder Template finden"
+
+msgid "An empty content ID uses the current item on the frontend. Builder previews can show a different item. Embedded content and links require an explicit ID. Drafts and private content remain subject to access permissions."
+msgstr "Eine leere Inhalts-ID verwendet den aktuellen Frontend-Inhalt. Builder-Vorschauen können einen anderen Inhalt zeigen. Einbettungen und Links benötigen eine ausdrückliche ID. Entwürfe und private Inhalte bleiben zugriffsgeschützt."
 
 msgid "Your shortcode"
 msgstr "Dein Shortcode"
@@ -549,6 +621,11 @@ msgstr "Dieses Benutzerfeld ist nicht erlaubt"
 
 msgid "The user ID is incorrect"
 msgstr "Die Benutzer-ID ist falsch"
+
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s Minute"
+msgstr[1] "%s Minuten"
 
 msgctxt "Label for Comment Form"
 msgid "Leave a Reply"
@@ -1123,3 +1200,48 @@ msgstr "Status wird geprüft…"
 
 msgid "The requirements below describe the offered release."
 msgstr "Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release."
+
+msgid "Affected features remain paused until their requirements are met."
+msgstr "Betroffene Funktionen pausieren, bis ihre Voraussetzungen erfüllt sind."
+
+msgid "Update to %s"
+msgstr "Auf %s aktualisieren"
+
+msgid "Updated"
+msgstr "Aktualisiert"
+
+msgid "Already up to date."
+msgstr "Bereits aktuell."
+
+msgid "Updating…"
+msgstr "Wird aktualisiert…"
+
+msgid "The installed plugin identity could not be verified for this catalog update."
+msgstr "Die Identität des installierten Plugins konnte für dieses Katalogupdate nicht bestätigt werden."
+
+msgid "Another updater provides a different release. Refresh updates before continuing."
+msgstr "Ein anderer Updater bietet einen abweichenden Release an. Bitte die Updateinformationen vor dem Fortfahren aktualisieren."
+
+msgid "The update has not been confirmed. You can try again."
+msgstr "Die Aktualisierung wurde nicht bestätigt. Du kannst es erneut versuchen."
+
+msgid "Update failed."
+msgstr "Aktualisierung fehlgeschlagen."
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Catalog refreshed."
+msgstr "Katalog aktualisiert."
+
+msgid "Filesystem credentials are required. Use the catalog with JavaScript enabled or the native Plugins screen."
+msgstr "Dateisystem-Zugangsdaten sind erforderlich. Bitte den Katalog mit aktiviertem JavaScript oder die WordPress-Pluginverwaltung verwenden."
+
+msgid "The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin."
+msgstr "Der deckerweb-Katalog konnte nicht geladen werden. Bitte PHP-/WordPress-Anforderungen und die vollständige Library-Einbindung im Host-Plugin prüfen."
+
+msgid "The approved package could not be verified."
+msgstr "Das freigegebene Paket konnte nicht geprüft werden."
+
+msgid "Action cancelled."
+msgstr "Vorgang abgebrochen."

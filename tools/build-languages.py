@@ -29,6 +29,7 @@ extra={
  'Newsletter':{'de_DE':'Newsletter','de_DE_formal':'Newsletter'},
  'Builder Shortcode Extras cannot use the shared updater loaded by another plugin. Update the other deckerweb plugins or install the latest plugin ZIP manually.':{'de_DE':'Builder Shortcode Extras kann den von einem anderen Plugin geladenen gemeinsamen Updater nicht verwenden. Aktualisiere die anderen deckerweb Plugins oder installiere das aktuelle Plugin-ZIP manuell.','de_DE_formal':'Builder Shortcode Extras kann den von einem anderen Plugin geladenen gemeinsamen Updater nicht verwenden. Aktualisieren Sie die anderen deckerweb Plugins oder installieren Sie das aktuelle Plugin-ZIP manuell.'},
 }
+extra.update(json.loads((r/'tools/host-translations.json').read_text()))
 def serialize(entries):
  blocks=[]
  for e in entries:
@@ -47,6 +48,7 @@ for locale in ['de_DE','de_DE_formal']:
    e['msgstr']=old[key(e)]['msgstr'];out.append(e);continue
   if 'msgid_plural' in e:
    e.pop('msgstr',None)
+   if e['msgid'] == '%s minute': e['msgstr[0]']='%s Minute'; e['msgstr[1]']='%s Minuten'
    if not all(e.get(f'msgstr[{i}]') for i in [0,1]):raise RuntimeError('Untranslated plural: '+e['msgid'])
   else:
    options=extra.get(e['msgid']) or updater.get(e['msgid']) or messages.get(e['msgid'])

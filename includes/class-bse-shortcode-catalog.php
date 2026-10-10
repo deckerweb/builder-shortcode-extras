@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 /** Provide task-oriented metadata independently of shortcode execution. */
 final class Catalog {
 	/**
-	 * Describe the searchable helper catalog and five generator cases.
+	 * Describe the searchable helper catalog and nine generator cases.
 	 *
 	 * @return array<string,array> Localized labels, examples and attribute metadata.
 	 */
@@ -48,6 +48,35 @@ final class Catalog {
 			'bse-wpblock' => array( 'label' => __('Synced pattern', 'builder-shortcode-extras' ), 'description' => __('Embed a WordPress synced pattern by ID.', 'builder-shortcode-extras' ), 'group' => __('Integrations', 'builder-shortcode-extras' ), 'integration' => 'WordPress synced patterns', 'example' => '[bse-wpblock id="123"]', 'attributes' => array( 'id', 'css' ), 'fields' => array(  ) ),
 			'bse-astra-layout' => array( 'label' => __('Astra layout', 'builder-shortcode-extras' ), 'description' => __('Embed an Astra Pro custom layout by ID.', 'builder-shortcode-extras' ), 'group' => __('Integrations', 'builder-shortcode-extras' ), 'integration' => 'Astra Pro custom layouts', 'example' => '[bse-astra-layout id="123"]', 'attributes' => array( 'id', 'css' ), 'fields' => array(  ) ),
 		);
+		$metadata = array(
+			'bse-post-title' => array( __( 'Post title', 'builder-shortcode-extras' ), __( 'The title of the current or selected readable item.', 'builder-shortcode-extras' ) ),
+			'bse-post-excerpt' => array( __( 'Post excerpt', 'builder-shortcode-extras' ), __( 'A plain-text excerpt with a configurable word limit.', 'builder-shortcode-extras' ) ),
+			'bse-post-image' => array( __( 'Featured image', 'builder-shortcode-extras' ), __( 'The native responsive featured image of readable content.', 'builder-shortcode-extras' ) ),
+			'bse-reading-time' => array( __( 'Reading time', 'builder-shortcode-extras' ), __( 'Estimated reading time of stored text; embedded content is not executed.', 'builder-shortcode-extras' ) ),
+		);
+		foreach ( $metadata as $tag => $labels ) {
+			$catalog[$tag] = array( 'label' => $labels[0], 'description' => $labels[1], 'group' => __( 'Essentials', 'builder-shortcode-extras' ), 'integration' => '', 'example' => '[' . $tag . ']', 'attributes' => array( 'post_id', 'wrapper', 'class', 'before', 'after', 'fallback' ), 'fields' => array( array( 'key' => 'post_id', 'label' => __( 'Content ID (empty = current item)', 'builder-shortcode-extras' ), 'type' => 'number', 'default' => '' ) ) );
+			if ( 'bse-post-excerpt' === $tag ) { $catalog[$tag]['fields'][] = array( 'key' => 'words', 'label' => __( 'Maximum words', 'builder-shortcode-extras' ), 'type' => 'number', 'default' => '30' ); }
+			if ( 'bse-reading-time' === $tag ) { $catalog[$tag]['fields'][] = array( 'key' => 'wpm', 'label' => __( 'Words per minute', 'builder-shortcode-extras' ), 'type' => 'number', 'default' => '200' ); }
+			if ( 'bse-post-image' === $tag ) { $catalog[$tag]['fields'][] = array( 'key' => 'size', 'label' => __( 'Image size', 'builder-shortcode-extras' ), 'type' => 'select', 'default' => 'medium', 'options' => array_combine( array_merge( get_intermediate_image_sizes(), array( 'full' ) ), array_merge( get_intermediate_image_sizes(), array( 'full' ) ) ) ); }
+		}
+		foreach ( $catalog as $tag => &$entry ) {
+			$entry['attributes'][] = 'fallback';
+			if ( in_array( $tag, array( 'bse-post-date', 'bse-post-time', 'bse-post-modified-date', 'bse-post-modified-time', 'bse-item-last-updated', 'bse-site-updated' ), true ) ) { $entry['attributes'][] = 'semantic'; }
+			if ( ! $entry['integration'] && in_array( 'wrapper', $entry['attributes'], true ) && ! in_array( $tag, array( 'bse-nav-menu', 'bse-comment-form', 'bse-post-image' ), true ) ) { $entry['description'] .= ' ' . __( 'Use wrapper="none" for output without the outer wrapper.', 'builder-shortcode-extras' ); }
+			if ( $entry['fields'] ) {
+				$entry['fields'][] = array( 'key' => 'fallback', 'label' => __( 'Fallback text', 'builder-shortcode-extras' ), 'type' => 'text', 'default' => '' );
+				if ( ! in_array( $tag, array( 'bse-item-content', 'bse-post-image' ), true ) ) {
+					if ( in_array( 'wrapper', array_column( $entry['fields'], 'key' ), true ) ) {
+						foreach ( $entry['fields'] as &$field ) { if ( 'wrapper' === $field['key'] ) { $field['options']['none'] = __( 'None', 'builder-shortcode-extras' ); } }
+						unset( $field );
+					} else { $entry['fields'][] = array( 'key' => 'wrapper', 'label' => __( 'Output wrapper', 'builder-shortcode-extras' ), 'type' => 'select', 'default' => 'span', 'options' => array( 'span' => 'span', 'none' => __( 'None', 'builder-shortcode-extras' ) ) ); }
+				}
+				if ( in_array( $tag, array( 'bse-post-date', 'bse-post-modified-date' ), true ) ) { $entry['fields'][] = array( 'key' => 'semantic', 'label' => __( 'Semantic date markup', 'builder-shortcode-extras' ), 'type' => 'select', 'default' => 'false', 'options' => array( 'false' => __( 'No', 'builder-shortcode-extras' ), 'true' => __( 'Yes', 'builder-shortcode-extras' ) ) ); $entry['attributes'][] = 'semantic'; }
+			}
+			$entry['attributes'] = array_unique( array_merge( $entry['attributes'], array_column( $entry['fields'], 'key' ) ) );
+		}
+		unset( $entry );
 		$order = array( 'bse-copyright', 'bse-post-date', 'bse-post-modified-date', 'bse-post-link', 'bse-item-content' );
 		$first = array();
 		foreach ( $order as $tag ) { $first[$tag] = $catalog[$tag]; }

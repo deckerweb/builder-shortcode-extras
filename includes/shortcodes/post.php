@@ -725,7 +725,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_post_link' ) ) :
 			'<a href="%1$s" %2$s %3$s>%4$s</a>',
 			esc_url( $permalink ),
 			( ! empty( $atts[ 'target' ] ) ) ? $target : '',
-			( ! empty( $atts[ 'target' ] ) && ! empty( $atts[ 'rel' ] ) ) ? $rel : '',
+			( ! empty( $atts[ 'rel' ] ) ) ? $rel : '',
 			esc_html( ( empty( $atts[ 'text' ] ) ) ? (string) $title : $atts[ 'text' ] )
 		);
 

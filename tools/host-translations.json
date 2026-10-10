@@ -1,0 +1,106 @@
+{
+  "Post title": {
+    "de_DE": "Beitragstitel",
+    "de_DE_formal": "Beitragstitel"
+  },
+  "The title of the current or selected readable item.": {
+    "de_DE": "Titel des aktuellen oder ausgewählten lesbaren Inhalts.",
+    "de_DE_formal": "Titel des aktuellen oder ausgewählten lesbaren Inhalts."
+  },
+  "Post excerpt": {
+    "de_DE": "Beitragsauszug",
+    "de_DE_formal": "Beitragsauszug"
+  },
+  "A plain-text excerpt with a configurable word limit.": {
+    "de_DE": "Ein Klartextauszug mit einstellbarer Wortzahl.",
+    "de_DE_formal": "Ein Klartextauszug mit einstellbarer Wortzahl."
+  },
+  "Featured image": {
+    "de_DE": "Beitragsbild",
+    "de_DE_formal": "Beitragsbild"
+  },
+  "The native responsive featured image of readable content.": {
+    "de_DE": "Das native responsive Beitragsbild lesbarer Inhalte.",
+    "de_DE_formal": "Das native responsive Beitragsbild lesbarer Inhalte."
+  },
+  "Reading time": {
+    "de_DE": "Lesezeit",
+    "de_DE_formal": "Lesezeit"
+  },
+  "Estimated reading time of stored text; embedded content is not executed.": {
+    "de_DE": "Geschätzte Lesezeit des gespeicherten Textes; eingebettete Inhalte werden nicht ausgeführt.",
+    "de_DE_formal": "Geschätzte Lesezeit des gespeicherten Textes; eingebettete Inhalte werden nicht ausgeführt."
+  },
+  "Content ID (empty = current item)": {
+    "de_DE": "Inhalts-ID (leer = aktueller Inhalt)",
+    "de_DE_formal": "Inhalts-ID (leer = aktueller Inhalt)"
+  },
+  "Maximum words": {
+    "de_DE": "Maximale Wortzahl",
+    "de_DE_formal": "Maximale Wortzahl"
+  },
+  "Words per minute": {
+    "de_DE": "Wörter pro Minute",
+    "de_DE_formal": "Wörter pro Minute"
+  },
+  "Image size": {
+    "de_DE": "Bildgröße",
+    "de_DE_formal": "Bildgröße"
+  },
+  "Fallback text": {
+    "de_DE": "Fallback-Text",
+    "de_DE_formal": "Fallback-Text"
+  },
+  "Output wrapper": {
+    "de_DE": "HTML-Wrapper",
+    "de_DE_formal": "HTML-Wrapper"
+  },
+  "None": {
+    "de_DE": "Keiner",
+    "de_DE_formal": "Keiner"
+  },
+  "Semantic date markup": {
+    "de_DE": "Semantisches Datums-HTML",
+    "de_DE_formal": "Semantisches Datums-HTML"
+  },
+  "No": {
+    "de_DE": "Nein",
+    "de_DE_formal": "Nein"
+  },
+  "Yes": {
+    "de_DE": "Ja",
+    "de_DE_formal": "Ja"
+  },
+  "Searching…": {
+    "de_DE": "Suche läuft…",
+    "de_DE_formal": "Suche läuft…"
+  },
+  "No readable content found.": {
+    "de_DE": "Keine lesbaren Inhalte gefunden.",
+    "de_DE_formal": "Keine lesbaren Inhalte gefunden."
+  },
+  "Search unavailable. Enter the content ID manually.": {
+    "de_DE": "Suche nicht verfügbar. Gib die Inhalts-ID manuell ein.",
+    "de_DE_formal": "Suche nicht verfügbar. Geben Sie die Inhalts-ID manuell ein."
+  },
+  "Current frontend item": {
+    "de_DE": "Aktueller Frontend-Inhalt",
+    "de_DE_formal": "Aktueller Frontend-Inhalt"
+  },
+  "Selected content ID:": {
+    "de_DE": "Ausgewählte Inhalts-ID:",
+    "de_DE_formal": "Ausgewählte Inhalts-ID:"
+  },
+  "Find a page, post or template": {
+    "de_DE": "Seite, Beitrag oder Template finden",
+    "de_DE_formal": "Seite, Beitrag oder Template finden"
+  },
+  "An empty content ID uses the current item on the frontend. Builder previews can show a different item. Embedded content and links require an explicit ID. Drafts and private content remain subject to access permissions.": {
+    "de_DE": "Eine leere Inhalts-ID verwendet den aktuellen Frontend-Inhalt. Builder-Vorschauen können einen anderen Inhalt zeigen. Einbettungen und Links benötigen eine ausdrückliche ID. Entwürfe und private Inhalte bleiben zugriffsgeschützt.",
+    "de_DE_formal": "Eine leere Inhalts-ID verwendet den aktuellen Frontend-Inhalt. Builder-Vorschauen können einen anderen Inhalt zeigen. Einbettungen und Links benötigen eine ausdrückliche ID. Entwürfe und private Inhalte bleiben zugriffsgeschützt."
+  },
+  "Use wrapper=\"none\" for output without the outer wrapper.": {
+    "de_DE": "Nutze wrapper=\"none\" für Ausgabe ohne äußeren Wrapper.",
+    "de_DE_formal": "Verwenden Sie wrapper=\"none\" für Ausgabe ohne äußeren Wrapper."
+  }
+}

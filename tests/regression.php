@@ -56,7 +56,7 @@ try {
 	check( ! str_contains( \Deckerweb\BuilderShortcodeExtras\Guide::content(), '<script>' ), 'Local guide text does not introduce scripts' );
 	$registry=\Deckerweb\BuilderShortcodeExtras\Catalog::all();
 	$generated = array_filter($registry,static fn($entry)=>!empty($entry['fields']));
-	check( 5 === count($generated), 'Generator limited to five use cases' );
+	check( 9 === count($generated), 'Generator offers nine focused use cases' );
 	foreach($registry as $tag=>$entry){ if(!$entry['integration']) check(shortcode_exists($tag),'Catalog core shortcode exists: '.$tag); }
 	$updater=new \Deckerweb\BuilderShortcodeExtras\GitHubUpdates();check(is_array($updater->artwork()),'Updater has local artwork');
 	check( '0.8.1' === $GLOBALS['deckerweb_library_candidates_v1'][0]['version'] && ! isset($GLOBALS['deckerweb_library_runtime_v1']), 'Library version' );

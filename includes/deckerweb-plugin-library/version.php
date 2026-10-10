@@ -1,4 +1,4 @@
 <?php
 /** Copyright 2026 David Decker – DECKERWEB. SPDX-License-Identifier: GPL-2.0-or-later */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
-return '0.8.1';
+return '0.9.0';

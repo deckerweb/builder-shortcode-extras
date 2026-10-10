@@ -1,5 +1,15 @@
 == Changelog ==
 
+= 1.3.0 — 2026-10-10 =
+
+* Verbessert: Admin-Hinweise erscheinen hinter dem vollständigen Header; das Produkt-Icon wird ausschließlich im Header angezeigt.
+* Neu: Shortcodes für Titel, Auszug, responsives Beitragsbild und geschätzte Lesezeit.
+* Neu: Optionale Textausgabe ohne Wrapper, maskierte Fallback-Texte und semantische Datumsangaben.
+* Verbessert: Neun Generatorfälle mit geschützter Inhaltssuche, klarerem Kontext des aktuellen Inhalts und erhaltenen Eingaben je Fall.
+* Behoben: rel-Attribute an Links funktionieren ohne target; Menü-Shortcodes berücksichtigen die angegebene Container-ID.
+* Verbessert: Neue Banner und abgerundete Plugin-Icons mit einem einheitlichen Motiv für wiederverwendbare Inhalte.
+* Sonstiges: Eingebettete deckerweb Library auf 0.9.0 aktualisiert; bestehende Shortcode-Funktionen und Mindestanforderungen bleiben unverändert.
+
 = 1.2.1 — 09.10.2026 =
 
 * Verbessert: Weniger Aufwand im Frontend: Update- und Katalogkomponenten laden nur bei Bedarf; wiederholte Abfragen des Website-Änderungsdatums verwenden einen gemeinsamen Cache pro Anfrage.

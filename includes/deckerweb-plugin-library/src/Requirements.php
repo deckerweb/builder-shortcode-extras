@@ -1,6 +1,6 @@
 <?php
 /** Copyright 2026 David Decker – DECKERWEB. SPDX-License-Identifier: GPL-2.0-or-later */
-namespace Deckerweb\PluginLibrary\V0_8_1;
+namespace Deckerweb\PluginLibrary\V0_9_0;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /** Used both when rendering cards and immediately before install/activation. */
@@ -12,9 +12,10 @@ final class Requirements {
 	 * @param array|null $plugins Installed plugin metadata; null reads the current installation.
 	 * @param bool|null $network Network activation context; null derives it from the current admin scope.
 	 * @param bool $activation Check the installed version for activation; false checks the offered release for package updates.
+	 * @param bool $advisory_only Return only missing dependencies with a safe-pause policy.
 	 * @return array Localized unmet requirements; an empty list means the declared prerequisites are met.
 	 */
-	public static function check( array $entry, ?array $plugins = null, ?bool $network = null, bool $activation = true ): array {
+	public static function check( array $entry, ?array $plugins = null, ?bool $network = null, bool $activation = true, bool $advisory_only = false ): array {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		$plugins = $plugins ?? get_plugins();
 		$network = $network ?? ( is_multisite() && is_network_admin() );
@@ -29,7 +30,9 @@ final class Requirements {
 		global $wp_version;
 		if ( version_compare( $wp_version, $entry['requires_wp'], '<' ) ) { $issues[] = sprintf( Library::t( 'Requires WordPress %s or newer.' ), $entry['requires_wp'] ); }
 		if ( version_compare( PHP_VERSION, $entry['requires_php'], '<' ) ) { $issues[] = sprintf( Library::t( 'Requires PHP %s or newer.' ), $entry['requires_php'] ); }
+  if ( $advisory_only ) { $issues = []; }
   foreach ( self::dependencies_for( $entry, $plugins, $activation ) as $dep ) {
+   if ( $advisory_only !== ! empty( $dep['_advisory'] ) ) { continue; }
    $file = $dep['plugin_file'];
    $present = isset( $plugins[$file] );
    $active = $network ? is_plugin_active_for_network( $file ) : is_plugin_active( $file );
@@ -87,17 +90,21 @@ final class Requirements {
   * @param array $entry Validated approved plugin metadata.
   * @param array $plugins Installed plugin header inventory.
   * @param bool $activation Whether to evaluate the installed target instead of the offered package.
-  * @return array Dependency metadata applicable to the selected target version.
+  * @return array Dependency metadata with advisory flags applicable to the selected target version.
   */
  public static function dependencies_for( array $entry, array $plugins, bool $activation = true ): array {
   $target_version = $activation && isset( $plugins[$entry['plugin_file']] ) ? ( $plugins[$entry['plugin_file']]['Version'] ?? '' ) : $entry['version'];
-  // Explicit host contract: OQN 2.0 keeps settings available without a builder.
-  // This never loosens the requirements of the offered 1.0.0 package.
-  $optional_oxygen = $entry['plugin_file'] === 'oxygen-quicknav/oxygen-quicknav.php'
-   && $entry['repository'] === 'deckerweb/oxygen-quicknav'
-   && is_string( $target_version ) && strlen( $target_version ) <= 64 && preg_match( '/^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/D', $target_version ) && version_compare( $target_version, '2.0.0-rc.1', '>=' );
+  $valid_version = is_string( $target_version ) && strlen( $target_version ) <= 64 && preg_match( '/^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/D', $target_version );
   $dependencies = [];
-  foreach ( $entry['dependencies'] as $dep ) { if ( ! $optional_oxygen || ( $dep['detector'] ?? '' ) !== 'oxygen' ) { $dependencies[] = $dep; } }
+  foreach ( $entry['dependencies'] as $dep ) {
+   $mode = 'required';
+   foreach ( $entry['dependency_rules'] ?? [] as $rule ) {
+    if ( $valid_version && $rule['plugin_file'] === $dep['plugin_file'] && version_compare( $target_version, $rule['since_version'], '>=' ) && ( ! isset( $rule['until_version'] ) || version_compare( $target_version, $rule['until_version'], '<' ) ) ) { $mode = $rule['mode']; }
+   }
+   // Preserve the previously approved Oxygen contract for older metadata feeds.
+   if ( ! isset( $entry['dependency_rules'] ) && $entry['plugin_file'] === 'oxygen-quicknav/oxygen-quicknav.php' && $entry['repository'] === 'deckerweb/oxygen-quicknav' && $valid_version && version_compare( $target_version, '2.0.0-rc.1', '>=' ) && ( $dep['detector'] ?? '' ) === 'oxygen' ) { $mode = 'pause'; }
+   $dep['_advisory'] = $mode === 'pause'; $dependencies[] = $dep;
+  }
   return $dependencies;
  }
 

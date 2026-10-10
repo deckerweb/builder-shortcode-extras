@@ -83,6 +83,7 @@ if ( ! function_exists( 'ddw_bse_shortcode_nav_menu' ) ) :
 				'menu'            => $atts[ 'menu' ],
 				'container'       => $container,
 				'container_class' => $atts[ 'container_class' ],
+				'container_id'    => sanitize_html_class( $atts[ 'container_id' ] ),
 				'menu_class'      => $atts[ 'menu_class' ],
 				'menu_id'         => $atts[ 'menu_id' ],
 				'fallback_cb'     => $fallback,

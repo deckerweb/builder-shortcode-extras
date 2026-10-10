@@ -15,7 +15,7 @@ Find a helper, configure one of five use cases and copy it into your WordPress l
 
 **Kleine dynamische Helfer. Schnell eingesetzt.**
 
-Wähle einen Helfer, konfiguriere einen der fünf Generatorfälle und kopiere den Shortcode in dein WordPress-Layout. Datumsangaben, Copyright, Links und wiederverwendbare Inhalte ohne eigenes PHP.
+Wähle einen Helfer, konfiguriere einen der neun Generatorfälle und kopiere den Shortcode in dein WordPress-Layout. Datumsangaben, Copyright, Links und wiederverwendbare Inhalte ohne eigenes PHP.
 
 ## Deutsch
 

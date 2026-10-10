@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Builder Shortcode Extras 1.2.1\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-08 23:51+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+msgstr "Project-Id-Version: Builder Shortcode Extras 1.3.0\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-10 08:32+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "Documentation"
 msgstr ""
@@ -381,6 +381,57 @@ msgstr ""
 msgid "Embed an Astra Pro custom layout by ID."
 msgstr ""
 
+msgid "Post title"
+msgstr ""
+
+msgid "The title of the current or selected readable item."
+msgstr ""
+
+msgid "Post excerpt"
+msgstr ""
+
+msgid "A plain-text excerpt with a configurable word limit."
+msgstr ""
+
+msgid "Featured image"
+msgstr ""
+
+msgid "The native responsive featured image of readable content."
+msgstr ""
+
+msgid "Reading time"
+msgstr ""
+
+msgid "Estimated reading time of stored text; embedded content is not executed."
+msgstr ""
+
+msgid "Content ID (empty = current item)"
+msgstr ""
+
+msgid "Maximum words"
+msgstr ""
+
+msgid "Words per minute"
+msgstr ""
+
+msgid "Image size"
+msgstr ""
+
+msgid "Use wrapper=\"none\" for output without the outer wrapper."
+msgstr ""
+
+msgid "Fallback text"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Output wrapper"
+msgstr ""
+
+msgid "Semantic date markup"
+msgstr ""
+
 msgid "Changelog"
 msgstr ""
 
@@ -432,6 +483,21 @@ msgstr ""
 msgid "Use a whole number greater than zero."
 msgstr ""
 
+msgid "Searching…"
+msgstr ""
+
+msgid "No readable content found."
+msgstr ""
+
+msgid "Search unavailable. Enter the content ID manually."
+msgstr ""
+
+msgid "Current frontend item"
+msgstr ""
+
+msgid "Selected content ID:"
+msgstr ""
+
 msgid "Attribute values cannot contain quotation marks, square brackets or line breaks."
 msgstr ""
 
@@ -445,6 +511,12 @@ msgid "Build your shortcode"
 msgstr ""
 
 msgid "What would you like to add?"
+msgstr ""
+
+msgid "Find a page, post or template"
+msgstr ""
+
+msgid "An empty content ID uses the current item on the frontend. Builder previews can show a different item. Embedded content and links require an explicit ID. Drafts and private content remain subject to access permissions."
 msgstr ""
 
 msgid "Your shortcode"
@@ -549,6 +621,11 @@ msgstr ""
 
 msgid "The user ID is incorrect"
 msgstr ""
+
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] ""
+msgstr[1] ""
 
 msgctxt "Label for Comment Form"
 msgid "Leave a Reply"
@@ -1122,4 +1199,49 @@ msgid "Checking status…"
 msgstr ""
 
 msgid "The requirements below describe the offered release."
+msgstr ""
+
+msgid "Affected features remain paused until their requirements are met."
+msgstr ""
+
+msgid "Update to %s"
+msgstr ""
+
+msgid "Updated"
+msgstr ""
+
+msgid "Already up to date."
+msgstr ""
+
+msgid "Updating…"
+msgstr ""
+
+msgid "The installed plugin identity could not be verified for this catalog update."
+msgstr ""
+
+msgid "Another updater provides a different release. Refresh updates before continuing."
+msgstr ""
+
+msgid "The update has not been confirmed. You can try again."
+msgstr ""
+
+msgid "Update failed."
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Catalog refreshed."
+msgstr ""
+
+msgid "Filesystem credentials are required. Use the catalog with JavaScript enabled or the native Plugins screen."
+msgstr ""
+
+msgid "The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin."
+msgstr ""
+
+msgid "The approved package could not be verified."
+msgstr ""
+
+msgid "Action cancelled."
 msgstr ""

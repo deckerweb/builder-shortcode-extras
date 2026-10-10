@@ -6,7 +6,7 @@
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.2.1** · WordPress **6.7+** · PHP **8.0+**
+Version **1.3.0** · WordPress **6.7+** · PHP **8.0+**
 
 ## Erste Schritte
 
@@ -73,6 +73,12 @@ BSE speichert keine Generatorwerte und verändert keine Inhalte.
 | `bse-wpblock` | `id`, `css` | WordPress synced patterns |
 | `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |
 
+| `bse-post-title` | `post_id`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+| `bse-post-excerpt` | `post_id`, `words`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+| `bse-post-image` | `post_id`, `size`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+| `bse-reading-time` | `post_id`, `wpm`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+
+Alle BSE-Shortcodes unterstützen maskierten `fallback`-Text bei leerer Ausgabe. Texthelfer bieten `wrapper="none"`; Datums-/Zeithelfer für Beiträge und das Website-Änderungsdatum bieten `semantic="true"` für eine datetime-Angabe des ausgewählten Inhalts. Bilder und Einbettungen behalten ihr HTML.
 
 ## Fragen nach Themen
 
@@ -88,7 +94,7 @@ In einen WordPress-Shortcode-Block oder ein Builder-Feld mit ausdrücklicher Sho
 
 #### Was kann der Generator erstellen?
 
-Copyright, Veröffentlichungsdatum, Änderungsdatum, einen Beitrags-/Seiten-Link und Inhaltseinbettungen. Weitere Helfer findest du in der durchsuchbaren Übersicht.
+Der Generator erstellt Copyright, Veröffentlichungs-/Änderungsdaten, Beitragslinks, eingebettete Inhalte, Titel, Auszüge, Beitragsbilder und Lesezeit. Weitere Helfer bleiben im durchsuchbaren Katalog.
 
 #### Kann ich auf Deutsch suchen?
 
@@ -110,7 +116,7 @@ Wähle Relatives Datum im Generator oder verwende format="relative". Die Ausgabe
 
 #### Kann ich HTML und Klassen ändern?
 
-Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Diese Version ergänzt keinen Modus ohne Wrapper.
+Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Texthelfer bieten wrapper="none" und fallback; Einbettungen, Menüs, Kommentarformulare und Bilder behalten ihr eigenes HTML.
 
 #### Werden Frontend-CSS oder JavaScript geladen?
 
@@ -189,6 +195,18 @@ Nein. Shortcode-Attribute können Konstanten mit Namen auswählen, die auf VERSI
 #### Wie melde ich eine Sicherheitslücke?
 
 Verwende Security → Advisories → Report a vulnerability im GitHub-Repository dieses Plugins. Nenne Plugin-, Library- und Umgebungsversionen und eine minimale Reproduktion ohne Zugangsdaten. Poste Sicherheitsdetails nicht in öffentlichen Issues. Siehe SECURITY.md.
+
+#### Wie funktionieren die neuen Inhaltshelfer?
+
+post_id wählt lesbare Inhalte; ohne Angabe gilt der aktuelle Frontend-Inhalt. Auszüge verwenden den manuellen Auszug oder gespeicherten Text, mit words zwischen 1 und 500. Bilder verwenden registrierte WordPress-Größen und natives responsives HTML. Die Lesezeit zählt gespeicherten Text ohne Ausführung eingebetteter Shortcodes; wpm ist auf 50–1000 begrenzt. Reines Builder-Markup und bildlastige Artikel können unvollständige Schätzungen ergeben.
+
+#### Wie funktionieren Fallbacks und semantische Daten?
+
+fallback liefert maskierten Klartext bei fehlender Ausgabe, auch bei nicht zugänglichen Inhalten; es erteilt keine Zugriffsrechte. semantic="true" ergänzt time/datetime bei Veröffentlichungs- und Änderungsdaten. wrapper="none" entfernt nur den äußeren Text-Wrapper; Links und semantisches time-Markup bleiben erhalten.
+
+#### Was überträgt die Inhaltssuche?
+
+Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifiziertes WordPress-AJAX. Nonce und Administratorberechtigung sind erforderlich. Höchstens zehn lesbare Titel/IDs werden ausgegeben. Suchbegriffe gehen nicht an GitHub oder externe Dienste; bei Fehlern bleibt die manuelle ID-Eingabe möglich.
 
 ## Entwickler
 

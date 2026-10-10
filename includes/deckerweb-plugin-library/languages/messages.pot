@@ -10,6 +10,9 @@ msgstr ""
 msgid "%s supports activation per site only."
 msgstr ""
 
+msgid "Action cancelled."
+msgstr ""
+
 msgid "Activate"
 msgstr ""
 
@@ -22,13 +25,22 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
+msgid "Affected features remain paused until their requirements are met."
+msgstr ""
+
 msgid "All"
 msgstr ""
 
 msgid "Already active"
 msgstr ""
 
+msgid "Already up to date."
+msgstr ""
+
 msgid "Another action for this plugin is running. Please wait."
+msgstr ""
+
+msgid "Another updater provides a different release. Refresh updates before continuing."
 msgstr ""
 
 msgid "Apr"
@@ -74,6 +86,9 @@ msgid "Cannot read archive entry."
 msgstr ""
 
 msgid "Catalog URL"
+msgstr ""
+
+msgid "Catalog refreshed."
 msgstr ""
 
 msgid "Changelog"
@@ -134,6 +149,9 @@ msgid "February"
 msgstr ""
 
 msgid "Filesystem credentials are required."
+msgstr ""
+
+msgid "Filesystem credentials are required. Use the catalog with JavaScript enabled or the native Plugins screen."
 msgstr ""
 
 msgid "Filter"
@@ -439,6 +457,9 @@ msgstr ""
 msgid "September"
 msgstr ""
 
+msgid "Settings saved."
+msgstr ""
+
 msgid "Shop"
 msgstr ""
 
@@ -466,6 +487,9 @@ msgstr ""
 msgid "The action is still running. Check its status again."
 msgstr ""
 
+msgid "The approved package could not be verified."
+msgstr ""
+
 msgid "The approved release changed. Refresh updates first."
 msgstr ""
 
@@ -484,6 +508,12 @@ msgstr ""
 msgid "The catalog is hidden."
 msgstr ""
 
+msgid "The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin."
+msgstr ""
+
+msgid "The installed plugin identity could not be verified for this catalog update."
+msgstr ""
+
 msgid "The online catalog is unavailable. Showing cached or bundled entries; online approval is checked again before installation."
 msgstr ""
 
@@ -497,6 +527,9 @@ msgid "The request could not be completed. Check the plugin status before trying
 msgstr ""
 
 msgid "The requirements below describe the offered release."
+msgstr ""
+
+msgid "The update has not been confirmed. You can try again."
 msgstr ""
 
 msgid "This catalog requires a newer Library."
@@ -533,6 +566,18 @@ msgid "Untrusted release URL."
 msgstr ""
 
 msgid "Update %1$s to version %2$s or newer."
+msgstr ""
+
+msgid "Update failed."
+msgstr ""
+
+msgid "Update to %s"
+msgstr ""
+
+msgid "Updated"
+msgstr ""
+
+msgid "Updating…"
 msgstr ""
 
 msgid "View plugins"

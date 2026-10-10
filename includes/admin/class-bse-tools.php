@@ -1,5 +1,5 @@
 <?php
-/** Searchable help and a five-use-case generator. @package BuilderShortcodeExtras */
+/** Searchable help and a focused shortcode generator. @package BuilderShortcodeExtras */
 namespace Deckerweb\BuilderShortcodeExtras;
 defined( 'ABSPATH' ) || exit;
 
@@ -11,11 +11,33 @@ final class Tools {
 	 * @return void Attaches admin-only hooks.
 	 */
 	public static function register(): void {
+		add_action( 'wp_ajax_bse_content_search', array( __CLASS__, 'search' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'network_admin_menu', array( __CLASS__, 'menu' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( BSE_PLUGIN_FILE ), array( __CLASS__, 'links' ) );
 		add_filter( 'network_admin_plugin_action_links_' . plugin_basename( BSE_PLUGIN_FILE ), array( __CLASS__, 'links' ) );
+	}
+	/**
+	 * Search readable content for authorized tools users in the current website.
+	 *
+	 * @since 1.3.0
+	 * @return void Sends at most ten title/ID pairs as JSON; never renders content.
+	 */
+	public static function search(): void {
+		check_ajax_referer( 'bse-content-search', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_network_options' ) ) { wp_send_json_error( array(), 403 ); }
+		$term = isset( $_GET['q'] ) && is_string( $_GET['q'] ) ? sanitize_text_field( wp_unslash( $_GET['q'] ) ) : '';
+		if ( strlen( $term ) < 2 || strlen( $term ) > 100 ) { wp_send_json_success( array() ); }
+		$types = array_values( get_post_types( array( 'public' => true ) ) );
+		foreach ( array( 'wp_block', 'elementor_library', 'bricks_template', 'fl-builder-template' ) as $type ) { if ( post_type_exists( $type ) ) { $types[] = $type; } }
+		$query = new \WP_Query( array( 'post_type' => array_unique( $types ), 'post_status' => array( 'publish', 'private', 'draft' ), 's' => $term, 'posts_per_page' => 10, 'no_found_rows' => true, 'update_post_meta_cache' => false, 'update_post_term_cache' => false ) );
+		$items = array();
+		foreach ( $query->posts as $item ) {
+			if ( ! current_user_can( 'read_post', $item->ID ) ) { continue; }
+			$items[] = array( 'id' => $item->ID, 'title' => wp_strip_all_tags( get_the_title( $item ) ), 'type' => $item->post_type, 'status' => $item->post_status );
+		}
+		wp_send_json_success( $items );
 	}
 	/**
 	 * Register the representative tools screen for the current admin scope.
@@ -53,16 +75,23 @@ final class Tools {
 		}
 		wp_enqueue_style( 'bse-tools', plugins_url( 'assets/admin/tools.css', BSE_PLUGIN_FILE ), array(), BSE_PLUGIN_VERSION );
 		wp_enqueue_script( 'bse-tools', plugins_url( 'assets/admin/tools.js', BSE_PLUGIN_FILE ), array(), BSE_PLUGIN_VERSION, true );
-		wp_add_inline_script( 'bse-tools', 'window.BSE_TOOLS=' . wp_json_encode( array(
+		wp_localize_script( 'bse-tools', 'BSE_TOOLS', array(
 			'catalog' => Catalog::all(),
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'bse-content-search' ),
 			'i18n' => array(
 				'copied' => __( 'Copied. Paste this shortcode into a shortcode-enabled field.', 'builder-shortcode-extras' ),
 				'manual' => __( 'Copy the selected shortcode manually.', 'builder-shortcode-extras' ),
 				'required' => __( 'Enter a valid content ID greater than zero.', 'builder-shortcode-extras' ),
 				'invalid' => __( 'Use a whole number greater than zero.', 'builder-shortcode-extras' ),
+				'searching' => __( 'Searching…', 'builder-shortcode-extras' ),
+				'noContent' => __( 'No readable content found.', 'builder-shortcode-extras' ),
+				'searchFailed' => __( 'Search unavailable. Enter the content ID manually.', 'builder-shortcode-extras' ),
+				'currentItem' => __( 'Current frontend item', 'builder-shortcode-extras' ),
+				'selectedItem' => __( 'Selected content ID:', 'builder-shortcode-extras' ),
 				'quote' => __( 'Attribute values cannot contain quotation marks, square brackets or line breaks.', 'builder-shortcode-extras' ),
 			),
-		) ) . ';', 'before' );
+		) );
 	}
 	/**
 	 * Render help and the generator for authorized site or network administrators.
@@ -77,6 +106,7 @@ final class Tools {
 		?>
 		<div class="wrap bse-root">
 			<header class="bse-page-heading"><img src="<?php echo esc_url( plugins_url( 'assets/icon.svg', BSE_PLUGIN_FILE ) ); ?>" alt="" width="56" height="56"><div><h1>Builder Shortcode Extras</h1><p><?php esc_html_e( 'Small dynamic helpers. Ready when you need them.', 'builder-shortcode-extras' ); ?></p></div></header>
+			<hr class="wp-header-end">
 			<p class="bse-intro"><?php esc_html_e( 'Find a helper, copy its shortcode and paste it into a Shortcode block or a shortcode-enabled builder field. No settings to save.', 'builder-shortcode-extras' ); ?></p>
 			<div class="bse-layout">
 			<section class="bse-panel bse-generator" aria-labelledby="bse-generator-heading">
@@ -88,6 +118,8 @@ final class Tools {
 				<?php endforeach; ?>
 				</select>
 				<p id="bse-case-description"></p><div id="bse-fields"></div>
+				<div id="bse-content-picker" hidden><label for="bse-content-query"><?php esc_html_e( 'Find a page, post or template', 'builder-shortcode-extras' ); ?></label><input type="search" id="bse-content-query" maxlength="100"><p id="bse-content-status" role="status"></p><div id="bse-content-results"></div></div>
+				<p class="description"><?php esc_html_e( 'An empty content ID uses the current item on the frontend. Builder previews can show a different item. Embedded content and links require an explicit ID. Drafts and private content remain subject to access permissions.', 'builder-shortcode-extras' ); ?></p>
 				<label for="bse-generated"><?php esc_html_e( 'Your shortcode', 'builder-shortcode-extras' ); ?></label>
 				<textarea id="bse-generated" rows="3" readonly spellcheck="false">[bse-copyright]</textarea>
 				<p id="bse-generator-error" class="bse-error" role="alert" hidden></p>
@@ -129,7 +161,7 @@ final class Tools {
 	private static function footer(): void {
 		$repo = 'https://github.com/deckerweb/builder-shortcode-extras';
 		$guide = Guide::url();
-		echo '<footer class="bse-footer" aria-label="' . esc_attr__( 'Plugin information', 'builder-shortcode-extras' ) . '"><div class="bse-footer-product"><img src="' . esc_url( plugins_url( 'assets/icon.svg', BSE_PLUGIN_FILE ) ) . '" alt="" width="52" height="52"><div><strong>Builder Shortcode Extras</strong> <span>' . esc_html__( 'Version', 'builder-shortcode-extras' ) . ' ' . esc_html( BSE_PLUGIN_VERSION ) . '</span> · <a href="' . esc_url( Changelog::url() ) . '" data-bse-document="changelog">' . esc_html__( 'Changelog', 'builder-shortcode-extras' ) . '</a> · <a href="' . esc_url( $guide ) . '" data-bse-document="guide">' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</a><p>' . esc_html__( 'Small dynamic helpers. Ready when you need them.', 'builder-shortcode-extras' ) . '</p></div></div><div><span>© 2019–2026 <a href="https://github.com/deckerweb" target="_blank" rel="noopener noreferrer">David Decker – DECKERWEB</a></span><a href="' . esc_url( $repo ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Plugin website', 'builder-shortcode-extras' ) . '</a></div></footer>';
+		echo '<footer class="bse-footer" aria-label="' . esc_attr__( 'Plugin information', 'builder-shortcode-extras' ) . '"><div class="bse-footer-product"><div><strong>Builder Shortcode Extras</strong> <span>' . esc_html__( 'Version', 'builder-shortcode-extras' ) . ' ' . esc_html( BSE_PLUGIN_VERSION ) . '</span> · <a href="' . esc_url( Changelog::url() ) . '" data-bse-document="changelog">' . esc_html__( 'Changelog', 'builder-shortcode-extras' ) . '</a> · <a href="' . esc_url( $guide ) . '" data-bse-document="guide">' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</a><p>' . esc_html__( 'Small dynamic helpers. Ready when you need them.', 'builder-shortcode-extras' ) . '</p></div></div><div><span>© 2019–2026 <a href="https://github.com/deckerweb" target="_blank" rel="noopener noreferrer">David Decker – DECKERWEB</a></span><a href="' . esc_url( $repo ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Plugin website', 'builder-shortcode-extras' ) . '</a></div></footer>';
 		Changelog::dialog();
 		Guide::dialog();
 	}

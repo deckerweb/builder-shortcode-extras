@@ -4,6 +4,31 @@
  * This bootstrap remains parseable on PHP 7.4; runtime requirements are checked before include.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! function_exists( 'deckerweb_library_bootstrap_text_v090' ) ) {
+ /**
+  * Translate an early fallback through an available host domain without loading a runtime.
+  * @param string $message English source message.
+  * @param array $candidates Registered host metadata in deterministic election order.
+  * @return string Host translation or English when no usable domain/resource is available.
+  * Loads only local component translation resources; never executes component PHP.
+  */
+ function deckerweb_library_bootstrap_text_v090( string $message, array $candidates ): string {
+  foreach ( $candidates as $candidate ) {
+   if ( ! is_string( $candidate['host'] ?? null ) || ! is_readable( $candidate['host'] ) ) { continue; }
+   $headers = get_file_data( $candidate['host'], array( 'domain' => 'Text Domain' ) );
+   $domain = $headers['domain'] ?? '';
+   if ( ! is_string( $domain ) || ! preg_match( '/^[a-z0-9-]+$/D', $domain ) ) { continue; }
+   $locale = determine_locale();
+   if ( in_array( $locale, array( 'de_DE', 'de_DE_formal' ), true ) && is_string( $candidate['dir'] ?? null ) ) {
+    $resource = $candidate['dir'] . '/languages/' . $locale . '.mo';
+    if ( is_readable( $resource ) ) { load_textdomain( $domain, $resource, $locale ); }
+   }
+   return translate( $message, $domain );
+  }
+  return $message;
+ }
+}
+
 if ( ! function_exists( 'deckerweb_library_register_v2' ) ) {
  /**
   * Register a runtime candidate without executing its version file.
@@ -41,14 +66,15 @@ if ( ! function_exists( 'deckerweb_library_register' ) ) {
   deckerweb_library_register_v2( $plugin_file, $config, $library_dir );
  }
 }
-if ( ! function_exists( 'deckerweb_library_elect_v2' ) ) {
+if ( ! function_exists( 'deckerweb_library_elect_v090' ) ) {
  /**
   * Elect the highest compatible complete runtime before legacy election executes.
   *
   * @return void No return value.
   */
- function deckerweb_library_elect_v2(): void {
+ function deckerweb_library_elect_v090(): void {
   remove_action( 'plugins_loaded', 'deckerweb_library_elect_v1', PHP_INT_MAX );
+  remove_action( 'plugins_loaded', 'deckerweb_library_elect_v2', PHP_INT_MAX - 1 );
   if ( ! empty( $GLOBALS['deckerweb_library_runtime_v1'] ) ) { return; }
   if ( ! is_admin() && ! wp_doing_cron() && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { return; }
   global $wp_version;
@@ -93,17 +119,16 @@ if ( ! function_exists( 'deckerweb_library_elect_v2' ) ) {
     * Render a localized compatibility notice for administrators allowed to install plugins.
     * @return void Outputs escaped markup; does not change plugin state.
     */
-   $notice = static function(): void {
+   $notice = static function() use ( $candidates ): void {
     if ( ! current_user_can( 'install_plugins' ) ) { return; }
-    $de = strpos( determine_locale(), 'de' ) === 0;
-    echo '<div class="notice notice-warning"><p>' . esc_html( $de ? 'Der deckerweb-Katalog konnte nicht geladen werden. Bitte PHP-/WordPress-Anforderungen und die vollständige Library-Einbindung im Host-Plugin prüfen.' : 'The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin.' ) . '</p></div>';
+    echo '<div class="notice notice-warning"><p>' . esc_html( deckerweb_library_bootstrap_text_v090( 'The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin.', $candidates ) ) . '</p></div>';
    };
    add_action( 'admin_notices', $notice ); add_action( 'network_admin_notices', $notice );
   }
  }
 }
 // Earlier priority prevents a legacy callback from selecting an incompatible copy.
-add_action( 'plugins_loaded', 'deckerweb_library_elect_v2', PHP_INT_MAX - 1 );
+add_action( 'plugins_loaded', 'deckerweb_library_elect_v090', PHP_INT_MAX - 2 );
 
 if ( ! function_exists( 'deckerweb_library_updater_options_v1' ) ) {
  /**
@@ -137,29 +162,33 @@ if ( ! function_exists( 'deckerweb_library_updater_options_v1' ) ) {
     */
    'package_provider' => static function( string $repo, string $basename, string $package ) use ( $repository, $file ) {
     $runtime = $GLOBALS['deckerweb_library_runtime_v1'] ?? null;
-    if ( $repo !== $repository || $basename !== $file || ! is_object( $runtime ) || ! method_exists( $runtime, 'updater_package' ) ) { return new \WP_Error( 'dwl_offline', strpos( determine_locale(), 'de' ) === 0 ? 'Das freigegebene Paket konnte nicht geprüft werden.' : 'The approved package could not be verified.' ); }
+    if ( $repo !== $repository || $basename !== $file || ! is_object( $runtime ) || ! method_exists( $runtime, 'updater_package' ) ) { return new \WP_Error( 'dwl_offline', deckerweb_library_bootstrap_text_v090( 'The approved package could not be verified.', $GLOBALS['deckerweb_library_candidates_v1'] ?? array() ) ); }
     return $runtime->updater_package( $repo, $basename, $package );
    },
   ];
  }
 }
 
-/**
- * Select a newly included compatible runtime before an inactive host is activated.
- *
- * WordPress includes the target plugin before activate_plugin. Its new bootstrap
- * can therefore replace an already elected older Library without changing host files.
- * Only callbacks owned by the replaced Library object are retired; updaters remain.
- *
- * @param string $plugin Plugin basename WordPress is about to activate.
- * @param bool $network Whether activation targets the whole current network.
- * @return void Retains the current runtime when no newer verified copy is available.
- * @since 0.6.1
- */
 if ( ! function_exists( 'deckerweb_library_activation_handoff_v3' ) ) {
+ /**
+  * Elect a newer verified target-host runtime before its native activation guard runs.
+  *
+  * Reads registered candidates and their compatibility manifests and file hashes.
+  * If no runtime exists, runs the normal election. A successful handoff loads the
+  * target factory, removes callbacks owned by the previous Library object and
+  * replaces the shared runtime global. A failed factory removes newly added hooks
+  * and retains the previous runtime. Existing updater callbacks remain registered.
+  *
+  * @param string $plugin Plugin basename WordPress is about to activate.
+  * @param bool $network Whether activation targets the current network; accepted for
+  *                      the native hook contract, not used to select a runtime.
+  * @return void Returns without replacing an existing runtime if no verified,
+  *              newer compatible target copy can be loaded successfully.
+  * @since 0.6.1
+  */
  function deckerweb_library_activation_handoff_v3( string $plugin, bool $network ): void {
   $old = $GLOBALS['deckerweb_library_runtime_v1'] ?? null;
-  if ( ! is_object( $old ) ) { deckerweb_library_elect_v2(); return; }
+  if ( ! is_object( $old ) ) { deckerweb_library_elect_v090(); return; }
   if ( ! defined( get_class( $old ) . '::VERSION' ) ) { return; }
   $candidates = $GLOBALS['deckerweb_library_candidates_v1'] ?? [];
   /**

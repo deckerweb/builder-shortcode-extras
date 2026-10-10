@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.0 — 2026-10-10
+
+- **Improved:** Admin notices appear after the complete header; the product icon is shown only in the header.
+- **New:** Title, excerpt, responsive featured image and estimated reading-time shortcodes.
+- **New:** Optional wrapper-free text output, escaped fallback text and semantic date markup.
+- **Improved:** Nine generator cases with authenticated content search, clearer current-item context and preserved per-case drafts.
+- **Fixed:** Link rel attributes now work without a target; navigation shortcodes honor the supplied container ID.
+- **Improved:** Refreshed banners and rounded plugin icons with a consistent reusable-content design.
+- **Misc:** Updated the embedded deckerweb Library to 0.9.0; existing shortcode features and minimum requirements remain unchanged.
+
 ## 1.2.1 — 2026-10-09
 
 - **Improved:** Lower frontend overhead: update and catalog runtimes load only when needed; repeated site-modification queries share a request-local cache.

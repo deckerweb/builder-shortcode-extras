@@ -1,5 +1,37 @@
 [
   {
+    "version": "0.9.0",
+    "date": "2026-10-10",
+    "changes": {
+      "New": [
+        {
+          "en": "Update verified installed catalog plugins directly in their cards, including older releases without an updater.",
+          "de": "Geprüfte installierte Katalogplugins direkt in ihren Karten aktualisieren, einschließlich älterer Releases ohne Updater."
+        },
+        {
+          "en": "Catalog-defined series, localized categories, ordering and versioned safe-pause dependency rules.",
+          "de": "Katalogdefinierte Serien, übersetzte Kategorien, Reihenfolge und versionsabhängige Regeln für sichere Funktionspausen."
+        }
+      ],
+      "Improved": [
+        {
+          "en": "Current approved catalog packages and local original icons, including Builder Content Guide and the Admin series.",
+          "de": "Aktuelle freigegebene Katalogpakete und lokale Originalicons, einschließlich Builder Content Guide und Admin-Serie."
+        },
+        {
+          "en": "Save shared preferences in place and keep Library operations inside WordPress administration.",
+          "de": "Gemeinsame Einstellungen direkt speichern und Library-Aktionen innerhalb der WordPress-Verwaltung halten."
+        }
+      ],
+      "Fixed": [
+        {
+          "en": "Early fallback messages use host translation resources; activation handoff documentation is directly attached to the function.",
+          "de": "Frühe Ausfallmeldungen verwenden Host-Sprachressourcen; die Aktivierungsübergabe ist direkt an der Funktion dokumentiert."
+        }
+      ]
+    }
+  },
+  {
     "version": "0.8.1",
     "date": "2026-10-08",
     "changes": {

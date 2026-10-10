@@ -3,7 +3,7 @@ Contributors: deckerweb
 Tags: shortcodes, dynamic content, templates
 Requires at least: 6.7
 Requires PHP: 8.0
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. 
 = Auf einen Blick =
 
 - Durchsuchbare Shortcode-Hilfe direkt unter Werkzeuge → Builder Shortcode Extras.
-- Fünf Generatorfälle: Copyright, Veröffentlichungs-/Änderungsdatum, Beitragslink und Inhaltseinbettung.
+- Neun Generatorfälle: Copyright, Daten, Links, Einbettung, Titel, Auszug, Bild und Lesezeit.
 - Native Blöcke, synchronisierte Vorlagen und optionale Elementor-, Beaver-, Astra- und Genesis-Integrationen.
 - Lokale Ressourcen, deutsche Du-/Sie-Texte und WordPress-Updates über GitHub.
 
@@ -33,6 +33,8 @@ BSE speichert keine Generatorwerte und verändert keine Inhalte.
 
 Copyright, Datumsangaben, Benutzerinformationen, Beitragslinks, Taxonomiebegriffe, Menüs und Kommentarformulare lassen sich gezielt einfügen. Viele Texthelfer unterstützen eigene CSS-Klassen und geprüfte HTML-Wrapper. Inhaltseinbettungen beachten Zugriffsrechte und unterbinden rekursive Verweise. Optionale Integrationen setzen den jeweiligen Builder beziehungsweise das Theme voraus.
 
+Neue Helfer: `[bse-post-title]`, `[bse-post-excerpt words="30"]`, `[bse-post-image size="medium"]`, `[bse-reading-time wpm="200"]`. Mit `post_id` lassen sich Inhalte wählen; ohne ID gilt der aktuelle Frontend-Inhalt. Texthelfer unterstützen `wrapper="none"` und `fallback`. Veröffentlichungs-/Änderungsdaten bieten optional `semantic="true"`. Die lokale Inhaltssuche im Generator überträgt Suchbegriffe nur an diese WordPress-Website.
+
 = Beispiele =
 
 ```text
@@ -45,7 +47,7 @@ Copyright, Datumsangaben, Benutzerinformationen, Beitragslinks, Taxonomiebegriff
 
 = Updates und Library =
 
-Der deckerweb Updater 2.1.0 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 0.8.1 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
+Der deckerweb Updater 2.1.0 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 0.9.0 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
 
 = Daten und Multisite =
 
@@ -72,23 +74,23 @@ In einen WordPress-Shortcode-Block oder ein Builder-Feld mit ausdrücklicher Sho
 
 = Was kann der Generator erstellen? =
 
-Copyright, Veröffentlichungsdatum, Änderungsdatum, einen Beitrags-/Seiten-Link und Inhaltseinbettungen. Weitere Helfer findest du in der durchsuchbaren Übersicht.
+Der Generator erstellt Copyright, Veröffentlichungs-/Änderungsdaten, Beitragslinks, eingebettete Inhalte, Titel, Auszüge, Beitragsbilder und Lesezeit. Weitere Helfer bleiben im durchsuchbaren Katalog.
 
 = Kann ich HTML und Klassen ändern? =
 
-Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Diese Version ergänzt keinen Modus ohne Wrapper.
+Die meisten Texthelfer unterstützen wrapper, class, before und after. Mehrere Klassen sind möglich. Unsichere oder nicht unterstützte Wrapper werden durch span ersetzt. Texthelfer bieten wrapper="none" und fallback; Einbettungen, Menüs, Kommentarformulare und Bilder behalten ihr eigenes HTML.
 
 = Funktionieren synchronisierte Vorlagen mit Classic Editor? =
 
 bse-wpblock ist verfügbar, sobald WordPress den Inhaltstyp wp_block registriert. Das zusätzliche alte Blocks-Menü entfällt.
 
-= Was passiert beim Entfernen mit den Daten? =
+= Wie funktionieren die neuen Inhaltshelfer? =
 
-BSE speichert keine Shortcode- oder Generator-Einstellungen. Deaktivierung erhält alle Daten. Deinstallation entfernt nur den temporären BSE-Updater-Cache und gibt die Library-Zuständigkeit frei. Andere installierte Library-Hosts schützen gemeinsame Daten, auch wenn sie deaktiviert sind. Der letzte Host entfernt temporäre Library-Daten; Optionen bleiben erhalten, außer die Löschoption der Library war aktiviert. Beiträge, Shortcodes, installierte Plugins und fremde Daten bleiben erhalten.
+post_id wählt lesbare Inhalte; ohne Angabe gilt der aktuelle Frontend-Inhalt. Auszüge verwenden den manuellen Auszug oder gespeicherten Text, mit words zwischen 1 und 500. Bilder verwenden registrierte WordPress-Größen und natives responsives HTML. Die Lesezeit zählt gespeicherten Text ohne Ausführung eingebetteter Shortcodes; wpm ist auf 50–1000 begrenzt. Reines Builder-Markup und bildlastige Artikel können unvollständige Schätzungen ergeben.
 
-= Wie melde ich eine Sicherheitslücke? =
+= Was überträgt die Inhaltssuche? =
 
-Verwende Security → Advisories → Report a vulnerability im GitHub-Repository dieses Plugins. Nenne Plugin-, Library- und Umgebungsversionen und eine minimale Reproduktion ohne Zugangsdaten. Poste Sicherheitsdetails nicht in öffentlichen Issues. Siehe SECURITY.md.
+Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifiziertes WordPress-AJAX. Nonce und Administratorberechtigung sind erforderlich. Höchstens zehn lesbare Titel/IDs werden ausgegeben. Suchbegriffe gehen nicht an GitHub oder externe Dienste; bei Fehlern bleibt die manuelle ID-Eingabe möglich.
 
 [Alle Fragen nach Themen](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch#fragen-nach-themen).
 
@@ -98,6 +100,16 @@ Verwende Security → Advisories → Report a vulnerability im GitHub-Repository
 2. Plugin-Seite mit Hilfe und Generator auf Deutsch.
 
 == Changelog ==
+
+= 1.3.0 — 2026-10-10 =
+
+- **Verbessert:** Admin-Hinweise erscheinen hinter dem vollständigen Header; das Produkt-Icon wird ausschließlich im Header angezeigt.
+- **Neu:** Shortcodes für Titel, Auszug, responsives Beitragsbild und geschätzte Lesezeit.
+- **Neu:** Optionale Textausgabe ohne Wrapper, maskierte Fallback-Texte und semantische Datumsangaben.
+- **Verbessert:** Neun Generatorfälle mit geschützter Inhaltssuche, klarerem Kontext des aktuellen Inhalts und erhaltenen Eingaben je Fall.
+- **Behoben:** rel-Attribute an Links funktionieren ohne target; Menü-Shortcodes berücksichtigen die angegebene Container-ID.
+- **Verbessert:** Neue Banner und abgerundete Plugin-Icons mit einem einheitlichen Motiv für wiederverwendbare Inhalte.
+- **Sonstiges:** Eingebettete deckerweb Library auf 0.9.0 aktualisiert; bestehende Shortcode-Funktionen und Mindestanforderungen bleiben unverändert.
 
 = 1.2.1 — 09.10.2026 =
 
@@ -148,4 +160,4 @@ Sicherheitslücken bitte vertraulich melden. [Meldeweg](SECURITY.md). Unterstüt
 
 © 2019–2026 David Decker – DECKERWEB. [GPL v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
-Mitgelieferte deckerweb Library und Updater: David Decker – DECKERWEB, GPL-2.0-or-later. Die BSE-Grafiken sind originale Vektorarbeiten; es werden keine Schriftdateien mitgeliefert. WordPress- und Builder-Namen gehören ihren jeweiligen Rechteinhabern.
+Mitgelieferte deckerweb Library und Updater: David Decker – DECKERWEB, GPL-2.0-or-later. Die BSE-Grafiken sind originale Vektorarbeiten mit Inter-Schriftpfaden (Copyright The Inter Project Authors, SIL Open Font License 1.1; Lizenz in assets/Inter-OFL.txt). Es werden keine Schriftdateien mitgeliefert. WordPress- und Builder-Namen gehören ihren jeweiligen Rechteinhabern.

@@ -10,6 +10,10 @@ try{
  bse_audit_assert(!str_contains(ddw_bse_shortcode_home_link(array('text'=>$unsafe)),'<img src=x'),'Home-link text cannot inject HTML');
  wp_set_current_user(0);bse_audit_assert(!str_contains(ddw_bse_shortcode_loginout(array('login_text'=>$unsafe)),'<img src=x'),'Login-link text cannot inject HTML');
  $id=wp_insert_post(array('post_title'=>'Public audit item','post_content'=>'Readable body','post_status'=>'publish','comment_status'=>'open'));$ids[]=$id;
+ bse_audit_assert(str_contains(do_shortcode('[bse-post-link id="'.$id.'" rel="nofollow"]'),'rel="nofollow"'),'Link rel works without target');
+ bse_audit_assert(str_contains(ddw_bse_metadata_link_attributes(array('target'=>'','rel'=>'nofollow')),'rel="nofollow"'),'Metadata rel works without target');
+ $menu=wp_create_nav_menu('BSE container ID audit');wp_update_nav_menu_item($menu,0,array('menu-item-title'=>'Audit','menu-item-url'=>home_url('/'),'menu-item-status'=>'publish'));
+ bse_audit_assert(str_contains(ddw_bse_shortcode_nav_menu(array('menu'=>$menu,'container_id'=>'bse-container-audit')),'id="bse-container-audit"'),'Menu forwards container ID');wp_delete_nav_menu($menu);
  $private=wp_insert_post(array('post_title'=>'Hidden audit item','post_status'=>'private'));$ids[]=$private;
  wp_set_current_user(0);
  bse_audit_assert(!str_contains(do_shortcode('[bse-version type="constant" constant="AUTH_KEY"]'),AUTH_KEY),'Version shortcode withholds authentication key');

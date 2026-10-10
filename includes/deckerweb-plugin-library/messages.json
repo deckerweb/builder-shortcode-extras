@@ -738,5 +738,65 @@
   "The requirements below describe the offered release.": {
     "de_DE": "Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release.",
     "de_DE_formal": "Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release."
+  },
+  "Affected features remain paused until their requirements are met.": {
+    "de_DE": "Betroffene Funktionen pausieren, bis ihre Voraussetzungen erfüllt sind.",
+    "de_DE_formal": "Betroffene Funktionen pausieren, bis ihre Voraussetzungen erfüllt sind."
+  },
+  "Update to %s": {
+    "de_DE": "Auf %s aktualisieren",
+    "de_DE_formal": "Auf %s aktualisieren"
+  },
+  "Updated": {
+    "de_DE": "Aktualisiert",
+    "de_DE_formal": "Aktualisiert"
+  },
+  "Already up to date.": {
+    "de_DE": "Bereits aktuell.",
+    "de_DE_formal": "Bereits aktuell."
+  },
+  "Updating…": {
+    "de_DE": "Wird aktualisiert…",
+    "de_DE_formal": "Wird aktualisiert…"
+  },
+  "The installed plugin identity could not be verified for this catalog update.": {
+    "de_DE": "Die Identität des installierten Plugins konnte für dieses Katalogupdate nicht bestätigt werden.",
+    "de_DE_formal": "Die Identität des installierten Plugins konnte für dieses Katalogupdate nicht bestätigt werden."
+  },
+  "Another updater provides a different release. Refresh updates before continuing.": {
+    "de_DE": "Ein anderer Updater bietet einen abweichenden Release an. Bitte die Updateinformationen vor dem Fortfahren aktualisieren.",
+    "de_DE_formal": "Ein anderer Updater bietet einen abweichenden Release an. Bitte die Updateinformationen vor dem Fortfahren aktualisieren."
+  },
+  "The update has not been confirmed. You can try again.": {
+    "de_DE": "Die Aktualisierung wurde nicht bestätigt. Du kannst es erneut versuchen.",
+    "de_DE_formal": "Die Aktualisierung wurde nicht bestätigt. Sie können es erneut versuchen."
+  },
+  "Update failed.": {
+    "de_DE": "Aktualisierung fehlgeschlagen.",
+    "de_DE_formal": "Aktualisierung fehlgeschlagen."
+  },
+  "Settings saved.": {
+    "de_DE": "Einstellungen gespeichert.",
+    "de_DE_formal": "Einstellungen gespeichert."
+  },
+  "Catalog refreshed.": {
+    "de_DE": "Katalog aktualisiert.",
+    "de_DE_formal": "Katalog aktualisiert."
+  },
+  "Filesystem credentials are required. Use the catalog with JavaScript enabled or the native Plugins screen.": {
+    "de_DE": "Dateisystem-Zugangsdaten sind erforderlich. Bitte den Katalog mit aktiviertem JavaScript oder die WordPress-Pluginverwaltung verwenden.",
+    "de_DE_formal": "Dateisystem-Zugangsdaten sind erforderlich. Bitte den Katalog mit aktiviertem JavaScript oder die WordPress-Pluginverwaltung verwenden."
+  },
+  "The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin.": {
+    "de_DE": "Der deckerweb-Katalog konnte nicht geladen werden. Bitte PHP-/WordPress-Anforderungen und die vollständige Library-Einbindung im Host-Plugin prüfen.",
+    "de_DE_formal": "Der deckerweb-Katalog konnte nicht geladen werden. Bitte PHP-/WordPress-Anforderungen und die vollständige Library-Einbindung im Host-Plugin prüfen."
+  },
+  "The approved package could not be verified.": {
+    "de_DE": "Das freigegebene Paket konnte nicht geprüft werden.",
+    "de_DE_formal": "Das freigegebene Paket konnte nicht geprüft werden."
+  },
+  "Action cancelled.": {
+    "de_DE": "Vorgang abgebrochen.",
+    "de_DE_formal": "Vorgang abgebrochen."
   }
 }

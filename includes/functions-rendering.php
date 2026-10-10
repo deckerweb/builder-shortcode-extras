@@ -132,12 +132,61 @@ function ddw_bse_metadata_wrapper( $attributes, $classes, $html, $labels = true 
  * @return string Escaped optional anchor attributes.
  */
 function ddw_bse_metadata_link_attributes( $attributes ) {
-	if ( empty( $attributes['target'] ) ) {
-		return '';
+	$result = '';
+	if ( ! empty( $attributes['target'] ) ) {
+		$result = ' target="' . esc_attr( sanitize_key( $attributes['target'] ) ) . '"';
 	}
-	$result = ' target="' . esc_attr( sanitize_key( $attributes['target'] ) ) . '"';
 	if ( ! empty( $attributes['rel'] ) ) {
 		$result .= ' rel="' . esc_attr( strtolower( $attributes['rel'] ) ) . '"';
 	}
 	return $result;
 }
+
+/**
+ * Apply opt-in presentation attributes to BSE shortcode output after existing callbacks.
+ *
+ * @since 1.3.0
+ * @param string $output Existing filtered callback output.
+ * @param string $tag Registered shortcode name.
+ * @param array|string $atts Raw shortcode attributes.
+ * @param array $match Core shortcode match, unused.
+ * @return string Output with escaped fallback, optional time markup or outer-wrapper removal.
+ */
+function ddw_bse_shortcode_presentation( $output, $tag, $atts, $match ) {
+	if ( 0 !== strpos( $tag, 'bse-' ) || ! is_array( $atts ) ) { return $output; }
+	if ( '' === trim( (string) $output ) || preg_match( '/^<([a-z][a-z0-9]*)\b[^>]*class="bse-[^"]*"[^>]*>\s*<\/\1>$/s', $output ) ) {
+		return isset( $atts['fallback'] ) && is_scalar( $atts['fallback'] ) ? esc_html( (string) $atts['fallback'] ) : $output;
+	}
+	$handler = $GLOBALS['shortcode_tags'][$tag] ?? '';
+	$embedding = is_string( $handler ) && in_array( $handler, array( 'ddw_bse_shortcode_item_content', 'ddw_bse_shortcode_elementor_template', 'ddw_bse_shortcode_nav_menu', 'ddw_bse_shortcode_comment_form', 'ddw_bse_shortcode_genesis_footer', 'ddw_bse_shortcode_genesis_breadcrumbs' ), true );
+	$excluded = array( 'bse-nav-menu', 'bse-comment-form', 'bse-item-content', 'bse-elementor-template', 'bse-genesis-footer', 'bse-genesis-breadcrumbs', 'bse-post-image' );
+	if ( isset( $atts['wrapper'] ) && 'none' === $atts['wrapper'] && ! $embedding && ! in_array( $tag, $excluded, true ) && ! in_array( $tag, array( 'bse-wpblock', 'bse-astra-layout', 'bse-beaver-template', 'bse-bricks-template' ), true ) ) {
+		$output = preg_replace( '/^<([a-z][a-z0-9]*)\b[^>]*class="bse-[^"]*"[^>]*>(.*)<\/\1>$/s', '$2', $output );
+	}
+	$dates = array( 'bse-post-date' => 'date', 'bse-post-time' => 'date', 'bse-post-modified-date' => 'modified', 'bse-post-modified-time' => 'modified', 'bse-item-last-updated' => 'modified' );
+	if ( ( isset( $dates[$tag] ) || 'bse-site-updated' === $tag ) && isset( $atts['semantic'] ) && ddw_bse_boolean( $atts['semantic'] ) ) {
+		$id = isset( $atts['post_id'] ) ? absint( $atts['post_id'] ) : get_the_ID();
+		$item = ddw_bse_readable_item( $id );
+		$date = isset( $dates[$tag] ) && $item ? get_post_datetime( $item, $dates[$tag] ) : false;
+		if ( 'bse-site-updated' === $tag ) {
+			$modified = ddw_bse_site_updated( isset( $atts['type'] ) && 'first' === $atts['type'] ? 'MIN' : 'MAX' );
+			$date = $modified ? new DateTimeImmutable( $modified, wp_timezone() ) : false;
+		}
+		if ( $date ) {
+			$datetime = esc_attr( $date->format( DATE_W3C ) );
+			if ( preg_match( '/<time\b[^>]*>/i', $output ) ) {
+				/**
+				 * Add the selected item date to native time markup.
+				 * @param array $time Opening tag match.
+				 * @return string Opening tag with escaped datetime.
+				 */
+				$output = preg_replace_callback( '/<time\b[^>]*>/i', static function ( $time ) use ( $datetime ) {
+					$open = preg_replace( '/\sdatetime="[^"]*"/i', '', $time[0] );
+					return substr( $open, 0, -1 ) . ' datetime="' . $datetime . '">';
+				}, $output, 1 );
+			} else { $output = '<time datetime="' . $datetime . '">' . $output . '</time>'; }
+		}
+	}
+	return $output;
+}
+add_filter( 'do_shortcode_tag', 'ddw_bse_shortcode_presentation', 10, 4 );

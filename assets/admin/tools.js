@@ -1,4 +1,4 @@
-/* Search and generate BSE shortcodes locally. No requests or saved preferences. */
+/* Search and generate BSE shortcodes locally. Content search uses authenticated requests; no saved preferences. */
 (() => {
   'use strict';
   const data = window.BSE_TOOLS;
@@ -12,6 +12,13 @@
   const drafts = new Map();
   let activeTag = '';
   let rendering = false;
+  let searchTimer;
+  let searchController;
+  let searchSequence = 0;
+  const picker = document.getElementById('bse-content-picker');
+  const searchQuery = document.getElementById('bse-content-query');
+  const searchResults = document.getElementById('bse-content-results');
+  const searchStatus = document.getElementById('bse-content-status');
   function generate() {
     if (rendering) return;
     const entry = data.catalog[activeTag];
@@ -34,6 +41,7 @@
     error.textContent = message;
     error.hidden = !message;
     copyGenerated.disabled = !!message;
+    if (!picker.hidden && !searchQuery.value) { const idInput = document.getElementById('bse-field-id') || document.getElementById('bse-field-post_id'); searchStatus.textContent = idInput.value ? `${data.i18n.selectedItem} ${idInput.value}` : data.i18n.currentItem; }
     output.value = message ? '' : `[${activeTag}${attributes.length ? ' ' + attributes.join(' ') : ''}]`;
   }
   function remember() {
@@ -42,6 +50,8 @@
   }
   function renderFields() {
     rendering = true;
+    clearTimeout(searchTimer); searchController?.abort(); searchSequence++;
+    searchResults.replaceChildren(); searchStatus.textContent = ''; searchQuery.value = '';
     remember();
     activeTag = choice.value;
     const entry = data.catalog[activeTag];
@@ -69,6 +79,7 @@
       input.addEventListener('change', generate);
       row.append(label, input); fields.append(row);
     }
+    picker.hidden = !entry.fields.some(field => ['id', 'post_id'].includes(field.key));
     rendering = false;
     generate();
   }
@@ -88,6 +99,36 @@
       const instruction = document.createElement('span'); instruction.textContent = data.i18n.manual; status.append(instruction);
     }
   }
+  searchQuery.addEventListener('input', () => {
+    clearTimeout(searchTimer); searchController?.abort();
+    const sequence = ++searchSequence;
+    searchResults.replaceChildren(); searchStatus.textContent = '';
+    const query = searchQuery.value.trim();
+    if (query.length < 2) return;
+    searchTimer = setTimeout(async () => {
+      searchController = new AbortController();
+      searchStatus.textContent = data.i18n.searching;
+      try {
+        const url = new URL(data.ajaxUrl, location.href);
+        url.searchParams.set('action', 'bse_content_search'); url.searchParams.set('nonce', data.nonce); url.searchParams.set('q', query);
+        const response = await fetch(url, { credentials: 'same-origin', signal: searchController.signal });
+        if (!response.ok) throw new Error('search');
+        const result = await response.json();
+        if (sequence !== searchSequence) return;
+        if (!result.success || !Array.isArray(result.data)) throw new Error('search');
+        searchStatus.textContent = result.data.length ? '' : data.i18n.noContent;
+        for (const item of result.data) {
+          const button = document.createElement('button'); button.type = 'button'; button.className = 'button';
+          button.textContent = `${item.title || '#'+item.id} — ${item.type} · ${item.status} · #${item.id}`;
+          button.addEventListener('click', () => {
+            const input = document.getElementById('bse-field-id') || document.getElementById('bse-field-post_id');
+            input.value = String(item.id); searchResults.replaceChildren(); searchQuery.value = ''; generate(); input.focus();
+          });
+          searchResults.append(button);
+        }
+      } catch (err) { if (err.name !== 'AbortError' && sequence === searchSequence) searchStatus.textContent = data.i18n.searchFailed; }
+    }, 300);
+  });
   choice.addEventListener('change', renderFields);
   copyGenerated.addEventListener('click', () => { if (!copyGenerated.disabled) copy(output.value); });
   document.querySelectorAll('.bse-copy').forEach(button => button.addEventListener('click', () => copy(button.previousElementSibling.textContent)));

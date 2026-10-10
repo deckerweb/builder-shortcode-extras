@@ -47,11 +47,12 @@
   const apply = (job, data) => {
    delete job.form.dataset.dwlRecover;delete job.form.dataset.dwlLabel;
    finish(job, data.message || '', false);
+   if(data.version){const version=job.form.closest('.dwl-card')?.querySelector('footer span:last-child');if(version)version.textContent='v'+data.version;}
    if (data.next) {
     job.form.dataset.dwlAction = 'activate';job.form.querySelector('[name="_wpnonce"]').value = data.next.nonce;
     const url = new URL(job.form.action);url.searchParams.set('action','dwl_activate');job.form.action=url.href;
     job.button.textContent = data.next.label;job.button.classList.add('button-primary');
-   } else if (data.active || data.installed) {job.button.textContent=data.message;job.button.disabled=true;}
+   } else if (data.updated || data.active || data.installed) {job.button.textContent=data.message;job.button.disabled=true;}
   };
   const checkStatus = (job) => {
    job.button.textContent=dwlInline.checking;job.form.setAttribute('aria-busy','true');
@@ -83,7 +84,7 @@
    }).fail(() => checkStatus(job));
   };
   $('#deckerweb-library').on('submit', '.dwl-card form[data-dwl-action]', function(event) {
-   if (!['install','activate'].includes(this.dataset.dwlAction)) return;
+   if (!['install','activate','update'].includes(this.dataset.dwlAction)) return;
    event.preventDefault(); if (busy) return;
    busy = true;
    const button = this.querySelector('button[type="submit"]');
@@ -91,7 +92,7 @@
    if (!status) {status=document.createElement('p');status.className='dwl-inline-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');this.after(status);}
    const job={form:this,button,status,label:this.dataset.dwlLabel || button.textContent};
    status.textContent='';status.classList.remove('dwl-inline-error');button.disabled=true;
-   button.textContent=this.dataset.dwlAction==='install'?dwlInline.installing:dwlInline.activating;
+   button.textContent=this.dataset.dwlAction==='install'?dwlInline.installing:(this.dataset.dwlAction==='update'?dwlInline.updating:dwlInline.activating);
    this.setAttribute('aria-busy','true');if(this.dataset.dwlRecover==='1')checkStatus(job);else send(job);
   });
   // WordPress's modal handler records credentials in memory before this retry.
@@ -100,5 +101,26 @@
   });
   const cancel = () => {if(pending) {const job=pending;finish(job,dwlInline.cancelled,false);job.button.focus();}};
   $('#request-filesystem-credentials-dialog').on('click.dwl','.cancel-button',cancel).on('keydown.dwl',event=>{if(event.key==='Escape')cancel();});
+ });
+})(jQuery);
+
+/* Shared preferences and catalog controls have a native same-admin fallback. */
+(($) => {
+ 'use strict';
+ $(document).on('submit', 'form[data-dwl-action]', function(event) {
+  const operation=this.dataset.dwlAction;
+  if (!window.dwlInline || !['preferences','dismiss','refresh'].includes(operation)) return;
+  event.preventDefault();
+  const form=this, button=form.querySelector('button[type="submit"],input[type="submit"]');
+  if(form.dataset.dwlBusy==='1')return;form.dataset.dwlBusy='1';if(button)button.disabled=true;
+  let status=form.querySelector('.dwl-control-status');
+  if(!status){status=document.createElement('p');status.className='dwl-control-status';status.setAttribute('role','status');form.append(status);}
+  const data=$(form).serializeArray();data.push({name:'action',value:'dwl_controls'},{name:'operation',value:operation},{name:'network',value:form.dataset.dwlNetwork});
+  $.ajax({url:dwlInline.url,method:'POST',dataType:'json',data}).done(response=>{
+   status.textContent=response.data?.message || dwlInline.failed;
+   if(response.success && operation==='dismiss'){form.closest('.notice')?.remove();}
+   if(response.success && operation==='preferences' && form.querySelector('[name="hide_only"]')){document.querySelectorAll('#deckerweb-library .dwl-grid,#deckerweb-library .dwl-filter').forEach(el=>{el.hidden=true;});}
+   if(response.success && operation==='refresh'){window.location.reload();}
+  }).fail(()=>{status.textContent=dwlInline.failed;}).always(()=>{delete form.dataset.dwlBusy;if(button)button.disabled=false;});
  });
 })(jQuery);

@@ -6,7 +6,7 @@
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
-Version **1.2.1** · WordPress **6.7+** · PHP **8.0+**
+Version **1.3.0** · WordPress **6.7+** · PHP **8.0+**
 
 ## Quick start
 
@@ -73,6 +73,12 @@ BSE saves no generator values and changes no content.
 | `bse-wpblock` | `id`, `css` | WordPress synced patterns |
 | `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |
 
+| `bse-post-title` | `post_id`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+| `bse-post-excerpt` | `post_id`, `words`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+| `bse-post-image` | `post_id`, `size`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+| `bse-reading-time` | `post_id`, `wpm`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
+
+All BSE shortcodes support escaped `fallback` text when output is empty. Text helpers offer `wrapper="none"`; post date/time and site-modification helpers offer `semantic="true"` for the selected item’s datetime. Images and embedded content retain their markup.
 
 ## FAQ by topic
 
@@ -88,7 +94,7 @@ Use a WordPress Shortcode block or a builder field that explicitly supports shor
 
 #### What can the generator create?
 
-Copyright, publication date, last-updated date, a post/page link and embedded content. Other helpers remain available in the searchable catalog.
+The generator creates copyright, publication/modification dates, post links, embedded content, titles, excerpts, featured images and reading time. Other helpers remain in the searchable catalog.
 
 #### Can I search in German?
 
@@ -96,7 +102,7 @@ Yes. The interface and task descriptions follow your WordPress admin language. S
 
 #### How do I find a post or template ID?
 
-Open the item in WordPress. The number after post= in the editor URL is its ID. Supported template list tables also show shortcode examples.
+Open the item in WordPress. Search for a title in the generator or use the number after post= in the editor URL. Supported template list tables also show shortcode examples.
 
 ### Output and integrations
 
@@ -110,7 +116,7 @@ Choose Relative date in the generator or use format="relative". Relative output 
 
 #### Can I change the HTML and classes?
 
-Most text helpers accept wrapper, class, before and after. Multiple classes are supported. Unsafe or unsupported wrapper tags fall back to span. This version does not add a wrapper-free mode.
+Most text helpers accept wrapper, class, before and after. Multiple classes are supported. Unsafe or unsupported wrapper tags fall back to span. Text helpers support wrapper="none"; embedding, menus, comment forms and images retain their own markup. fallback supplies escaped text when no value is available.
 
 #### Does it load frontend CSS or JavaScript?
 
@@ -160,7 +166,7 @@ The embedded deckerweb Library adds a curated catalog under Plugins → Add New 
 
 #### Does the plugin send usage data?
 
-BSE has no usage telemetry. The updater requests GitHub release metadata. The Library uses its bundled catalog by default; online catalog updates require explicit configuration. Servers naturally see the requesting IP address.
+BSE has no usage telemetry. Generator searches send the search term to the current WordPress website only. The updater requests GitHub release metadata. The Library uses its bundled catalog by default; online catalog updates require explicit configuration. Servers naturally see the requesting IP address.
 
 #### What changed for existing installations?
 
@@ -189,6 +195,18 @@ No. Shortcode attributes can select constants whose names end in VERSION or VER.
 #### How do I report a security issue?
 
 Use Security → Advisories → Report a vulnerability in this plugin’s GitHub repository. Include plugin, Library and environment versions plus a minimal reproduction, without credentials. Keep details out of public issues. See SECURITY.md.
+
+#### How do the new content helpers work?
+
+Use post_id to select readable content or omit it for the current frontend item. Excerpts use an explicit excerpt or stored text, with words between 1 and 500. Images use registered WordPress sizes and native responsive markup. Reading time counts stored prose without executing embedded shortcodes; wpm is limited to 50–1000. Builder-only markup and image-heavy articles can produce incomplete estimates.
+
+#### How do fallback and semantic dates work?
+
+fallback is escaped plain text for missing output, including inaccessible content; it never grants access. semantic="true" adds time/datetime markup to post publication/modification dates. wrapper="none" removes only the text helper’s outer wrapper; links and semantic time markup remain.
+
+#### What does the content search send?
+
+After two characters the generator searches the current website through authenticated WordPress AJAX. A nonce and administrator capability are required. At most ten readable title/ID results are returned. No search terms are sent to GitHub or external services; manual IDs remain available when search fails.
 
 ## Developers
 

@@ -3,7 +3,7 @@
  * Plugin Name:       Builder Shortcode Extras
  * Plugin URI:        https://github.com/deckerweb/builder-shortcode-extras
  * Description:       Small dynamic helpers for your WordPress website. Find, configure and copy useful shortcodes.
- * Version:           1.2.1
+ * Version:           1.3.0
  * Requires at least: 6.7
  * Requires PHP:      8.0
  * Author:            David Decker – DECKERWEB
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 /** Plugin version */
-define( 'BSE_PLUGIN_VERSION', '1.2.1' );
+define( 'BSE_PLUGIN_VERSION', '1.3.0' );
 
 /** Plugin directory */
 define( 'BSE_PLUGIN_FILE', __FILE__ );
@@ -85,6 +85,7 @@ function ddw_bse_setup_plugin() {
 		[
 			'info',
 			'post',
+			'metadata',
 			'content',
 			'integrations',
 			'user',
