@@ -1,17 +1,18 @@
 <?php
 /** Copyright 2026 David Decker – DECKERWEB. SPDX-License-Identifier: GPL-2.0-or-later */
-namespace Deckerweb\PluginLibrary\V0_9_0;
+namespace Deckerweb\PluginLibrary\V1_1_0;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /** WordPress-native, embedded catalog. Settings are shared across host plugins. */
 final class Library {
-	const VERSION = '0.9.0';
+	const VERSION = '1.1.0';
 	const OPTION = 'deckerweb_library_settings_v1';
 	const MANAGED = 'deckerweb_library_installed_v1';
 	private array $chosen;
 	private array $hosts;
 	private Catalog $catalog;
 	private bool $network = false;
+ private ?object $explicit_upgrader = null;
 	/**
 	 * Initialize the component with validated host paths and shared runtime configuration.
 	 *
@@ -52,7 +53,12 @@ final class Library {
 	 * Registers WordPress hooks or local assets for the current request.
 	 */
 	public function register(): void {
-		add_filter( 'install_plugins_tabs', [ $this, 'tabs' ] );
+		add_action( 'admin_post_dwl_view', [ $this, 'save_view' ] );
+  add_action( 'wp_ajax_dwl_conflict_dismiss', [ $this, 'dismiss_conflict' ] );
+  add_action( 'admin_post_dwl_conflict_dismiss', [ $this, 'dismiss_conflict' ] );
+  add_action( 'admin_notices', [ $this, 'conflict_notice' ] );
+  add_action( 'network_admin_notices', [ $this, 'conflict_notice' ] );
+  add_filter( 'install_plugins_tabs', [ $this, 'tabs' ] );
 		add_action( 'install_plugins_deckerweb', [ $this, 'render' ] );
 		add_action( 'admin_notices', [ $this, 'notice' ] );
 		add_action( 'network_admin_notices', [ $this, 'notice' ] );
@@ -76,6 +82,19 @@ final class Library {
 			add_filter( 'network_admin_plugin_action_links_' . plugin_basename( $host['host'] ), [ $this, 'links' ] );
 		}
 	}
+ /** Save the current user's view through the elected runtime's owned callback.
+  * @return void Delegates to the nonce- and capability-checked handler, which terminates the request.
+  */
+ public function save_view(): void { Experience::save(); }
+ /** Render at most one local conflict notice through an owned runtime callback.
+  * @return void Emits escaped markup only for authorized relevant administration screens.
+  */
+ public function conflict_notice(): void { Experience::notice(); }
+ /** Dismiss a conflict notice for the current user through an owned callback.
+  * @return void Delegates to the authorized handler, returning JSON or a native admin redirect.
+  */
+ public function dismiss_conflict(): void { Experience::dismiss(); }
+
 	/**
 	 * Add the optional catalog link to the host plugin action links.
 	 *
@@ -96,6 +115,16 @@ final class Library {
 		if ( self::settings()['enabled'] && current_user_can( 'install_plugins' ) ) { $tabs['deckerweb'] = 'deckerweb'; }
 		return $tabs;
 	}
+ /** Read a bounded scalar query value for navigation and read-only status only.
+  * @param string $key Expected query parameter name.
+  * @return string|null Sanitized unslashed scalar, or null for missing/non-scalar input.
+  * This method does not authorize state changes; write endpoints verify their own nonces.
+  */
+ public static function query( string $key ): ?string {
+  // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only navigation, filtering or status; no stored changes are authorized here.
+  return isset( $_GET[$key] ) && is_string( $_GET[$key] ) ? substr( sanitize_text_field( wp_unslash( $_GET[$key] ) ), 0, 150 ) : null;
+ }
+
 	/**
 	 * Enqueue local assets only on the catalog and Library settings screens.
 	 *
@@ -105,10 +134,10 @@ final class Library {
 	 */
 	public function assets( string $hook ): void {
 		if ( ! current_user_can( 'install_plugins' ) ) { return; }
-		if ( ( $hook === 'plugin-install.php' && ( $_GET['tab'] ?? '' ) === 'deckerweb' ) || str_contains( $hook, 'deckerweb-library' ) ) {
+		if ( ( $hook === 'plugin-install.php' && self::query( 'tab' ) === 'deckerweb' ) || str_contains( $hook, 'deckerweb-library' ) || ( in_array($hook,['plugins.php','update-core.php'],true) && Experience::conflicts() ) ) {
 			wp_enqueue_style( 'deckerweb-plugin-library', plugins_url( 'assets/library.css', $this->chosen['dir'] . '/bootstrap.php' ), [], self::VERSION );
-   wp_enqueue_script( 'deckerweb-plugin-library', plugins_url( 'assets/library.js', $this->chosen['dir'] . '/bootstrap.php' ), [ 'jquery', 'updates' ], self::VERSION, true );
-   wp_localize_script( 'deckerweb-plugin-library', 'dwlInline', [ 'url' => admin_url( 'admin-ajax.php' ), 'installing' => self::t( 'Installing…' ), 'activating' => self::t( 'Activating…' ), 'updating' => self::t( 'Updating…' ), 'failed' => self::t( 'The request could not be completed. Check the plugin status before trying again.' ), 'cancelled' => self::t( 'Action cancelled.' ), 'status' => self::t( 'Check status' ), 'checking' => self::t( 'Checking status…' ), 'saved' => self::t( 'Settings saved.' ) ] );
+   wp_enqueue_script( 'deckerweb-plugin-library', plugins_url( 'assets/library.js', $this->chosen['dir'] . '/bootstrap.php' ), [ 'jquery', 'updates' ], self::VERSION . '.1', true );
+   wp_localize_script( 'deckerweb-plugin-library', 'dwlInline', [ 'url' => admin_url( 'admin-ajax.php' ), 'installing' => self::t( 'Installing…' ), 'activating' => self::t( 'Activating…' ), 'updating' => self::t( 'Updating…' ), 'failed' => self::t( 'The request could not be completed. Check the plugin status before trying again.' ), 'cancelled' => self::t( 'Action cancelled.' ), 'status' => self::t( 'Check status' ), 'checking' => self::t( 'Checking status…' ), 'active' => self::t('Active'), 'networkActive' => self::t('Network active'), 'inactive' => self::t('Installed · inactive'), 'copied' => self::t( 'Copied.' ), 'copyManual' => self::t( 'Select and copy the text.' ), 'forbidden' => self::t( 'Permission denied. Reload the page and check your permissions.' ), 'interrupted' => self::t( 'Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry.' ), 'saved' => self::t( 'Settings saved.' ) ] );
 		}
 	}
 	/**
@@ -119,7 +148,7 @@ final class Library {
 	 */
 	public function notice(): void {
 		global $pagenow;
-		if ( $pagenow !== 'plugin-install.php' || ( $_GET['tab'] ?? '' ) === 'deckerweb' || ! self::settings()['enabled'] || ! current_user_can( 'install_plugins' ) || get_user_meta( get_current_user_id(), 'deckerweb_library_intro_seen_v1', true ) ) { return; }
+		if ( $pagenow !== 'plugin-install.php' || self::query( 'tab' ) === 'deckerweb' || ! self::settings()['enabled'] || ! current_user_can( 'install_plugins' ) || get_user_meta( get_current_user_id(), 'deckerweb_library_intro_seen_v1', true ) ) { return; }
 		// Once per administrator, not once per request and not once per host plugin.
 		update_user_meta( get_current_user_id(), 'deckerweb_library_intro_seen_v1', 1 );
 		echo '<div class="notice notice-info"><p><strong>' . esc_html( self::t( 'Discover more plugins by deckerweb' ) ) . '</strong><br>' . esc_html( self::t( 'You already use one of my plugins. Find selected additions in the deckerweb tab.' ) ) . ' <a href="' . esc_url( self_admin_url( 'plugin-install.php?tab=deckerweb' ) ) . '">' . esc_html( self::t( 'View plugins' ) ) . '</a></p>';
@@ -135,7 +164,7 @@ final class Library {
 	public function menu(): void {
 		$cap = is_network_admin() ? 'manage_network_options' : 'manage_options';
 		if ( is_multisite() && ! is_network_admin() ) { return; }
-		add_submenu_page( is_network_admin() ? 'settings.php' : 'options-general.php', 'deckerweb Library', 'deckerweb Library', $cap, 'deckerweb-library', [ $this, 'settings_page' ] );
+		add_submenu_page( is_network_admin() ? 'settings.php' : 'options-general.php', 'deckerweb Plugin Library', 'deckerweb Plugin Library', $cap, 'deckerweb-library', [ $this, 'settings_page' ] );
 	}
 	/**
 	 * Build the catalog URL for the current site or network administration scope.
@@ -188,6 +217,20 @@ final class Library {
 	}
 
 	/**
+	 * Choose an explicit safe catalog color or a stable local pastel for initials.
+	 *
+	 * @param array $entry Validated catalog identity and optional hexadecimal color.
+	 * @return string Six-digit CSS hexadecimal color, stable across users and requests.
+	 */
+	private static function fallback_color( array $entry ): string {
+		$explicit = $entry['icon_background'] ?? null;
+		if ( is_string( $explicit ) && preg_match( '/^#[a-fA-F0-9]{6}$/D', $explicit ) ) { return $explicit; }
+		$palette = [ '#DDEBE8', '#E7E2EF', '#DFE7F0', '#F1E3D7', '#E1E8DC', '#E9E1F1', '#E3EAF3', '#EEE6D9' ];
+		$identity = (string) ( $entry['slug'] ?? $entry['repository'] ?? 'deckerweb' );
+		return $palette[ hexdec( substr( hash( 'sha256', $identity ), 0, 4 ) ) % count( $palette ) ];
+	}
+
+	/**
 	 * Select a local original icon or a subdued text fallback for a catalog card.
 	 *
 	 * @param array $entry Validated approved catalog entry and dependency metadata.
@@ -199,7 +242,7 @@ final class Library {
 		if ( $file && is_file( $this->chosen['dir'] . '/' . $file ) ) {
 			return '<img src="' . esc_url( add_query_arg( 'ver', self::VERSION, plugins_url( $file, $this->chosen['dir'] . '/bootstrap.php' ) ) ) . '" alt="" width="54" height="54">';
 		}
-		return '<span class="dwl-icon-fallback" style="background-color:' . esc_attr( $entry['icon_background'] ?? '#f0f3f6' ) . '">' . esc_html( $entry['icon_label'] ?? 'DW' ) . '</span>';
+		return '<span class="dwl-icon-fallback" style="background-color:' . esc_attr( self::fallback_color( $entry ) ) . '">' . esc_html( $entry['icon_label'] ?? 'DW' ) . '</span>';
 	}
 	/**
 	 * Output the filtered catalog with separate installation and activation controls.
@@ -218,15 +261,19 @@ final class Library {
 		if ( is_wp_error( $entries ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $entries->get_error_message() ) . '</p></div>'; return; }
 		$entries += $this->catalog->previews();
 		$plugins = get_plugins();
-		$search = isset( $_GET['dwl_search'] ) && is_string( $_GET['dwl_search'] ) ? sanitize_text_field( wp_unslash( $_GET['dwl_search'] ) ) : '';
-		$compatible = isset( $_GET['dwl_compatible'] ) && $_GET['dwl_compatible'] === '1';
+  $view = Experience::view();
+  $entries = Experience::ordered( $entries, $view );
+		$search = self::query( 'dwl_search' ) ?? $view['search'];
+		$compatible = self::query( 'dwl_compatible' ) !== null ? self::query( 'dwl_compatible' ) === '1' : $view['compatible'];
   $available_series = [];
   foreach ( $entries as $entry ) { foreach ( Catalog::series( $entry ) as $membership ) { $available_series[$membership] = true; } }
-  $series = isset( $_GET['dwl_series'] ) && is_string( $_GET['dwl_series'] ) && isset( $available_series[$_GET['dwl_series']] ) ? $_GET['dwl_series'] : '';
+  $series = self::query( 'dwl_series' ) !== null && isset( $available_series[ self::query( 'dwl_series' ) ] ) ? self::query( 'dwl_series' ) : ( isset( $available_series[$view['series']] ) ? $view['series'] : '' );
   $reset_url = self_admin_url( 'plugin-install.php?tab=deckerweb' );
 		echo '<div id="deckerweb-library"><div class="dwl-heading"><div><h2>' . esc_html( self::t( 'Small plugins. Practical improvements.' ) ) . '</h2><p>' . esc_html( self::t( 'Selected by deckerweb · Installed from GitHub releases' ) ) . '</p></div><a href="' . esc_url( $this->settings_url() ) . '">' . esc_html( self::t( 'Library settings' ) ) . '</a></div>';
-		if ( isset( $_GET['dwl_done'] ) ) { echo '<div class="notice notice-success inline"><p>' . esc_html( self::t( 'Done. The plugin is active.' ) ) . '</p></div>'; }
+		if ( self::query( 'dwl_done' ) !== null ) { echo '<div class="notice notice-success inline"><p>' . esc_html( self::t( 'Done. The plugin is active.' ) ) . '</p></div>'; }
 		if ( $this->catalog->status === 'offline' ) { echo '<div class="notice notice-warning inline"><p>' . esc_html( self::t( 'The online catalog is unavailable. Showing cached or bundled entries; online approval is checked again before installation.' ) ) . '</p></div>'; }
+  $catalog_status = $this->catalog->summary();
+  echo '<p class="dwl-catalog-status">' . esc_html( self::t( $catalog_status['source'] === 'online' ? 'Online catalog' : ( $catalog_status['source'] === 'offline' ? 'Cached or bundled catalog' : 'Bundled catalog' ) ) . ' · ' . $catalog_status['revision'] . ( $catalog_status['checked_at'] ? ' · ' . self::t( 'Last successful check: ' ) . wp_date( 'Y-m-d H:i', $catalog_status['checked_at'] ) : '' ) ) . '</p>';
   $series_controls = '<fieldset class="dwl-series-filter"><legend>' . esc_html( self::t( 'Plugin series' ) ) . '</legend>';
   $series_labels = [];
   $definitions = reset( $entries )['_series_definitions'] ?? [];
@@ -244,10 +291,20 @@ final class Library {
    $series_controls .= '<button type="submit" class="button' . ( $series === $key ? ' dwl-series-selected' : '' ) . '" name="dwl_series" value="' . esc_attr( $key ) . '" aria-pressed="' . ( $series === $key ? 'true' : 'false' ) . '">' . esc_html( self::t( $label ) ) . '</button>';
   }
   $series_controls .= '</fieldset>';
-  echo '<form method="get" class="dwl-filter"><input type="hidden" name="tab" value="deckerweb"><button type="submit" name="dwl_series" value="' . esc_attr( $series ) . '" hidden>' . esc_html( self::t( 'Filter' ) ) . '</button>' . $series_controls . '<div class="dwl-filter-controls"><label>' . esc_html( self::t( 'Search this catalog' ) ) . ' <input type="search" name="dwl_search" value="' . esc_attr( $search ) . '"></label><label><input type="checkbox" name="dwl_compatible" value="1" ' . checked( $compatible, true, false ) . ' aria-describedby="dwl-compatible-help"> ' . esc_html( self::t( 'Fits my installation' ) ) . '</label><button type="submit" class="button" name="dwl_series" value="' . esc_attr( $series ) . '">' . esc_html( self::t( 'Filter' ) ) . '</button>';
-  if ( $series !== '' || $search !== '' || $compatible ) { echo '<a class="dwl-reset" href="' . esc_url( $reset_url ) . '">' . esc_html( self::t( 'Reset filters' ) ) . '</a>'; }
+  echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="dwl-filter"><input type="hidden" name="action" value="dwl_view"><input type="hidden" name="dwl_view_nonce" value="' . esc_attr( wp_create_nonce( 'dwl_view' ) ) . '"><button type="submit" name="dwl_series" value="' . esc_attr( $series ) . '" hidden>' . esc_html( self::t( 'Filter' ) ) . '</button>' . wp_kses( $series_controls, [ 'fieldset'=>[ 'class'=>true ], 'legend'=>[], 'button'=>[ 'type'=>true, 'class'=>true, 'name'=>true, 'value'=>true, 'aria-pressed'=>true ] ] ) . '<div class="dwl-filter-controls"><label>' . esc_html( self::t( 'Search this catalog' ) ) . ' <input type="search" name="dwl_search" value="' . esc_attr( $search ) . '"></label><label><input type="checkbox" name="dwl_compatible" value="1" ' . checked( $compatible, true, false ) . ' aria-describedby="dwl-compatible-help"> ' . esc_html( self::t( 'Fits my installation' ) ) . '</label><button type="submit" class="button" name="dwl_series" value="' . esc_attr( $series ) . '">' . esc_html( self::t( 'Filter' ) ) . '</button>';
+  echo '<label>' . esc_html( self::t( 'Sort by' ) ) . ' <select name="dwl_sort">';
+  foreach ( Experience::MODES as $mode=>$label ) { echo '<option value="' . esc_attr($mode) . '" ' . selected($view['sort'],$mode,false) . '>' . esc_html(self::t($label)) . '</option>'; }
+  echo '</select></label><button class="button" type="submit" name="dwl_shuffle" value="1"' . ($view['sort']==='random'?'':' hidden') . '>' . esc_html(self::t('Shuffle again')) . '</button><button class="button-link dwl-reset" type="submit" name="dwl_reset" value="1">' . esc_html(self::t('Reset view')) . '</button>';
   echo '</div><p id="dwl-compatible-help" class="dwl-filter-help">' . esc_html( self::t( 'Shows plugins whose platform and dependency requirements are met in this site or network. Without this filter, plugins with missing requirements remain visible.' ) ) . '</p></form>
 ';
+  if ( $series !== '' || $search !== '' || $compatible ) {
+   echo '<div class="dwl-active-filters">' . esc_html(self::t('Active filters: ')) . ' ';
+   foreach ( [ 'series'=>$series !== '' ? ($series_labels[$series] ?? $series) : '', 'search'=>$search, 'compatible'=>$compatible ? self::t('Fits my installation') : '' ] as $key=>$label ) {
+    if ($label==='') {continue;} echo '<form class="dwl-filter-chip" method="post" action="' . esc_url(admin_url('admin-post.php')) . '"><input type="hidden" name="action" value="dwl_view"><input type="hidden" name="dwl_view_nonce" value="' . esc_attr(wp_create_nonce('dwl_view')) . '">';
+    foreach ( ['dwl_sort'=>$view['sort'],'dwl_series'=>$key==='series'?'':$series,'dwl_search'=>$key==='search'?'':$search,'dwl_compatible'=>$key==='compatible'?'0':($compatible?'1':'0')] as $field=>$value ) {echo '<input type="hidden" name="' . esc_attr($field) . '" value="' . esc_attr($value) . '">';}
+    echo '<button class="button" type="submit" aria-label="' . esc_attr(self::t('Remove filter: ') . $label) . '">' . esc_html($label) . ' ×</button></form>';
+   } echo '</div>';
+  }
 		echo '<div class="dwl-grid">'; $count = 0;
 		foreach ( $entries as $entry ) {
 			$name = self::text( $entry, 'name' ); $description = self::text( $entry, 'description' );
@@ -260,8 +317,9 @@ final class Library {
 			$active = $installed && ( is_network_admin() ? is_plugin_active_for_network( $entry['plugin_file'] ) : is_plugin_active( $entry['plugin_file'] ) );
 			$series_badges = '';
 			foreach ( Catalog::series( $entry ) as $membership ) { $series_badges .= '<span class="dwl-series-badge dwl-series-' . esc_attr( $membership ) . '">' . esc_html( $series_labels[$membership] ) . '</span>'; }
-			echo '<article class="dwl-card"><div class="dwl-body"><div class="dwl-title"><div class="dwl-icon" aria-hidden="true">' . $this->icon( $entry ) . '</div><div><h3>' . esc_html( $name ) . '</h3><span class="dwl-meta">deckerweb · ' . esc_html( self::text( $entry, 'category' ) ?: self::t( 'WordPress' ) ) . '</span>' . $series_badges . '</div></div><p>' . esc_html( $description ) . '</p>';
+			echo '<article class="dwl-card"><div class="dwl-body"><div class="dwl-title"><div class="dwl-icon" aria-hidden="true">' . wp_kses( $this->icon( $entry ), [ 'img'=>[ 'src'=>true, 'alt'=>true, 'width'=>true, 'height'=>true ], 'span'=>[ 'class'=>true, 'style'=>true ] ] ) . '</div><div><h3>' . esc_html( $name ) . '</h3><span class="dwl-meta">deckerweb · ' . esc_html( self::text( $entry, 'category' ) ?: self::t( 'WordPress' ) ) . '</span>' . wp_kses( $series_badges, [ 'span'=>[ 'class'=>true ] ] ) . '</div></div><p>' . esc_html( $description ) . '</p>';
 
+   if ( $installed ) { echo '<p class="dwl-install-state">' . esc_html( self::t( is_plugin_active_for_network( $entry['plugin_file'] ) ? 'Network active' : ( $active ? 'Active' : 'Installed · inactive' ) ) . ( version_compare( $entry['version'], $plugins[$entry['plugin_file']]['Version'] ?? '0', '>' ) ? ' · ' . self::t( 'Update available' ) : '' ) ) . '</p>'; }
 			if ( isset( $entry['github_stars'], $entry['stars_checked_at'] ) ) {
 				echo '<p class="dwl-stars"><a href="' . esc_url( 'https://github.com/' . $entry['repository'] . '/stargazers' ) . '" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">★</span> ' . esc_html( number_format_i18n( $entry['github_stars'] ) . ' ' . self::t( 'GitHub Stars' ) ) . '</a> <span class="dwl-meta">' . esc_html( self::t( 'As of ' ) . I18n::date( $entry['stars_checked_at'] ) ) . '</span></p>';
 			}
@@ -285,7 +343,7 @@ final class Library {
 			echo '<p><a href="' . esc_url( 'https://github.com/' . $entry['repository'] ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( self::t( 'Repository & documentation' ) ) . '</a></p><p class="dwl-meta">' . esc_html( self::t( ! empty( $entry['_preview'] ) ? 'Requirements shown are preliminary until the stable release is verified.' : 'Release checksum is verified before installation. Activation is a separate step.' ) ) . '</p></details></div><footer><span>' . esc_html( self::t( 'Source: GitHub' ) ) . '</span><span>' . esc_html( ! empty( $entry['_preview'] ) ? self::t( 'Planned: ' ) . $entry['version'] : ( $installed ? self::t( 'Installed: ' ) . $plugins[$entry['plugin_file']]['Version'] : 'v' . $entry['version'] ) ) . '</span></footer></article>';
 		}
 		echo '</div>';
-		if ( ! $count ) { echo '<p>' . esc_html( self::t( 'No approved plugins match this selection.' ) ) . ' <a href="' . esc_url( $reset_url ) . '">' . esc_html( self::t( 'Reset filters' ) ) . '</a></p>'; }
+		if ( ! $count ) { echo '<p>' . esc_html( self::t( 'No approved plugins match this selection.' ) ) . '</p>'; }
 		echo '<div class="dwl-bottom"><span>' . esc_html( self::t( 'Library' ) ) . ' ' . esc_html( self::VERSION ) . ' · ' . esc_html( self::t( 'Only approved releases' ) ) . '</span>';
 		$this->form( 'preferences', '', self::t( 'Hide catalog' ), 'button-link', [ 'enabled' => '0', 'hide_only' => '1' ] );
 		if ( self::settings()['online'] ) { $this->form( 'refresh', '', self::t( 'Refresh catalog' ), 'button-link' ); }
@@ -303,11 +361,12 @@ final class Library {
 		if ( ! current_user_can( $cap ) ) { wp_die( esc_html( self::t( 'Permission denied.' ) ), '', [ 'response' => 403 ] ); }
 		$s = self::settings();
 		echo '<div class="wrap"><h1>deckerweb Plugin Library</h1>';
-		if ( isset( $_GET['saved'] ) ) { echo '<div class="notice notice-success"><p>' . esc_html( self::t( 'Library settings saved.' ) ) . '</p></div>'; }
+		if ( self::query( 'saved' ) !== null ) { echo '<div id="dwl-settings-saved" class="notice notice-success"><p>' . esc_html( self::t( 'Library settings saved.' ) ) . '</p></div>'; }
 		echo '<form method="post" action="' . esc_url( $this->action_url( 'preferences' ) ) . '" data-dwl-action="preferences" data-dwl-network="' . ( is_multisite() ? '1' : '0' ) . '">'; wp_nonce_field( 'dwl_preferences_' );
 		echo '<table class="form-table" role="presentation"><tr><th scope="row">' . esc_html( self::t( 'Visibility' ) ) . '</th><td><label><input type="checkbox" name="enabled" value="1" ' . checked( $s['enabled'], true, false ) . '> ' . esc_html( self::t( 'Show deckerweb under Add Plugins' ) ) . '</label></td></tr>';
 		echo '<tr><th scope="row">' . esc_html( self::t( 'Online catalog' ) ) . '</th><td><label><input type="checkbox" name="online" value="1" ' . checked( $s['online'], true, false ) . '> ' . esc_html( self::t( 'Retrieve approved catalog updates online' ) ) . '</label><p class="description">' . esc_html( self::t( 'Optional. The bundled catalog works immediately. Catalog requests are cached for 24 hours. No site URL, plugin list or usage data is sent.' ) ) . '</p><p><label for="dwl-catalog-url">' . esc_html( self::t( 'Catalog URL' ) ) . '</label><br><input type="url" id="dwl-catalog-url" name="catalog_url" value="' . esc_attr( $s['catalog_url'] ) . '" class="regular-text" placeholder="https://…/catalog.json"></p><p class="description">' . esc_html( self::t( 'Only HTTPS on raw.githubusercontent.com/deckerweb. The server receives the requesting IP address. GitHub is contacted when installing a release.' ) ) . '</p></td></tr></table>';
 		echo '<p><label><input type="checkbox" name="delete_settings" value="1" ' . checked( $s['delete_settings'], true, false ) . '> ' . esc_html( self::t( 'Delete Library settings when removing the last host plugin' ) ) . '</label></p><p class="description">' . esc_html( self::t( 'Off by default. Applies only when no other host is installed, including inactive hosts. Removes Library settings, installation records and introduction status. Installed plugins, their content and other plugin settings remain unchanged. Network data is shared across sites.' ) ) . '</p>';
+  Experience::diagnostics( $this->chosen, $this->hosts, $this->catalog->summary() );
   submit_button( self::t( 'Save settings' ) ); echo '</form><p class="dwl-settings-catalog-link"><a class="button button-secondary" href="' . esc_url( self_admin_url( 'plugin-install.php?tab=deckerweb' ) ) . '">' . esc_html( self::t( 'Open catalog' ) ) . '</a></p>'; echo '<div id="deckerweb-library" class="dwl-settings-footer"><div class="dwl-settings-brand"><img src="' . esc_url( plugins_url( 'assets/library-icon.svg', $this->chosen['dir'] . '/bootstrap.php' ) ) . '" width="52" height="52" alt="" aria-hidden="true"><div><strong>deckerweb Library</strong> <span>' . esc_html( self::VERSION ) . '</span><br>'; History::render( $this->chosen['dir'] ); echo '</div></div></div></div>'; 
 	}
 	/**
@@ -319,9 +378,9 @@ final class Library {
 	 * @return void No return value.
 	 */
 	private function authorize( string $action, string $cap, string $slug = '' ): void {
-		if ( ( $_SERVER['REQUEST_METHOD'] ?? '' ) !== 'POST' ) { wp_die( esc_html( self::t( 'POST required.' ) ), '', [ 'response' => 405 ] ); }
+		if ( ( isset( $_SERVER['REQUEST_METHOD'] ) && is_string( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '' ) !== 'POST' ) { wp_die( esc_html( self::t( 'POST required.' ) ), '', [ 'response' => 405 ] ); }
 		if ( ! current_user_can( $cap ) ) { wp_die( esc_html( self::t( 'Permission denied.' ) ), '', [ 'response' => 403 ] ); }
-		$this->network = is_multisite() && ( $_REQUEST['network'] ?? '' ) === '1';
+		$this->network = is_multisite() && ( isset( $_REQUEST['network'] ) && is_string( $_REQUEST['network'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['network'] ) ) : '' ) === '1';
 		if ( $this->network && ! current_user_can( 'manage_network_plugins' ) ) { wp_die( esc_html( self::t( 'Network permission denied.' ) ), '', [ 'response' => 403 ] ); }
 		check_admin_referer( 'dwl_' . $action . '_' . $slug );
 	}
@@ -330,7 +389,8 @@ final class Library {
 	 *
 	 * @return string Sanitized scalar request slug, or an empty string for missing/invalid input.
 	 */
-	private function slug(): string { return isset( $_REQUEST['slug'] ) && is_string( $_REQUEST['slug'] ) ? sanitize_key( wp_unslash( $_REQUEST['slug'] ) ) : ''; }
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read identity only; each caller verifies its slug-bound nonce before effects.
+ private function slug(): string { return isset( $_REQUEST['slug'] ) && is_string( $_REQUEST['slug'] ) ? sanitize_key( wp_unslash( $_REQUEST['slug'] ) ) : ''; }
 	/**
 	 * Resolve one currently approved entry, requiring fresh remote approval when online.
 	 *
@@ -364,11 +424,12 @@ final class Library {
 	 */
 	public function preferences(): void {
 		$this->authorize( 'preferences', is_multisite() ? 'manage_network_options' : 'manage_options' );
+  check_admin_referer( 'dwl_preferences_' );
 		$s = self::settings();
 		if ( ! empty( $_POST['hide_only'] ) ) { $s['enabled'] = false; }
 		else {
-			$url = isset( $_POST['catalog_url'] ) && is_string( $_POST['catalog_url'] ) ? trim( wp_unslash( $_POST['catalog_url'] ) ) : '';
-			if ( $url !== '' && ! Catalog::trusted_source( $url ) ) { wp_die( esc_html( self::t( 'The catalog URL is not an allowed first-party HTTPS endpoint.' ) ) ); }
+			$url = isset( $_POST['catalog_url'] ) && is_string( $_POST['catalog_url'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['catalog_url'] ) ) ) : '';
+			if ( ( isset( $_POST['catalog_url'] ) && is_string( $_POST['catalog_url'] ) && trim( sanitize_text_field( wp_unslash( $_POST['catalog_url'] ) ) ) !== '' && $url === '' ) || ( isset( $_POST['catalog_url'] ) && ! is_string( $_POST['catalog_url'] ) ) || ( $url !== '' && ! Catalog::trusted_source( $url ) ) ) { wp_die( esc_html( self::t( 'The catalog URL is not an allowed first-party HTTPS endpoint.' ) ) ); }
 			if ( ! empty( $_POST['online'] ) && $url === '' ) { wp_die( esc_html( self::t( 'Enter a catalog URL first.' ) ) ); }
 			$s = [ 'enabled' => ! empty( $_POST['enabled'] ), 'online' => ! empty( $_POST['online'] ), 'catalog_url' => $url, 'delete_settings' => ! empty( $_POST['delete_settings'] ) ];
 		}
@@ -402,16 +463,16 @@ final class Library {
   */
  public function inline_controls(): void {
   $operation = is_string( $_POST['operation'] ?? null ) ? sanitize_key( wp_unslash( $_POST['operation'] ) ) : '';
-  if ( ( $_SERVER['REQUEST_METHOD'] ?? '' ) !== 'POST' || ! in_array( $operation, [ 'preferences', 'dismiss', 'refresh' ], true ) || ! is_string( $_POST['_wpnonce'] ?? null ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'dwl_' . $operation . '_' ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
-  $this->network = is_multisite() && ( $_POST['network'] ?? '' ) === '1';
+  if ( ( isset( $_SERVER['REQUEST_METHOD'] ) && is_string( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '' ) !== 'POST' || ! in_array( $operation, [ 'preferences', 'dismiss', 'refresh' ], true ) || ! is_string( $_POST['_wpnonce'] ?? null ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'dwl_' . $operation . '_' ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
+  $this->network = is_multisite() && ( isset( $_POST['network'] ) && is_string( $_POST['network'] ) ? sanitize_text_field( wp_unslash( $_POST['network'] ) ) : '' ) === '1';
   $capability = $operation === 'preferences' ? ( is_multisite() ? 'manage_network_options' : 'manage_options' ) : 'install_plugins';
   if ( ! current_user_can( $capability ) || ( is_multisite() && ! current_user_can( 'manage_network_plugins' ) ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
   if ( $operation === 'preferences' ) {
    $settings = self::settings();
    if ( ! empty( $_POST['hide_only'] ) ) { $settings['enabled'] = false; }
    else {
-    $url = is_string( $_POST['catalog_url'] ?? null ) ? trim( wp_unslash( $_POST['catalog_url'] ) ) : '';
-    if ( $url !== '' && ! Catalog::trusted_source( $url ) ) { wp_send_json_error( [ 'message' => self::t( 'The catalog URL is not an allowed first-party HTTPS endpoint.' ) ] ); }
+    $url = is_string( $_POST['catalog_url'] ?? null ) ? trim( sanitize_text_field( wp_unslash( $_POST['catalog_url'] ) ) ) : '';
+    if ( ( isset( $_POST['catalog_url'] ) && is_string( $_POST['catalog_url'] ) && trim( sanitize_text_field( wp_unslash( $_POST['catalog_url'] ) ) ) !== '' && $url === '' ) || ( isset( $_POST['catalog_url'] ) && ! is_string( $_POST['catalog_url'] ) ) || ( $url !== '' && ! Catalog::trusted_source( $url ) ) ) { wp_send_json_error( [ 'message' => self::t( 'The catalog URL is not an allowed first-party HTTPS endpoint.' ) ] ); }
     if ( ! empty( $_POST['online'] ) && $url === '' ) { wp_send_json_error( [ 'message' => self::t( 'Enter a catalog URL first.' ) ] ); }
     $settings = [ 'enabled' => ! empty( $_POST['enabled'] ), 'online' => ! empty( $_POST['online'] ), 'catalog_url' => $url, 'delete_settings' => ! empty( $_POST['delete_settings'] ) ];
    }
@@ -432,9 +493,9 @@ final class Library {
  public function inline_status(): void {
   $slug = $this->slug();
   $operation = isset( $_POST['operation'] ) && is_string( $_POST['operation'] ) ? sanitize_key( wp_unslash( $_POST['operation'] ) ) : '';
-  if ( ( $_SERVER['REQUEST_METHOD'] ?? '' ) !== 'POST' || ! in_array( $operation, [ 'install', 'activate', 'update' ], true )
-   || ! is_string( $_POST['_wpnonce'] ?? null ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'dwl_' . $operation . '_' . $slug ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
-  $this->network = is_multisite() && ( $_POST['network'] ?? '' ) === '1';
+  if ( ( isset( $_SERVER['REQUEST_METHOD'] ) && is_string( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '' ) !== 'POST' || ! in_array( $operation, [ 'install', 'activate', 'update' ], true )
+   || ! is_string( $_POST['_wpnonce'] ?? null ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'dwl_' . $operation . '_' . $slug ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
+  $this->network = is_multisite() && ( isset( $_POST['network'] ) && is_string( $_POST['network'] ) ? sanitize_text_field( wp_unslash( $_POST['network'] ) ) : '' ) === '1';
   if ( ! current_user_can( $operation === 'install' ? 'install_plugins' : ( $operation === 'update' ? 'update_plugins' : 'activate_plugins' ) ) || ( $this->network && ! current_user_can( 'manage_network_plugins' ) ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
   if ( ! self::settings()['enabled'] ) { wp_send_json_error( [ 'message' => self::t( 'The catalog is disabled.' ) ], 403 ); }
   $entries = $this->catalog->entries( true );
@@ -449,7 +510,7 @@ final class Library {
   wp_clean_plugins_cache( false ); $plugins = get_plugins();
   $installed = isset( $plugins[$entry['plugin_file']] );
   $active = $installed && ( $this->network ? is_plugin_active_for_network( $entry['plugin_file'] ) : is_plugin_active( $entry['plugin_file'] ) );
-  $response = [ 'installed' => $installed, 'active' => $active, 'message' => self::t( $active ? 'Already active' : ( $installed ? 'Installed' : 'Not installed. You can try again.' ) ) ];
+  $response = [ 'installed' => $installed, 'active' => $active, 'network_active' => $installed && is_plugin_active_for_network($entry['plugin_file']), 'message' => self::t( $active ? 'Already active' : ( $installed ? 'Installed' : 'Not installed. You can try again.' ) ) ];
   if ( $operation === 'update' ) {
    $response['updated'] = $installed && version_compare( $plugins[$entry['plugin_file']]['Version'] ?? '0', $entry['version'], '>=' );
    $response['version'] = $plugins[$entry['plugin_file']]['Version'] ?? '';
@@ -471,11 +532,11 @@ final class Library {
   * Checks capabilities, nonce, network scope and package identity; releases its action lock.
   */
  public function inline_action(): void {
-  if ( ( $_SERVER['REQUEST_METHOD'] ?? '' ) !== 'POST' ) { wp_send_json_error( [ 'message' => self::t( 'POST required.' ) ], 405 ); }
+  if ( ( isset( $_SERVER['REQUEST_METHOD'] ) && is_string( $_SERVER['REQUEST_METHOD'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) : '' ) !== 'POST' ) { wp_send_json_error( [ 'message' => self::t( 'POST required.' ) ], 405 ); }
   $slug = $this->slug();
   $operation = isset( $_POST['operation'] ) && is_string( $_POST['operation'] ) ? sanitize_key( wp_unslash( $_POST['operation'] ) ) : '';
-  if ( ! in_array( $operation, [ 'install', 'activate', 'update' ], true ) || ! is_string( $_POST['_wpnonce'] ?? null ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'dwl_' . $operation . '_' . $slug ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
-  $this->network = is_multisite() && ( $_POST['network'] ?? '' ) === '1';
+  if ( ! in_array( $operation, [ 'install', 'activate', 'update' ], true ) || ! is_string( $_POST['_wpnonce'] ?? null ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'dwl_' . $operation . '_' . $slug ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
+  $this->network = is_multisite() && ( isset( $_POST['network'] ) && is_string( $_POST['network'] ) ? sanitize_text_field( wp_unslash( $_POST['network'] ) ) : '' ) === '1';
   if ( ! current_user_can( $operation === 'install' ? 'install_plugins' : ( $operation === 'update' ? 'update_plugins' : 'activate_plugins' ) ) || ( $this->network && ! current_user_can( 'manage_network_plugins' ) ) ) { wp_send_json_error( [ 'message' => self::t( 'Permission denied.' ) ], 403 ); }
   if ( ! self::settings()['enabled'] ) { wp_send_json_error( [ 'message' => self::t( 'The catalog is disabled.' ) ], 403 ); }
   $entries = $this->catalog->entries( true );
@@ -521,8 +582,9 @@ final class Library {
    } elseif ( $operation === 'install' ) {
     if ( is_dir( WP_PLUGIN_DIR . '/' . $entry['slug'] ) ) { throw new \RuntimeException( self::t( 'This plugin directory already exists. Use the installed plugin; it will not be overwritten.' ) ); }
     require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+    require_once __DIR__ . '/CatalogInstaller.php';
     $skin = new \WP_Ajax_Upgrader_Skin();
-    $upgrader = new \Plugin_Upgrader( $skin );
+    $upgrader = new CatalogInstaller( $skin, $entry['plugin_file'] );
     if ( ! $upgrader->fs_connect( [ WP_CONTENT_DIR, WP_PLUGIN_DIR ] ) ) {
      $response = [ 'credentials' => true, 'message' => self::t( 'Filesystem credentials are required.' ) ];
     } else {
@@ -540,7 +602,7 @@ final class Library {
     if ( ! is_file( WP_PLUGIN_DIR . '/' . $entry['plugin_file'] ) ) { throw new \RuntimeException( self::t( 'Plugin is not installed.' ) ); }
     $result = activate_plugin( $entry['plugin_file'], '', $this->network, false );
     if ( is_wp_error( $result ) ) { throw new \RuntimeException( $result->get_error_message() ); }
-    $response = [ 'active' => true, 'message' => self::t( 'Already active' ) ];
+    $response = [ 'active' => true, 'network_active' => $this->network, 'message' => self::t( $this->network ? 'Network active' : 'Active' ) ];
    }
    if ( ! empty( $response['installed'] ) && ( empty( $response['updated'] ) || ! ( $this->network ? is_plugin_active_for_network( $entry['plugin_file'] ) : is_plugin_active( $entry['plugin_file'] ) ) ) ) {
     $issues = Requirements::check( $entry, null, $this->network );
@@ -554,7 +616,7 @@ final class Library {
    while ( ob_get_level() > $level ) { ob_end_clean(); }
    $release_lock();
   }
-  if ( $error !== null ) { wp_send_json_error( [ 'message' => $error ] ); }
+  if ( $error !== null ) { wp_send_json_error( [ 'message' => $error, 'operation' => $operation, 'code' => 'dwl_' . $operation . '_failed' ] ); }
   if ( ! empty( $response['credentials'] ) ) { wp_send_json_error( $response ); }
   wp_send_json_success( $response );
  }
@@ -574,6 +636,26 @@ final class Library {
  }
 
  /**
+  * Match an existing update offer to the explicitly approved release identity.
+  * @param array $entry Validated catalog entry with pinned asset URL and version.
+  * @param mixed $existing Native updater offer; no fields are trusted implicitly.
+  * @return bool True for the exact asset or same-repository, same-tag GitHub source archive.
+  * A matching source URL is never downloaded; only the independently verified catalog asset is used.
+  */
+ private static function compatible_offer( array $entry, $existing ): bool {
+  if ( ! is_array( $existing ) && ! is_object( $existing ) ) { return false; }
+  $offer = (array) $existing;
+  if ( ( $offer['new_version'] ?? null ) !== $entry['version'] || ( isset( $offer['plugin'] ) && $offer['plugin'] !== $entry['plugin_file'] ) || ! is_string( $offer['package'] ?? null ) ) { return false; }
+  if ( $offer['package'] === $entry['download_url'] ) { return true; }
+  $url = wp_parse_url( $offer['package'] );
+  if ( ! is_array( $url ) || ( $url['scheme'] ?? '' ) !== 'https' || ( $url['host'] ?? '' ) !== 'api.github.com' ) { return false; }
+  foreach ( [ 'user', 'pass', 'port', 'query', 'fragment' ] as $part ) { if ( isset( $url[$part] ) ) { return false; } }
+  if ( preg_match( '/[\x00-\x20\x7f]/', $offer['package'] ) ) { return false; }
+  if ( ! preg_match( '~^https://github\.com/' . preg_quote( $entry['repository'], '~' ) . '/releases/download/([a-zA-Z0-9_.-]+)/[a-zA-Z0-9_.-]+\.zip$~D', $entry['download_url'], $tag ) ) { return false; }
+  return ( $url['path'] ?? '' ) === '/repos/' . $entry['repository'] . '/zipball/' . $tag[1];
+ }
+
+ /**
   * Update an explicitly selected installed plugin through the native upgrader and verified package.
   * @param array $entry Freshly approved catalog metadata with exact package hash.
   * @return array Result flags and message; credentials flag requests the native modal.
@@ -590,7 +672,7 @@ final class Library {
   if ( $issues ) { throw new \RuntimeException( implode( ' ', $issues ) ); }
   $current = get_site_transient( 'update_plugins' );
   $existing = is_object( $current ) ? ( $current->response[$file] ?? null ) : null;
-  if ( $existing && ( ( $existing->package ?? '' ) !== $entry['download_url'] || ( $existing->new_version ?? '' ) !== $entry['version'] ) ) { throw new \RuntimeException( self::t( 'Another updater provides a different release. Refresh updates before continuing.' ) ); }
+  if ( $existing && ! self::compatible_offer( $entry, $existing ) ) { throw new \RuntimeException( self::t( 'Another updater provides a different release. Refresh updates before continuing.' ) ); }
   $skin = new \WP_Ajax_Upgrader_Skin(); $upgrader = new \Plugin_Upgrader( $skin );
   if ( ! $upgrader->fs_connect( [ WP_CONTENT_DIR, WP_PLUGIN_DIR ] ) ) { return [ 'credentials' => true, 'message' => self::t( 'Filesystem credentials are required.' ) ]; }
   $package = Package::download( $entry );
@@ -606,7 +688,22 @@ final class Library {
    * @param array $extra Native context with plugin basename.
    * @return mixed Verified archive path for this request, otherwise the previous result.
    */
-  $download = static function( $reply, string $url, $instance, array $extra ) use ( $file, $entry, $package, $upgrader ) { if ( $instance !== $upgrader || ( $extra['plugin'] ?? '' ) !== $file ) { return $reply; } return $url === $entry['download_url'] ? $package : new \WP_Error( 'dwl_release_changed', self::t( 'The approved release changed. Refresh updates first.' ) ); };
+  $download = static function( $reply, string $url, $instance, array $extra ) use ( $file, $entry, $package, $upgrader ) { if ( $instance !== $upgrader || ( $extra['plugin'] ?? '' ) !== $file ) { return $reply; } if (is_wp_error($reply)) { return $reply; } return $url === $entry['download_url'] ? $package : new \WP_Error( 'dwl_release_changed', self::t( 'The approved release changed. Refresh updates first.' ) ); };
+  /**
+   * Keep this explicit verified native update bound to its approved asset.
+   * @param mixed $value Core update state after other updater filters.
+   * @return mixed Copy with only the selected plugin offer replaced; unrelated offers remain intact.
+   * Registered only around this one native upgrade and removed in finally.
+   */
+  $approved_offer = static function( $value ) use ( $file, $offer ) {
+   if ( ! is_object( $value ) ) { return $value; }
+   $copy = clone $value;
+   $copy->response = is_array( $copy->response ?? null ) ? $copy->response : [];
+   $copy->response[$file] = $offer;
+   return $copy;
+  };
+  $this->explicit_upgrader = $upgrader;
+  add_filter( 'site_transient_update_plugins', $approved_offer, PHP_INT_MAX );
   add_filter( 'upgrader_pre_download', $download, PHP_INT_MAX, 4 );
   try {
    set_site_transient( 'update_plugins', $temporary );
@@ -617,9 +714,10 @@ final class Library {
    if ( ! isset( $after[$file] ) || $after[$file]['Version'] !== $entry['version'] ) { throw new \RuntimeException( self::t( 'The update has not been confirmed. You can try again.' ) ); }
    $managed = get_site_option( self::MANAGED, [] ); $managed = is_array( $managed ) ? $managed : [];
    $managed[$file] = $entry['repository']; update_site_option( self::MANAGED, $managed );
-   return [ 'updated' => true, 'installed' => true, 'version' => $entry['version'], 'message' => self::t( 'Updated' ) ];
+   return [ 'updated' => true, 'installed' => true, 'active' => is_plugin_active($file), 'network_active' => is_plugin_active_for_network($file), 'version' => $entry['version'], 'message' => self::t( 'Updated' ) ];
   } finally {
-   remove_filter( 'upgrader_pre_download', $download, PHP_INT_MAX ); Package::remove( $package );
+   remove_filter( 'site_transient_update_plugins', $approved_offer, PHP_INT_MAX );
+   remove_filter( 'upgrader_pre_download', $download, PHP_INT_MAX ); $this->explicit_upgrader = null; Package::remove( $package );
    // Invalidate the temporary offer rather than overwriting concurrent updater results.
    delete_site_transient( 'update_plugins' );
   }
@@ -798,6 +896,8 @@ final class Library {
 	 * @return mixed Existing handled download, verified local package path, WP_Error, or the original unhandled value.
 	 */
 	public function update_download( $reply, string $package, $upgrader, array $extra = [] ) {
+  if ( $this->explicit_upgrader !== null && $upgrader === $this->explicit_upgrader ) { return $reply; }
+  if ( ( $extra['action'] ?? '' ) === 'install' ) { return $reply; }
 		$file = $extra['plugin'] ?? '';
 		$managed = get_site_option( self::MANAGED, [] );
 		if ( ! is_string( $file ) || ! is_array( $managed ) || ! isset( $managed[$file] ) ) { return $reply; }
@@ -826,7 +926,7 @@ final class Library {
   */
  public function updater_release( string $repository, string $file, bool $fresh = false ) {
   if ( ! self::settings()['online'] ) { return false; }
-  $fresh = $fresh || ( is_admin() && current_user_can( 'update_plugins' ) && isset( $_GET['force-check'] ) && $_GET['force-check'] === '1' );
+  $fresh = $fresh || ( is_admin() && current_user_can( 'update_plugins' ) && self::query( 'force-check' ) === '1' );
   $entries = $this->catalog->entries( $fresh, true );
   if ( is_wp_error( $entries ) ) { return null; }
   foreach ( $entries as $entry ) {

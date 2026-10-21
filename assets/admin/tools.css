@@ -22,3 +22,5 @@
 .bse-guide-screenshot{display:block;max-width:100%;height:auto;border:1px solid #dcdcde;border-radius:6px}
 
 #bse-content-picker{margin:16px 0;padding:12px;border:1px solid var(--bse-border);border-radius:6px;background:#f6f7f7}#bse-content-picker label{display:block;font-weight:600;margin-bottom:6px}#bse-content-query{width:100%;max-width:100%}#bse-content-results{display:grid;gap:6px}#bse-content-results .button{text-align:left;white-space:normal;overflow-wrap:anywhere;height:auto}
+
+.bse-root dialog.bse-document-dialog[hidden],.bse-root dialog.bse-document-dialog:not([open]){display:none!important}.bse-root .bse-document-header form{margin:0;flex:none}

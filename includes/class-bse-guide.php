@@ -85,7 +85,7 @@ final class Guide {
 	 */
 	public static function dialog(): void {
 		$content = self::content(); if ( '' === $content ) { return; }
-		echo '<dialog id="bse-document-guide" class="bse-document-dialog" aria-labelledby="bse-document-guide-title"><header class="bse-document-header"><h2 id="bse-document-guide-title">Builder Shortcode Extras · ' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</h2><button type="button" class="button" data-bse-close autofocus>' . esc_html__( 'Close', 'builder-shortcode-extras' ) . '</button></header><div class="bse-document-content" tabindex="0">';
+		echo '<dialog hidden id="bse-document-guide" class="bse-document-dialog" aria-labelledby="bse-document-guide-title"><header class="bse-document-header"><h2 id="bse-document-guide-title">Builder Shortcode Extras · ' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</h2><form method="dialog"><button type="submit" class="button" data-bse-close autofocus>' . esc_html__( 'Close', 'builder-shortcode-extras' ) . '</button></form></header><div class="bse-document-content" tabindex="0">';
 		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Fixed markup and escaped local text nodes from content().
 		echo '</div><p class="bse-document-source"><a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Documentation', 'builder-shortcode-extras' ) . '</a></p></dialog>';
 	}

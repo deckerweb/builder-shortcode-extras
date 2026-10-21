@@ -102,13 +102,13 @@ function ddw_bse_info_values() {
 
 		/** For our Shortcodes specifically */
 		'php_current'         => phpversion(),
-		'php_minimum'         => '8.0',
+		'php_minimum'         => '8.1',
 		'php_recommended'     => '8.2',
 		'wp_current'          => $GLOBALS[ 'wp_version' ],
 		'wp_minimum'          => '6.7',
 		'wp_recommended'      => '7.1.3',
 		//'db_current'          => esc_attr( ddw_bse_get_db_version() ),
-		'server_software'     => esc_attr( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ?? '' ) ),
+		'server_software'     => sanitize_text_field( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ?? '' ) ),
 		'mysql_minimum'       => '5.0',
 		'mysql_recommended'   => '5.6',
 		'mariadb_minimum'     => '10.0',
@@ -232,12 +232,19 @@ function ddw_bse_human_time_diff( $older_date, $newer_date = false, $relative_de
 	$limit = max( 1, min( 7, (int) $relative_depth ?: 2 ) );
 	if ( ! $remaining ) { return '0 ' . _x( 'seconds', 'time difference', 'builder-shortcode-extras' ); }
 	$units = array(
+		/* translators: %s: Number of elapsed units. */
 		31536000 => _nx_noop( '%s year', '%s years', 'Time difference', 'builder-shortcode-extras' ),
+		/* translators: %s: Number of elapsed units. */
 		2592000 => _nx_noop( '%s month', '%s months', 'Time difference', 'builder-shortcode-extras' ),
+		/* translators: %s: Number of elapsed units. */
 		604800 => _nx_noop( '%s week', '%s weeks', 'Time difference', 'builder-shortcode-extras' ),
+		/* translators: %s: Number of elapsed units. */
 		86400 => _nx_noop( '%s day', '%s days', 'Time difference', 'builder-shortcode-extras' ),
+		/* translators: %s: Number of elapsed units. */
 		3600 => _nx_noop( '%s hour', '%s hours', 'Time difference', 'builder-shortcode-extras' ),
+		/* translators: %s: Number of elapsed units. */
 		60 => _nx_noop( '%s minute', '%s minutes', 'Time difference', 'builder-shortcode-extras' ),
+		/* translators: %s: Number of elapsed units. */
 		1 => _nx_noop( '%s second', '%s seconds', 'Time difference', 'builder-shortcode-extras' ),
 	);
 	$parts = array();
@@ -316,7 +323,11 @@ function ddw_bse_site_updated( $value = 'MIN' ) {
 	static $dates = array();
 	$key = get_current_blog_id() . ':' . $value . ':' . wp_cache_get_last_changed( 'posts' );
 	if ( ! array_key_exists( $key, $dates ) ) {
-		$dates[$key] = $wpdb->get_var( "SELECT $value( $wpdb->posts.post_modified ) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish'" );
+		if ( 'MIN' === $value ) {
+			$dates[$key] = $wpdb->get_var( $wpdb->prepare( 'SELECT MIN(post_modified) FROM %i WHERE post_status = %s', $wpdb->posts, 'publish' ) );
+		} else {
+			$dates[$key] = $wpdb->get_var( $wpdb->prepare( 'SELECT MAX(post_modified) FROM %i WHERE post_status = %s', $wpdb->posts, 'publish' ) );
+		}
 	}
 	return $dates[$key];
 

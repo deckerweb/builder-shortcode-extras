@@ -1,5 +1,55 @@
 [
   {
+    "version": "1.1.0",
+    "date": "2026-10-21",
+    "changes": {
+      "Improved": [
+        {
+          "en": "Updated approved catalog and local original icons, with fewer duplicate image files. Initials use consistent subtle background colors; cards highlight on hover and keyboard focus.",
+          "de": "Aktualisierter freigegebener Katalog und lokale Originalicons mit weniger Bild-Doppeldateien. Kürzel erhalten dezente Hintergrundfarben; Karten reagieren auf Maus und Tastaturfokus."
+        }
+      ],
+      "Fixed": [
+        {
+          "en": "Stricter normalization of administration inputs and contextual protection of catalog output.",
+          "de": "Strengere Bereinigung von Admin-Eingaben und kontextgerechte Absicherung der Katalogausgabe."
+        },
+        {
+          "en": "Inline updates work with Git Updater nonce checks without weakening Library authorization; failed actions retain their error styling.",
+          "de": "Inline-Updates berücksichtigen die Nonce-Prüfung von Git Updater, ohne die Library-Autorisierung abzuschwächen; fehlgeschlagene Aktionen bleiben als Fehler erkennbar."
+        },
+        {
+          "en": "Explicit catalog updates recognize matching GitHub source-archive offers while installing only the approved, checksum-verified release asset.",
+          "de": "Gezielte Katalogupdates erkennen passende GitHub-Quellarchivangebote und installieren weiterhin ausschließlich das freigegebene Release-ZIP mit geprüfter Prüfsumme."
+        }
+      ]
+    }
+  },
+  {
+    "version": "1.0.0",
+    "date": "2026-10-15",
+    "changes": {
+      "New": [
+        {
+          "en": "Personal catalog sorting, stable random discovery and copyable technical information in Library settings.",
+          "de": "Persönliche Katalogsortierung, stabile Zufallsansicht und kopierbare technische Informationen in den Library-Einstellungen."
+        }
+      ],
+      "Improved": [
+        {
+          "en": "Remembered filters, clearer catalog provenance and plugin activation states, refreshed approved releases and local original icons.",
+          "de": "Gespeicherte Filter, klarer Katalogstatus und Plugin-Aktivierungszustand, aktualisierte freigegebene Releases und lokale Originalicons."
+        }
+      ],
+      "Fixed": [
+        {
+          "en": "Inline installation supplies native plugin identity for Git Updater compatibility. Changelog dialogs retain native close and documentation-link fallbacks.",
+          "de": "Inline-Installationen übergeben die native Pluginidentität für die Zusammenarbeit mit Git Updater. Verlaufsdialoge behalten native Schließ- und Dokumentationslink-Fallbacks."
+        }
+      ]
+    }
+  },
+  {
     "version": "0.9.0",
     "date": "2026-10-10",
     "changes": {

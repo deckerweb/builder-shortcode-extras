@@ -59,7 +59,7 @@ try {
 	check( 9 === count($generated), 'Generator offers nine focused use cases' );
 	foreach($registry as $tag=>$entry){ if(!$entry['integration']) check(shortcode_exists($tag),'Catalog core shortcode exists: '.$tag); }
 	$updater=new \Deckerweb\BuilderShortcodeExtras\GitHubUpdates();check(is_array($updater->artwork()),'Updater has local artwork');
-	check( '0.8.1' === $GLOBALS['deckerweb_library_candidates_v1'][0]['version'] && ! isset($GLOBALS['deckerweb_library_runtime_v1']), 'Library version' );
+	check( '1.1.0' === $GLOBALS['deckerweb_library_candidates_v1'][0]['version'] && ! isset($GLOBALS['deckerweb_library_runtime_v1']), 'Library version' );
 } finally {
 	foreach($ids as $id) wp_delete_post($id,true);
 	wp_reset_postdata();

@@ -99,6 +99,27 @@ msgstr "Das GitHub-Release-Paket konnte nicht vorbereitet werden."
 msgid "See the release on GitHub."
 msgstr "Sehen Sie sich den Release auf GitHub an."
 
+msgid "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider."
+msgstr "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update fehlschlägt, deaktivieren Sie Git Updater vorübergehend und versuchen Sie es erneut. Aktivieren Sie ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lassen Sie ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
+
+msgid "Manage installed plugins"
+msgstr "Installierte Plugins verwalten"
+
+msgid "Dismiss this notice"
+msgstr "Diesen Hinweis ausblenden"
+
+msgid "Permission denied."
+msgstr "Keine Berechtigung."
+
+msgid "Public catalog callbacks require both providers and cannot be used in private mode."
+msgstr "Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im Private-Modus verwendet werden."
+
+msgid "The approved release could not be verified."
+msgstr "Der freigegebene Release konnte nicht geprüft werden."
+
+msgid "The approved release changed. Refresh updates first."
+msgstr "Das freigegebene Release hat sich geändert. Bitte zuerst die Updates aktualisieren."
+
 msgid "Navigation menu"
 msgstr "Navigationsmenü"
 
@@ -826,9 +847,6 @@ msgstr "Library-Einstellungen"
 msgid "Library settings saved."
 msgstr "Library-Einstellungen gespeichert."
 
-msgid "Manage installed plugins"
-msgstr "Installierte Plugins verwalten"
-
 msgid "Misc"
 msgstr "Sonstiges"
 
@@ -873,9 +891,6 @@ msgstr "PHP-ZIP-Unterstützung wird benötigt."
 
 msgid "POST required."
 msgstr "Eine POST-Anfrage ist erforderlich."
-
-msgid "Permission denied."
-msgstr "Keine Berechtigung."
 
 msgid "Plugin identity or version does not match the catalog."
 msgstr "Plugin oder Version stimmt nicht mit dem Katalog überein."
@@ -933,9 +948,6 @@ msgstr "Quelle: GitHub"
 
 msgid "The GitHub release could not be downloaded."
 msgstr "Das GitHub-Release konnte nicht heruntergeladen werden."
-
-msgid "The approved release changed. Refresh updates first."
-msgstr "Das freigegebene Release hat sich geändert. Bitte zuerst die Updates aktualisieren."
 
 msgid "The catalog URL is not an allowed first-party HTTPS endpoint."
 msgstr "Die Katalog-URL ist keine erlaubte eigene HTTPS-Quelle."
@@ -1135,9 +1147,6 @@ msgstr "Optional. Der mitgelieferte Katalog funktioniert sofort. Katalogabfragen
 msgid "Invalid catalog timestamp."
 msgstr "Ungültiger Katalogzeitpunkt."
 
-msgid "The approved release could not be verified."
-msgstr "Der freigegebene Release konnte nicht geprüft werden."
-
 msgid "Only HTTPS on raw.githubusercontent.com/deckerweb. The server receives the requesting IP address. GitHub is contacted when installing a release."
 msgstr "Nur HTTPS auf raw.githubusercontent.com/deckerweb. Der Server sieht die anfragende IP-Adresse. Beim Installieren eines Releases wird GitHub kontaktiert."
 
@@ -1245,3 +1254,78 @@ msgstr "Das freigegebene Paket konnte nicht geprüft werden."
 
 msgid "Action cancelled."
 msgstr "Vorgang abgebrochen."
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Name A–Z"
+msgstr "Name A–Z"
+
+msgid "Name Z–A"
+msgstr "Name Z–A"
+
+msgid "Recently updated"
+msgstr "Zuletzt aktualisiert"
+
+msgid "Discover randomly"
+msgstr "Zufällig entdecken"
+
+msgid "Sort by"
+msgstr "Sortieren nach"
+
+msgid "Shuffle again"
+msgstr "Neu mischen"
+
+msgid "Reset view"
+msgstr "Ansicht zurücksetzen"
+
+msgid "Invalid sort order."
+msgstr "Ungültige Sortierung."
+
+msgid "Technical information"
+msgstr "Technische Informationen"
+
+msgid "Copy diagnostic information"
+msgstr "Diagnoseinformationen kopieren"
+
+msgid "These details contain component versions and catalog status, without credentials or site content."
+msgstr "Diese Angaben enthalten Komponentenversionen und den Katalogstatus, keine Zugangsdaten oder Website-Inhalte."
+
+msgid "Copied."
+msgstr "Kopiert."
+
+msgid "Select and copy the text."
+msgstr "Text markieren und kopieren."
+
+msgid "Cached or bundled catalog"
+msgstr "Gespeicherter oder mitgelieferter Katalog"
+
+msgid "Bundled catalog"
+msgstr "Mitgelieferter Katalog"
+
+msgid "Last successful check: "
+msgstr "Zuletzt erfolgreich geprüft: "
+
+msgid "Network active"
+msgstr "Netzwerkweit aktiv"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Installed · inactive"
+msgstr "Installiert · inaktiv"
+
+msgid "Update available"
+msgstr "Update verfügbar"
+
+msgid "Active filters: "
+msgstr "Aktive Filter: "
+
+msgid "Remove filter: "
+msgstr "Filter entfernen: "
+
+msgid "Permission denied. Reload the page and check your permissions."
+msgstr "Zugriff verweigert. Laden Sie die Seite neu und prüfen Sie Ihre Berechtigungen."
+
+msgid "Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry."
+msgstr "Eine andere Komponente hat die Anfrage unterbrochen. Falls Git Updater aktiv ist, deaktivieren Sie ihn vorübergehend und wiederholen Sie den Vorgang."

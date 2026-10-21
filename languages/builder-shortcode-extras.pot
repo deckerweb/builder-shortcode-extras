@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Builder Shortcode Extras 1.3.0\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-10 08:32+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+msgstr "Project-Id-Version: Builder Shortcode Extras 1.3.1\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-10-21 14:59+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "Documentation"
 msgstr ""
@@ -97,6 +97,27 @@ msgid "Could not prepare the GitHub release package."
 msgstr ""
 
 msgid "See the release on GitHub."
+msgstr ""
+
+msgid "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider."
+msgstr ""
+
+msgid "Manage installed plugins"
+msgstr ""
+
+msgid "Dismiss this notice"
+msgstr ""
+
+msgid "Permission denied."
+msgstr ""
+
+msgid "Public catalog callbacks require both providers and cannot be used in private mode."
+msgstr ""
+
+msgid "The approved release could not be verified."
+msgstr ""
+
+msgid "The approved release changed. Refresh updates first."
 msgstr ""
 
 msgid "Navigation menu"
@@ -826,9 +847,6 @@ msgstr ""
 msgid "Library settings saved."
 msgstr ""
 
-msgid "Manage installed plugins"
-msgstr ""
-
 msgid "Misc"
 msgstr ""
 
@@ -872,9 +890,6 @@ msgid "PHP ZIP support is required."
 msgstr ""
 
 msgid "POST required."
-msgstr ""
-
-msgid "Permission denied."
 msgstr ""
 
 msgid "Plugin identity or version does not match the catalog."
@@ -932,9 +947,6 @@ msgid "Source: GitHub"
 msgstr ""
 
 msgid "The GitHub release could not be downloaded."
-msgstr ""
-
-msgid "The approved release changed. Refresh updates first."
 msgstr ""
 
 msgid "The catalog URL is not an allowed first-party HTTPS endpoint."
@@ -1135,9 +1147,6 @@ msgstr ""
 msgid "Invalid catalog timestamp."
 msgstr ""
 
-msgid "The approved release could not be verified."
-msgstr ""
-
 msgid "Only HTTPS on raw.githubusercontent.com/deckerweb. The server receives the requesting IP address. GitHub is contacted when installing a release."
 msgstr ""
 
@@ -1244,4 +1253,79 @@ msgid "The approved package could not be verified."
 msgstr ""
 
 msgid "Action cancelled."
+msgstr ""
+
+msgid "Standard"
+msgstr ""
+
+msgid "Name A–Z"
+msgstr ""
+
+msgid "Name Z–A"
+msgstr ""
+
+msgid "Recently updated"
+msgstr ""
+
+msgid "Discover randomly"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Shuffle again"
+msgstr ""
+
+msgid "Reset view"
+msgstr ""
+
+msgid "Invalid sort order."
+msgstr ""
+
+msgid "Technical information"
+msgstr ""
+
+msgid "Copy diagnostic information"
+msgstr ""
+
+msgid "These details contain component versions and catalog status, without credentials or site content."
+msgstr ""
+
+msgid "Copied."
+msgstr ""
+
+msgid "Select and copy the text."
+msgstr ""
+
+msgid "Cached or bundled catalog"
+msgstr ""
+
+msgid "Bundled catalog"
+msgstr ""
+
+msgid "Last successful check: "
+msgstr ""
+
+msgid "Network active"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Installed · inactive"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Active filters: "
+msgstr ""
+
+msgid "Remove filter: "
+msgstr ""
+
+msgid "Permission denied. Reload the page and check your permissions."
+msgstr ""
+
+msgid "Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry."
 msgstr ""

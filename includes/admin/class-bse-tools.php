@@ -74,6 +74,7 @@ final class Tools {
 			return;
 		}
 		wp_enqueue_style( 'bse-tools', plugins_url( 'assets/admin/tools.css', BSE_PLUGIN_FILE ), array(), BSE_PLUGIN_VERSION );
+		wp_enqueue_script( 'bse-dialogs', plugins_url( 'assets/admin/dialogs.js', BSE_PLUGIN_FILE ), array(), BSE_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'bse-tools', plugins_url( 'assets/admin/tools.js', BSE_PLUGIN_FILE ), array(), BSE_PLUGIN_VERSION, true );
 		wp_localize_script( 'bse-tools', 'BSE_TOOLS', array(
 			'catalog' => Catalog::all(),

@@ -26,7 +26,7 @@ set_site_transient('update_plugins',(object)['response'=>[$file=>(object)['new_v
 try{
  if($tmp!==$adapter->validate_source($tmp,null,null,$context))throw new RuntimeException('Valid update package rejected');
  file_put_contents($main,str_replace('Plugin Name:       Builder Shortcode Extras','Plugin Name:       Wrong Plugin',$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Wrong identity accepted');
- file_put_contents($main,str_replace('Requires PHP:      8.0','Requires PHP:      99.0',$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Incompatible package accepted');
+ file_put_contents($main,preg_replace('/Requires PHP:\s*[0-9.]+/','Requires PHP: 99.0',$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Incompatible package accepted');
  file_put_contents($main,str_replace($future,$unexpected,$candidate));if(!is_wp_error($adapter->validate_source($tmp,null,null,$context)))throw new RuntimeException('Unoffered version accepted');
  file_put_contents($main,$candidate);
  require_once ABSPATH.'wp-admin/includes/class-wp-upgrader.php';

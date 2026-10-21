@@ -6,7 +6,7 @@
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.3.0** · WordPress **6.7+** · PHP **8.0+**
+Version **1.3.1** · WordPress **6.7+** · PHP **8.1+**
 
 ## Erste Schritte
 

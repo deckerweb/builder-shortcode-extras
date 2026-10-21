@@ -97,7 +97,7 @@ function ddw_bse_admin_columns_content_integrations_post_type( $column_name, $po
 			printf(
 				'<input class="bse-%s-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />',
 				esc_attr( $integration[ 'shortcode_tag' ] ),
-				$shortcode
+				esc_attr( $shortcode )
 			);
 
 		}  // end if

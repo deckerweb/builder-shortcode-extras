@@ -37,6 +37,7 @@ function ddw_bse_shortcode_metadata( $atts, $content = null, $tag = 'bse-post-ti
 			$count = $counts[$key] ?? preg_match_all( '/[\p{L}\p{N}]+(?:[’\x{0027}-][\p{L}\p{N}]+)*/u', $prose );
 			if ( count( $counts ) < 100 ) { $counts[$key] = $count; }
 			$minutes = max( 1, (int) ceil( $count / max( 50, min( 1000, absint( $atts['wpm'] ) ) ) ) );
+			/* translators: %s: Estimated number of minutes. */
 			$value = sprintf( _n( '%s minute', '%s minutes', $minutes, 'builder-shortcode-extras' ), number_format_i18n( $minutes ) );
 		}
 		if ( '' === trim( $value ) ) { return ''; }
@@ -44,7 +45,7 @@ function ddw_bse_shortcode_metadata( $atts, $content = null, $tag = 'bse-post-ti
 	}
 	return ddw_bse_metadata_wrapper( $atts, $tag, $html );
 }
-foreach ( array( 'bse-post-title', 'bse-post-excerpt', 'bse-post-image', 'bse-reading-time' ) as $bse_metadata_tag ) {
-	ddw_bse_register_shortcode( $bse_metadata_tag, 'ddw_bse_shortcode_metadata' );
+foreach ( array( 'bse-post-title', 'bse-post-excerpt', 'bse-post-image', 'bse-reading-time' ) as $ddw_bse_metadata_tag ) {
+	ddw_bse_register_shortcode( $ddw_bse_metadata_tag, 'ddw_bse_shortcode_metadata' );
 }
-unset( $bse_metadata_tag );
+unset( $ddw_bse_metadata_tag );

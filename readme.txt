@@ -2,8 +2,9 @@
 Contributors: deckerweb
 Tags: shortcodes, dynamic content, templates
 Requires at least: 6.7
-Requires PHP: 8.0
-Stable tag: 1.3.0
+Requires PHP: 8.1
+Tested up to: 7.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,7 +48,7 @@ New helpers: `[bse-post-title]`, `[bse-post-excerpt words="30"]`, `[bse-post-ima
 
 = Updates and Library =
 
-The deckerweb Updater 2.1.0 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 0.9.0 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
+The deckerweb Updater 2.2.0 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 1.1.0 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
 
 = Data and Multisite =
 
@@ -101,15 +102,23 @@ After two characters the generator searches the current website through authenti
 
 == Changelog ==
 
+= 1.3.1 — 2026-10-21 =
+
+- **Improved:** Updated the shared plugin catalog and update integration.
+- **Fixed:** Documentation dialogs remain closed until opened and retain native closing and document-link fallbacks.
+- **Misc:** Bundles deckerweb Library 1.1.0 and Updater 2.2.0. Requires PHP 8.1 or later; WordPress 6.7 remains supported.
+
+
 = 1.3.0 — 2026-10-10 =
 
-- **Improved:** Admin notices appear after the complete header; the product icon is shown only in the header.
 - **New:** Title, excerpt, responsive featured image and estimated reading-time shortcodes.
 - **New:** Optional wrapper-free text output, escaped fallback text and semantic date markup.
+- **Improved:** Admin notices appear after the complete header; the product icon is shown only in the header.
 - **Improved:** Nine generator cases with authenticated content search, clearer current-item context and preserved per-case drafts.
-- **Fixed:** Link rel attributes now work without a target; navigation shortcodes honor the supplied container ID.
 - **Improved:** Refreshed banners and rounded plugin icons with a consistent reusable-content design.
+- **Fixed:** Link rel attributes now work without a target; navigation shortcodes honor the supplied container ID.
 - **Misc:** Updated the embedded deckerweb Library to 0.9.0; existing shortcode features and minimum requirements remain unchanged.
+
 
 = 1.2.1 — 2026-10-09 =
 
@@ -121,6 +130,7 @@ After two characters the generator searches the current website through authenti
 - **Fixed:** Update packages are checked against the offered version, plugin identity and actual WordPress/PHP requirements, including bulk updates.
 - **Misc:** Bundles deckerweb Library 0.8.1 and Updater 2.1.0. Existing shortcode names, attributes, developer filters and optional integrations remain available.
 - **Misc:** Updated bilingual readmes, FAQ, artwork and security reporting. Requirements remain WordPress 6.7+ and PHP 8.0+.
+
 
 = 1.2.0 — 2026-10-01 =
 
@@ -136,15 +146,18 @@ After two characters the generator searches the current website through authenti
 - **Misc:** Requires WordPress 6.7+ and PHP 8.0+; the library requires PHP 8.0. No frontend assets are added by the helper UI.
 - **Misc:** Retains Genesis and Beaver compatibility, removes the duplicate Astra loader, legacy Blocks menu and unrelated promotion/Core admin overrides.
 
+
 = 1.1.0 — 2025-03-15 =
 
 - **Improved:** Restored shortcode compatibility.
 - **Misc:** Moved distribution away from WordPress.org and removed the old DDWlib recommendation installer.
 - **Misc:** Removed the custom translation loader; retained packaged translations.
 
+
 = 1.0.0 — 2019-09-10 =
 
 - **New:** Initial plugin release with 25 general helpers and 5 integration shortcodes.
+
 
 = 0.9.0 — 2019-09-09 =
 

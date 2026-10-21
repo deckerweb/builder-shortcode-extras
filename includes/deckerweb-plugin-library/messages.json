@@ -798,5 +798,113 @@
   "Action cancelled.": {
     "de_DE": "Vorgang abgebrochen.",
     "de_DE_formal": "Vorgang abgebrochen."
+  },
+  "Standard": {
+    "de_DE": "Standard",
+    "de_DE_formal": "Standard"
+  },
+  "Name A–Z": {
+    "de_DE": "Name A–Z",
+    "de_DE_formal": "Name A–Z"
+  },
+  "Name Z–A": {
+    "de_DE": "Name Z–A",
+    "de_DE_formal": "Name Z–A"
+  },
+  "Recently updated": {
+    "de_DE": "Zuletzt aktualisiert",
+    "de_DE_formal": "Zuletzt aktualisiert"
+  },
+  "Discover randomly": {
+    "de_DE": "Zufällig entdecken",
+    "de_DE_formal": "Zufällig entdecken"
+  },
+  "Sort by": {
+    "de_DE": "Sortieren nach",
+    "de_DE_formal": "Sortieren nach"
+  },
+  "Shuffle again": {
+    "de_DE": "Neu mischen",
+    "de_DE_formal": "Neu mischen"
+  },
+  "Reset view": {
+    "de_DE": "Ansicht zurücksetzen",
+    "de_DE_formal": "Ansicht zurücksetzen"
+  },
+  "Invalid sort order.": {
+    "de_DE": "Ungültige Sortierung.",
+    "de_DE_formal": "Ungültige Sortierung."
+  },
+  "Technical information": {
+    "de_DE": "Technische Informationen",
+    "de_DE_formal": "Technische Informationen"
+  },
+  "Copy diagnostic information": {
+    "de_DE": "Diagnoseinformationen kopieren",
+    "de_DE_formal": "Diagnoseinformationen kopieren"
+  },
+  "These details contain component versions and catalog status, without credentials or site content.": {
+    "de_DE": "Diese Angaben enthalten Komponentenversionen und den Katalogstatus, keine Zugangsdaten oder Website-Inhalte.",
+    "de_DE_formal": "Diese Angaben enthalten Komponentenversionen und den Katalogstatus, keine Zugangsdaten oder Website-Inhalte."
+  },
+  "Copied.": {
+    "de_DE": "Kopiert.",
+    "de_DE_formal": "Kopiert."
+  },
+  "Select and copy the text.": {
+    "de_DE": "Text markieren und kopieren.",
+    "de_DE_formal": "Text markieren und kopieren."
+  },
+  "Cached or bundled catalog": {
+    "de_DE": "Gespeicherter oder mitgelieferter Katalog",
+    "de_DE_formal": "Gespeicherter oder mitgelieferter Katalog"
+  },
+  "Bundled catalog": {
+    "de_DE": "Mitgelieferter Katalog",
+    "de_DE_formal": "Mitgelieferter Katalog"
+  },
+  "Last successful check: ": {
+    "de_DE": "Zuletzt erfolgreich geprüft: ",
+    "de_DE_formal": "Zuletzt erfolgreich geprüft: "
+  },
+  "Network active": {
+    "de_DE": "Netzwerkweit aktiv",
+    "de_DE_formal": "Netzwerkweit aktiv"
+  },
+  "Active": {
+    "de_DE": "Aktiv",
+    "de_DE_formal": "Aktiv"
+  },
+  "Installed · inactive": {
+    "de_DE": "Installiert · inaktiv",
+    "de_DE_formal": "Installiert · inaktiv"
+  },
+  "Update available": {
+    "de_DE": "Update verfügbar",
+    "de_DE_formal": "Update verfügbar"
+  },
+  "Active filters: ": {
+    "de_DE": "Aktive Filter: ",
+    "de_DE_formal": "Aktive Filter: "
+  },
+  "Remove filter: ": {
+    "de_DE": "Filter entfernen: ",
+    "de_DE_formal": "Filter entfernen: "
+  },
+  "Dismiss this notice": {
+    "de_DE": "Diesen Hinweis ausblenden",
+    "de_DE_formal": "Diesen Hinweis ausblenden"
+  },
+  "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider.": {
+    "de_DE": "Git Updater ist aktiv. Falls eine deckerweb-Installation oder Aktualisierung fehlschlägt, deaktiviere Git Updater vorübergehend und wiederhole den Vorgang. Aktiviere ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lasse ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen.",
+    "de_DE_formal": "Git Updater ist aktiv. Falls eine deckerweb-Installation oder Aktualisierung fehlschlägt, deaktivieren Sie Git Updater vorübergehend und wiederholen Sie den Vorgang. Aktivieren Sie ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lassen Sie ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
+  },
+  "Permission denied. Reload the page and check your permissions.": {
+    "de_DE": "Zugriff verweigert. Lade die Seite neu und prüfe deine Berechtigungen.",
+    "de_DE_formal": "Zugriff verweigert. Laden Sie die Seite neu und prüfen Sie Ihre Berechtigungen."
+  },
+  "Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry.": {
+    "de_DE": "Eine andere Komponente hat die Anfrage unterbrochen. Falls Git Updater aktiv ist, deaktiviere ihn vorübergehend und wiederhole den Vorgang.",
+    "de_DE_formal": "Eine andere Komponente hat die Anfrage unterbrochen. Falls Git Updater aktiv ist, deaktivieren Sie ihn vorübergehend und wiederholen Sie den Vorgang."
   }
 }

@@ -6,7 +6,7 @@
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.3.0** · WordPress **6.7+** · PHP **8.0+** · GPL-2.0-or-later
+Version **1.3.1** · WordPress **6.7+** · PHP **8.1+** · GPL-2.0-or-later
 
 [English](README.md) · [Anleitung und FAQ](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch) · [Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest)
 
@@ -59,7 +59,7 @@ Neue Helfer: `[bse-post-title]`, `[bse-post-excerpt words="30"]`, `[bse-post-ima
 
 ## Updates und Library
 
-Der deckerweb Updater 2.1.0 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 0.9.0 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
+Der deckerweb Updater 2.2.0 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 1.1.0 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
 
 ## Daten und Multisite
 
@@ -103,15 +103,23 @@ Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifizi
 
 ## Changelog
 
+## 1.3.1 — 2026-10-21
+
+- **Verbessert:** Gemeinsamen Plugin-Katalog und Update-Integration aktualisiert.
+- **Behoben:** Dokumentationsdialoge bleiben bis zum Öffnen geschlossen und bieten native Schließ- und Dokumentationslink-Fallbacks.
+- **Sonstiges:** deckerweb Library 1.1.0 und Updater 2.2.0 eingebunden. Benötigt PHP 8.1 oder höher; WordPress 6.7 bleibt unterstützt.
+
+
 ## 1.3.0 — 2026-10-10
 
-- **Verbessert:** Admin-Hinweise erscheinen hinter dem vollständigen Header; das Produkt-Icon wird ausschließlich im Header angezeigt.
 - **Neu:** Shortcodes für Titel, Auszug, responsives Beitragsbild und geschätzte Lesezeit.
 - **Neu:** Optionale Textausgabe ohne Wrapper, maskierte Fallback-Texte und semantische Datumsangaben.
+- **Verbessert:** Admin-Hinweise erscheinen hinter dem vollständigen Header; das Produkt-Icon wird ausschließlich im Header angezeigt.
 - **Verbessert:** Neun Generatorfälle mit geschützter Inhaltssuche, klarerem Kontext des aktuellen Inhalts und erhaltenen Eingaben je Fall.
-- **Behoben:** rel-Attribute an Links funktionieren ohne target; Menü-Shortcodes berücksichtigen die angegebene Container-ID.
 - **Verbessert:** Neue Banner und abgerundete Plugin-Icons mit einem einheitlichen Motiv für wiederverwendbare Inhalte.
+- **Behoben:** rel-Attribute an Links funktionieren ohne target; Menü-Shortcodes berücksichtigen die angegebene Container-ID.
 - **Sonstiges:** Eingebettete deckerweb Library auf 0.9.0 aktualisiert; bestehende Shortcode-Funktionen und Mindestanforderungen bleiben unverändert.
+
 
 ## 1.2.1 — 09.10.2026
 
@@ -123,6 +131,7 @@ Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifizi
 - **Behoben:** Update-Pakete werden auf angebotene Version, Plugin-Identität und tatsächliche WordPress-/PHP-Anforderungen geprüft, auch bei Sammelupdates.
 - **Sonstiges:** deckerweb Library 0.8.1 und Updater 2.1.0 eingebunden. Bestehende Shortcode-Namen, Attribute, Entwicklerfilter und optionale Integrationen bleiben verfügbar.
 - **Sonstiges:** Zweisprachige Readmes, FAQ, Grafiken und vertraulicher Sicherheitsmeldeweg aktualisiert. Voraussetzungen bleiben WordPress 6.7+ und PHP 8.0+.
+
 
 ## 1.2.0 — 01.10.2026
 
@@ -138,15 +147,18 @@ Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifizi
 - **Sonstiges:** Benötigt WordPress 6.7+ und PHP 8.0+; PHP 8.0 wird von der Library vorausgesetzt. Die Helfer-Oberfläche lädt keine Frontend-Ressourcen.
 - **Sonstiges:** Genesis und Beaver bleiben erhalten; doppelter Astra-Loader, altes Blocks-Menü und sachfremde Werbe-/Core-Admin-Eingriffe entfernt.
 
+
 ## 1.1.0 — 2025-03-15
 
 - **Verbessert:** Shortcode-Kompatibilität wiederhergestellt.
 - **Sonstiges:** Verteilung von WordPress.org zu GitHub verlagert und alten DDWlib-Empfehlungsinstaller entfernt.
 - **Sonstiges:** Eigenen Übersetzungsloader entfernt; mitgelieferte Übersetzungen beibehalten.
 
+
 ## 1.0.0 — 2019-09-10
 
 - **Neu:** Erste Veröffentlichung mit 25 allgemeinen Helfern und 5 Integrations-Shortcodes.
+
 
 ## 0.9.0 — 2019-09-09
 

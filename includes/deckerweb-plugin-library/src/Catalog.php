@@ -1,6 +1,6 @@
 <?php
 /** Copyright 2026 David Decker – DECKERWEB. SPDX-License-Identifier: GPL-2.0-or-later */
-namespace Deckerweb\PluginLibrary\V0_9_0;
+namespace Deckerweb\PluginLibrary\V1_1_0;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /** Strict metadata-only catalog. No remote PHP, JavaScript, CSS, icons or telemetry. */
@@ -10,6 +10,14 @@ final class Catalog {
  public const DEFAULT_URL = 'https://raw.githubusercontent.com/deckerweb/deckerweb-plugin-library/main/catalog/catalog.json';
 	private string $dir;
 	public string $status = 'bundled';
+ public array $provenance = [];
+ /** Return catalog provenance without requesting fresh metadata.
+  * @return array Source, revision and last successful verification time; no endpoint secrets.
+  */
+ public function summary(): array {
+  if (!$this->provenance) { $this->entries(); }
+  return ['source'=>$this->status,'revision'=>$this->provenance['catalog_revision'] ?? '', 'checked_at'=>$this->provenance['checked_at'] ?? 0];
+ }
 	/**
 	 * Initialize the component with validated host paths and shared runtime configuration.
 	 *
@@ -117,7 +125,8 @@ final class Catalog {
    }
    $entry['_series_definitions'] = $definitions;
    if ( isset( $entry['sort_order'] ) && ( ! is_int( $entry['sort_order'] ) || $entry['sort_order'] < 0 || $entry['sort_order'] > 10000 ) ) { return new \WP_Error( 'dwl_catalog', Library::t( 'Invalid display field.' ) ); }
-			$slug = $entry['slug'];
+			if ( isset($entry['published_at']) && (!is_string($entry['published_at']) || !preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/D',$entry['published_at']) || strtotime($entry['published_at'])===false) ) { return new \WP_Error('dwl_catalog',Library::t('Invalid catalog timestamp.')); }
+   $slug = $entry['slug'];
 			if ( ! preg_match( '/^[a-z0-9]+(?:-[a-z0-9]+)*$/D', $slug ) || isset( $result[$slug] )
 				|| ! preg_match( '~^deckerweb/[a-zA-Z0-9_.-]+$~D', $entry['repository'] )
 				|| ! preg_match( '~^' . preg_quote( $slug, '~' ) . '/[a-zA-Z0-9_-]+\.php$~D', $entry['plugin_file'] )
@@ -208,7 +217,7 @@ final class Catalog {
 			$cache = get_site_transient( $key );
 			if ( ! $fresh && is_array( $cache ) && isset( $cache['data'] ) ) {
 				$this->status = 'online';
-				return self::validate( $cache['data'] );
+				$this->provenance = ['catalog_revision'=>$cache['data']['catalog_revision'] ?? '', 'checked_at'=>(int)($cache['checked_at'] ?? 0)]; return self::validate( $cache['data'] );
 			}
 			if ( $fresh || ! get_site_transient( $key . '_retry' ) ) {
 				$response = wp_safe_remote_get( $url, [ 'user-agent' => 'deckerweb-plugin-library/' . Library::VERSION, 'timeout' => 6, 'redirection' => 0, 'limit_response_size' => 262145, 'headers' => ( $fresh ? [ 'Accept' => 'application/json', 'Cache-Control' => 'no-cache', 'Pragma' => 'no-cache' ] : [ 'Accept' => 'application/json' ] ) ] );
@@ -220,16 +229,16 @@ final class Catalog {
 					set_site_transient( $key . '_last', [ 'data' => $data, 'checked_at' => time() ], 48 * HOUR_IN_SECONDS );
 					delete_site_transient( $key . '_retry' );
 					$this->status = 'online';
-					return $valid;
+					$this->provenance = ['catalog_revision'=>$data['catalog_revision'] ?? '', 'checked_at'=>time()]; return $valid;
 				}
 				set_site_transient( $key . '_retry', true, 15 * MINUTE_IN_SECONDS );
 			}
 			if ( $fresh ) { return new \WP_Error( 'dwl_offline', Library::t( 'The catalog could not be verified. Please try again later.' ) ); }
 			$last = get_site_transient( $key . '_last' );
 			$this->status = 'offline';
-			if ( is_array( $last ) && isset( $last['data'] ) ) { return self::validate( $last['data'] ); }
+			if ( is_array( $last ) && isset( $last['data'] ) ) { $this->provenance = ['catalog_revision'=>$last['data']['catalog_revision'] ?? '', 'checked_at'=>(int)($last['checked_at'] ?? 0)]; return self::validate( $last['data'] ); }
 		}
 		$data = json_decode( (string) ( is_file( $this->dir . '/catalog.json' ) ? file_get_contents( $this->dir . '/catalog.json' ) : '' ), true );
-		return self::validate( $data );
+		$this->provenance = ['catalog_revision'=>$data['catalog_revision'] ?? '', 'checked_at'=>0]; return self::validate( $data );
 	}
 }

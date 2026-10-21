@@ -72,3 +72,11 @@
 #deckerweb-library .dwl-action[aria-busy=true] .button{cursor:progress}
 
 #deckerweb-library .dwl-icon-fallback{font-size:20px;letter-spacing:-.3px}
+
+#dwl-history:not([open]),#dwl-history[hidden]{display:none!important} .dwl-filter-chip{display:inline-block;margin:0 8px 8px 0}.dwl-diagnostics{margin:24px 0}.dwl-diagnostics summary{cursor:pointer;font-weight:600}.dwl-catalog-status,.dwl-install-state{color:#50575e}.dwl-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
+
+/* Subtle card feedback preserves native control focus and never shifts layout. */
+#deckerweb-library .dwl-card:hover,
+#deckerweb-library .dwl-card:focus-within{border-color:#8c9aab;box-shadow:0 2px 8px rgba(30,45,65,.09)}
+@media (prefers-reduced-motion:no-preference){#deckerweb-library .dwl-card{transition:border-color .15s ease,box-shadow .15s ease}}
+@media (forced-colors:active){#deckerweb-library .dwl-card:focus-within{outline:1px solid Highlight;outline-offset:2px}}

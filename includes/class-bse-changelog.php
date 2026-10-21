@@ -59,7 +59,7 @@ final class Changelog {
 			return;
 		}
 		$close = __( 'Close', 'builder-shortcode-extras' );
-		echo '<dialog id="bse-document-changelog" class="bse-document-dialog" aria-labelledby="bse-document-changelog-title"><header class="bse-document-header"><h2 id="bse-document-changelog-title">Builder Shortcode Extras · ' . esc_html__( 'Changelog', 'builder-shortcode-extras' ) . '</h2><button type="button" class="button" data-bse-close autofocus>' . esc_html( $close ) . '</button></header><div class="bse-document-content" tabindex="0">';
+		echo '<dialog hidden id="bse-document-changelog" class="bse-document-dialog" aria-labelledby="bse-document-changelog-title"><header class="bse-document-header"><h2 id="bse-document-changelog-title">Builder Shortcode Extras · ' . esc_html__( 'Changelog', 'builder-shortcode-extras' ) . '</h2><form method="dialog"><button type="submit" class="button" data-bse-close autofocus>' . esc_html( $close ) . '</button></form></header><div class="bse-document-content" tabindex="0">';
 		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content() escapes every text node; only fixed heading, list and paragraph markup is emitted.
 		echo '</div><p class="bse-document-source"><a href="' . esc_url( self::url() ) . '">' . esc_html( self::is_german() ? 'docs/changelog-de.txt' : 'docs/changelog.txt' ) . '</a></p></dialog>';
 	}

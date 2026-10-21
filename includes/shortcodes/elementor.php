@@ -66,7 +66,7 @@ if ( ! ddw_bse_is_elementor_pro_active() ) :
 
 			printf(
 				'<input class="bse-elementor-shortcode-input widefat" type="text" readonly onfocus="this.select()" value="%s" />',
-				$shortcode
+				esc_attr( $shortcode )
 			);
 
 		}  // end if

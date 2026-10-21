@@ -93,7 +93,7 @@ if ( ! function_exists( 'deckerweb_library_uninstall_v3' ) ) {
     if ( $remaining !== false ) { $delete_intro = false; break; }
    }
   }
-  if ( $delete_intro && $all_networks_delete ) { delete_metadata( 'user', 0, 'deckerweb_library_intro_seen_v1', '', true ); }
+  if ( $delete_intro && $all_networks_delete ) { delete_metadata( 'user', 0, 'deckerweb_library_intro_seen_v1', '', true ); delete_metadata( 'user', 0, 'deckerweb_library_view_v1', '', true ); delete_metadata( 'user', 0, 'deckerweb_git_updater_notice_v1', '', true ); }
   // Package staging is cleaned immediately; only tracked crash leftovers are removed.
   $temp_registry = array_unique( array_filter( $temporary, 'is_string' ) );
   foreach ( is_array( $temp_registry ) ? $temp_registry : [] as $path ) {

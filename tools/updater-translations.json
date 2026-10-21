@@ -42,5 +42,33 @@
   "See the release on GitHub.": {
     "de_DE": "Sieh dir den Release auf GitHub an.",
     "de_DE_formal": "Sehen Sie sich den Release auf GitHub an."
+  },
+  "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider.": {
+    "de_DE": "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update fehlschlägt, deaktiviere Git Updater vorübergehend und versuche es erneut. Aktiviere ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lass ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen.",
+    "de_DE_formal": "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update fehlschlägt, deaktivieren Sie Git Updater vorübergehend und versuchen Sie es erneut. Aktivieren Sie ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lassen Sie ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
+  },
+  "Manage installed plugins": {
+    "de_DE": "Installierte Plugins verwalten",
+    "de_DE_formal": "Installierte Plugins verwalten"
+  },
+  "Dismiss this notice": {
+    "de_DE": "Diesen Hinweis ausblenden",
+    "de_DE_formal": "Diesen Hinweis ausblenden"
+  },
+  "Permission denied.": {
+    "de_DE": "Zugriff verweigert.",
+    "de_DE_formal": "Zugriff verweigert."
+  },
+  "Public catalog callbacks require both providers and cannot be used in private mode.": {
+    "de_DE": "Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im Private-Modus verwendet werden.",
+    "de_DE_formal": "Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im Private-Modus verwendet werden."
+  },
+  "The approved release could not be verified.": {
+    "de_DE": "Die freigegebene Version konnte nicht geprüft werden.",
+    "de_DE_formal": "Die freigegebene Version konnte nicht geprüft werden."
+  },
+  "The approved release changed. Refresh updates first.": {
+    "de_DE": "Die freigegebene Version hat sich geändert. Suche zuerst erneut nach Updates.",
+    "de_DE_formal": "Die freigegebene Version hat sich geändert. Suchen Sie zuerst erneut nach Updates."
   }
 }
