@@ -4,7 +4,7 @@
 
 **Small dynamic helpers. Ready when you need them.**
 
-Find a helper, configure one of five use cases and copy it into your WordPress layout. Dates, copyright, links and reusable content without custom PHP.
+Find a helper, configure one of nine use cases and copy it into your WordPress layout. Dates, copyright, links and reusable content without custom PHP.
 
 ## English
 
