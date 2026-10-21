@@ -72,7 +72,6 @@ BSE speichert keine Generatorwerte und verändert keine Inhalte.
 | `bse-version` | `type`, `plugin`, `constant`, `custom`, `before`, `after`, `class`, `wrapper` | WordPress |
 | `bse-wpblock` | `id`, `css` | WordPress synced patterns |
 | `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |
-
 | `bse-post-title` | `post_id`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
 | `bse-post-excerpt` | `post_id`, `words`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
 | `bse-post-image` | `post_id`, `size`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
