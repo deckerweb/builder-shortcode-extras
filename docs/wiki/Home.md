@@ -22,4 +22,4 @@ Wähle einen Helfer, konfiguriere einen der neun Generatorfälle und kopiere den
 - [Anleitung und Fragen nach Themen](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch)
 - [Vollständiger Änderungsverlauf](https://github.com/deckerweb/builder-shortcode-extras/wiki/CHANGELOG%E2%80%90de)
 
-[Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest) · [Support](https://github.com/deckerweb/builder-shortcode-extras/issues) · [Security](https://github.com/deckerweb/builder-shortcode-extras/security/advisories/new)
+[Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest) · [Help / Hilfe](https://github.com/deckerweb/builder-shortcode-extras/issues) · [Security / Sicherheit](https://github.com/deckerweb/builder-shortcode-extras/security/policy)
