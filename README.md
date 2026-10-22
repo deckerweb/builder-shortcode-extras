@@ -6,7 +6,7 @@
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
-Version **1.3.1** · WordPress **6.7+** · PHP **8.1+** · GPL-2.0-or-later
+Version **1.3.2** · WordPress **6.7+** · PHP **8.1+** · GPL-2.0-or-later
 
 [Deutsch](README-de.md) · [Guide and FAQ](https://github.com/deckerweb/builder-shortcode-extras/wiki/English) · [Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest)
 
@@ -59,7 +59,7 @@ New helpers: `[bse-post-title]`, `[bse-post-excerpt words="30"]`, `[bse-post-ima
 
 ## Updates and Library
 
-The deckerweb Updater 2.2.0 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 1.1.0 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
+The deckerweb Updater 2.2.1 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 1.1.0 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
 
 ## Data and Multisite
 
@@ -102,6 +102,11 @@ After two characters the generator searches the current website through authenti
 ![Shortcode help and generator](assets-github/shortcode-tools-en.png)
 
 ## Changelog
+
+## 1.3.2 — 2026-10-22
+
+- **Fixed:** Updates use the bundled updater even when another plugin loads an older copy first.
+- **Misc:** Updated deckerweb Updater to 2.2.1; Library 1.1.0 and requirements remain unchanged.
 
 ## 1.3.1 — 2026-10-21
 
@@ -158,11 +163,6 @@ After two characters the generator searches the current website through authenti
 ## 1.0.0 — 2019-09-10
 
 - **New:** Initial plugin release with 25 general helpers and 5 integration shortcodes.
-
-
-## 0.9.0 — 2019-09-09
-
-- **New:** First public beta on GitHub.
 
 ## Author and scope
 

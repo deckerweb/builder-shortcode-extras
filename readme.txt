@@ -4,7 +4,7 @@ Tags: shortcodes, dynamic content, templates
 Requires at least: 6.7
 Requires PHP: 8.1
 Tested up to: 7.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,7 +48,7 @@ New helpers: `[bse-post-title]`, `[bse-post-excerpt words="30"]`, `[bse-post-ima
 
 = Updates and Library =
 
-The deckerweb Updater 2.2.0 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 1.1.0 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
+The deckerweb Updater 2.2.1 checks stable GitHub releases through the normal WordPress update system. It does not enable automatic updates. Embedded deckerweb Library 1.1.0 adds an optional catalog under Plugins → Add New → deckerweb. Online catalog retrieval is off by default. Installation and activation are separate decisions. GitHub sees the requesting IP address for metadata/package requests; BSE sends no telemetry, site address or user identifiers.
 
 = Data and Multisite =
 
@@ -101,6 +101,11 @@ After two characters the generator searches the current website through authenti
 2. Plugin page with help and generator in German.
 
 == Changelog ==
+
+= 1.3.2 — 2026-10-22 =
+
+- **Fixed:** Updates use the bundled updater even when another plugin loads an older copy first.
+- **Misc:** Updated deckerweb Updater to 2.2.1; Library 1.1.0 and requirements remain unchanged.
 
 = 1.3.1 — 2026-10-21 =
 
@@ -157,20 +162,3 @@ After two characters the generator searches the current website through authenti
 = 1.0.0 — 2019-09-10 =
 
 - **New:** Initial plugin release with 25 general helpers and 5 integration shortcodes.
-
-
-= 0.9.0 — 2019-09-09 =
-
-- **New:** First public beta on GitHub.
-
-= Author and scope =
-
-David Decker – DECKERWEB develops and publishes this plugin, first released in 2019. It focuses on small dynamic helpers and is distributed directly through GitHub. Builder integrations are optional; broad certification of commercial builders is not claimed.
-
-[Issues](https://github.com/deckerweb/builder-shortcode-extras/issues) · [Discussions](https://github.com/deckerweb/builder-shortcode-extras/discussions) · [Security](https://github.com/deckerweb/builder-shortcode-extras/security/advisories/new)
-
-Report vulnerabilities privately. [Reporting policy](SECURITY.md). Support the project: [Ko-fi](https://ko-fi.com/deckerweb) · [Buy Me a Coffee](https://buymeacoffee.com/daveshine) · [PayPal](https://paypal.me/deckerweb).
-
-© 2019–2026 David Decker – DECKERWEB. [GPL v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
-
-Bundled deckerweb Library and Updater: David Decker – DECKERWEB, GPL-2.0-or-later. BSE artwork is original vector work using Inter outlines (Copyright The Inter Project Authors, SIL Open Font License 1.1; license in assets/Inter-OFL.txt). No font files are bundled. WordPress and builder names belong to their respective owners.

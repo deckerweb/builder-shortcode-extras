@@ -6,7 +6,7 @@
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
-Version **1.3.1** · WordPress **6.7+** · PHP **8.1+**
+Version **1.3.2** · WordPress **6.7+** · PHP **8.1+**
 
 ## Quick start
 

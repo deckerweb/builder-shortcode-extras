@@ -22,16 +22,14 @@ final class GitHubUpdates {
 	/** Load the shared versioned class once, including beside other deckerweb plugins. @return void */
 	public function boot(): void {
 		if ( ! is_admin() && ! wp_doing_cron() && ! ( defined( 'WP_CLI' ) && WP_CLI ) ) { return; }
-		if ( ! class_exists( '\Deckerweb\GitHubReleaseUpdater\V2\Updater' ) ) {
-			require_once BSE_PLUGIN_DIR . 'includes/deckerweb-github-release-updater-v2.php';
-		}
-		if ( ! defined( 'Deckerweb\\GitHubReleaseUpdater\\V2\\Updater::SUPPORTS_HOST_TRANSLATIONS' ) || ! \Deckerweb\GitHubReleaseUpdater\V2\Updater::SUPPORTS_HOST_TRANSLATIONS ) {
+		$updater_class = require BSE_PLUGIN_DIR . 'includes/deckerweb-github-release-updater-v2.php';
+		if ( ! is_string( $updater_class ) || ! class_exists( $updater_class, false ) || ! defined( $updater_class . '::SUPPORTS_HOST_TRANSLATIONS' ) || ! constant( $updater_class . '::SUPPORTS_HOST_TRANSLATIONS' ) ) {
 			add_action( 'admin_notices', array( $this, 'compatibility_notice' ) );
 			add_action( 'network_admin_notices', array( $this, 'compatibility_notice' ) );
 			return;
 		}
 		try {
-			$updater = new \Deckerweb\GitHubReleaseUpdater\V2\Updater(
+			$updater = new $updater_class(
 				BSE_PLUGIN_FILE,
 				self::REPOSITORY,
 				'Builder Shortcode Extras',

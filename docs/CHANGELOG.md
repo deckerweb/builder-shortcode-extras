@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.2 — 2026-10-22
+
+- **Fixed:** Updates use the bundled updater even when another plugin loads an older copy first.
+- **Misc:** Updated deckerweb Updater to 2.2.1; Library 1.1.0 and requirements remain unchanged.
+
 ## 1.3.1 — 2026-10-21
 
 - **Improved:** Updated the shared plugin catalog and update integration.
