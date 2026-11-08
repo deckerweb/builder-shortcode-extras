@@ -6,7 +6,7 @@
 
 Copyright, dates, links and reusable content without custom PHP. Includes searchable help and a compact generator directly in WordPress.
 
-Version **1.3.2** · WordPress **6.7+** · PHP **8.1+**
+Version **1.3.3** · WordPress **6.7+** · PHP **8.1+**
 
 ## Quick start
 
@@ -72,6 +72,7 @@ BSE saves no generator values and changes no content.
 | `bse-version` | `type`, `plugin`, `constant`, `custom`, `before`, `after`, `class`, `wrapper` | WordPress |
 | `bse-wpblock` | `id`, `css` | WordPress synced patterns |
 | `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |
+
 | `bse-post-title` | `post_id`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
 | `bse-post-excerpt` | `post_id`, `words`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
 | `bse-post-image` | `post_id`, `size`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
@@ -169,7 +170,7 @@ BSE has no usage telemetry. Generator searches send the search term to the curre
 
 #### What changed for existing installations?
 
-Names, aliases and output filters remain. PHP 8.1 is now required. Invalid wrappers fall back to span, text is escaped more consistently, inaccessible embedded content is withheld, and wp-admin shortcode registration follows its opt-in filter.
+Names, aliases and output filters remain. PHP 8.0 is now required. Invalid wrappers fall back to span, text is escaped more consistently, inaccessible embedded content is withheld, and wp-admin shortcode registration follows its opt-in filter.
 
 #### Can I enable text helpers in wp-admin?
 
@@ -181,7 +182,7 @@ BSE can be activated per website or network-wide. Content IDs belong to the curr
 
 #### What are the requirements and support scope?
 
-WordPress 6.7+ and PHP 8.1+. Library installation requires ZipArchive. Report reproducible issues on GitHub with plugin, WordPress, PHP and builder versions. Commercial builder adapters were checked with representative fixtures, not licensed builder installations.
+WordPress 6.7+ and PHP 8.0+. Library installation requires ZipArchive. Report reproducible issues on GitHub with plugin, WordPress, PHP and builder versions. Commercial builder adapters were checked with representative fixtures, not licensed builder installations.
 
 #### What happens to data when I remove the plugin?
 

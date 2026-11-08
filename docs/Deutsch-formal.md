@@ -6,7 +6,7 @@
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.3.2** · WordPress **6.7+** · PHP **8.1+**
+Version **1.3.3** · WordPress **6.7+** · PHP **8.1+**
 
 ## Erste Schritte
 
@@ -72,6 +72,7 @@ BSE speichert keine Generatorwerte und verändert keine Inhalte.
 | `bse-version` | `type`, `plugin`, `constant`, `custom`, `before`, `after`, `class`, `wrapper` | WordPress |
 | `bse-wpblock` | `id`, `css` | WordPress synced patterns |
 | `bse-astra-layout` | `id`, `css` | Astra Pro custom layouts |
+
 | `bse-post-title` | `post_id`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
 | `bse-post-excerpt` | `post_id`, `words`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
 | `bse-post-image` | `post_id`, `size`, `wrapper`, `class`, `before`, `after`, `fallback` | WordPress |
@@ -169,7 +170,7 @@ BSE enthält keine Nutzungstelemetrie. Der Updater fragt GitHub-Release-Metadate
 
 #### Was ändert sich für bestehende Installationen?
 
-Namen, Aliase und Ausgabefilter bleiben. PHP 8.1 ist jetzt erforderlich. Ungültige Wrapper werden zu span, Text wird konsistenter escaped, unzugängliche Inhalte werden nicht eingebettet und die Admin-Registrierung folgt dem Opt-in-Filter.
+Namen, Aliase und Ausgabefilter bleiben. PHP 8.0 ist jetzt erforderlich. Ungültige Wrapper werden zu span, Text wird konsistenter escaped, unzugängliche Inhalte werden nicht eingebettet und die Admin-Registrierung folgt dem Opt-in-Filter.
 
 #### Kann ich Texthelfer im Backend aktivieren?
 
@@ -181,7 +182,7 @@ BSE lässt sich je Website oder netzwerkweit aktivieren. Inhalts-IDs beziehen si
 
 #### Welche Anforderungen und welchen Support gibt es?
 
-WordPress 6.7+ und PHP 8.1+. Die Library-Installation benötigt ZipArchive. Melde reproduzierbare Fehler auf GitHub mit Plugin-, WordPress-, PHP- und Builder-Version. Kommerzielle Builder wurden mit repräsentativen Testfällen geprüft, nicht mit lizenzierten Installationen.
+WordPress 6.7+ und PHP 8.0+. Die Library-Installation benötigt ZipArchive. Melde reproduzierbare Fehler auf GitHub mit Plugin-, WordPress-, PHP- und Builder-Version. Kommerzielle Builder wurden mit repräsentativen Testfällen geprüft, nicht mit lizenzierten Installationen.
 
 #### Was passiert beim Entfernen mit den Daten?
 

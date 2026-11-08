@@ -10,11 +10,12 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 // Core keeps the first plugin's uninstall constant during a batch. This file
-// owns only the BSE cache; shared ownership is checked by Library protocol 3.
+// owns only the BSE cache; shared ownership is checked by Library protocol 4.
 // Remove legacy and pinned-implementation metadata in every affected network.
 $ddw_bse_cache_keys = array(
 	'ddw_ghru_' . substr( md5( 'https://github.com/deckerweb/builder-shortcode-extras' ), 0, 24 ),
 	'ddw_ghru_' . substr( md5( 'https://github.com/deckerweb/builder-shortcode-extras|2.2.1' ), 0, 24 ),
+	'ddw_ghru_' . substr( md5( 'https://github.com/deckerweb/builder-shortcode-extras|2.4.0' ), 0, 24 ),
 );
 foreach ( $ddw_bse_cache_keys as $ddw_bse_cache_key ) {
 	if ( is_multisite() ) {
@@ -29,4 +30,4 @@ foreach ( $ddw_bse_cache_keys as $ddw_bse_cache_key ) {
 	}
 }
 require_once __DIR__ . '/includes/deckerweb-plugin-library/lifecycle.php';
-deckerweb_library_uninstall_v3( __DIR__ . '/builder-shortcode-extras.php' );
+deckerweb_library_uninstall_v4( __DIR__ . '/builder-shortcode-extras.php' );

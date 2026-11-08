@@ -1329,3 +1329,135 @@ msgstr ""
 
 msgid "Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry."
 msgstr ""
+
+msgid "%1$s of %2$s plugins"
+msgstr ""
+
+msgid "Archive verification"
+msgstr ""
+
+msgid "Catalog approval"
+msgstr ""
+
+msgid "Catalog diagnostics require a public catalog provider."
+msgstr ""
+
+msgid "Catalog retrieval does not limit updates of installed plugins. Those use their normal WordPress update provider."
+msgstr ""
+
+msgid "Catalog verification"
+msgstr ""
+
+msgid "Checksum verification"
+msgstr ""
+
+msgid "Connection failed. Please try again later."
+msgstr ""
+
+msgid "HTTP status: %d."
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Installed plugin identity does not match the approved release."
+msgstr ""
+
+msgid "Installed plugins use their normal update provider. Reload the update information and try again."
+msgstr ""
+
+msgid "Invalid package cleanup provider."
+msgstr ""
+
+msgid "Invalid private download limits."
+msgstr ""
+
+msgid "Invalid status filter."
+msgstr ""
+
+msgid "No update reported."
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "Package download"
+msgstr ""
+
+msgid "Plugin status"
+msgstr ""
+
+msgid "Safe package cleanup is unavailable for this update provider."
+msgstr ""
+
+msgid "Stage: %1$s. %2$s"
+msgstr ""
+
+msgid "The archive or plugin identity could not be verified. Installation was stopped."
+msgstr ""
+
+msgid "The catalog response is invalid, incompatible or too large."
+msgstr ""
+
+msgid "The connection timed out. Please try again later."
+msgstr ""
+
+msgid "The installed plugin identity could not be verified. Use the Plugins screen to review it."
+msgstr ""
+
+msgid "The package checksum does not match the approved release. Installation was stopped."
+msgstr ""
+
+msgid "The package did not pass the archive or plugin identity checks. Installation was stopped."
+msgstr ""
+
+msgid "The package does not match the approved checksum. Installation was stopped."
+msgstr ""
+
+msgid "The requirements below describe the catalog version for first installation, not an installed-plugin update."
+msgstr ""
+
+msgid "The secure connection could not be verified."
+msgstr ""
+
+msgid "The secure connection to the update server failed."
+msgstr ""
+
+msgid "The server address could not be resolved."
+msgstr ""
+
+msgid "The server returned HTTP %d. Please try again later."
+msgstr ""
+
+msgid "The update package identity, version or requirements could not be verified."
+msgstr ""
+
+msgid "The update provider did not return valid update data."
+msgstr ""
+
+msgid "The update request timed out. Try again later."
+msgstr ""
+
+msgid "The update server address could not be resolved."
+msgstr ""
+
+msgid "The update server could not be reached. Try again later."
+msgstr ""
+
+msgid "The update server returned an unsuccessful HTTP response."
+msgstr ""
+
+msgid "Update available: %s"
+msgstr ""
+
+msgid "Update information changed. Reload the page and try again."
+msgstr ""
+
+msgid "Update stopped at %1$s: %2$s"
+msgstr ""
+
+msgid "Use the Plugins screen to manage this installed plugin."
+msgstr ""
+
+msgid "Verified first installations · Independent plugin updates"
+msgstr ""

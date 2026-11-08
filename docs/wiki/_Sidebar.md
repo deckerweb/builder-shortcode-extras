@@ -1,6 +1,5 @@
 ## English
 
-- [Home](https://github.com/deckerweb/builder-shortcode-extras/wiki/)
 - [Getting started](https://github.com/deckerweb/builder-shortcode-extras/wiki/English#quick-start)
 - [Usage](https://github.com/deckerweb/builder-shortcode-extras/wiki/English#examples)
 - [FAQ by topic](https://github.com/deckerweb/builder-shortcode-extras/wiki/English#faq-by-topic)
@@ -10,7 +9,6 @@
 
 ## Deutsch
 
-- [Startseite](https://github.com/deckerweb/builder-shortcode-extras/wiki/)
 - [Erste Schritte](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch#erste-schritte)
 - [Nutzung](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch#beispiele)
 - [Fragen nach Themen](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch#fragen-nach-themen)

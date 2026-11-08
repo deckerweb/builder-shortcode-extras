@@ -6,7 +6,7 @@
 
 Copyright, Datumsangaben, Links und wiederverwendbare Inhalte ohne eigenes PHP. Mit einer durchsuchbaren Hilfe und einem kompakten Generator direkt in WordPress.
 
-Version **1.3.2** · WordPress **6.7+** · PHP **8.1+** · GPL-2.0-or-later
+Version **1.3.3** · WordPress **6.7+** · PHP **8.1+** · GPL-2.0-or-later
 
 [English](README.md) · [Anleitung und FAQ](https://github.com/deckerweb/builder-shortcode-extras/wiki/Deutsch) · [Download](https://github.com/deckerweb/builder-shortcode-extras/releases/latest)
 
@@ -59,7 +59,7 @@ Neue Helfer: `[bse-post-title]`, `[bse-post-excerpt words="30"]`, `[bse-post-ima
 
 ## Updates und Library
 
-Der deckerweb Updater 2.2.1 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 1.1.0 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
+Der deckerweb Updater 2.4.0 prüft stabile GitHub-Releases über die normale WordPress-Updateverwaltung. Er aktiviert keine automatischen Updates. Die eingebettete deckerweb Library 1.3.0 ergänzt einen optionalen Katalog unter Plugins → Installieren → deckerweb. Ihre Online-Katalogabfrage ist standardmäßig ausgeschaltet. Installation und Aktivierung sind getrennte Entscheidungen. GitHub sieht bei Metadaten- oder Paketabrufen die anfragende IP-Adresse; BSE übermittelt keine Nutzungsdaten, Website-Adresse oder Benutzerkennungen.
 
 ## Daten und Multisite
 
@@ -102,6 +102,10 @@ Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifizi
 ![Hilfe und Shortcode-Generator](assets-github/shortcode-tools-de.png)
 
 ## Changelog
+
+## 1.3.3 · 2026-11-09
+
+- **Behoben:** deckerweb Library auf 1.3.0 und Updater auf 2.4.0 aktualisiert: normale Updates unabhängig vom Katalog, begrenzte Downloads und strengere Paketprüfung.
 
 ## 1.3.2 — 2026-10-22
 
@@ -163,6 +167,11 @@ Ab zwei Zeichen durchsucht der Generator die aktuelle Website über authentifizi
 ## 1.0.0 — 2019-09-10
 
 - **Neu:** Erste Veröffentlichung mit 25 allgemeinen Helfern und 5 Integrations-Shortcodes.
+
+
+## 0.9.0 — 2019-09-09
+
+- **Neu:** Erste öffentliche Beta auf GitHub.
 
 ## Autor und Zweck
 

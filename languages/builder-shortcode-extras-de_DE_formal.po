@@ -1,677 +1,23 @@
 msgid ""
-msgstr "Project-Id-Version: Builder Shortcode Extras\nPOT-Creation-Date: 2025-03-15 09:53+0100\nPO-Revision-Date: 2026-10-01 18:00+0200\nLast-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\nLanguage-Team: David Decker DECKERWEB.de\nLanguage: de_DE@formal\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\nX-Generator: Poedit 3.5\nX-Poedit-Basepath: ..\nX-Poedit-Flags-xgettext: --add-comments=translators:\nX-Poedit-WPHeader: builder-shortcode-extras.php\nX-Poedit-SourceCharset: UTF-8\nX-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\nX-Poedit-SearchPath-0: .\nX-Poedit-SearchPathExcluded-0: *.min.js\n"
-
-msgid "Documentation"
-msgstr "Dokumentation"
-
-msgid "Close"
-msgstr "Schließen"
-
-msgid "No Integration registered"
-msgstr "Keine Integration registriert"
-
-msgid "David Decker - DECKERWEB"
-msgstr "David Decker - DECKERWEB"
-
-msgid "Shortcode"
-msgstr "Shortcode"
-
-msgctxt "time difference"
-msgid "seconds"
-msgstr "Sekunden"
-
-msgctxt "Time difference"
-msgid "%s year"
-msgid_plural "%s years"
-msgstr[0] "%s Jahr"
-msgstr[1] "%s Jahre"
-
-msgctxt "Time difference"
-msgid "%s month"
-msgid_plural "%s months"
-msgstr[0] "%s Monat"
-msgstr[1] "%s Monate"
-
-msgctxt "Time difference"
-msgid "%s week"
-msgid_plural "%s weeks"
-msgstr[0] "%s Woche"
-msgstr[1] "%s Wochen"
-
-msgctxt "Time difference"
-msgid "%s day"
-msgid_plural "%s days"
-msgstr[0] "%s Tag"
-msgstr[1] "%s Tage"
-
-msgctxt "Time difference"
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s Stunde"
-msgstr[1] "%s Stunden"
-
-msgctxt "Time difference"
-msgid "%s minute"
-msgid_plural "%s minutes"
-msgstr[0] "%s Minute"
-msgstr[1] "%s Minuten"
-
-msgctxt "Time difference"
-msgid "%s second"
-msgid_plural "%s seconds"
-msgstr[0] "%s Sekunde"
-msgstr[1] "%s Sekunden"
-
-msgctxt "Separator in time difference"
-msgid "and"
-msgstr "und"
-
-msgid "Private mode must be boolean."
-msgstr "Der Private-Modus muss ein boolescher Wert sein."
-
-msgid "Invalid authentication provider."
-msgstr "Ungültiger Authentifizierungsanbieter."
-
-msgid "The plugin must be installed in a stable slug directory."
-msgstr "Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert sein."
-
-msgid "Invalid GitHub repository URL."
-msgstr "Ungültige GitHub-Repository-URL."
-
-msgid "The private update could not be authorized. Check the repository credentials and refresh updates."
-msgstr "Das private Update konnte nicht autorisiert werden. Prüfen Sie die Repository-Zugangsdaten und suchen Sie erneut nach Updates."
-
-msgid "Could not create the update download file."
-msgstr "Die Datei für den Update-Download konnte nicht erstellt werden."
-
-msgid "The private update download failed. Check credentials and try again."
-msgstr "Der Download des privaten Updates ist fehlgeschlagen. Prüfen Sie die Zugangsdaten und versuchen Sie es erneut."
-
-msgid "Could not access the update filesystem."
-msgstr "Auf das Dateisystem für das Update konnte nicht zugegriffen werden."
-
-msgid "GitHub release does not contain the plugin main file."
-msgstr "Der GitHub-Release enthält nicht die Hauptdatei des Plugins."
-
-msgid "Could not prepare the GitHub release package."
-msgstr "Das GitHub-Release-Paket konnte nicht vorbereitet werden."
-
-msgid "See the release on GitHub."
-msgstr "Sehen Sie sich den Release auf GitHub an."
-
-msgid "Git Updater is active. If a deckerweb installation or update fails, temporarily deactivate Git Updater and retry. Reactivate it afterwards if other plugins or themes need it. Only leave it disabled when those extensions have another reliable update provider."
-msgstr "Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update fehlschlägt, deaktivieren Sie Git Updater vorübergehend und versuchen Sie es erneut. Aktivieren Sie ihn danach wieder, wenn andere Plugins oder Themes ihn benötigen. Lassen Sie ihn nur dauerhaft deaktiviert, wenn diese Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
-
-msgid "Manage installed plugins"
-msgstr "Installierte Plugins verwalten"
-
-msgid "Dismiss this notice"
-msgstr "Diesen Hinweis ausblenden"
-
-msgid "Permission denied."
-msgstr "Keine Berechtigung."
-
-msgid "Public catalog callbacks require both providers and cannot be used in private mode."
-msgstr "Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im Private-Modus verwendet werden."
-
-msgid "The approved release could not be verified."
-msgstr "Der freigegebene Release konnte nicht geprüft werden."
-
-msgid "The approved release changed. Refresh updates first."
-msgstr "Das freigegebene Release hat sich geändert. Bitte zuerst die Updates aktualisieren."
-
-msgid "Navigation menu"
-msgstr "Navigationsmenü"
-
-msgid "Output an existing WordPress navigation menu."
-msgstr "Ein vorhandenes WordPress-Navigationsmenü ausgeben."
-
-msgid "More helpers"
-msgstr "Weitere Helfer"
-
-msgid "Embed content"
-msgstr "Inhalt einbetten"
-
-msgid "Reuse a published item by ID; native blocks and supported builders are rendered."
-msgstr "Einen veröffentlichten Inhalt per ID wiederverwenden; native Blöcke und unterstützte Builder werden gerendert."
-
-msgid "Essentials"
-msgstr "Die wichtigsten Helfer"
-
-msgid "Content ID"
-msgstr "Inhalts-ID"
-
-msgid "Include Elementor CSS"
-msgstr "Elementor-CSS einbinden"
-
-msgid "No"
-msgstr "Nein"
-
-msgid "Yes"
-msgstr "Ja"
-
-msgid "Comment form"
-msgstr "Kommentarformular"
-
-msgid "Output the WordPress comment form."
-msgstr "Das WordPress-Kommentarformular ausgeben."
-
-msgid "Elementor template"
-msgstr "Elementor-Vorlage"
-
-msgid "Embed a saved Elementor template; offered with Elementor Free."
-msgstr "Eine gespeicherte Elementor-Vorlage einbetten; verfügbar mit Elementor Free."
-
-msgid "Integrations"
-msgstr "Integrationen"
-
-msgid "Genesis footer"
-msgstr "Genesis-Footer"
-
-msgid "The footer text configured in Genesis."
-msgstr "Der in Genesis eingestellte Footer-Text."
-
-msgid "Genesis breadcrumbs"
-msgstr "Genesis-Breadcrumbs"
-
-msgid "The breadcrumb trail provided by Genesis."
-msgstr "Die von Genesis bereitgestellte Breadcrumb-Navigation."
-
-msgid "Copyright"
-msgstr "Copyright"
-
-msgid "A copyright notice with the current year."
-msgstr "Ein Copyright-Hinweis mit dem aktuellen Jahr."
-
-msgid "First year"
-msgstr "Erstes Jahr"
-
-msgid "Text before"
-msgstr "Text davor"
-
-msgid "Text after"
-msgstr "Text danach"
-
-msgid "CSS classes (optional)"
-msgstr "CSS-Klassen (optional)"
-
-msgid "Wrapper"
-msgstr "HTML-Element"
-
-msgid "Site title"
-msgstr "Website-Titel"
-
-msgid "The name of your website."
-msgstr "Der Name Ihrer Website."
-
-msgid "Site tagline"
-msgstr "Website-Untertitel"
-
-msgid "The tagline of your website."
-msgstr "Der Untertitel Ihrer Website."
-
-msgid "Homepage link"
-msgstr "Startseiten-Link"
-
-msgid "A link to your homepage."
-msgstr "Ein Link zu Ihrer Startseite."
-
-msgid "Login / logout link"
-msgstr "Anmelde- / Abmelde-Link"
-
-msgid "A link matching the visitor’s login state."
-msgstr "Ein Link passend zum Anmeldestatus des Besuchers."
-
-msgid "Website updated"
-msgstr "Website aktualisiert"
-
-msgid "The earliest or latest modification of published content."
-msgstr "Die früheste oder neueste Änderung veröffentlichter Inhalte."
-
-msgid "Post count"
-msgstr "Beitragsanzahl"
-
-msgid "Count content by post type and status."
-msgstr "Inhalte nach Inhaltstyp und Status zählen."
-
-msgid "Publication date"
-msgstr "Veröffentlichungsdatum"
-
-msgid "The publication date of the current or selected post."
-msgstr "Das Veröffentlichungsdatum des aktuellen oder gewählten Beitrags."
-
-msgid "Post ID (optional)"
-msgstr "Beitrags-ID (optional)"
-
-msgid "Date format"
-msgstr "Datumsformat"
-
-msgid "Website default"
-msgstr "Website-Standard"
-
-msgid "31.12.2026"
-msgstr "31.12.2026"
-
-msgid "December 31, 2026"
-msgstr "31. Dezember 2026"
-
-msgid "2026-12-31"
-msgstr "2026-12-31"
-
-msgid "Relative date"
-msgstr "Relatives Datum"
-
-msgid "Label"
-msgstr "Beschriftung"
-
-msgid "Publication time"
-msgstr "Veröffentlichungszeit"
-
-msgid "The publication time of the current or selected post."
-msgstr "Die Veröffentlichungszeit des aktuellen oder gewählten Beitrags."
-
-msgid "Last updated"
-msgstr "Zuletzt aktualisiert"
-
-msgid "The modification date of the current or selected post."
-msgstr "Das Änderungsdatum des aktuellen oder gewählten Beitrags."
-
-msgid "Last updated (alias)"
-msgstr "Zuletzt aktualisiert (Alias)"
-
-msgid "An alias for bse-post-modified-date."
-msgstr "Ein Alias für bse-post-modified-date."
-
-msgid "Last updated time"
-msgstr "Letzte Aktualisierungszeit"
-
-msgid "The modification time of the current or selected post."
-msgstr "Die Änderungszeit des aktuellen oder gewählten Beitrags."
-
-msgid "Post author"
-msgstr "Beitragsautor"
-
-msgid "The author’s display name."
-msgstr "Der Anzeigename des Autors."
-
-msgid "Author website link"
-msgstr "Autorenwebsite-Link"
-
-msgid "The author’s name linked to their website."
-msgstr "Der Autorenname mit Link zu seiner Website."
-
-msgid "Author archive link"
-msgstr "Autorenarchiv-Link"
-
-msgid "The author’s name linked to their archive."
-msgstr "Der Autorenname mit Link zu seinem Archiv."
-
-msgid "Post tags"
-msgstr "Beitrags-Schlagwörter"
-
-msgid "The tags assigned to the current post."
-msgstr "Die Schlagwörter des aktuellen Beitrags."
-
-msgid "Post categories"
-msgstr "Beitragskategorien"
-
-msgid "The categories assigned to the current post."
-msgstr "Die Kategorien des aktuellen Beitrags."
-
-msgid "Taxonomy terms"
-msgstr "Taxonomie-Begriffe"
-
-msgid "Terms from a selected taxonomy."
-msgstr "Begriffe aus einer gewählten Taxonomie."
-
-msgid "Edit post link"
-msgstr "Beitrag-bearbeiten-Link"
-
-msgid "An edit link for visitors with editing permission."
-msgstr "Ein Bearbeitungslink für Besucher mit Bearbeitungsrechten."
-
-msgid "Post / page link"
-msgstr "Beitrags- / Seiten-Link"
-
-msgid "Link to an item by ID or slug, or to the privacy policy."
-msgstr "Ein Link zu einem Inhalt per ID oder Slug oder zur Datenschutzerklärung."
-
-msgid "Post ID"
-msgstr "Beitrags-ID"
-
-msgid "Link text (optional)"
-msgstr "Linktext (optional)"
-
-msgid "User information"
-msgstr "Benutzerinformationen"
-
-msgid "A selected user field with an optional fallback."
-msgstr "Ein gewähltes Benutzerfeld mit optionalem Ersatztext."
-
-msgid "Current user ID"
-msgstr "Aktuelle Benutzer-ID"
-
-msgid "The ID of the signed-in user."
-msgstr "Die ID des angemeldeten Benutzers."
-
-msgid "Current user email"
-msgstr "Aktuelle Benutzer-E-Mail"
-
-msgid "The email address of the signed-in user."
-msgstr "Die E-Mail-Adresse des angemeldeten Benutzers."
-
-msgid "Current user login"
-msgstr "Aktueller Benutzer-Anmeldename"
-
-msgid "The login name of the signed-in user."
-msgstr "Der Anmeldename des angemeldeten Benutzers."
-
-msgid "Current user name"
-msgstr "Aktueller Benutzername"
-
-msgid "The display name of the signed-in user."
-msgstr "Der Anzeigename des angemeldeten Benutzers."
-
-msgid "Current user first name"
-msgstr "Aktueller Benutzer-Vorname"
-
-msgid "The first name of the signed-in user."
-msgstr "Der Vorname des angemeldeten Benutzers."
-
-msgid "Current user last name"
-msgstr "Aktueller Benutzer-Nachname"
-
-msgid "The last name of the signed-in user."
-msgstr "Der Nachname des angemeldeten Benutzers."
-
-msgid "Version information"
-msgstr "Versionsinformationen"
-
-msgid "Technical version information for documentation and support."
-msgstr "Technische Versionsinformationen für Dokumentation und Support."
-
-msgid "Synced pattern"
-msgstr "Synchronisierte Vorlage"
-
-msgid "Embed a WordPress synced pattern by ID."
-msgstr "Eine synchronisierte WordPress-Vorlage per ID einbetten."
-
-msgid "Astra layout"
-msgstr "Astra-Layout"
-
-msgid "Embed an Astra Pro custom layout by ID."
-msgstr "Ein Astra-Pro-Layout per ID einbetten."
-
-msgid "Post title"
-msgstr "Beitragstitel"
-
-msgid "The title of the current or selected readable item."
-msgstr "Titel des aktuellen oder ausgewählten lesbaren Inhalts."
-
-msgid "Post excerpt"
-msgstr "Beitragsauszug"
-
-msgid "A plain-text excerpt with a configurable word limit."
-msgstr "Ein Klartextauszug mit einstellbarer Wortzahl."
-
-msgid "Featured image"
-msgstr "Beitragsbild"
-
-msgid "The native responsive featured image of readable content."
-msgstr "Das native responsive Beitragsbild lesbarer Inhalte."
-
-msgid "Reading time"
-msgstr "Lesezeit"
-
-msgid "Estimated reading time of stored text; embedded content is not executed."
-msgstr "Geschätzte Lesezeit des gespeicherten Textes; eingebettete Inhalte werden nicht ausgeführt."
-
-msgid "Content ID (empty = current item)"
-msgstr "Inhalts-ID (leer = aktueller Inhalt)"
-
-msgid "Maximum words"
-msgstr "Maximale Wortzahl"
-
-msgid "Words per minute"
-msgstr "Wörter pro Minute"
-
-msgid "Image size"
-msgstr "Bildgröße"
-
-msgid "Use wrapper=\"none\" for output without the outer wrapper."
-msgstr "Verwenden Sie wrapper=\"none\" für Ausgabe ohne äußeren Wrapper."
-
-msgid "Fallback text"
-msgstr "Fallback-Text"
-
-msgid "None"
-msgstr "Keiner"
-
-msgid "Output wrapper"
-msgstr "HTML-Wrapper"
-
-msgid "Semantic date markup"
-msgstr "Semantisches Datums-HTML"
-
-msgid "Changelog"
-msgstr "Änderungsprotokoll"
-
-msgid "Small dynamic helpers for your WordPress website. Find, configure and copy useful shortcodes."
-msgstr "Kleine dynamische Helfer für Ihre WordPress-Website. Nützliche Shortcodes finden, konfigurieren und kopieren Sien."
-
-msgid "Builder Shortcode Extras cannot use the shared updater loaded by another plugin. Update the other deckerweb plugins or install the latest plugin ZIP manually."
-msgstr "Builder Shortcode Extras kann den von einem anderen Plugin geladenen gemeinsamen Updater nicht verwenden. Aktualisieren Sie die anderen deckerweb Plugins oder installieren Sie das aktuelle Plugin-ZIP manuell."
-
-msgid "The update filesystem is unavailable. Please try again."
-msgstr "Das Dateisystem für das Update ist nicht verfügbar. Bitte versuchen Sie es erneut."
-
-msgid "The GitHub package does not contain the Builder Shortcode Extras plugin file."
-msgstr "Das GitHub-Paket enthält die Plugin-Datei von Builder Shortcode Extras nicht."
-
-msgid "The GitHub package could not be prepared. The installed version has been kept."
-msgstr "Das GitHub-Paket konnte nicht vorbereitet werden. Die installierte Version wurde beibehalten."
-
-msgid "The update package could not be checked."
-msgstr "Das Update-Paket konnte nicht geprüft werden."
-
-msgid "The package identity or version does not match a newer Builder Shortcode Extras release."
-msgstr "Die Paketidentität oder Version entspricht keiner neueren Version von Builder Shortcode Extras."
-
-msgid "The package version differs from the offered update. Please check for updates again."
-msgstr "Die Paketversion weicht vom angebotenen Update ab. Bitte prüfen Sie erneut auf Updates."
-
-msgid "The update package has missing or invalid WordPress/PHP requirements."
-msgstr "Die WordPress/PHP-Anforderungen im Update-Paket fehlen oder sind ungültig."
-
-msgid "This release requires a newer WordPress or PHP version. The installed version has been kept."
-msgstr "Diese Version benötigt eine neuere WordPress- oder PHP-Version. Die installierte Version wurde beibehalten."
-
-msgid "Builder Shortcode Extras"
-msgstr "Builder Shortcode Extras"
-
-msgid "Settings"
-msgstr "Einstellungen"
-
-msgid "Copied. Paste this shortcode into a shortcode-enabled field."
-msgstr "Kopiert. Fügen Sie den Shortcode in ein Feld mit Shortcode-Unterstützung ein."
-
-msgid "Copy the selected shortcode manually."
-msgstr "Kopieren Sie den markierten Shortcode manuell."
-
-msgid "Enter a valid content ID greater than zero."
-msgstr "Geben Sie eine gültige Inhalts-ID größer als null ein."
-
-msgid "Use a whole number greater than zero."
-msgstr "Verwenden Sie eine ganze Zahl größer als null."
-
-msgid "Searching…"
-msgstr "Suche läuft…"
-
-msgid "No readable content found."
-msgstr "Keine lesbaren Inhalte gefunden."
-
-msgid "Search unavailable. Enter the content ID manually."
-msgstr "Suche nicht verfügbar. Geben Sie die Inhalts-ID manuell ein."
-
-msgid "Current frontend item"
-msgstr "Aktueller Frontend-Inhalt"
-
-msgid "Selected content ID:"
-msgstr "Ausgewählte Inhalts-ID:"
-
-msgid "Attribute values cannot contain quotation marks, square brackets or line breaks."
-msgstr "Attributwerte dürfen keine Anführungszeichen, eckigen Klammern oder Zeilenumbrüche enthalten."
-
-msgid "Small dynamic helpers. Ready when you need them."
-msgstr "Kleine dynamische Helfer. Schnell eingesetzt."
-
-msgid "Find a helper, copy its shortcode and paste it into a Shortcode block or a shortcode-enabled builder field. No settings to save."
-msgstr "Wählen Sie einen Helfer, kopieren Sie den Shortcode und fügen Sie ihn in einen Shortcode-Block oder ein geeignetes Builder-Feld ein. Es gibt keine Einstellungen zu speichern."
-
-msgid "Build your shortcode"
-msgstr "Ihren Shortcode erstellen"
-
-msgid "What would you like to add?"
-msgstr "Was möchten Sie hinzufügen Sien?"
-
-msgid "Find a page, post or template"
-msgstr "Seite, Beitrag oder Template finden"
-
-msgid "An empty content ID uses the current item on the frontend. Builder previews can show a different item. Embedded content and links require an explicit ID. Drafts and private content remain subject to access permissions."
-msgstr "Eine leere Inhalts-ID verwendet den aktuellen Frontend-Inhalt. Builder-Vorschauen können einen anderen Inhalt zeigen. Einbettungen und Links benötigen eine ausdrückliche ID. Entwürfe und private Inhalte bleiben zugriffsgeschützt."
-
-msgid "Your shortcode"
-msgstr "Ihr Shortcode"
-
-msgid "Copy shortcode"
-msgstr "Shortcode kopieren Sien"
-
-msgid "For dates, leave the post ID empty to use the current post. Insert generated shortcodes on your website to see their output."
-msgstr "Lassen Sie bei Datumsangaben die Beitrags-ID leer, um den aktuellen Beitrag zu verwenden. Fügen Sie den Shortcode auf Ihrer Website ein, um die Ausgabe zu sehen."
-
-msgid "The generator needs JavaScript. You can still select and copy examples from the help below."
-msgstr "Der Generator benötigt JavaScript. Die Beispiele in der Hilfe können Sie weiterhin markieren und kopieren Sien."
-
-msgid "Find a shortcode"
-msgstr "Einen Shortcode finden"
-
-msgid "Search by task, name or attribute"
-msgstr "Nach Aufgabe, Name oder Attribut suchen"
-
-msgid "Try: copyright, date, author…"
-msgstr "Zum Beispiel: Copyright, Datum, Autor …"
-
-msgid "No matching shortcode. Try another search term."
-msgstr "Kein passender Shortcode. Versuchen Sie einen anderen Suchbegriff."
-
-msgid "Copy"
-msgstr "Kopieren Sien"
-
-msgid "Configure in generator"
-msgstr "Im Generator konfigurieren"
-
-msgid "Available attributes"
-msgstr "Verfügbare Attribute"
-
-msgid "Plugin information"
-msgstr "Plugin-Informationen"
-
-msgid "Version"
-msgstr "Version"
-
-msgid "Plugin website"
-msgstr "Plugin-Website"
-
-msgctxt "Plugins page listing"
-msgid "Support"
-msgstr "Support"
-
-msgctxt "Plugins page listing"
-msgid "Documentation"
-msgstr "Dokumentation"
-
-msgctxt "Plugins page listing"
-msgid "Donate"
-msgstr "Spenden"
-
-msgctxt "Plugins page listing"
-msgid "Newsletter"
-msgstr "Newsletter"
-
-msgid "Enabled"
-msgstr "Aktiviert"
-
-msgid "Disabled"
-msgstr "Deaktiviert"
-
-msgid "Plugin"
-msgstr "Plugin"
-
-msgid "Plugin version"
-msgstr "Plugin-Version"
-
-msgid "Elementor free"
-msgstr "Elementor Free Version"
-
-msgid "Elementor Pro"
-msgstr "Elementor Pro"
-
-msgid "Log in"
-msgstr "Anmelden"
-
-msgid "Log out"
-msgstr "Abmelden"
-
-msgid "ago"
-msgstr "vor"
-
-msgid "Tagged With:"
-msgstr "Stichwörter:"
-
-msgid "Filed Under:"
-msgstr "Abgelegt unter:"
-
-msgid "(Edit)"
-msgstr "(Bearbeiten)"
-
-msgid "User"
-msgstr "Anwender"
-
-msgid "This user field is not allowed"
-msgstr "Dieses Benutzerfeld ist nicht erlaubt"
-
-msgid "The user ID is incorrect"
-msgstr "Die Benutzer-ID ist falsch"
-
-msgid "%s minute"
-msgid_plural "%s minutes"
-msgstr[0] "%s Minute"
-msgstr[1] "%s Minuten"
-
-msgctxt "Label for Comment Form"
-msgid "Leave a Reply"
-msgstr "Hinterlassen Sie eine Antwort"
-
-msgctxt "Label for Comment Form"
-msgid "Leave a Reply to %s"
-msgstr "Hinterlassen Sie eine Antwort an %s"
-
-msgctxt "Label for Comment Form"
-msgid "Cancel reply"
-msgstr "Antwort abbrechen"
-
-msgctxt "Label for Comment Form"
-msgid "Post Comment"
-msgstr "Kommentar absenden"
-
-msgid "(Not defined)"
-msgstr "(Nicht definiert)"
-
-msgid "Astra Custom Layouts"
-msgstr "Astra Eigene Layouts"
-
-msgid "WordPress Synced Patterns"
-msgstr "Synchronisierte WordPress-Vorlagen"
+msgstr ""
+"Project-Id-Version: Builder Shortcode Extras\n"
+"PO-Revision-Date: 2026-10-01 18:00+0200\n"
+"Last-Translator: David Decker DECKERWEB.de <David Decker DECKERWEB.de>\n"
+"Language-Team: David Decker DECKERWEB.de\n"
+"Language: de_DE@formal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: builder-shortcode-extras.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
 msgid "%s is installed but inactive. Activate it first."
 msgstr "%s ist installiert, aber inaktiv. Bitte zuerst aktivieren."
@@ -679,23 +25,120 @@ msgstr "%s ist installiert, aber inaktiv. Bitte zuerst aktivieren."
 msgid "%s is missing. Install and activate it first."
 msgstr "%s fehlt. Bitte zuerst installieren und aktivieren."
 
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s Minute"
+msgstr[1] "%s Minuten"
+
 msgid "%s must be network activated first."
 msgstr "%s muss zuerst netzwerkweit aktiviert werden."
 
 msgid "%s supports activation per site only."
 msgstr "%s unterstützt nur die Aktivierung je Website."
 
+msgid "(Edit)"
+msgstr "(Bearbeiten)"
+
+msgid "(Not defined)"
+msgstr "(Nicht definiert)"
+
+msgid "2026-12-31"
+msgstr "2026-12-31"
+
+msgid "31.12.2026"
+msgstr "31.12.2026"
+
+msgid "A copyright notice with the current year."
+msgstr "Ein Copyright-Hinweis mit dem aktuellen Jahr."
+
+msgid "A link matching the visitor’s login state."
+msgstr "Ein Link passend zum Anmeldestatus des Besuchers."
+
+msgid "A link to your homepage."
+msgstr "Ein Link zu Ihrer Startseite."
+
+msgid "A plain-text excerpt with a configurable word limit."
+msgstr "Ein Klartextauszug mit einstellbarer Wortzahl."
+
+msgid "A selected user field with an optional fallback."
+msgstr "Ein gewähltes Benutzerfeld mit optionalem Ersatztext."
+
+msgid "Action cancelled."
+msgstr "Vorgang abgebrochen."
+
 msgid "Activate"
 msgstr "Aktivieren"
 
-msgid "Activate Bricks QuickNav per site after selecting the Bricks parent or child theme."
-msgstr "Bricks QuickNav bitte je Website aktivieren, nachdem das Bricks-Theme oder ein Child-Theme ausgewählt wurde."
+msgid ""
+"Activate Bricks QuickNav per site after selecting the Bricks parent or child "
+"theme."
+msgstr ""
+"Bricks QuickNav bitte je Website aktivieren, nachdem das Bricks-Theme oder "
+"ein Child-Theme ausgewählt wurde."
+
+msgid "Activating…"
+msgstr "Wird aktiviert…"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Active filters: "
+msgstr "Aktive Filter: "
 
 msgid "Admin"
 msgstr "Administration"
 
+msgid "Affected features remain paused until their requirements are met."
+msgstr ""
+"Betroffene Funktionen pausieren, bis ihre Voraussetzungen erfüllt sind."
+
+msgid "All"
+msgstr "Alle"
+
 msgid "Already active"
 msgstr "Bereits aktiv"
+
+msgid "Already up to date."
+msgstr "Bereits aktuell."
+
+msgid "An alias for bse-post-modified-date."
+msgstr "Ein Alias für bse-post-modified-date."
+
+msgid "An edit link for visitors with editing permission."
+msgstr "Ein Bearbeitungslink für Besucher mit Bearbeitungsrechten."
+
+msgid ""
+"An empty content ID uses the current item on the frontend. Builder previews "
+"can show a different item. Embedded content and links require an explicit "
+"ID. Drafts and private content remain subject to access permissions."
+msgstr ""
+"Eine leere Inhalts-ID verwendet den aktuellen Frontend-Inhalt. Builder-"
+"Vorschauen können einen anderen Inhalt zeigen. Einbettungen und Links "
+"benötigen eine ausdrückliche ID. Entwürfe und private Inhalte bleiben "
+"zugriffsgeschützt."
+
+msgid "Another action for this plugin is running. Please wait."
+msgstr "Für dieses Plugin läuft bereits eine Aktion. Bitte warten."
+
+msgid ""
+"Another component interrupted the request. If Git Updater is active, "
+"temporarily deactivate it and retry."
+msgstr ""
+"Eine andere Komponente hat die Anfrage unterbrochen. Falls Git Updater aktiv "
+"ist, deaktivieren Sie ihn vorübergehend und wiederholen Sie den Vorgang."
+
+msgid ""
+"Another updater provides a different release. Refresh updates before "
+"continuing."
+msgstr ""
+"Ein anderer Updater bietet einen abweichenden Release an. Bitte die "
+"Updateinformationen vor dem Fortfahren aktualisieren."
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "April"
+msgstr "April"
 
 msgid "Archive contains too many files."
 msgstr "Das Archiv enthält zu viele Dateien."
@@ -706,11 +149,63 @@ msgstr "Symbolische Verknüpfungen sind im Archiv nicht erlaubt."
 msgid "As of "
 msgstr "Stand: "
 
+msgid "Astra Custom Layouts"
+msgstr "Astra Eigene Layouts"
+
+msgid "Astra layout"
+msgstr "Astra-Layout"
+
+msgid ""
+"Attribute values cannot contain quotation marks, square brackets or line "
+"breaks."
+msgstr ""
+"Attributwerte dürfen keine Anführungszeichen, eckigen Klammern oder "
+"Zeilenumbrüche enthalten."
+
+msgid "Aug"
+msgstr "Aug"
+
+msgid "August"
+msgstr "August"
+
+msgid "Author archive link"
+msgstr "Autorenarchiv-Link"
+
+msgid "Author website link"
+msgstr "Autorenwebsite-Link"
+
+msgid "Available attributes"
+msgstr "Verfügbare Attribute"
+
 msgid "Back to deckerweb"
 msgstr "Zurück zu deckerweb"
 
+msgid "Build your shortcode"
+msgstr "Ihren Shortcode erstellen"
+
 msgid "Builder"
 msgstr "Builder"
+
+msgid "Builder Shortcode Extras"
+msgstr "Builder Shortcode Extras"
+
+msgid ""
+"Builder Shortcode Extras cannot use the shared updater loaded by another "
+"plugin. Update the other deckerweb plugins or install the latest plugin ZIP "
+"manually."
+msgstr ""
+"Builder Shortcode Extras kann den von einem anderen Plugin geladenen "
+"gemeinsamen Updater nicht verwenden. Aktualisieren Sie die anderen deckerweb "
+"Plugins oder installieren Sie das aktuelle Plugin-ZIP manuell."
+
+msgid "Bundled catalog"
+msgstr "Mitgelieferter Katalog"
+
+msgid "CSS classes (optional)"
+msgstr "CSS-Klassen (optional)"
+
+msgid "Cached or bundled catalog"
+msgstr "Gespeicherter oder mitgelieferter Katalog"
 
 msgid "Cannot create temporary file."
 msgstr "Temporäre Datei konnte nicht erstellt werden."
@@ -730,44 +225,293 @@ msgstr "Archiveintrag konnte nicht gelesen werden."
 msgid "Catalog URL"
 msgstr "Katalog-URL"
 
+msgid "Catalog refreshed."
+msgstr "Katalog aktualisiert."
+
+msgid "Changelog"
+msgstr "Änderungsprotokoll"
+
+msgid "Check status"
+msgstr "Status prüfen"
+
+msgid "Checking status…"
+msgstr "Status wird geprüft…"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Comment form"
+msgstr "Kommentarformular"
+
+msgid "Commerce"
+msgstr "Commerce"
+
 msgid "Compatible additions only"
 msgstr "Nur passende Ergänzungen"
+
+msgid "Configure in generator"
+msgstr "Im Generator konfigurieren"
 
 msgid "Content"
 msgstr "Inhalte"
 
+msgid "Content ID"
+msgstr "Inhalts-ID"
+
+msgid "Content ID (empty = current item)"
+msgstr "Inhalts-ID (leer = aktueller Inhalt)"
+
+msgid "Copied."
+msgstr "Kopiert."
+
+msgid "Copied. Paste this shortcode into a shortcode-enabled field."
+msgstr ""
+"Kopiert. Fügen Sie den Shortcode in ein Feld mit Shortcode-Unterstützung ein."
+
+msgid "Copy"
+msgstr "Kopieren Sien"
+
+msgid "Copy diagnostic information"
+msgstr "Diagnoseinformationen kopieren"
+
+msgid "Copy shortcode"
+msgstr "Shortcode kopieren Sien"
+
+msgid "Copy the selected shortcode manually."
+msgstr "Kopieren Sie den markierten Shortcode manuell."
+
+msgid "Copyright"
+msgstr "Copyright"
+
+msgid "Could not access the update filesystem."
+msgstr "Auf das Dateisystem für das Update konnte nicht zugegriffen werden."
+
+msgid "Could not create the update download file."
+msgstr "Die Datei für den Update-Download konnte nicht erstellt werden."
+
+msgid "Could not prepare the GitHub release package."
+msgstr "Das GitHub-Release-Paket konnte nicht vorbereitet werden."
+
+msgid "Count content by post type and status."
+msgstr "Inhalte nach Inhaltstyp und Status zählen."
+
+msgid "Current frontend item"
+msgstr "Aktueller Frontend-Inhalt"
+
+msgid "Current user ID"
+msgstr "Aktuelle Benutzer-ID"
+
+msgid "Current user email"
+msgstr "Aktuelle Benutzer-E-Mail"
+
+msgid "Current user first name"
+msgstr "Aktueller Benutzer-Vorname"
+
+msgid "Current user last name"
+msgstr "Aktueller Benutzer-Nachname"
+
+msgid "Current user login"
+msgstr "Aktueller Benutzer-Anmeldename"
+
+msgid "Current user name"
+msgstr "Aktueller Benutzername"
+
+msgid "Date format"
+msgstr "Datumsformat"
+
+msgid "David Decker - DECKERWEB"
+msgstr "David Decker - DECKERWEB"
+
+msgid "Dec"
+msgstr "Dez"
+
+msgid "December"
+msgstr "Dezember"
+
+msgid "December 31, 2026"
+msgstr "31. Dezember 2026"
+
 msgid "Delete Library settings when removing the last host plugin"
-msgstr "Library-Einstellungen beim Entfernen des letzten Host-Plugins ebenfalls löschen"
+msgstr ""
+"Library-Einstellungen beim Entfernen des letzten Host-Plugins ebenfalls "
+"löschen"
 
 msgid "Details & requirements"
 msgstr "Details & Voraussetzungen"
 
+msgid "Disabled"
+msgstr "Deaktiviert"
+
 msgid "Discover more plugins by deckerweb"
 msgstr "Weitere Plugins von deckerweb entdecken"
+
+msgid "Discover randomly"
+msgstr "Zufällig entdecken"
 
 msgid "Dismiss permanently"
 msgstr "Dauerhaft schließen"
 
+msgid "Dismiss this notice"
+msgstr "Diesen Hinweis ausblenden"
+
+msgid "Documentation"
+msgstr "Dokumentation"
+
 msgid "Done. The plugin is active."
 msgstr "Erledigt. Das Plugin ist aktiv."
+
+msgid "Edit post link"
+msgstr "Beitrag-bearbeiten-Link"
+
+msgid "Elementor Pro"
+msgstr "Elementor Pro"
+
+msgid "Elementor free"
+msgstr "Elementor Free Version"
+
+msgid "Elementor template"
+msgstr "Elementor-Vorlage"
+
+msgid "Embed a WordPress synced pattern by ID."
+msgstr "Eine synchronisierte WordPress-Vorlage per ID einbetten."
+
+msgid "Embed a saved Elementor template; offered with Elementor Free."
+msgstr ""
+"Eine gespeicherte Elementor-Vorlage einbetten; verfügbar mit Elementor Free."
+
+msgid "Embed an Astra Pro custom layout by ID."
+msgstr "Ein Astra-Pro-Layout per ID einbetten."
+
+msgid "Embed content"
+msgstr "Inhalt einbetten"
+
+msgid "Enabled"
+msgstr "Aktiviert"
 
 msgid "Enter a catalog URL first."
 msgstr "Bitte zuerst eine Katalog-URL eintragen."
 
+msgid "Enter a valid content ID greater than zero."
+msgstr "Geben Sie eine gültige Inhalts-ID größer als null ein."
+
+msgid "Essentials"
+msgstr "Die wichtigsten Helfer"
+
+msgid ""
+"Estimated reading time of stored text; embedded content is not executed."
+msgstr ""
+"Geschätzte Lesezeit des gespeicherten Textes; eingebettete Inhalte werden "
+"nicht ausgeführt."
+
 msgid "Expanded archive is too large."
 msgstr "Das entpackte Archiv ist zu groß."
+
+msgid "F j, Y"
+msgstr "j. F Y"
+
+msgid "Fallback text"
+msgstr "Fallback-Text"
+
+msgid "Featured image"
+msgstr "Beitragsbild"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "February"
+msgstr "Februar"
+
+msgid "Filed Under:"
+msgstr "Abgelegt unter:"
+
+msgid "Filesystem credentials are required."
+msgstr "Zugangsdaten für das Dateisystem werden benötigt."
+
+msgid ""
+"Filesystem credentials are required. Use the catalog with JavaScript enabled "
+"or the native Plugins screen."
+msgstr ""
+"Dateisystem-Zugangsdaten sind erforderlich. Bitte den Katalog mit "
+"aktiviertem JavaScript oder die WordPress-Pluginverwaltung verwenden."
 
 msgid "Filter"
 msgstr "Filtern"
 
+msgid ""
+"Find a helper, copy its shortcode and paste it into a Shortcode block or a "
+"shortcode-enabled builder field. No settings to save."
+msgstr ""
+"Wählen Sie einen Helfer, kopieren Sie den Shortcode und fügen Sie ihn in "
+"einen Shortcode-Block oder ein geeignetes Builder-Feld ein. Es gibt keine "
+"Einstellungen zu speichern."
+
+msgid "Find a page, post or template"
+msgstr "Seite, Beitrag oder Template finden"
+
+msgid "Find a shortcode"
+msgstr "Einen Shortcode finden"
+
+msgid "First year"
+msgstr "Erstes Jahr"
+
+msgid "Fits my installation"
+msgstr "Passt zu meiner Installation"
+
+msgid "Fixed"
+msgstr "Behoben"
+
+msgid ""
+"For dates, leave the post ID empty to use the current post. Insert generated "
+"shortcodes on your website to see their output."
+msgstr ""
+"Lassen Sie bei Datumsangaben die Beitrags-ID leer, um den aktuellen Beitrag "
+"zu verwenden. Fügen Sie den Shortcode auf Ihrer Website ein, um die Ausgabe "
+"zu sehen."
+
+msgid "Fri"
+msgstr "Fr"
+
+msgid "Friday"
+msgstr "Freitag"
+
+msgid "Genesis breadcrumbs"
+msgstr "Genesis-Breadcrumbs"
+
+msgid "Genesis footer"
+msgstr "Genesis-Footer"
+
+msgid ""
+"Git Updater is active. If a deckerweb installation or update fails, "
+"temporarily deactivate Git Updater and retry. Reactivate it afterwards if "
+"other plugins or themes need it. Only leave it disabled when those "
+"extensions have another reliable update provider."
+msgstr ""
+"Git Updater ist aktiv. Wenn eine deckerweb-Installation oder ein Update "
+"fehlschlägt, deaktivieren Sie Git Updater vorübergehend und versuchen Sie es "
+"erneut. Aktivieren Sie ihn danach wieder, wenn andere Plugins oder Themes "
+"ihn benötigen. Lassen Sie ihn nur dauerhaft deaktiviert, wenn diese "
+"Erweiterungen einen anderen zuverlässigen Updateweg besitzen."
+
 msgid "GitHub Stars"
 msgstr "GitHub-Sterne"
+
+msgid "GitHub release does not contain the plugin main file."
+msgstr "Der GitHub-Release enthält nicht die Hauptdatei des Plugins."
 
 msgid "Hide catalog"
 msgstr "Katalog ausblenden"
 
+msgid "Homepage link"
+msgstr "Startseiten-Link"
+
+msgid "Image size"
+msgstr "Bildgröße"
+
 msgid "Improved"
 msgstr "Verbessert"
+
+msgid "Include Elementor CSS"
+msgstr "Elementor-CSS einbinden"
 
 msgid "Install and activate this plugin in the network admin."
 msgstr "Dieses Plugin bitte im Netzwerk-Admin installieren und aktivieren."
@@ -778,11 +522,29 @@ msgstr "deckerweb-Plugin installieren"
 msgid "Install now"
 msgstr "Jetzt installieren"
 
+msgid "Installation cancelled."
+msgstr "Installation abgebrochen."
+
+msgid "Installation failed."
+msgstr "Installation fehlgeschlagen."
+
 msgid "Installed"
 msgstr "Installiert"
 
+msgid "Installed · inactive"
+msgstr "Installiert · inaktiv"
+
 msgid "Installed: "
 msgstr "Installiert: "
+
+msgid "Installing…"
+msgstr "Wird installiert…"
+
+msgid "Integrations"
+msgstr "Integrationen"
+
+msgid "Invalid GitHub repository URL."
+msgstr "Ungültige GitHub-Repository-URL."
 
 msgid "Invalid ZIP archive."
 msgstr "Ungültiges ZIP-Archiv."
@@ -790,11 +552,20 @@ msgstr "Ungültiges ZIP-Archiv."
 msgid "Invalid approval flag."
 msgstr "Ungültige Freigabeangabe."
 
+msgid "Invalid authentication provider."
+msgstr "Ungültiger Authentifizierungsanbieter."
+
 msgid "Invalid catalog field: "
 msgstr "Ungültiges Katalogfeld: "
 
+msgid "Invalid catalog revision."
+msgstr "Ungültiger Katalogstand."
+
 msgid "Invalid catalog schema."
 msgstr "Ungültiges Katalogformat."
+
+msgid "Invalid catalog timestamp."
+msgstr "Ungültiger Katalogzeitpunkt."
 
 msgid "Invalid dependencies."
 msgstr "Ungültige Abhängigkeiten."
@@ -829,11 +600,66 @@ msgstr "Ungültige Netzwerkanforderung."
 msgid "Invalid platform version."
 msgstr "Ungültige Plattformversion."
 
+msgid "Invalid plugin series."
+msgstr "Ungültige Plugin-Serie."
+
+msgid "Invalid sort order."
+msgstr "Ungültige Sortierung."
+
 msgid "Invalid star count."
 msgstr "Ungültige Anzahl der GitHub-Sterne."
 
 msgid "Invalid stars date."
 msgstr "Ungültiges Datum der GitHub-Sterne."
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "January"
+msgstr "Januar"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "July"
+msgstr "Juli"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "June"
+msgstr "Juni"
+
+msgid "Label"
+msgstr "Beschriftung"
+
+msgctxt "Label for Comment Form"
+msgid "Cancel reply"
+msgstr "Antwort abbrechen"
+
+msgctxt "Label for Comment Form"
+msgid "Leave a Reply"
+msgstr "Hinterlassen Sie eine Antwort"
+
+msgctxt "Label for Comment Form"
+msgid "Leave a Reply to %s"
+msgstr "Hinterlassen Sie eine Antwort an %s"
+
+msgctxt "Label for Comment Form"
+msgid "Post Comment"
+msgstr "Kommentar absenden"
+
+msgid "Last successful check: "
+msgstr "Zuletzt erfolgreich geprüft: "
+
+msgid "Last updated"
+msgstr "Zuletzt aktualisiert"
+
+msgid "Last updated (alias)"
+msgstr "Zuletzt aktualisiert (Alias)"
+
+msgid "Last updated time"
+msgstr "Letzte Aktualisierungszeit"
 
 msgid "Library"
 msgstr "Library"
@@ -847,6 +673,40 @@ msgstr "Library-Einstellungen"
 msgid "Library settings saved."
 msgstr "Library-Einstellungen gespeichert."
 
+msgid "Link text (optional)"
+msgstr "Linktext (optional)"
+
+msgid "Link to an item by ID or slug, or to the privacy policy."
+msgstr ""
+"Ein Link zu einem Inhalt per ID oder Slug oder zur Datenschutzerklärung."
+
+msgid "Log in"
+msgstr "Anmelden"
+
+msgid "Log out"
+msgstr "Abmelden"
+
+msgid "Login / logout link"
+msgstr "Anmelde- / Abmelde-Link"
+
+msgid "Manage Content"
+msgstr "Inhalte verwalten"
+
+msgid "Manage installed plugins"
+msgstr "Installierte Plugins verwalten"
+
+msgid "Mar"
+msgstr "Mär"
+
+msgid "March"
+msgstr "März"
+
+msgid "Maximum words"
+msgstr "Maximale Wortzahl"
+
+msgid "May"
+msgstr "Mai"
+
 msgid "Misc"
 msgstr "Sonstiges"
 
@@ -856,14 +716,35 @@ msgstr "Anzeigetext fehlt."
 msgid "Missing plugin header."
 msgstr "Plugin-Header fehlt."
 
+msgid "Mon"
+msgstr "Mo"
+
+msgid "Monday"
+msgstr "Montag"
+
 msgid "More by deckerweb"
 msgstr "Mehr von deckerweb"
+
+msgid "More helpers"
+msgstr "Weitere Helfer"
 
 msgid "Multisite"
 msgstr "Multisite"
 
+msgid "Name A–Z"
+msgstr "Name A–Z"
+
+msgid "Name Z–A"
+msgstr "Name Z–A"
+
+msgid "Navigation menu"
+msgstr "Navigationsmenü"
+
 msgid "Network activate"
 msgstr "Netzwerkweit aktivieren"
+
+msgid "Network active"
+msgstr "Netzwerkweit aktiv"
 
 msgid "Network permission denied."
 msgstr "Keine Berechtigung für das Netzwerk."
@@ -871,14 +752,61 @@ msgstr "Keine Berechtigung für das Netzwerk."
 msgid "New"
 msgstr "Neu"
 
+msgid "No"
+msgstr "Nein"
+
+msgid "No Integration registered"
+msgstr "Keine Integration registriert"
+
 msgid "No approved plugins match this selection."
 msgstr "Keine freigegebenen Plugins passen zu dieser Auswahl."
 
-msgid "Off by default. Applies only when no other host is installed, including inactive hosts. Removes Library settings, installation records and introduction status. Installed plugins, their content and other plugin settings remain unchanged. Network data is shared across sites."
-msgstr "Standardmäßig ausgeschaltet. Gilt nur, wenn kein weiterer Host installiert ist, auch kein deaktivierter. Entfernt Library-Einstellungen, Installationszuordnung und den Status des Einführungshinweises. Installierte Plugins, deren Inhalte und Einstellungen anderer Plugins bleiben erhalten. Netzwerkdaten werden gemeinsam von den Websites genutzt."
+msgid "No matching shortcode. Try another search term."
+msgstr "Kein passender Shortcode. Versuchen Sie einen anderen Suchbegriff."
+
+msgid "No readable content found."
+msgstr "Keine lesbaren Inhalte gefunden."
+
+msgid "None"
+msgstr "Keiner"
+
+msgid "Not installed. You can try again."
+msgstr "Nicht installiert. Ein erneuter Versuch ist möglich."
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "November"
+msgstr "November"
+
+msgid "Oct"
+msgstr "Okt"
+
+msgid "October"
+msgstr "Oktober"
+
+msgid ""
+"Off by default. Applies only when no other host is installed, including "
+"inactive hosts. Removes Library settings, installation records and "
+"introduction status. Installed plugins, their content and other plugin "
+"settings remain unchanged. Network data is shared across sites."
+msgstr ""
+"Standardmäßig ausgeschaltet. Gilt nur, wenn kein weiterer Host installiert "
+"ist, auch kein deaktivierter. Entfernt Library-Einstellungen, "
+"Installationszuordnung und den Status des Einführungshinweises. Installierte "
+"Plugins, deren Inhalte und Einstellungen anderer Plugins bleiben erhalten. "
+"Netzwerkdaten werden gemeinsam von den Websites genutzt."
 
 msgid "Online catalog"
 msgstr "Online-Katalog"
+
+msgid ""
+"Only HTTPS on raw.githubusercontent.com/deckerweb. The server receives the "
+"requesting IP address. GitHub is contacted when installing a release."
+msgstr ""
+"Nur HTTPS auf raw.githubusercontent.com/deckerweb. Der Server sieht die "
+"anfragende IP-Adresse. Beim Installieren eines Releases wird GitHub "
+"kontaktiert."
 
 msgid "Only approved releases"
 msgstr "Nur freigegebene Releases"
@@ -886,32 +814,166 @@ msgstr "Nur freigegebene Releases"
 msgid "Open catalog"
 msgstr "Katalog öffnen"
 
+msgid ""
+"Optional. The bundled catalog works immediately. Catalog requests are cached "
+"for 24 hours. No site URL, plugin list or usage data is sent."
+msgstr ""
+"Optional. Der mitgelieferte Katalog funktioniert sofort. Katalogabfragen "
+"werden 24 Stunden zwischengespeichert. Keine Website-URL, Plugin-Liste oder "
+"Nutzungsdaten werden übertragen."
+
+msgid "Output an existing WordPress navigation menu."
+msgstr "Ein vorhandenes WordPress-Navigationsmenü ausgeben."
+
+msgid "Output the WordPress comment form."
+msgstr "Das WordPress-Kommentarformular ausgeben."
+
+msgid "Output wrapper"
+msgstr "HTML-Wrapper"
+
 msgid "PHP ZIP support is required."
 msgstr "PHP-ZIP-Unterstützung wird benötigt."
 
 msgid "POST required."
 msgstr "Eine POST-Anfrage ist erforderlich."
 
+msgid "Permission denied."
+msgstr "Keine Berechtigung."
+
+msgid "Permission denied. Reload the page and check your permissions."
+msgstr ""
+"Zugriff verweigert. Laden Sie die Seite neu und prüfen Sie Ihre "
+"Berechtigungen."
+
+msgid "Planned: "
+msgstr "Geplant: "
+
+msgid "Plugin"
+msgstr "Plugin"
+
 msgid "Plugin identity or version does not match the catalog."
 msgstr "Plugin oder Version stimmt nicht mit dem Katalog überein."
+
+msgid "Plugin information"
+msgstr "Plugin-Informationen"
 
 msgid "Plugin is not installed."
 msgstr "Das Plugin ist nicht installiert."
 
+msgid "Plugin series"
+msgstr "Plugin-Serien"
+
+msgid "Plugin version"
+msgstr "Plugin-Version"
+
+msgid "Plugin website"
+msgstr "Plugin-Website"
+
+msgctxt "Plugins page listing"
+msgid "Documentation"
+msgstr "Dokumentation"
+
+msgctxt "Plugins page listing"
+msgid "Donate"
+msgstr "Spenden"
+
+msgctxt "Plugins page listing"
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgctxt "Plugins page listing"
+msgid "Support"
+msgstr "Support"
+
+msgid "Post / page link"
+msgstr "Beitrags- / Seiten-Link"
+
+msgid "Post ID"
+msgstr "Beitrags-ID"
+
+msgid "Post ID (optional)"
+msgstr "Beitrags-ID (optional)"
+
+msgid "Post author"
+msgstr "Beitragsautor"
+
+msgid "Post categories"
+msgstr "Beitragskategorien"
+
+msgid "Post count"
+msgstr "Beitragsanzahl"
+
+msgid "Post excerpt"
+msgstr "Beitragsauszug"
+
+msgid "Post tags"
+msgstr "Beitrags-Schlagwörter"
+
+msgid "Post title"
+msgstr "Beitragstitel"
+
+msgid "Private mode must be boolean."
+msgstr "Der Private-Modus muss ein boolescher Wert sein."
+
 msgid "Product website"
 msgstr "Produktwebsite"
+
+msgid ""
+"Public catalog callbacks require both providers and cannot be used in "
+"private mode."
+msgstr ""
+"Öffentliche Katalog-Callbacks benötigen beide Anbieter und können nicht im "
+"Private-Modus verwendet werden."
+
+msgid "Publication date"
+msgstr "Veröffentlichungsdatum"
+
+msgid "Publication time"
+msgstr "Veröffentlichungszeit"
+
+msgid "Reading time"
+msgstr "Lesezeit"
+
+msgid "Recently updated"
+msgstr "Zuletzt aktualisiert"
 
 msgid "Refresh catalog"
 msgstr "Katalog aktualisieren"
 
-msgid "Release checksum is verified before installation. Activation is a separate step."
-msgstr "Vor der Installation wird die Release-Prüfsumme geprüft. Die Aktivierung erfolgt separat."
+msgid "Relative date"
+msgstr "Relatives Datum"
+
+msgid ""
+"Release 1.0.0 is being prepared. Installation will be available after "
+"package verification."
+msgstr ""
+"Release 1.0.0 wird vorbereitet. Die Installation ist nach Prüfung des Pakets "
+"verfügbar."
+
+msgid ""
+"Release checksum is verified before installation. Activation is a separate "
+"step."
+msgstr ""
+"Vor der Installation wird die Release-Prüfsumme geprüft. Die Aktivierung "
+"erfolgt separat."
+
+msgid "Release in preparation"
+msgstr "Release in Vorbereitung"
 
 msgid "Release must contain exactly the approved plugin directory."
 msgstr "Das Release muss genau das freigegebene Plugin-Verzeichnis enthalten."
 
+msgid "Remove filter: "
+msgstr "Filter entfernen: "
+
 msgid "Repository & documentation"
 msgstr "Repository & Dokumentation"
+
+msgid ""
+"Requirements shown are preliminary until the stable release is verified."
+msgstr ""
+"Die gezeigten Voraussetzungen sind bis zur Prüfung des stabilen Releases "
+"vorläufig."
 
 msgid "Requires PHP %s or newer."
 msgstr "Benötigt PHP %s oder neuer."
@@ -922,8 +984,27 @@ msgstr "Benötigt WordPress %s oder neuer."
 msgid "Requires a WordPress Multisite network."
 msgstr "Benötigt ein WordPress-Multisite-Netzwerk."
 
+msgid "Reset filters"
+msgstr "Filter zurücksetzen"
+
+msgid "Reset view"
+msgstr "Ansicht zurücksetzen"
+
 msgid "Retrieve approved catalog updates online"
 msgstr "Katalogfreigaben online aktualisieren"
+
+msgid ""
+"Reuse a published item by ID; native blocks and supported builders are "
+"rendered."
+msgstr ""
+"Einen veröffentlichten Inhalt per ID wiederverwenden; native Blöcke und "
+"unterstützte Builder werden gerendert."
+
+msgid "Sat"
+msgstr "Sa"
+
+msgid "Saturday"
+msgstr "Samstag"
 
 msgid "Save settings"
 msgstr "Einstellungen speichern"
@@ -931,29 +1012,178 @@ msgstr "Einstellungen speichern"
 msgid "Scripts"
 msgstr "Scripte"
 
+msgid "Search by task, name or attribute"
+msgstr "Nach Aufgabe, Name oder Attribut suchen"
+
 msgid "Search this catalog"
 msgstr "Diesen Katalog durchsuchen"
+
+msgid "Search unavailable. Enter the content ID manually."
+msgstr "Suche nicht verfügbar. Geben Sie die Inhalts-ID manuell ein."
+
+msgid "Searching…"
+msgstr "Suche läuft…"
+
+msgid "See the release on GitHub."
+msgstr "Sehen Sie sich den Release auf GitHub an."
+
+msgid "Select and copy the text."
+msgstr "Text markieren und kopieren."
 
 msgid "Selected by deckerweb · Installed from GitHub releases"
 msgstr "Von deckerweb ausgewählt · Installation aus GitHub-Releases"
 
+msgid "Selected content ID:"
+msgstr "Ausgewählte Inhalts-ID:"
+
+msgid "Semantic date markup"
+msgstr "Semantisches Datums-HTML"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgctxt "Separator in time difference"
+msgid "and"
+msgstr "und"
+
+msgid "September"
+msgstr "September"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Shop"
+msgstr "Shop"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
 msgid "Show deckerweb under Add Plugins"
 msgstr "deckerweb unter „Plugins hinzufügen“ anzeigen"
+
+msgid ""
+"Shows plugins whose platform and dependency requirements are met in this "
+"site or network. Without this filter, plugins with missing requirements "
+"remain visible."
+msgstr ""
+"Zeigt Plugins, deren Plattform- und Abhängigkeitsanforderungen auf dieser "
+"Website oder im Netzwerk erfüllt sind. Ohne diesen Filter bleiben Plugins "
+"mit fehlenden Voraussetzungen sichtbar."
+
+msgid "Shuffle again"
+msgstr "Neu mischen"
+
+msgid "Site tagline"
+msgstr "Website-Untertitel"
+
+msgid "Site title"
+msgstr "Website-Titel"
+
+msgid ""
+"Small dynamic helpers for your WordPress website. Find, configure and copy "
+"useful shortcodes."
+msgstr ""
+"Kleine dynamische Helfer für Ihre WordPress-Website. Nützliche Shortcodes "
+"finden, konfigurieren und kopieren Sien."
+
+msgid "Small dynamic helpers. Ready when you need them."
+msgstr "Kleine dynamische Helfer. Schnell eingesetzt."
 
 msgid "Small plugins. Practical improvements."
 msgstr "Kleine Plugins. Konkrete Verbesserungen."
 
+msgid "Sort by"
+msgstr "Sortieren nach"
+
 msgid "Source: GitHub"
 msgstr "Quelle: GitHub"
 
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Sun"
+msgstr "So"
+
+msgid "Sunday"
+msgstr "Sonntag"
+
+msgid "Synced pattern"
+msgstr "Synchronisierte Vorlage"
+
+msgid "Tagged With:"
+msgstr "Stichwörter:"
+
+msgid "Taxonomy terms"
+msgstr "Taxonomie-Begriffe"
+
+msgid "Technical information"
+msgstr "Technische Informationen"
+
+msgid "Technical version information for documentation and support."
+msgstr "Technische Versionsinformationen für Dokumentation und Support."
+
+msgid "Terms from a selected taxonomy."
+msgstr "Begriffe aus einer gewählten Taxonomie."
+
+msgid "Text after"
+msgstr "Text danach"
+
+msgid "Text before"
+msgstr "Text davor"
+
+msgid ""
+"The GitHub package could not be prepared. The installed version has been "
+"kept."
+msgstr ""
+"Das GitHub-Paket konnte nicht vorbereitet werden. Die installierte Version "
+"wurde beibehalten."
+
+msgid ""
+"The GitHub package does not contain the Builder Shortcode Extras plugin file."
+msgstr ""
+"Das GitHub-Paket enthält die Plugin-Datei von Builder Shortcode Extras nicht."
+
 msgid "The GitHub release could not be downloaded."
 msgstr "Das GitHub-Release konnte nicht heruntergeladen werden."
+
+msgid "The ID of the signed-in user."
+msgstr "Die ID des angemeldeten Benutzers."
+
+msgid "The action is still running. Check its status again."
+msgstr "Die Aktion läuft noch. Bitte den Status erneut prüfen."
+
+msgid "The approved package could not be verified."
+msgstr "Das freigegebene Paket konnte nicht geprüft werden."
+
+msgid "The approved release changed. Refresh updates first."
+msgstr ""
+"Das freigegebene Release hat sich geändert. Bitte zuerst die Updates "
+"aktualisieren."
+
+msgid "The approved release could not be verified."
+msgstr "Der freigegebene Release konnte nicht geprüft werden."
+
+msgid "The author’s display name."
+msgstr "Der Anzeigename des Autors."
+
+msgid "The author’s name linked to their archive."
+msgstr "Der Autorenname mit Link zu seinem Archiv."
+
+msgid "The author’s name linked to their website."
+msgstr "Der Autorenname mit Link zu seiner Website."
+
+msgid "The breadcrumb trail provided by Genesis."
+msgstr "Die von Genesis bereitgestellte Breadcrumb-Navigation."
 
 msgid "The catalog URL is not an allowed first-party HTTPS endpoint."
 msgstr "Die Katalog-URL ist keine erlaubte eigene HTTPS-Quelle."
 
 msgid "The catalog could not be verified. Please try again later."
-msgstr "Der Katalog konnte nicht geprüft werden. Bitte später erneut versuchen."
+msgstr ""
+"Der Katalog konnte nicht geprüft werden. Bitte später erneut versuchen."
 
 msgid "The catalog is disabled."
 msgstr "Der Katalog ist deaktiviert."
@@ -961,23 +1191,244 @@ msgstr "Der Katalog ist deaktiviert."
 msgid "The catalog is hidden."
 msgstr "Der Katalog ist ausgeblendet."
 
-msgid "The online catalog is unavailable. Showing cached or bundled entries; online approval is checked again before installation."
-msgstr "Der Online-Katalog ist nicht erreichbar. Angezeigt wird der gespeicherte oder mitgelieferte Katalog; vor der Installation wird die Online-Freigabe erneut geprüft."
+msgid "The categories assigned to the current post."
+msgstr "Die Kategorien des aktuellen Beitrags."
+
+msgid ""
+"The deckerweb catalog could not load. Check platform requirements and the "
+"complete Library integration in the host plugin."
+msgstr ""
+"Der deckerweb-Katalog konnte nicht geladen werden. Bitte PHP-/WordPress-"
+"Anforderungen und die vollständige Library-Einbindung im Host-Plugin prüfen."
+
+msgid "The display name of the signed-in user."
+msgstr "Der Anzeigename des angemeldeten Benutzers."
+
+msgid "The earliest or latest modification of published content."
+msgstr "Die früheste oder neueste Änderung veröffentlichter Inhalte."
+
+msgid "The email address of the signed-in user."
+msgstr "Die E-Mail-Adresse des angemeldeten Benutzers."
+
+msgid "The first name of the signed-in user."
+msgstr "Der Vorname des angemeldeten Benutzers."
+
+msgid "The footer text configured in Genesis."
+msgstr "Der in Genesis eingestellte Footer-Text."
+
+msgid ""
+"The generator needs JavaScript. You can still select and copy examples from "
+"the help below."
+msgstr ""
+"Der Generator benötigt JavaScript. Die Beispiele in der Hilfe können Sie "
+"weiterhin markieren und kopieren Sien."
+
+msgid ""
+"The installed plugin identity could not be verified for this catalog update."
+msgstr ""
+"Die Identität des installierten Plugins konnte für dieses Katalogupdate "
+"nicht bestätigt werden."
+
+msgid "The last name of the signed-in user."
+msgstr "Der Nachname des angemeldeten Benutzers."
+
+msgid "The login name of the signed-in user."
+msgstr "Der Anmeldename des angemeldeten Benutzers."
+
+msgid "The modification date of the current or selected post."
+msgstr "Das Änderungsdatum des aktuellen oder gewählten Beitrags."
+
+msgid "The modification time of the current or selected post."
+msgstr "Die Änderungszeit des aktuellen oder gewählten Beitrags."
+
+msgid "The name of your website."
+msgstr "Der Name Ihrer Website."
+
+msgid "The native responsive featured image of readable content."
+msgstr "Das native responsive Beitragsbild lesbarer Inhalte."
+
+msgid ""
+"The online catalog is unavailable. Showing cached or bundled entries; online "
+"approval is checked again before installation."
+msgstr ""
+"Der Online-Katalog ist nicht erreichbar. Angezeigt wird der gespeicherte "
+"oder mitgelieferte Katalog; vor der Installation wird die Online-Freigabe "
+"erneut geprüft."
 
 msgid "The online catalog source is not trusted."
 msgstr "Die Online-Katalogquelle ist nicht vertrauenswürdig."
 
-msgid "The release checksum does not match. Installation stopped."
-msgstr "Die Prüfsumme des Releases stimmt nicht überein. Installation gestoppt."
+msgid ""
+"The package identity or version does not match a newer Builder Shortcode "
+"Extras release."
+msgstr ""
+"Die Paketidentität oder Version entspricht keiner neueren Version von "
+"Builder Shortcode Extras."
 
-msgid "This plugin directory already exists. Use the installed plugin; it will not be overwritten."
-msgstr "Dieses Plugin-Verzeichnis existiert bereits. Bitte das installierte Plugin verwenden; es wird nicht überschrieben."
+msgid ""
+"The package version differs from the offered update. Please check for "
+"updates again."
+msgstr ""
+"Die Paketversion weicht vom angebotenen Update ab. Bitte prüfen Sie erneut "
+"auf Updates."
+
+msgid "The plugin must be installed in a stable slug directory."
+msgstr ""
+"Das Plugin muss in einem Verzeichnis mit einem festen Slug installiert sein."
+
+msgid ""
+"The private update could not be authorized. Check the repository credentials "
+"and refresh updates."
+msgstr ""
+"Das private Update konnte nicht autorisiert werden. Prüfen Sie die "
+"Repository-Zugangsdaten und suchen Sie erneut nach Updates."
+
+msgid "The private update download failed. Check credentials and try again."
+msgstr ""
+"Der Download des privaten Updates ist fehlgeschlagen. Prüfen Sie die "
+"Zugangsdaten und versuchen Sie es erneut."
+
+msgid "The publication date of the current or selected post."
+msgstr "Das Veröffentlichungsdatum des aktuellen oder gewählten Beitrags."
+
+msgid "The publication time of the current or selected post."
+msgstr "Die Veröffentlichungszeit des aktuellen oder gewählten Beitrags."
+
+msgid "The release checksum does not match. Installation stopped."
+msgstr ""
+"Die Prüfsumme des Releases stimmt nicht überein. Installation gestoppt."
+
+msgid ""
+"The request could not be completed. Check the plugin status before trying "
+"again."
+msgstr ""
+"Die Anfrage konnte nicht abgeschlossen werden. Vor einem erneuten Versuch "
+"den Plugin-Status prüfen."
+
+msgid "The requirements below describe the offered release."
+msgstr ""
+"Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release."
+
+msgid "The tagline of your website."
+msgstr "Der Untertitel Ihrer Website."
+
+msgid "The tags assigned to the current post."
+msgstr "Die Schlagwörter des aktuellen Beitrags."
+
+msgid "The title of the current or selected readable item."
+msgstr "Titel des aktuellen oder ausgewählten lesbaren Inhalts."
+
+msgid "The update filesystem is unavailable. Please try again."
+msgstr ""
+"Das Dateisystem für das Update ist nicht verfügbar. Bitte versuchen Sie es "
+"erneut."
+
+msgid "The update has not been confirmed. You can try again."
+msgstr ""
+"Die Aktualisierung wurde nicht bestätigt. Sie können es erneut versuchen."
+
+msgid "The update package could not be checked."
+msgstr "Das Update-Paket konnte nicht geprüft werden."
+
+msgid "The update package has missing or invalid WordPress/PHP requirements."
+msgstr ""
+"Die WordPress/PHP-Anforderungen im Update-Paket fehlen oder sind ungültig."
+
+msgid "The user ID is incorrect"
+msgstr "Die Benutzer-ID ist falsch"
+
+msgid ""
+"These details contain component versions and catalog status, without "
+"credentials or site content."
+msgstr ""
+"Diese Angaben enthalten Komponentenversionen und den Katalogstatus, keine "
+"Zugangsdaten oder Website-Inhalte."
+
+msgid "This catalog requires a newer Library."
+msgstr "Dieser Katalog benötigt eine neuere Library."
+
+msgid ""
+"This plugin directory already exists. Use the installed plugin; it will not "
+"be overwritten."
+msgstr ""
+"Dieses Plugin-Verzeichnis existiert bereits. Bitte das installierte Plugin "
+"verwenden; es wird nicht überschrieben."
 
 msgid "This release is no longer approved."
 msgstr "Dieses Release ist nicht mehr freigegeben."
 
 msgid "This release is not approved."
 msgstr "Dieses Release ist nicht freigegeben."
+
+msgid ""
+"This release requires a newer WordPress or PHP version. The installed "
+"version has been kept."
+msgstr ""
+"Diese Version benötigt eine neuere WordPress- oder PHP-Version. Die "
+"installierte Version wurde beibehalten."
+
+msgid "This user field is not allowed"
+msgstr "Dieses Benutzerfeld ist nicht erlaubt"
+
+msgid "Thu"
+msgstr "Do"
+
+msgid "Thursday"
+msgstr "Donnerstag"
+
+msgctxt "Time difference"
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s Tag"
+msgstr[1] "%s Tage"
+
+msgctxt "Time difference"
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] "%s Stunde"
+msgstr[1] "%s Stunden"
+
+msgctxt "Time difference"
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s Minute"
+msgstr[1] "%s Minuten"
+
+msgctxt "Time difference"
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] "%s Monat"
+msgstr[1] "%s Monate"
+
+msgctxt "Time difference"
+msgid "%s second"
+msgid_plural "%s seconds"
+msgstr[0] "%s Sekunde"
+msgstr[1] "%s Sekunden"
+
+msgctxt "Time difference"
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] "%s Woche"
+msgstr[1] "%s Wochen"
+
+msgctxt "Time difference"
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s Jahr"
+msgstr[1] "%s Jahre"
+
+msgid "Tools"
+msgstr "Werkzeuge"
+
+msgid "Try: copyright, date, author…"
+msgstr "Zum Beispiel: Copyright, Datum, Autor …"
+
+msgid "Tue"
+msgstr "Di"
+
+msgid "Tuesday"
+msgstr "Dienstag"
 
 msgid "Unsafe archive path."
 msgstr "Unsicherer Archivpfad."
@@ -988,230 +1439,11 @@ msgstr "Nicht vertrauenswürdige Release-URL."
 msgid "Update %1$s to version %2$s or newer."
 msgstr "%1$s bitte auf Version %2$s oder neuer aktualisieren."
 
-msgid "View plugins"
-msgstr "Plugins ansehen"
-
-msgid "Visibility"
-msgstr "Sichtbarkeit"
-
-msgid "WordPress"
-msgstr "WordPress"
-
-msgid "You already use one of my plugins. Find selected additions in the deckerweb tab."
-msgstr "Sie nutzen bereits ein Plugin von mir. Ausgewählte Ergänzungen finden Sie im deckerweb-Tab."
-
-msgid "January"
-msgstr "Januar"
-
-msgid "February"
-msgstr "Februar"
-
-msgid "March"
-msgstr "März"
-
-msgid "April"
-msgstr "April"
-
-msgid "May"
-msgstr "Mai"
-
-msgid "June"
-msgstr "Juni"
-
-msgid "July"
-msgstr "Juli"
-
-msgid "August"
-msgstr "August"
-
-msgid "September"
-msgstr "September"
-
-msgid "October"
-msgstr "Oktober"
-
-msgid "November"
-msgstr "November"
-
-msgid "December"
-msgstr "Dezember"
-
-msgid "Jan"
-msgstr "Jan"
-
-msgid "Feb"
-msgstr "Feb"
-
-msgid "Mar"
-msgstr "Mär"
-
-msgid "Apr"
-msgstr "Apr"
-
-msgid "Jun"
-msgstr "Jun"
-
-msgid "Jul"
-msgstr "Jul"
-
-msgid "Aug"
-msgstr "Aug"
-
-msgid "Sep"
-msgstr "Sep"
-
-msgid "Oct"
-msgstr "Okt"
-
-msgid "Nov"
-msgstr "Nov"
-
-msgid "Dec"
-msgstr "Dez"
-
-msgid "Monday"
-msgstr "Montag"
-
-msgid "Tuesday"
-msgstr "Dienstag"
-
-msgid "Wednesday"
-msgstr "Mittwoch"
-
-msgid "Thursday"
-msgstr "Donnerstag"
-
-msgid "Friday"
-msgstr "Freitag"
-
-msgid "Saturday"
-msgstr "Samstag"
-
-msgid "Sunday"
-msgstr "Sonntag"
-
-msgid "Mon"
-msgstr "Mo"
-
-msgid "Tue"
-msgstr "Di"
-
-msgid "Wed"
-msgstr "Mi"
-
-msgid "Thu"
-msgstr "Do"
-
-msgid "Fri"
-msgstr "Fr"
-
-msgid "Sat"
-msgstr "Sa"
-
-msgid "Sun"
-msgstr "So"
-
-msgid "F j, Y"
-msgstr "j. F Y"
-
-msgid "Plugin series"
-msgstr "Plugin-Serien"
-
-msgid "All"
-msgstr "Alle"
-
-msgid "Fits my installation"
-msgstr "Passt zu meiner Installation"
-
-msgid "Reset filters"
-msgstr "Filter zurücksetzen"
-
-msgid "Invalid plugin series."
-msgstr "Ungültige Plugin-Serie."
-
-msgid "Shows plugins whose platform and dependency requirements are met in this site or network. Without this filter, plugins with missing requirements remain visible."
-msgstr "Zeigt Plugins, deren Plattform- und Abhängigkeitsanforderungen auf dieser Website oder im Netzwerk erfüllt sind. Ohne diesen Filter bleiben Plugins mit fehlenden Voraussetzungen sichtbar."
-
-msgid "Fixed"
-msgstr "Behoben"
-
-msgid "Invalid catalog revision."
-msgstr "Ungültiger Katalogstand."
-
-msgid "This catalog requires a newer Library."
-msgstr "Dieser Katalog benötigt eine neuere Library."
-
-msgid "Optional. The bundled catalog works immediately. Catalog requests are cached for 24 hours. No site URL, plugin list or usage data is sent."
-msgstr "Optional. Der mitgelieferte Katalog funktioniert sofort. Katalogabfragen werden 24 Stunden zwischengespeichert. Keine Website-URL, Plugin-Liste oder Nutzungsdaten werden übertragen."
-
-msgid "Invalid catalog timestamp."
-msgstr "Ungültiger Katalogzeitpunkt."
-
-msgid "Only HTTPS on raw.githubusercontent.com/deckerweb. The server receives the requesting IP address. GitHub is contacted when installing a release."
-msgstr "Nur HTTPS auf raw.githubusercontent.com/deckerweb. Der Server sieht die anfragende IP-Adresse. Beim Installieren eines Releases wird GitHub kontaktiert."
-
-msgid "Manage Content"
-msgstr "Inhalte verwalten"
-
-msgid "Commerce"
-msgstr "Commerce"
-
-msgid "Release in preparation"
-msgstr "Release in Vorbereitung"
-
-msgid "Planned: "
-msgstr "Geplant: "
-
-msgid "Release 1.0.0 is being prepared. Installation will be available after package verification."
-msgstr "Release 1.0.0 wird vorbereitet. Die Installation ist nach Prüfung des Pakets verfügbar."
-
-msgid "Requirements shown are preliminary until the stable release is verified."
-msgstr "Die gezeigten Voraussetzungen sind bis zur Prüfung des stabilen Releases vorläufig."
-
-msgid "Installing…"
-msgstr "Wird installiert…"
-
-msgid "Activating…"
-msgstr "Wird aktiviert…"
-
-msgid "The request could not be completed. Check the plugin status before trying again."
-msgstr "Die Anfrage konnte nicht abgeschlossen werden. Vor einem erneuten Versuch den Plugin-Status prüfen."
-
-msgid "Installation cancelled."
-msgstr "Installation abgebrochen."
-
-msgid "Another action for this plugin is running. Please wait."
-msgstr "Für dieses Plugin läuft bereits eine Aktion. Bitte warten."
-
-msgid "Filesystem credentials are required."
-msgstr "Zugangsdaten für das Dateisystem werden benötigt."
-
-msgid "Installation failed."
-msgstr "Installation fehlgeschlagen."
-
-msgid "Tools"
-msgstr "Werkzeuge"
-
-msgid "Shop"
-msgstr "Shop"
-
-msgid "Check status"
-msgstr "Status prüfen"
-
-msgid "The action is still running. Check its status again."
-msgstr "Die Aktion läuft noch. Bitte den Status erneut prüfen."
-
-msgid "Not installed. You can try again."
-msgstr "Nicht installiert. Ein erneuter Versuch ist möglich."
-
-msgid "Checking status…"
-msgstr "Status wird geprüft…"
-
-msgid "The requirements below describe the offered release."
-msgstr "Die folgenden Voraussetzungen beziehen sich auf den angebotenen Release."
-
-msgid "Affected features remain paused until their requirements are met."
-msgstr "Betroffene Funktionen pausieren, bis ihre Voraussetzungen erfüllt sind."
+msgid "Update available"
+msgstr "Update verfügbar"
+
+msgid "Update failed."
+msgstr "Aktualisierung fehlgeschlagen."
 
 msgid "Update to %s"
 msgstr "Auf %s aktualisieren"
@@ -1219,113 +1451,208 @@ msgstr "Auf %s aktualisieren"
 msgid "Updated"
 msgstr "Aktualisiert"
 
-msgid "Already up to date."
-msgstr "Bereits aktuell."
-
 msgid "Updating…"
 msgstr "Wird aktualisiert…"
 
-msgid "The installed plugin identity could not be verified for this catalog update."
-msgstr "Die Identität des installierten Plugins konnte für dieses Katalogupdate nicht bestätigt werden."
+msgid "Use a whole number greater than zero."
+msgstr "Verwenden Sie eine ganze Zahl größer als null."
 
-msgid "Another updater provides a different release. Refresh updates before continuing."
-msgstr "Ein anderer Updater bietet einen abweichenden Release an. Bitte die Updateinformationen vor dem Fortfahren aktualisieren."
+msgid "Use wrapper=\"none\" for output without the outer wrapper."
+msgstr "Verwenden Sie wrapper=\"none\" für Ausgabe ohne äußeren Wrapper."
 
-msgid "The update has not been confirmed. You can try again."
-msgstr "Die Aktualisierung wurde nicht bestätigt. Sie können es erneut versuchen."
+msgid "User"
+msgstr "Anwender"
 
-msgid "Update failed."
-msgstr "Aktualisierung fehlgeschlagen."
+msgid "User information"
+msgstr "Benutzerinformationen"
 
-msgid "Settings saved."
-msgstr "Einstellungen gespeichert."
+msgid "Version"
+msgstr "Version"
 
-msgid "Catalog refreshed."
-msgstr "Katalog aktualisiert."
+msgid "Version information"
+msgstr "Versionsinformationen"
 
-msgid "Filesystem credentials are required. Use the catalog with JavaScript enabled or the native Plugins screen."
-msgstr "Dateisystem-Zugangsdaten sind erforderlich. Bitte den Katalog mit aktiviertem JavaScript oder die WordPress-Pluginverwaltung verwenden."
+msgid "View plugins"
+msgstr "Plugins ansehen"
 
-msgid "The deckerweb catalog could not load. Check platform requirements and the complete Library integration in the host plugin."
-msgstr "Der deckerweb-Katalog konnte nicht geladen werden. Bitte PHP-/WordPress-Anforderungen und die vollständige Library-Einbindung im Host-Plugin prüfen."
+msgid "Visibility"
+msgstr "Sichtbarkeit"
 
-msgid "The approved package could not be verified."
-msgstr "Das freigegebene Paket konnte nicht geprüft werden."
+msgid "Website default"
+msgstr "Website-Standard"
 
-msgid "Action cancelled."
-msgstr "Vorgang abgebrochen."
+msgid "Website updated"
+msgstr "Website aktualisiert"
 
-msgid "Standard"
-msgstr "Standard"
+msgid "Wed"
+msgstr "Mi"
 
-msgid "Name A–Z"
-msgstr "Name A–Z"
+msgid "Wednesday"
+msgstr "Mittwoch"
 
-msgid "Name Z–A"
-msgstr "Name Z–A"
+msgid "What would you like to add?"
+msgstr "Was möchten Sie hinzufügen Sien?"
 
-msgid "Recently updated"
-msgstr "Zuletzt aktualisiert"
+msgid "WordPress"
+msgstr "WordPress"
 
-msgid "Discover randomly"
-msgstr "Zufällig entdecken"
+msgid "WordPress Synced Patterns"
+msgstr "Synchronisierte WordPress-Vorlagen"
 
-msgid "Sort by"
-msgstr "Sortieren nach"
+msgid "Words per minute"
+msgstr "Wörter pro Minute"
 
-msgid "Shuffle again"
-msgstr "Neu mischen"
+msgid "Wrapper"
+msgstr "HTML-Element"
 
-msgid "Reset view"
-msgstr "Ansicht zurücksetzen"
+msgid "Yes"
+msgstr "Ja"
 
-msgid "Invalid sort order."
-msgstr "Ungültige Sortierung."
+msgid ""
+"You already use one of my plugins. Find selected additions in the deckerweb "
+"tab."
+msgstr ""
+"Sie nutzen bereits ein Plugin von mir. Ausgewählte Ergänzungen finden Sie im "
+"deckerweb-Tab."
 
-msgid "Technical information"
-msgstr "Technische Informationen"
+msgid "Your shortcode"
+msgstr "Ihr Shortcode"
 
-msgid "Copy diagnostic information"
-msgstr "Diagnoseinformationen kopieren"
+msgid "ago"
+msgstr "vor"
 
-msgid "These details contain component versions and catalog status, without credentials or site content."
-msgstr "Diese Angaben enthalten Komponentenversionen und den Katalogstatus, keine Zugangsdaten oder Website-Inhalte."
+msgctxt "time difference"
+msgid "seconds"
+msgstr "Sekunden"
 
-msgid "Copied."
-msgstr "Kopiert."
+msgid "Archive verification"
+msgstr "Archivprüfung"
 
-msgid "Select and copy the text."
-msgstr "Text markieren und kopieren."
+msgid "Catalog approval"
+msgstr "Katalogfreigabe"
 
-msgid "Cached or bundled catalog"
-msgstr "Gespeicherter oder mitgelieferter Katalog"
+msgid "Catalog diagnostics require a public catalog provider."
+msgstr "Die Katalogdiagnose benötigt einen öffentlichen Kataloganbieter."
 
-msgid "Bundled catalog"
-msgstr "Mitgelieferter Katalog"
+msgid "Checksum verification"
+msgstr "Prüfsummenprüfung"
 
-msgid "Last successful check: "
-msgstr "Zuletzt erfolgreich geprüft: "
+msgid "HTTP status: %d."
+msgstr "HTTP-Status: %d."
 
-msgid "Network active"
-msgstr "Netzwerkweit aktiv"
+msgid "Invalid package cleanup provider."
+msgstr "Ungültiger Anbieter für die Paketbereinigung."
 
-msgid "Active"
-msgstr "Aktiv"
+msgid "Invalid private download limits."
+msgstr "Ungültige Grenzen für private Downloads."
 
-msgid "Installed · inactive"
-msgstr "Installiert · inaktiv"
+msgid "Package download"
+msgstr "Paketdownload"
 
-msgid "Update available"
-msgstr "Update verfügbar"
+msgid "Safe package cleanup is unavailable for this update provider."
+msgstr "Für diesen Updateanbieter ist keine sichere Paketbereinigung verfügbar."
 
-msgid "Active filters: "
-msgstr "Aktive Filter: "
+msgid "The archive or plugin identity could not be verified. Installation was stopped."
+msgstr "Das Archiv oder die Pluginidentität konnte nicht geprüft werden. Die Installation wurde gestoppt."
 
-msgid "Remove filter: "
-msgstr "Filter entfernen: "
+msgid "The package does not match the approved checksum. Installation was stopped."
+msgstr "Das Paket entspricht nicht der freigegebenen Prüfsumme. Die Installation wurde gestoppt."
 
-msgid "Permission denied. Reload the page and check your permissions."
-msgstr "Zugriff verweigert. Laden Sie die Seite neu und prüfen Sie Ihre Berechtigungen."
+msgid "The secure connection to the update server failed."
+msgstr "Die sichere Verbindung zum Updateserver ist fehlgeschlagen."
 
-msgid "Another component interrupted the request. If Git Updater is active, temporarily deactivate it and retry."
-msgstr "Eine andere Komponente hat die Anfrage unterbrochen. Falls Git Updater aktiv ist, deaktivieren Sie ihn vorübergehend und wiederholen Sie den Vorgang."
+msgid "The update package identity, version or requirements could not be verified."
+msgstr "Identität, Version oder Anforderungen des Updatepakets konnten nicht bestätigt werden."
+
+msgid "The update provider did not return valid update data."
+msgstr "Der Updateanbieter hat keine gültigen Updatedaten geliefert."
+
+msgid "The update request timed out. Try again later."
+msgstr "Die Updateanfrage hat zu lange gedauert. Versuchen Sie es später erneut."
+
+msgid "The update server address could not be resolved."
+msgstr "Die Adresse des Updateservers konnte nicht aufgelöst werden."
+
+msgid "The update server could not be reached. Try again later."
+msgstr "Der Updateserver ist nicht erreichbar. Versuchen Sie es später erneut."
+
+msgid "The update server returned an unsuccessful HTTP response."
+msgstr "Der Updateserver hat eine HTTP-Fehlerantwort zurückgegeben."
+
+msgid "Update stopped at %1$s: %2$s"
+msgstr "Update gestoppt bei %1$s: %2$s"
+
+msgid "%1$s of %2$s plugins"
+msgstr "%1$s von %2$s Plugins"
+
+msgid "Catalog retrieval does not limit updates of installed plugins. Those use their normal WordPress update provider."
+msgstr "Der Katalogabruf begrenzt keine Updates installierter Plugins. Diese verwenden ihren normalen WordPress-Updater."
+
+msgid "Catalog verification"
+msgstr "Katalogprüfung"
+
+msgid "Connection failed. Please try again later."
+msgstr "Die Verbindung ist fehlgeschlagen. Bitte später erneut versuchen."
+
+msgid "Inactive"
+msgstr "Inaktiv"
+
+msgid "Installed plugin identity does not match the approved release."
+msgstr "Die Identität des installierten Plugins stimmt nicht mit dem freigegebenen Release überein."
+
+msgid "Installed plugins use their normal update provider. Reload the update information and try again."
+msgstr "Installierte Plugins verwenden ihren normalen Updater. Aktualisieren Sie die Updateinformationen und versuchen Sie es erneut."
+
+msgid "Invalid status filter."
+msgstr "Ungültiger Statusfilter."
+
+msgid "No update reported."
+msgstr "Kein Update gemeldet."
+
+msgid "Not installed"
+msgstr "Nicht installiert"
+
+msgid "Plugin status"
+msgstr "Plugin-Status"
+
+msgid "Stage: %1$s. %2$s"
+msgstr "Fehlerstufe: %1$s. %2$s"
+
+msgid "The catalog response is invalid, incompatible or too large."
+msgstr "Die Katalogantwort ist ungültig, inkompatibel oder zu groß."
+
+msgid "The connection timed out. Please try again later."
+msgstr "Die Zeit für die Verbindung wurde überschritten. Bitte später erneut versuchen."
+
+msgid "The installed plugin identity could not be verified. Use the Plugins screen to review it."
+msgstr "Die Identität des installierten Plugins konnte nicht geprüft werden. Prüfen Sie es auf der Plugins-Seite."
+
+msgid "The package checksum does not match the approved release. Installation was stopped."
+msgstr "Die Paketprüfsumme stimmt nicht mit der freigegebenen Version überein. Die Installation wurde gestoppt."
+
+msgid "The package did not pass the archive or plugin identity checks. Installation was stopped."
+msgstr "Das Paket hat die Archiv- oder Plugin-Identitätsprüfung nicht bestanden. Die Installation wurde gestoppt."
+
+msgid "The requirements below describe the catalog version for first installation, not an installed-plugin update."
+msgstr "Die folgenden Voraussetzungen beschreiben die Katalogversion für die Erstinstallation, nicht ein Bestandsupdate."
+
+msgid "The secure connection could not be verified."
+msgstr "Die sichere Verbindung konnte nicht bestätigt werden."
+
+msgid "The server address could not be resolved."
+msgstr "Die Serveradresse konnte nicht aufgelöst werden."
+
+msgid "The server returned HTTP %d. Please try again later."
+msgstr "Der Server hat HTTP %d zurückgegeben. Bitte später erneut versuchen."
+
+msgid "Update available: %s"
+msgstr "Update verfügbar: %s"
+
+msgid "Update information changed. Reload the page and try again."
+msgstr "Die Updateinformationen haben sich geändert. Laden Sie die Seite neu und versuchen Sie es erneut."
+
+msgid "Use the Plugins screen to manage this installed plugin."
+msgstr "Verwalten Sie dieses installierte Plugin auf der Plugins-Seite."
+
+msgid "Verified first installations · Independent plugin updates"
+msgstr "Geprüfte Erstinstallationen · Unabhängige Pluginupdates"
